@@ -1,0 +1,858 @@
+{
+  "hero": {},
+  "doctorDetail": [
+    {
+      "id": 1,
+      "title": "Exprience",
+      "subTitle": "19 Year +"
+    },
+    {
+      "id": 2,
+      "title": "Graduation",
+      "subTitle": "PGI Chandigard"
+    },
+    {
+      "id": 3,
+      "title": "Post Graduation",
+      "subTitle": "PGI Chandigard"
+    },
+    {
+      "id": 4,
+      "title": "Consultant",
+      "subTitle": "AIIMS Delhi"
+    },
+    {
+      "id": 5,
+      "title": "Delivery",
+      "subTitle": "500+"
+    },
+    {
+      "id": 6,
+      "title": "LaproScopic Surgery",
+      "subTitle": "1000+"
+    },
+    {
+      "id": 7,
+      "title": "Rating",
+      "subTitle": "⭐️⭐️⭐️⭐️⭐️"
+    },
+    {
+      "id": 8,
+      "title": "Post Graduation",
+      "subTitle": "PGI Chandigard"
+    },
+    {
+      "id": 9,
+      "title": "Consultant",
+      "subTitle": "AIIMS Delhi"
+    },
+    {
+      "id": 10,
+      "title": "Delivery",
+      "subTitle": "500 +"
+    },
+    {
+      "id": 11,
+      "title": "LaproScopic Surgery",
+      "subTitle": "1000+"
+    },
+    {
+      "id": 12,
+      "title": "Rating",
+      "subTitle": "⭐️⭐️⭐️⭐️⭐️"
+    }
+  ],
+  "whyChooseUs": {
+    "badge": "WHY CHOOSE US",
+    "title": "Choosing Dr. Kusum Lata means choosing care, trust, and expert results",
+    "description": "At Dr. Kusum Lata Clinic, we go beyond treatment — we provide compassionate, personalized women’s healthcare with a focus on safety, comfort, and successful outcomes.",
+    "highlights": [
+      {
+        "id": "1",
+        "text": "Led by an experienced gynecologist with years of clinical expertise."
+      },
+      {
+        "id": "2",
+        "text": "Clear explanation of every treatment, cost, and expected outcome for complete transparency."
+      }
+    ],
+    "cta": {
+      "text": "Discover More",
+      "link": "/about-us"
+    },
+    "image": "/images/why-choose-us.jpg",
+    "features": [
+      {
+        "id": "1",
+        "title": "High Success Rates",
+        "description": "Advanced treatments combined with medical precision to ensure the best outcomes for women’s health.",
+        "icon": "activity"
+      },
+      {
+        "id": "2",
+        "title": "Experienced Care",
+        "description": "Years of hands-on experience in gynecology, pregnancy care, and laparoscopic procedures.",
+        "icon": "users"
+      },
+      {
+        "id": "3",
+        "title": "Transparent Communication",
+        "description": "We guide you through every step with honesty, clarity, and complete support.",
+        "icon": "settings"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about women's health, pregnancy care, and gynecological treatments.",
+    "questions": [
+      {
+        "id": "1",
+        "question": "When should I visit a gynecologist?",
+        "answer": "You should visit a gynecologist for regular checkups, menstrual issues, pregnancy planning, unusual pain, infections, or any concerns related to women’s health."
+      },
+      {
+        "id": "2",
+        "question": "What services does Dr. Kusum Lata provide?",
+        "answer": "Dr. Kusum Lata offers comprehensive care including pregnancy care, infertility treatment, cosmetic gynecology, laparoscopic surgery, menstrual disorder treatment, and preventive women’s healthcare."
+      },
+      {
+        "id": "3",
+        "question": "Is laparoscopic surgery safe?",
+        "answer": "Yes, laparoscopic surgery is a minimally invasive and safe procedure with faster recovery, less pain, and minimal scarring when performed by an experienced specialist."
+      },
+      {
+        "id": "4",
+        "question": "How often should I go for a gynecological checkup?",
+        "answer": "It is recommended to visit a gynecologist at least once a year for routine checkups, or more frequently if you have ongoing health concerns."
+      },
+      {
+        "id": "5",
+        "question": "What should I expect during my first visit?",
+        "answer": "During your first visit, the doctor will review your medical history, discuss your concerns, and may perform a basic examination if required to provide proper guidance and treatment."
+      },
+      {
+        "id": "6",
+        "question": "Do you provide pregnancy and prenatal care?",
+        "answer": "Yes, complete pregnancy care including prenatal checkups, ultrasound guidance, nutrition advice, and delivery planning is provided."
+      },
+      {
+        "id": "7",
+        "question": "Is consultation confidential?",
+        "answer": "Yes, all consultations and treatments are completely confidential, ensuring your privacy and comfort at every step."
+      }
+    ]
+  },
+  "testimonial": {
+    "badge": "TESTIMONIALS",
+    "title": "Heartfelt stories of hope and success",
+    "highlightText": "success",
+    "googleRating": {
+      "rating": "5.0",
+      "reviews": "5000+",
+      "label": "Google Rating"
+    },
+    "avatars": [
+      "https://randomuser.me/api/portraits/men/32.jpg",
+      "https://randomuser.me/api/portraits/women/44.jpg",
+      "https://randomuser.me/api/portraits/men/45.jpg",
+      "https://randomuser.me/api/portraits/women/68.jpg",
+      "https://randomuser.me/api/portraits/men/76.jpg"
+    ],
+    "reviews": [
+      {
+        "id": "1",
+        "name": "Neha Sharma",
+        "role": "Patient",
+        "image": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200",
+        "message": "After years of struggle, Dr. Kusum Lata gave us hope and guided us with care. Today, we are blessed with a healthy baby. Truly life-changing experience.",
+        "highlight": false
+      },
+      {
+        "id": "2",
+        "name": "Pooja Verma",
+        "role": "IVF Patient",
+        "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=200",
+        "message": "We had almost lost hope after multiple failed attempts, but her expertise and support made all the difference. Highly recommended for fertility treatments.",
+        "highlight": true
+      },
+      {
+        "id": "3",
+        "name": "Anjali Gupta",
+        "role": "Working Mother",
+        "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200",
+        "message": "Dr. Kusum Lata handled my pregnancy with so much care and professionalism. I always felt safe and confident throughout the journey.",
+        "highlight": false
+      },
+      {
+        "id": "4",
+        "name": "Ritika Singh",
+        "role": "Patient",
+        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=200",
+        "message": "From consultation to treatment, everything was explained clearly. The doctor is very calm, supportive, and truly understands patients’ concerns.",
+        "highlight": false
+      },
+      {
+        "id": "5",
+        "name": "Sneha Kapoor",
+        "role": "Infertility Treatment",
+        "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200",
+        "message": "Her experience in infertility treatments is amazing. We are grateful for her guidance and the positive results we received.",
+        "highlight": false
+      },
+      {
+        "id": "6",
+        "name": "Megha Arora",
+        "role": "First-time Mother",
+        "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200",
+        "message": "Being a first-time mom, I had many doubts, but she supported me at every step. The entire experience was smooth and stress-free.",
+        "highlight": false
+      },
+      {
+        "id": "7",
+        "name": "Kavita Yadav",
+        "role": "Surgery Patient",
+        "image": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200",
+        "message": "My laparoscopic surgery went perfectly. Recovery was quick, and the care provided was excellent. Thank you for everything!",
+        "highlight": false
+      }
+    ]
+  },
+  "associations": [
+    {
+      "id": 1,
+      "name": "Apollo Hospitals",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/0/0e/Apollo_Hospitals_logo.svg"
+    },
+    {
+      "id": 2,
+      "name": "Fortis Healthcare",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/7/7b/Fortis_Healthcare_logo.svg"
+    },
+    {
+      "id": 3,
+      "name": "Max Healthcare",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/2/2e/Max_Healthcare_logo.svg"
+    },
+    {
+      "id": 4,
+      "name": "Manipal Hospitals",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/4/4b/Manipal_Hospitals_logo.png"
+    },
+    {
+      "id": 5,
+      "name": "Narayana Health",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/9/9e/Narayana_Health_logo.png"
+    },
+    {
+      "id": 6,
+      "name": "AIIMS",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/3/3e/All_India_Institute_of_Medical_Sciences_logo.svg"
+    },
+    {
+      "id": 7,
+      "name": "Medanta",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/6/6b/Medanta_logo.png"
+    },
+    {
+      "id": 8,
+      "name": "Columbia Asia",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/5/5a/Columbia_Asia_logo.png"
+    },
+    {
+      "id": 9,
+      "name": "Mayo Clinic",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Mayo_Clinic_logo.svg"
+    },
+    {
+      "id": 10,
+      "name": "Cleveland Clinic",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Cleveland_Clinic_logo.svg"
+    }
+  ],
+  "WHealth": [
+    {
+      "id": 1,
+      "name": "Abnormal Bleeding",
+      "img":"/image/ abnormalBeeding.png"
+    },
+    {
+      "id": 2,
+      "name": "Vaginal Infections",
+      "img":"/image/ veginal Infection.png"
+    },
+    {
+      "id": 3,
+      "name": "Puberty & Menstrual Health",
+      "img":"/image/Mentural.png"
+    },
+    {
+      "id": 4,
+      "name": "Irregular Periods",
+      "img":"/image/ irregulatperiod.png"
+    },
+    {
+      "id": 5,
+      "name": "PCOS / PCOD",
+      "img":"/image/ pcodpng.png"
+    },
+    {
+      "id": 6,
+      "name": "Menstrual Pain",
+      "img":"/image/ mentrualPain.png"
+    },
+    {
+      "id": 7,
+      "name": "Annual Checkup",
+      "img":"/image/ anualCheckup.png"
+    },
+    {
+      "id": 8,
+      "name": "Pap Smear",
+      "img":"/image/papTest.png"
+    },
+    {
+      "id": 9,
+      "name": "HPV Screening",
+      "img":"/image/ hpvSreen.png"
+    },
+    {
+      "id": 10,
+      "name": "Breast Examination",
+      "img":"/image/ breatExamin.png"
+    },
+    {
+      "id": 11,
+      "name": "Cervical Cancer Examination",
+      "img":"/image/ cervicalCancer.png"
+    },
+    {
+      "id": 12,
+      "name": "Menopause Management",
+      "img":"/image/ menopaised.png"
+    },
+    {
+      "id": 13,
+      "name": "Hormonal Imbalance",
+      "img":"/image/ hormonalImbalance.png"
+    },
+    {
+      "id": 14,
+      "name": "Urinary Problem",
+      "img":"/image/ urinary.png"
+    },
+    {
+      "id": 15,
+      "name": "HPV Vaccination",
+      "img":"/image/ hpvVaccine.png"
+    },
+    {
+      "id": 16,
+      "name": "Normal Pregnancy",
+      "img":"/image/ normalPregnancy.png"
+    }
+  ],
+  "LaparoscopicSurgery": [
+    {
+      "title": "Gynecology & Laparoscopic Surgery",
+      "highlight": "Advanced • Minimally Invasive • Faster Recovery",
+      "image": "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b",
+      "surgery": [
+        {
+          "id": 101,
+          "name": "Endometriosis Surgery",
+          "key": "hysterectomy",
+          "img":"/image/ fibroid.png",
+          
+          "description": "A minimally invasive procedure to remove the uterus, often recommended for fibroids, heavy bleeding, or cancer."
+        },
+        {
+          "id": 102,
+          "name": "Fibroid Removal",
+          "key": "myomectomy",
+          "img":"/image/ fibroid.png",
+          "description": "Surgical removal of uterine fibroids while preserving the uterus, ideal for women planning future pregnancies."
+        },
+        {
+          "id": 103,
+          "name": "Ovarian Cyst Removal",
+          "key": "cyst",
+          "img":"/image/ fibroid.png",
+          "description": "Laparoscopic removal of cysts from the ovary to relieve pain and prevent complications."
+        },
+        {
+          "id": 104,
+          "name": "Uterus Removal",
+          "key": "endometriosis",
+          "img":"/image/ fibroid.png",
+          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
+        },
+        {
+          "id": 105,
+          "name": "Fertility Enhancing surgery",
+          "key": "fertility",
+          "img":"/image/ fibroid.png",
+          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
+        },
+        {
+          "id": 106,
+          "name": "Hysteroscopy",
+          "key": "fertility",
+          "img":"/image/ fibroid.png",
+          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
+        },
+        {
+          "id": 106,
+          "name": "Cancer Surgery",
+          "key": "fertility",
+          "img":"/image/ fibroid.png",
+          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
+        },
+        {
+          "id": 106,
+          "name": "Cervical Encerclage",
+          "key": "fertility",
+          "img":"/image/ fibroid.png",
+          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
+        }
+      ]
+    }
+  ],
+  "trianer": {
+    "name": "Dr. Kusum Lata",
+    "title": "Master Laparoscopic Surgery with Expert Guidance",
+    "subtitle": "A Trusted Gynecologist & Laparoscopic Trainer",
+    "description": "Empowering doctors with advanced laparoscopic surgical skills through hands-on training, live case demonstrations, and expert mentorship under Dr. Kusum Lata. The program focuses on real-time surgical exposure, precision techniques, and building confidence in minimally invasive gynecological procedures.",
+    "primaryCta": "Join Training Program",
+    "secondaryCta": "Read More",
+    "images": [
+      {
+        "id": 1,
+        "img": "/image/ drkusumlatagynecologist.jpeg",
+        "alt": "Hands-on laparoscopic training session"
+      },
+      {
+        "id": 2,
+        "img": "/image/ lacturesecucetariner.jpeg",
+        "alt": "Live laparoscopic surgery demonstration"
+      },
+      {
+        "id": 3,
+        "img": "/image/ meidicty.jpeg",
+        "alt": "Doctors participating in training"
+      },
+      {
+        "id": 4,
+        "img": "/image/ medicity-trainer.jpeg",
+        "alt": "Dr. Kusum Lata conducting training"
+      },
+      {
+        "id": 5,
+        "img": "/image/ drkusumlata_bestTrainer.jpeg",
+        "alt": "Operation theatre training session"
+      },
+      {
+        "id": 6,
+        "img": "/image/ medicityfaculty.jpeg",
+        "alt": "Interactive surgical learning"
+      },
+      {
+        "id": 7,
+        "img": "/image/ lacturesetion.jpeg",
+        "alt": "Advanced laparoscopic procedures"
+      }
+    ]
+  },
+  "service": [
+    {
+      "id": 1,
+      "title": "Pregnancy Care",
+      "heading": "Complete Maternity Support",
+      "description": "Expert prenatal and postnatal care to guide you through every stage of pregnancy with safety and confidence.",
+      "icon": "Baby",
+      "image": "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800&auto=format&fit=crop",
+      "tag": "Obstetrics"
+    },
+    {
+      "id": 2,
+      "title": "Women's Wellness",
+      "heading": "Holistic Women's Health",
+      "description": "Routine gynaecological check-ups, screenings, and preventive care designed to keep you healthy at every life stage.",
+      "icon": "HeartPulse",
+      "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop",
+      "tag": "General Care"
+    },
+    {
+      "id": 3,
+      "title": "Gynaecological Surgery",
+      "heading": "Advanced Surgical Solutions",
+      "description": "Minimally invasive laparoscopic and hysteroscopic surgeries for fibroids, cysts, endometriosis and more.",
+      "icon": "Stethoscope",
+      "image": "https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=800&auto=format&fit=crop",
+      "tag": "Surgery"
+    },
+    {
+      "id": 4,
+      "title": "Menopause Management",
+      "heading": "Comfort Through Transition",
+      "description": "Personalised hormone and lifestyle therapies to manage menopause symptoms.",
+      "icon": "Thermometer",
+      "image": "https://images.unsplash.com/photo-1580281658629-5f9b5c6b5d54?q=80&w=800&auto=format&fit=crop",
+      "tag": "Hormonal Health"
+    },
+    {
+      "id": 5,
+      "title": "Vaccination & Immunisation",
+      "heading": "Protection at Every Age",
+      "description": "HPV, Hepatitis B, and other essential vaccines administered.",
+      "icon": "Syringe",
+      "image": "https://images.unsplash.com/photo-1588776814546-ec7eaa6e9c33?q=80&w=800&auto=format&fit=crop",
+      "tag": "Preventive Care"
+    },
+    {
+      "id": 6,
+      "title": "Lifestyle Counselling",
+      "heading": "Live Better, Feel Stronger",
+      "description": "Guidance on nutrition, stress management, and healthy habits.",
+      "icon": "Salad",
+      "image": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format&fit=crop",
+      "tag": "Wellness"
+    },
+    {
+      "id": 7,
+      "title": "Cosmetic Gynaecology",
+      "heading": "Confidence & Comfort",
+      "description": "Safe aesthetic and functional procedures to improve confidence.",
+      "icon": "Sparkles",
+      "image": "https://images.unsplash.com/photo-1594824475317-1bba5a8f5a7c?q=80&w=800&auto=format&fit=crop",
+      "tag": "Aesthetic"
+    },
+    {
+      "id": 8,
+      "title": "Young Women's Care",
+      "heading": "Health From the Start",
+      "description": "Adolescent care covering puberty, menstrual health, and PCOS.",
+      "icon": "GraduationCap",
+      "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop",
+      "tag": "Adolescent Health"
+    },
+    {
+      "id": 9,
+      "title": "Preventive Women's Health",
+      "heading": "Detect Early, Stay Safe",
+      "description": "Pap smears, screenings, and diagnostics for early detection.",
+      "icon": "ShieldCheck",
+      "image": "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop",
+      "tag": "Screening"
+    },
+    {
+      "id": 10,
+      "title": "Fertility Treatment",
+      "heading": "Your Path to Parenthood",
+      "description": "Advanced fertility treatments including IUI and IVF support.",
+      "icon": "Flower2",
+      "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop",
+      "tag": "Fertility"
+    },
+    {
+      "id": 11,
+      "title": "Hormonal Disorders",
+      "heading": "Balance Restored",
+      "description": "Treatment for PCOS, thyroid issues, and hormonal imbalance.",
+      "icon": "Activity",
+      "image": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=800&auto=format&fit=crop",
+      "tag": "Hormonal Health"
+    }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "slug": "pcos-symptoms-and-treatment",
+      "title": "PCOS: Symptoms, Causes & Treatment Options",
+      "excerpt": "Understand PCOS symptoms, causes, and the best treatment options available for women.",
+      "content": "Polycystic Ovary Syndrome (PCOS) is a hormonal disorder common among women of reproductive age...",
+      "category": "Gynecology",
+      "tags": [
+        "PCOS",
+        "Hormonal Imbalance",
+        "Women Health"
+      ],
+      "author": {
+        "name": "Dr. Kusum Lata",
+        "designation": "Gynecologist",
+        "image": "/images/doctor.jpg"
+      },
+      "thumbnail": "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800",
+      "coverImage": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200",
+      "readingTime": "5 min read",
+      "publishedDate": "2026-03-10",
+      "updatedDate": "2026-03-15",
+      "views": 1245,
+      "likes": 230,
+      "commentsCount": 12,
+      "featured": true,
+      "seo": {
+        "metaTitle": "PCOS Symptoms & Treatment | Women's Health Guide",
+        "metaDescription": "Learn about PCOS symptoms, causes, and treatments for better health.",
+        "keywords": [
+          "PCOS treatment",
+          "PCOS symptoms",
+          "women health"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "slug": "laparoscopic-surgery-benefits",
+      "title": "Laparoscopic Surgery: Benefits & Recovery",
+      "excerpt": "Explore how laparoscopic surgery works and why it's better than traditional surgery.",
+      "content": "Laparoscopic surgery is a minimally invasive procedure that allows faster recovery...",
+      "category": "Surgery",
+      "tags": [
+        "Laparoscopy",
+        "Minimally Invasive",
+        "Surgery"
+      ],
+      "author": {
+        "name": "Dr. Kusum Lata",
+        "designation": "Laparoscopic Surgeon",
+        "image": "/images/doctor.jpg"
+      },
+      "thumbnail": "https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=800",
+      "coverImage": "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=1200",
+      "readingTime": "6 min read",
+      "publishedDate": "2026-03-12",
+      "updatedDate": "2026-03-16",
+      "views": 980,
+      "likes": 180,
+      "commentsCount": 8,
+      "featured": false,
+      "seo": {
+        "metaTitle": "Laparoscopic Surgery Benefits",
+        "metaDescription": "Know why laparoscopic surgery is safer and faster.",
+        "keywords": [
+          "laparoscopic surgery",
+          "minimally invasive surgery"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "slug": "pregnancy-care-tips",
+      "title": "Top 10 Pregnancy Care Tips for a Healthy Baby",
+      "excerpt": "Follow these essential pregnancy tips to ensure a safe and healthy journey.",
+      "content": "Pregnancy is a beautiful journey, but it requires proper care and attention...",
+      "category": "Pregnancy",
+      "tags": [
+        "Pregnancy",
+        "Baby Care",
+        "Health Tips"
+      ],
+      "author": {
+        "name": "Dr. Kusum Lata",
+        "designation": "Obstetrician",
+        "image": "/images/doctor.jpg"
+      },
+      "thumbnail": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800",
+      "coverImage": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200",
+      "readingTime": "4 min read",
+      "publishedDate": "2026-03-05",
+      "updatedDate": "2026-03-08",
+      "views": 2100,
+      "likes": 340,
+      "commentsCount": 25,
+      "featured": true,
+      "seo": {
+        "metaTitle": "Pregnancy Care Tips",
+        "metaDescription": "Best tips for a healthy pregnancy journey.",
+        "keywords": [
+          "pregnancy tips",
+          "baby health"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "slug": "irregular-periods-causes",
+      "title": "Irregular Periods: Causes & When to See a Doctor",
+      "excerpt": "Learn about the causes of irregular periods and when medical attention is needed.",
+      "content": "Irregular periods can be caused by stress, hormonal imbalance, or underlying health issues...",
+      "category": "Periods",
+      "tags": [
+        "Periods",
+        "Hormones",
+        "Menstrual Health"
+      ],
+      "author": {
+        "name": "Dr. Kusum Lata",
+        "designation": "Gynecologist",
+        "image": "/images/doctor.jpg"
+      },
+      "thumbnail": "https://images.unsplash.com/photo-1588776814546-ec7e2c8f1fcb?w=800",
+      "coverImage": "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=1200",
+      "readingTime": "5 min read",
+      "publishedDate": "2026-03-01",
+      "updatedDate": "2026-03-03",
+      "views": 1500,
+      "likes": 290,
+      "commentsCount": 15,
+      "featured": false,
+      "seo": {
+        "metaTitle": "Irregular Periods Causes",
+        "metaDescription": "Understand irregular periods and treatment options.",
+        "keywords": [
+          "irregular periods",
+          "menstrual cycle"
+        ]
+      }
+    }
+  ],
+  "footer": {
+    "description": "Dr. Kusum Lata provides expert gynecology and women's healthcare services including pregnancy care, cosmetic gynecology",
+    "subFooter": [
+      {
+        "id": "1",
+        "title": "Site Map",
+        "links": [
+          {
+            "id": "1",
+            "name": "Home",
+            "link": "/"
+          },
+          {
+            "id": "2",
+            "name": "About Us",
+            "link": "/about-us"
+          },
+          {
+            "id": "3",
+            "name": "Pregnancy Care",
+            "link": "/pregnancy"
+          },
+          {
+            "id": "4",
+            "name": "Cosmetic Gynecology",
+            "link": "/cosmetic-gyne"
+          },
+          {
+            "id": "5",
+            "name": "Blog",
+            "link": "/blog"
+          },
+          {
+            "id": "6",
+            "name": "Contact Us",
+            "link": "/contact"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Women's Health",
+        "links": [
+          {
+            "id": "1",
+            "name": "Women Treatments",
+            "link": "/treatments"
+          },
+          {
+            "id": "2",
+            "name": "Women Care",
+            "link": "/women-care"
+          },
+          {
+            "id": "3",
+            "name": "Preventive Women's Health",
+            "link": "/preventive-women-health"
+          },
+          {
+            "id": "4",
+            "name": "Vaccination",
+            "link": "/vaccination"
+          },
+          {
+            "id": "5",
+            "name": "Menopause Care",
+            "link": "/menopause"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "title": "Surgery",
+        "links": [
+          {
+            "id": "1",
+            "name": "Endometriosis Surgery",
+            "link": "/endometriosis"
+          },
+          {
+            "id": "2",
+            "name": "Hysteroscopy Surgery",
+            "link": "/hysteroscopy"
+          },
+          {
+            "id": "3",
+            "name": "Fibroid Surgery",
+            "link": "/fibroid"
+          },
+          {
+            "id": "4",
+            "name": "Laparoscopic Surgery",
+            "link": "/laparoscopic-surgery"
+          }
+        ]
+      }
+    ]
+  },
+  "KusumImage": [
+    {
+      "id": "1",
+      "img": "/image/ drkusumlata_bestTrainer.jpeg"
+    },
+    {
+      "id": "2",
+      "img": "/image/ drkusumlatapolice.jpeg"
+    },
+    {
+      "id": "3",
+      "img": "/image/ ujbistan.jpeg"
+    },
+    {
+      "id": "4",
+      "img": "/image/ testimonial2.jpeg"
+    },
+    {
+      "id": "5",
+      "img": "/image/ testi.jpeg"
+    },
+    {
+      "id": "6",
+      "img": "/image/ robottrianer2.jpeg"
+    },
+    {
+      "id": "7",
+      "img": "/image/ robottariner.jpeg"
+    },
+    {
+      "id": "8",
+      "img": "/image/ partycipate.jpeg"
+    },
+    {
+      "id": "9",
+      "img": "/image/ medicityfaculty.jpeg"
+    },
+    {
+      "id": "10",
+      "img": "/image/ medicity.jpeg"
+    },
+    {
+      "id": "11",
+      "img": "/image/ hapypatient.jpeg"
+    },
+    {
+      "id": "12",
+      "img": "/image/ happypatient2.jpeg"
+    }
+  ]
+}

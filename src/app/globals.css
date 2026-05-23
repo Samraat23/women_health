@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
+html,
+body {
+  height: 100%;
+  font-family: var(--font-secondary);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Fonts */
+  --font-primary: " Montserrat", sans-serif;
+  --font-secondary: "DM Sans", sans-serif;
+
+  /* Colors — Light */
+  --background: #f7f4ee;
+  --foreground: #ffffff;
+
+  --primary-color: #5a4ffe;
+  --primary-foreground: #ffffff;
+
+  --secondary-color:#31285a;
+  --border: #e5e7eb;
+
+  --primary-text:#5a4ffe;
+  --secondary-text:#342859;
+
+  --border:#1a1f4b;
+
+  --secondary-text-color:#4865FF;
+  --primary-text-color: #1B1463;
+
+ 
+
+  
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+ 
+
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b0f19;
+    --foreground: #e5e7eb;
   }
 }
+
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter, Arial, Helvetica, sans-serif);
+  line-height: 1.6;
 }
+
+
+
+
+
+
+/* const bgColors = [
+  'bg-rose-400',      // Soft pink – women care
+  'bg-pink-500',      // Feminine & warm ---
+  'bg-fuchsia-500',   // Modern gynecology tone
+  'bg-purple-500',    // Trust + care
+  'bg-violet-500',    // Calm medical purple
+  'bg-indigo-500',    // Professional doctor vibe
+  'bg-blue-500',      // Medical trust
+  'bg-sky-500',       // Clean hospital feel
+  'bg-cyan-500',      // Fresh & hygienic
+  'bg-teal-500',      // Health & balance
+  'bg-emerald-500',   // Healing green
+  'bg-green-500',     // Wellness & safety
+]; */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+.swiper-pagination {
+  position: static !important;
+}
+
+/* optional: better dots */
+.swiper-pagination-bullet {
+  background: #265daf;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #b94646;
+  transform: scale(1.2);
+}
+

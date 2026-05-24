@@ -6,6 +6,8 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
 import SectionHeader from "../(dynamiccomponent)/SectionHeader";
+import Link from "next/link";
+import { slugify } from "@/components/blogs/Slugify";
 
 
 /* ================= ICON ================= */
@@ -31,7 +33,10 @@ function Service({ service }: any) {
       <SectionHeader headingObj={headingObj} />
       <div className="flex flex-wrap justify-between gap-5  " >
         {service.map((item: any) => (
-          <ServiceCard item={item} />
+          <Link href={`category/${slugify(item.title)}`}>
+             <ServiceCard key={item.id} item={item} />
+          </Link>
+         
         ))}
       </div>
 
@@ -43,7 +48,6 @@ export default Service;
 
 const ServiceCard = ({ item }: any) => (
   <motion.div
-
     className="h-100 w-95 flex-shrink-0 cursor-pointer group bg-white rounded-2xl  border border-gray-100"
   >
 

@@ -20,10 +20,15 @@ import motherhood from "./(assets)/MotherHoodlogo.png"
 import medicity from "./(assets)/ medicity.webp"
 import sitaram from "./(assets)/ sitarambhartiLogo.png"
 import aiimsnewdelhi from "./(assets)/AiimsNewDelhi.png"
+import {gynecologyCategories} from "@/data/Categories"
 
 export default function Home() {
   const WhyChooseData = data?.whyChooseUs;
   const { faq, testimonial, service, associations, WHealth, LaparoscopicSurgery, blogs, trianer } = data;
+
+  console.log("nnsjd" , gynecologyCategories)
+
+
 
   const hospitalLogo = [
     { id: 1, img: clinicLogo, name: "Clinic" },
@@ -45,7 +50,7 @@ export default function Home() {
       <Trainer d={trianer} />
       <AboutUs  />
       <SurgeryCategory data={LaparoscopicSurgery} />
-      <Service service={service} />
+      <Service service={gynecologyCategories} />
       <WHealthCategory data={WHealth} />
       <WhyChoose data={WhyChooseData} />
       <IntroVideo />

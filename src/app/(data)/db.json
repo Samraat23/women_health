@@ -475,7 +475,7 @@
     },
     {
       "id": 2,
-      "title": "Women's Wellness",
+      "title": "YOUNG WOMEN CARE",
       "heading": "Holistic Women's Health",
       "description": "Routine gynaecological check-ups, screenings, and preventive care designed to keep you healthy at every life stage.",
       "icon": "HeartPulse",
@@ -484,7 +484,7 @@
     },
     {
       "id": 3,
-      "title": "Gynaecological Surgery",
+      "title": "PREVENTIVE WOMEN HEALTH",
       "heading": "Advanced Surgical Solutions",
       "description": "Minimally invasive laparoscopic and hysteroscopic surgeries for fibroids, cysts, endometriosis and more.",
       "icon": "Stethoscope",
@@ -493,7 +493,7 @@
     },
     {
       "id": 4,
-      "title": "Menopause Management",
+      "title": "HORMONAL IMBALANCE",
       "heading": "Comfort Through Transition",
       "description": "Personalised hormone and lifestyle therapies to manage menopause symptoms.",
       "icon": "Thermometer",
@@ -502,7 +502,7 @@
     },
     {
       "id": 5,
-      "title": "Vaccination & Immunisation",
+      "title": "FERTILITY & INFERTILITY",
       "heading": "Protection at Every Age",
       "description": "HPV, Hepatitis B, and other essential vaccines administered.",
       "icon": "Syringe",
@@ -511,7 +511,7 @@
     },
     {
       "id": 6,
-      "title": "Lifestyle Counselling",
+      "title": "MENOPAUSE CARE",
       "heading": "Live Better, Feel Stronger",
       "description": "Guidance on nutrition, stress management, and healthy habits.",
       "icon": "Salad",
@@ -520,7 +520,7 @@
     },
     {
       "id": 7,
-      "title": "Cosmetic Gynaecology",
+      "title": "SEXUAL & INTIMATE HEALTH",
       "heading": "Confidence & Comfort",
       "description": "Safe aesthetic and functional procedures to improve confidence.",
       "icon": "Sparkles",
@@ -529,40 +529,14 @@
     },
     {
       "id": 8,
-      "title": "Young Women's Care",
-      "heading": "Health From the Start",
-      "description": "Adolescent care covering puberty, menstrual health, and PCOS.",
-      "icon": "GraduationCap",
-      "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop",
-      "tag": "Adolescent Health"
-    },
-    {
-      "id": 9,
-      "title": "Preventive Women's Health",
-      "heading": "Detect Early, Stay Safe",
-      "description": "Pap smears, screenings, and diagnostics for early detection.",
-      "icon": "ShieldCheck",
-      "image": "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop",
-      "tag": "Screening"
-    },
-    {
-      "id": 10,
-      "title": "Fertility Treatment",
-      "heading": "Your Path to Parenthood",
-      "description": "Advanced fertility treatments including IUI and IVF support.",
-      "icon": "Flower2",
-      "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop",
-      "tag": "Fertility"
-    },
-    {
-      "id": 11,
-      "title": "Hormonal Disorders",
-      "heading": "Balance Restored",
-      "description": "Treatment for PCOS, thyroid issues, and hormonal imbalance.",
-      "icon": "Activity",
-      "image": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=800&auto=format&fit=crop",
-      "tag": "Hormonal Health"
+      "title": "Laparoscopic Surgery: Benefits & Recovery",
+      "heading": "Confidence & Comfort",
+      "description": "Safe aesthetic and functional procedures to improve confidence.",
+      "icon": "Sparkles",
+      "image": "https://images.unsplash.com/photo-1594824475317-1bba5a8f5a7c?q=80&w=800&auto=format&fit=crop",
+      "tag": "Aesthetic"
     }
+  
   ],
   "blogs": [
     {

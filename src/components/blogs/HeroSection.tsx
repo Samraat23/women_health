@@ -7,13 +7,22 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import type { BlogPageData } from "@/data/BlogData";
+import Image from "next/image";
 
-function HeroSection() {
+type HeroSectionProps = {
+  data: BlogPageData["hero"];
+};
+
+function HeroSection({ data }: HeroSectionProps) {
+
+  const image = "https://images.unsplash.com/photo-1516589091380-5d8e87df6999?q=80&w=1400&auto=format&fit=crop&utm_source=chatgpt.com"
   return (
-    <section className=" relative bg-[linear-gradient(135deg,var(--primary-text-color)_0%,var(--secondary-color)_12%,var(--primary-color)_100%)]">
+    <section className="relative w-full ">
+      <Image src={image} alt="sd" fill className="jsdj" />
       
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/30" />
+    <div className="absolute bg-black/70 inset-0"></div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex min-h-160 max-w-7xl items-center justify-center ">
@@ -23,12 +32,12 @@ function HeroSection() {
           {/* Badge */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-xl">
             <Sparkles size={15} className="text-pink-300" />
-            Pregnancy Guide
+            {data.badge}
           </div>
 
           {/* Heading */}
           <h1 className="text-4xl font-black leading-tight text-white md:text-6xl md:leading-[1.1]">
-            Healthy Pregnancy Tips Every Mother Should Know
+            {data.title}
           </h1>
 
           {/* Meta Info */}
@@ -36,17 +45,17 @@ function HeroSection() {
             
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md">
               <CalendarDays size={17} />
-              May 21, 2026
+              {data.date}
             </span>
 
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md">
               <Clock3 size={17} />
-              5 min read
+              {data.readTime}
             </span>
 
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md">
               <ShieldCheck size={17} />
-              Doctor Reviewed
+              {data.status}
             </span>
           </div>
 

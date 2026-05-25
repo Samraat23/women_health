@@ -15,10 +15,7 @@ function Footer() {
 
 
   return (
-    <div 
-   style={{ background:
-    "linear-gradient(135deg, #1B1463 0%, #31285a 50%, #5a4ffe 100%)",}}
-    className="relative py-16">
+    <div className="relative py-16">
 
       {/* SOCIAL SECTION */}
       <div className="max-w-7xl mx-auto bg-white rounded-[40px] p-10 mb-12 overflow-hidden">

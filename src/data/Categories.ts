@@ -1,10 +1,12 @@
 import happyPatient from "../../public/image/ happypatent.jpeg";
+import type { StaticImageData } from "next/image";
+
 export type GynecologyCategory = {
     id: number;
     title: string;
     slug: string;
     description: string;
-    image: string;
+    image: string | StaticImageData;
     blogSlugs: string[];
   };
   
@@ -21,6 +23,9 @@ export type GynecologyCategory = {
         "uterus-removal-hysterectomy",
         "fibroid-removal-surgery",
         "ovarian-cyst-surgery",
+        "cervical-cerclage",
+        "hysteroscopy-treatment",
+        "fertility-enhancing-surgery"
       ],
     },
     {

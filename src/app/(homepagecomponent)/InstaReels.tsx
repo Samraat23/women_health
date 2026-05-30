@@ -27,36 +27,33 @@ function InstaReels() {
   ];
 
   const headingObj = {
-
-    heading:"Voices of Happy  ",
+    budge: "Instagram Stories",
+    heading:"Voices of Happy",
     bold:"Patients",
     paragraph:"Hear real patient experiences, recovery journeys, and stories of trust through our Instagram video testimonials."
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 my-10">
-      {/* Heading */}
+    <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
       <SectionHeader headingObj={headingObj} />
       
-      {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
         {instaReel.slice(0, 4).map((item) => (
           <div
             key={item.id}
-            className="rounded-xl overflow-hidden bg-white border hover:shadow-lg transition"
+            className="overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
           >
-            {/* Reel Embed */}
             <div className="w-full h-[400px] overflow-hidden">
               <iframe
                 src={item.embed}
                 className="w-full h-full"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                title={item.heading}
               />
             </div>
 
-            {/* Title */}
-            <div className="p-3">
-              <p className="text-sm font-medium line-clamp-2">
+            <div className="p-4">
+              <p className="line-clamp-2 text-sm font-black text-[var(--primary-text-color)]">
                 {item.heading}
               </p>
             </div>

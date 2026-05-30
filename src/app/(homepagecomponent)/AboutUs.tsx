@@ -1,164 +1,121 @@
-"use client"
-import React, { useState } from "react"
-import { Button } from "@/components/ui/button"
+"use client";
 
-import DoctorImageWithPattern from "../(dynamiccomponent)/DoctorImageWithPattern"
-import { Stethoscope, Baby, Award, Smile, ArrowRight } from "lucide-react"
-import { motion, type Variants } from "framer-motion"
-import CountUp from "react-countup"
+import Link from "next/link";
+import {
+  ArrowRight,
+  Award,
+  Baby,
+  CalendarDays,
+  CheckCircle2,
+  Smile,
+  Stethoscope,
+  Video,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
+import DoctorImageWithPattern from "../(dynamiccomponent)/DoctorImageWithPattern";
 
+const aboutExperience = [
+  { id: 1, title: "Surgeries", number: 7000, suffix: "+", icon: Stethoscope },
+  { id: 2, title: "Pregnancy Care", number: 5000, suffix: "+", icon: Baby },
+  { id: 3, title: "Years Experience", number: 19, suffix: "+", icon: Award },
+  { id: 4, title: "Happy Patients", number: 98, suffix: "%", icon: Smile },
+];
+
+const careHighlights = [
+  "AIIMS New Delhi faculty experience",
+  "Advanced laparoscopic gynecology care",
+  "Calm, practical guidance for every visit",
+];
 
 function AboutUs() {
-
-  const aboutExprince = [
-    {
-      id: 1,
-      title: "Surgery",
-      number: 7000,
-      suffix: "+",
-      icon: Stethoscope,
-    },
-    {
-      id: 2,
-      title: "Pregnancy Care",
-      number: 5000,
-      suffix: "+",
-      icon: Baby,
-    },
-    {
-      id: 3,
-      title: "Experience",
-      number: 19,
-      suffix: "+",
-      icon: Award,
-    },
-    {
-      id: 4,
-      title: "Happy Patients",
-      number: 98,
-      suffix: "%",
-      icon: Smile,
-    },
-  ];
-
-
-  const item = (delay: number): Variants => ({
-    hidden: { opacity: 0, x: -100 },
-    show: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        delay: delay,
-        ease: "easeOut",
-      },
-    },
-  });
-
-  const item1 = (delay: number): Variants => ({
-    hidden: { opacity: 0, x: 100 },
-    show: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 1,
-        delay: delay,
-        ease: "easeOut",
-      },
-    },
-  });
-
   return (
-    <section className="max-w-7xl overflow-hidden mx-auto my-20">
-      <motion.div
-        className="flex justify-between items-center  ">
+    <section className="relative overflow-hidden bg-[var(--background)] px-4 py-16 md:px-6 lg:py-24">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(90,79,254,0.22),transparent)]" />
+      <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr]">
         <motion.div
-          variants={item(0.2)}
-          initial="hidden"
-          whileInView="show"
-          animate="visible"
-          className="w-[48%]" >
-          <DoctorImageWithPattern />
+          initial={{ opacity: 0, x: -28 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="flex justify-center lg:justify-start"
+        >
+          <DoctorImageWithPattern className="pb-5" />
         </motion.div>
 
         <motion.div
-          variants={item1(1)}
-          initial="hidden"
-          whileInView="show"
-          className="w-[45%]">
-          <p className="text-(--primary-color) text-sm font-semibold uppercase tracking-widest mb-3">
+          initial={{ opacity: 0, x: 28 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-2xl lg:mx-0"
+        >
+          <p className="mb-3 text-sm font-black uppercase tracking-[0.2em] text-[var(--primary-color)]">
             Know About Dr. Kusum Lata
           </p>
 
-          {/* Heading */}
-          <h2 className="text-3xl md:text-4xl text-(--secondary-text) font-bold leading-snug mb-5">
-          Dedicated Women’s Wellness with AIIMS New Delhi Experience
+          <h2 className="font-[var(--font-primary)] text-3xl font-black leading-tight text-[var(--primary-text-color)] sm:text-4xl lg:text-5xl">
+            Dedicated Women&apos;s Wellness with AIIMS New Delhi Experience
           </h2>
 
-          {/* Description */}
-          <p className="text-slate-500 text-base leading-relaxed mb-8">
-            Dr. Kusum Lata is an experienced Gynecologist, Obstetrician & Laparoscopic Surgeon with 17+ years of expertise.
-            She completed her MD in Obstetrics & Gynecology from PGIMER, Chandigarh.
-            Trained at premier institutes like AIIMS New Delhi & PGIMS Rohtak, she specializes in advanced women’s healthcare.
-            Her expertise includes high-risk pregnancy care, infertility treatment, and laparoscopic gynecological surgeries.
+          <p className="mt-5 max-w-xl text-base leading-8 text-[#667085]">
+            Dr. Kusum Lata is an experienced Gynecologist, Obstetrician and
+            Laparoscopic Surgeon with deep expertise in high-risk pregnancy care,
+            infertility treatment, and advanced gynecological surgeries.
           </p>
 
-          {/* DETAILS — Stats Bar */}
-          <div className="flex justify-between items-stretch bg-white border border-(--border)/15 rounded-lg shadow-sm overflow-hidden my-8">
-            {aboutExprince.map((item) => (
-              <div
-                key={item.id}
-                className={`flex flex-col items-center justify-center py-5 flex-1 ${item.id !== 4 ? "border-r border-[#1a1f4b]/10" : ""
-                  }`}
-              >
-                <p className="text-[#4865ff] text-2xl font-extrabold leading-none">
-                  <CountUp end={item.number} start={0} delay={1.5} duration={5} suffix={item.suffix} />
-                </p>
-                <p className="text-slate-500 text-xs font-medium mt-1 text-center px-2">
-                  {item.title}
-                </p>
-              </div>
-            ))}
+          <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {aboutExperience.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.id}
+                  className="min-h-[132px] rounded-lg border border-[var(--border)]/10 bg-white p-4 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(27,20,99,0.10)]"
+                >
+                  <span className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--primary-color)]/10 text-[var(--primary-color)]">
+                    <Icon size={20} />
+                  </span>
+                  <p className="font-[var(--font-primary)] text-2xl font-black text-[var(--primary-text-color)]">
+                    <CountUp end={item.number} start={0} duration={3} suffix={item.suffix} />
+                  </p>
+                  <p className="mt-1 text-xs font-bold text-[#667085]">{item.title}</p>
+                </div>
+              );
+            })}
           </div>
 
-
-
-          {/* CTA */}
-          <h3 className="text-base  text-[#1a1f4b] font-semibold mb-3">
-            Book Appointment
-          </h3>
-          <div className="flex  flex-wrap gap-3">
-
-            <Button size="lg" className="p-5 bg-(--primary-text) hover:scale-105 cursor-pointer hover:duration-150 ease-in-out  shadow-lg">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="https://wa.me/919289140812"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-4 text-sm font-black text-white shadow-[0_14px_28px_rgba(90,79,254,0.24)] transition hover:-translate-y-0.5"
+            >
+              <CalendarDays size={18} />
               Book Appointment
-            </Button>
-
-            <Button size="lg" className="p-5  bg-(--primary-text) hover:scale-105 cursor-pointer hover:duration-150 ease-in-out  shadow-lg">
-              Video Consulation
-            </Button>
-            <Button size="lg" variant="outline" className="p-5 text-black hover:scale-105 hover:duration-150 ease-in-out cursor-pointer ">
-              Read More <span><ArrowRight size={16} /></span>
-            </Button>
-
+            </Link>
+            <Link
+              href="https://wa.me/919289140812"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--primary-color)]/25 bg-white px-6 py-4 text-sm font-black text-[var(--secondary-text)] transition hover:border-[var(--primary-color)] hover:text-[var(--primary-color)]"
+            >
+              <Video size={18} />
+              Video Consultation
+            </Link>
+            <Link
+              href="/about-us"
+              className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-4 text-sm font-black text-[var(--primary-color)] transition hover:bg-white"
+            >
+              Read More
+              <ArrowRight size={17} />
+            </Link>
           </div>
         </motion.div>
-
-
-      </motion.div>
+      </div>
     </section>
-  )
+  );
 }
 
-export default AboutUs
-
-
-
-
-
-
-
-
-
-
-
-
+export default AboutUs;

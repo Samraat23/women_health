@@ -24,11 +24,7 @@ import {gynecologyCategories} from "@/data/Categories"
 
 export default function Home() {
   const WhyChooseData = data?.whyChooseUs;
-  const { faq, testimonial, service, associations, WHealth, LaparoscopicSurgery, blogs, trianer } = data;
-
-  console.log("nnsjd" , gynecologyCategories)
-
-
+  const { faq, testimonial, WHealth, LaparoscopicSurgery, blogs, trianer } = data;
 
   const hospitalLogo = [
     { id: 1, img: clinicLogo, name: "Clinic" },
@@ -44,7 +40,7 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--secondary-text)]">
       <HeroSection />
       <Hospital hospitalLogo={hospitalLogo} />
       <Trainer d={trianer} />
@@ -62,7 +58,6 @@ export default function Home() {
     </div>
   );
 }
-
 
 
 

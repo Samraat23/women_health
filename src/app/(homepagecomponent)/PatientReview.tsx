@@ -1,150 +1,152 @@
-
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-function PatientReview({ data }: any) {
-  return (
-    <section className="max-w-7xl mx-auto">
-      <div  className="flex justify-between" >
-      <div>
-        <h1 className="text-4xl font-bold text-(--secondary-text) ">
-          {data.badge}
-        </h1>
-        <p className="text-xl text-gray-700">
-         {data.title}
-        </p>
-      </div>
-      <div
-          className="flex bg-(--primary-text) items-center gap-5 px-6 py-4 rounded-2xl"
-          style={{  backdropFilter: "blur(8px)" }}
-        >
-          {/* Google G */}
-          <div className="flex-shrink-0">
-            <svg width="44" height="44" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
-              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
-              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
-              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
-              <path fill="none" d="M0 0h48v48H0z" />
-            </svg>
-          </div>
+type Review = {
+  id: string;
+  name: string;
+  role: string;
+  image: string;
+  message: string;
+  highlight?: boolean;
+};
 
+type PatientReviewData = {
+  badge: string;
+  title: string;
+  googleRating: {
+    rating: string;
+    reviews: string;
+    label: string;
+  };
+  avatars: string[];
+  reviews: Review[];
+};
+
+function PatientReview({ data }: { data: PatientReviewData }) {
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
+      <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[var(--primary-color)]">
+            {data.badge}
+          </p>
+          <h2 className="mt-3 font-[var(--font-primary)] text-3xl font-black text-[var(--primary-text-color)] md:text-5xl">
+            {data.title}
+          </h2>
+        </div>
+
+        <div className="flex items-center gap-4 rounded-2xl border border-[var(--border)]/10 bg-white px-5 py-4 shadow-sm">
           <div>
-            <p className="text-sm font-semibold text-white">{data.googleRating.label}</p>
-            <div className="flex items-center gap-1 mt-0.5">
-              <span className="font-bold text-base">{data.googleRating.rating}</span>
-              <span className="text-yellow-400 text-sm">★★★★★</span>
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-[#667085]">
+              {data.googleRating.label}
+            </p>
+            <div className="mt-1 flex items-center gap-2">
+              <span className="font-[var(--font-primary)] text-2xl font-black text-[var(--primary-text-color)]">
+                {data.googleRating.rating}
+              </span>
+              <span className="flex text-amber-400">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Star key={index} size={16} fill="currentColor" />
+                ))}
+              </span>
             </div>
           </div>
 
-          {/* Separator dot */}
-          <span className="w-2 h-2 rounded-full bg-pink-400 mx-1" />
-
-          {/* Avatar stack + count */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <div className="flex -space-x-2">
-              {data.avatars.slice(0, 5).map((src:any, i:any) => (
-                <img
-                  key={i}
+              {data.avatars.slice(0, 5).map((src, index) => (
+                <Image
+                  key={src}
                   src={src}
-                  alt=""
-                  className="w-8 h-8 rounded-full object-cover border-2 border-[#1a2472]"
+                  alt={`Patient ${index + 1}`}
+                  width={36}
+                  height={36}
+                  className="h-9 w-9 rounded-full border-2 border-white object-cover"
                 />
               ))}
             </div>
-            <span
-              className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold bg-white text-[#1a2472] border-2 border-[#1a2472]"
-            >
+            <span className="ml-3 rounded-full bg-[var(--primary-color)]/10 px-3 py-1 text-xs font-black text-[var(--primary-color)]">
               {data.googleRating.reviews}
             </span>
           </div>
         </div>
       </div>
-      
 
-      <div className="relative my-4 pb-12"> {/* 👈 space for controls */}
-  <Swiper
-    modules={[Navigation, Pagination]}
-    spaceBetween={30}
-    slidesPerView={1}
-    pagination={{
-      clickable: true,
-      el: ".custom-pagination", // 👈 custom container
-    }}
-    navigation={{
-      nextEl: ".custom-next",
-      prevEl: ".custom-prev",
-    }}
-    breakpoints={{
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 2 },
-    }}
-  >
-    {data.reviews.map((item: any, index: number) => (
-      <SwiperSlide key={index}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+      <div className="relative pb-14">
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={24}
+          slidesPerView={1}
+          pagination={{ clickable: true, el: ".custom-pagination" }}
+          navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
         >
-          <TestimonialCart item={item} />
-        </motion.div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
+          {data.reviews.map((item, index) => (
+            <SwiperSlide key={item.id}>
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.04 }}
+              >
+                <TestimonialCard item={item} />
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-  {/* ✅ Bottom Controls Row */}
-  <div className="absolute bottom-0 left-0 w-full flex items-center justify-between px-2">
-    
-    {/* Empty (left spacing) */}
-    <div className="flex-1" />
-
-    {/* ✅ Center Dots */}
-    <div className="custom-pagination  flex justify-center flex-1" />
-
-    {/* ✅ Right Arrows */}
-    <div className="flex gap-3 flex-1 justify-end">
-      <button className="custom-prev cursor-pointer w-14 h-14 bg-(--primary-text) shadow rounded-full">
-        ←
-      </button>
-      <button className="custom-next cursor-pointer w-14 h-14 bg-(--primary-text) shadow rounded-full">
-        →
-      </button>
-    </div>
-
-  </div>
-    </div>
+        <div className="absolute bottom-0 left-0 flex w-full items-center justify-between">
+          <div className="custom-pagination flex flex-1 justify-start" />
+          <div className="flex gap-3">
+            <button className="custom-prev flex h-12 w-12 items-center justify-center rounded-full border border-[var(--primary-color)]/20 bg-white text-[var(--primary-color)] shadow-sm transition hover:bg-[var(--primary-color)] hover:text-white">
+              <ArrowLeft size={19} />
+            </button>
+            <button className="custom-next flex h-12 w-12 items-center justify-center rounded-full border border-[var(--primary-color)]/20 bg-white text-[var(--primary-color)] shadow-sm transition hover:bg-[var(--primary-color)] hover:text-white">
+              <ArrowRight size={19} />
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
 export default PatientReview;
 
-function TestimonialCart({ item }: any) {
+function TestimonialCard({ item }: { item: Review }) {
   return (
-    <div className="w-150 border-gray-100 bg-white rounded-2xl h-70 shadow-lg backdrop-blur-5xl my-8 p-5 border">
-      <div className="h-[50%] flex gap-4 items-center ">
-        <div className="w-20 overflow-hidden relative h-20 rounded-full border">
-          <Image alt="dd" fill src={item.image} className="object-cover" />
+    <article className="h-[320px] rounded-2xl border border-[var(--border)]/10 bg-white p-6 shadow-sm">
+      <div className="mb-5 flex items-center gap-4">
+        <div className="relative h-16 w-16 overflow-hidden rounded-full bg-[var(--background)]">
+          <Image alt={item.name} fill src={item.image} className="object-cover" />
         </div>
         <div>
-          <div className="text-black font-bold">{item.name}</div>
-          <div className="inline-block text-black">******</div>
+          <p className="font-[var(--font-primary)] font-black text-[var(--primary-text-color)]">
+            {item.name}
+          </p>
+          <p className="text-sm text-[#667085]">{item.role}</p>
+          <span className="mt-1 flex text-amber-400">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Star key={index} size={14} fill="currentColor" />
+            ))}
+          </span>
         </div>
       </div>
 
-      <div className="text-slate-600 ">
+      <p className="line-clamp-6 text-sm leading-7 text-[#667085]">
         {item.message}
-      </div>
-    </div>
+      </p>
+    </article>
   );
 }

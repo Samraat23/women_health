@@ -7,7 +7,6 @@ import NavbarPregnancyItem from "./NavbarPregnancyItem";
 import Link from "next/link";
 import logo from '../(assets)/ logo.png'
 import Image from "next/image";
-import Cbutton from "../(dynamiccomponent)/Button";
 
 function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -96,7 +95,7 @@ function Navbar() {
         { id: 3, name: "Antenatal Care" },
       ],
     },
-    { id: 7, name: "Cosmetic Gyne",redirect :"cosmetic" },
+    
     
   ];
 
@@ -107,27 +106,26 @@ function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className=" relative  max-w-7xl  z-50  mx-auto mt-4 bg-(--foreground) backdrop-blur-3xl  border border-(--border)/15 rounded-xl shadow-lg p-4"
+      className="relative z-50 mx-auto mt-1 w-[calc(100%-8px)] max-w-7xl rounded-[42px] border border-[var(--border)]/15 bg-white px-6 py-5 shadow-[0_8px_24px_rgba(27,20,99,0.16)] backdrop-blur-3xl md:px-12"
       onMouseLeave={() => setActiveMenu(null)}
     >
       {/* NAVBAR */}
-      <div className="flex  items-center justify-between">
+      <div className="flex items-center justify-between gap-8">
         {/* Logo */}
-        <div className=" relative w-30 h-15 ">
+        <div className="relative h-14 w-36 shrink-0">
           <Link href={"/"} >
-          <Image src={logo} alt="logo" fill className="object-cover" />
+          <Image src={logo} alt="logo" fill className="object-contain" />
           </Link>
           
         </div>
 
         {/* Menu */}
-        <div className="hidden md:flex gap-6 font-medium
-         text-(--secondary-text)">
+        <div className="hidden items-center gap-10 text-base font-black text-[var(--secondary-text)] md:flex">
           {menuBar.map((item) => (
             <div
               key={item.id}
               onMouseEnter={() => item.subMenu && setActiveMenu(item.name)}
-              className="flex group  items-center gap-1 cursor-pointer "
+              className="group flex cursor-pointer items-center gap-1 transition-colors hover:text-[var(--primary-color)]"
             >
               <Link href={item.redirect} >{item.name}</Link>
               
@@ -137,7 +135,14 @@ function Navbar() {
         </div>
 
         {/* CTA */}
-        <Cbutton name="Book Appointment" />
+        <Link
+          href="https://wa.me/919289140812"
+          target="_blank"
+          rel="noreferrer"
+          className="hidden shrink-0 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-10 py-4 text-sm font-black uppercase tracking-wide text-white shadow-[0_10px_24px_rgba(90,79,254,0.28)] transition hover:-translate-y-0.5 md:inline-flex"
+        >
+          Book Appointment
+        </Link>
       
       </div>
 

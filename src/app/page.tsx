@@ -20,6 +20,8 @@ import motherhood from "./(assets)/MotherHoodlogo.png"
 import medicity from "./(assets)/ medicity.webp"
 import sitaram from "./(assets)/ sitarambhartiLogo.png"
 import aiimsnewdelhi from "./(assets)/AiimsNewDelhi.png"
+import paras from "./(assets)/ paras.jpg"
+import pgimr from "./(assets)/ pgimr.png"
 import {gynecologyCategories} from "@/data/Categories"
 
 export default function Home() {
@@ -27,20 +29,60 @@ export default function Home() {
   const { faq, testimonial, WHealth, LaparoscopicSurgery, blogs, trianer } = data;
 
   const hospitalLogo = [
-    { id: 1, img: clinicLogo, name: "Clinic" },
-    { id: 2, img: sanar, name: "Sanar Hospital" },
-    { id: 3, img: aiimsnewdelhi, name: "Aiims New Delhi" },
-    { id: 4, img: medicity, name: "Medicity" },
-    { id: 5, img: sitaram, name: "Sitaram Bhartia" },
-    { id: 6, img: aiimsnewdelhi, name: "Paras Hospital" },
-    { id: 7, img: sanar, name: "PGIMR" },
-    { id: 8, img: motherhood, name: "Motherhood" },
+    {
+      id: 1,
+      img: paras,
+      name: "Paras Health",
+      url: "https://www.parashospitals.com/",
+    },
+    {
+      id: 2,
+      img: aiimsnewdelhi,
+      name: "AIIMS New Delhi",
+      url: "https://www.aiims.edu/",
+    },
+    {
+      id: 3,
+      img: motherhood,
+      name: "Motherhood Hospitals",
+      url: "https://www.motherhoodindia.com/",
+    },
+    {
+      id: 4,
+      img: clinicLogo,
+      name: "Dr. Kusum Gynae Centre",
+      url: "https://drkusumlata.in/",
+    },
+    {
+      id: 5,
+      img: sitaram,
+      name: "Sitaram Bhartia",
+      url: "https://www.sitarambhartia.org/",
+    },
+    {
+      id: 6,
+      img: pgimr,
+      name: "PGIMER Chandigarh",
+      url: "https://pgimer.edu.in/",
+    },
+    {
+      id: 7,
+      img: sanar,
+      name: "Sanar International Hospitals",
+      url: "https://www.sanarhospitals.com/",
+    },
+    {
+      id: 8,
+      img: medicity,
+      name: "The Medicity",
+      url: "https://themedicity.com/",
+    },
   ];
 
 
 
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--secondary-text)]">
+    <div className="min-h-screen bg-(--background) text-(--secondary-text)">
       <HeroSection />
       <Hospital hospitalLogo={hospitalLogo} />
       <Trainer d={trianer} />
@@ -58,8 +100,6 @@ export default function Home() {
     </div>
   );
 }
-
-
 
 
 

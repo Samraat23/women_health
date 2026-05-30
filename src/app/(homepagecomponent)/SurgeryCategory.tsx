@@ -159,7 +159,7 @@ export default function SurgeryCategory({ data }: { data: SurgerySection[] }) {
                 className="surgery-category-feature-image"
                 priority
               />
-              <div className="surgery-category-feature-overlay" />
+              
               <span className="surgery-category-feature-pill">
                 <ActiveIcon size={16} />
                 {activeMeta.tag}

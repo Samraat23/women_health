@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, BadgeCheck, Quote, Star } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
@@ -126,27 +126,61 @@ export default PatientReview;
 
 function TestimonialCard({ item }: { item: Review }) {
   return (
-    <article className="h-[320px] rounded-2xl border border-[var(--border)]/10 bg-white p-6 shadow-sm">
-      <div className="mb-5 flex items-center gap-4">
-        <div className="relative h-16 w-16 overflow-hidden rounded-full bg-[var(--background)]">
-          <Image alt={item.name} fill src={item.image} className="object-cover" />
+    <article
+      className={`group relative flex h-[360px] flex-col overflow-hidden rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(27,20,99,0.10)] ${
+        item.highlight
+          ? "border-[var(--primary-color)]/25"
+          : "border-[var(--border)]/10"
+      }`}
+    >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--primary-color),var(--secondary-color))] opacity-0 transition group-hover:opacity-100" />
+
+      <div className="mb-6 flex items-start justify-between gap-4">
+        <div className="flex min-w-0 items-center gap-4">
+          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border-2 border-[var(--primary-color)]/10 bg-[var(--background)]">
+            <Image
+              alt={item.name}
+              fill
+              src={item.image}
+              sizes="64px"
+              className="object-cover"
+            />
+          </div>
+          <div className="min-w-0">
+            <p className="truncate font-[var(--font-primary)] font-black text-[var(--primary-text-color)]">
+              {item.name}
+            </p>
+            <p className="mt-1 text-sm font-semibold text-[#667085]">
+              {item.role}
+            </p>
+            <span className="mt-2 flex text-amber-400">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star key={index} size={14} fill="currentColor" />
+              ))}
+            </span>
+          </div>
         </div>
-        <div>
-          <p className="font-[var(--font-primary)] font-black text-[var(--primary-text-color)]">
-            {item.name}
-          </p>
-          <p className="text-sm text-[#667085]">{item.role}</p>
-          <span className="mt-1 flex text-amber-400">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Star key={index} size={14} fill="currentColor" />
-            ))}
-          </span>
+
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-color)]/10 text-[var(--primary-color)]">
+          <Quote size={22} />
         </div>
       </div>
 
-      <p className="line-clamp-6 text-sm leading-7 text-[#667085]">
-        {item.message}
-      </p>
+      <blockquote className="flex-1 rounded-2xl bg-[var(--background)] px-5 py-4">
+        <p className="line-clamp-6 text-[15px] leading-7 text-[#667085]">
+          &ldquo;{item.message}&rdquo;
+        </p>
+      </blockquote>
+
+      <div className="mt-5 flex items-center justify-between gap-3">
+        <span className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-color)]/10 px-3 py-2 text-xs font-black text-[var(--primary-color)]">
+          <BadgeCheck size={15} />
+          Verified Patient
+        </span>
+        <span className="rounded-full bg-[var(--background)] px-3 py-2 text-xs font-black text-[var(--secondary-text)]">
+          5.0 Rating
+        </span>
+      </div>
     </article>
   );
 }

@@ -1,29 +1,54 @@
-import { AnimBox} from "../../../../utils/AnimBox";
+import { Award, Medal, Trophy } from "lucide-react";
 
-function AwardsSection({awards}:any) {
-    return (
-      <section style={{ background: "#f7f4ee", padding: "5rem 0" }}>
-        <div className="container mx-auto px-6">
-          <AnimBox>
-            <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-              <p style={{ color: "var(--primary-text)", fontWeight: 700, fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.5rem" }}>Recognition</p>
-              <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontSize: "clamp(1.8rem,3vw,2.8rem)", fontWeight: 800, color: "var(--primary-text-color)", margin: 0 }}>Awards &amp; Achievements</h2>
-            </div>
-          </AnimBox>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }}>
-            {awards.map((a:any, i:number) => (
-              <AnimBox key={i} delay={i * 0.12}>
-                <div style={{ background: "#fff", borderRadius: "20px", padding: "2.5rem 2rem", boxShadow: "0 8px 32px rgba(27,20,99,0.08)", border: "1px solid rgba(90,79,254,0.06)", height: "100%" }}>
-                  <div style={{ width: 64, height: 64, borderRadius: "20px", background: "linear-gradient(135deg,rgba(90,79,254,0.1),rgba(90,79,254,0.05))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2rem", marginBottom: "1.2rem", border: "1px solid rgba(90,79,254,0.12)" }}>{a.icon}</div>
-                  <h3 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 700, color: "var(--primary-text-color)", fontSize: "1rem", marginBottom: "0.75rem" }}>{a.title}</h3>
-                  <p style={{ color: "#6b7280", fontSize: "0.87rem", lineHeight: 1.7, margin: 0 }}>{a.body}</p>
-                </div>
-              </AnimBox>
-            ))}
+import { AnimBox } from "../../../../utils/AnimBox";
+
+type AwardItem = {
+  title: string;
+  body: string;
+};
+
+const awardIcons = [Trophy, Medal, Award];
+
+function AwardsSection({ awards }: { awards: AwardItem[] }) {
+  return (
+    <section className="bg-[var(--background)] py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <AnimBox>
+          <div className="mx-auto mb-12 max-w-3xl text-center">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--primary-color)]/15 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-color)] shadow-sm">
+              <Trophy size={16} />
+              Recognition
+            </span>
+            <h2 className="font-[var(--font-primary)] text-3xl font-black leading-tight text-[var(--primary-text-color)] sm:text-5xl">
+              Awards &amp; Achievements
+            </h2>
           </div>
-        </div>
-      </section>
-    );
-  }
+        </AnimBox>
 
-  export default AwardsSection
+        <div className="grid gap-5 lg:grid-cols-3">
+          {awards.map((a, i) => {
+            const Icon = awardIcons[i % awardIcons.length];
+
+            return (
+              <AnimBox key={a.title} delay={i * 0.1}>
+                <article className="group h-full rounded-[28px] border border-[var(--primary-color)]/10 bg-white p-6 shadow-[0_18px_44px_rgba(27,20,99,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(27,20,99,0.12)]">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white shadow-[0_12px_26px_rgba(90,79,254,0.22)] transition group-hover:scale-105">
+                    <Icon size={24} />
+                  </span>
+                  <h3 className="mt-5 font-[var(--font-primary)] text-xl font-black leading-snug text-[var(--primary-text-color)]">
+                    {a.title}
+                  </h3>
+                  <p className="mt-3 text-sm font-semibold leading-7 text-[var(--secondary-text)]/70">
+                    {a.body}
+                  </p>
+                </article>
+              </AnimBox>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default AwardsSection;

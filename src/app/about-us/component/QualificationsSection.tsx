@@ -1,31 +1,67 @@
-import { AnimBox} from "../../../../utils/AnimBox";
+import { Award, BookOpenCheck, GraduationCap } from "lucide-react";
 
+import { AnimBox } from "../../../../utils/AnimBox";
 
-function QualificationsSection({qualifications}:any) {
-    return (
-      <section style={{ background: "#fff", padding: "5rem 0" }}>
-        <div className="container mx-auto px-6">
-          <AnimBox>
-            <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-              <p style={{ color: "var(--primary-text)", fontWeight: 700, fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.5rem" }}>Education</p>
-              <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontSize: "clamp(1.8rem,3vw,2.8rem)", fontWeight: 800, color: "var(--primary-text-color)", margin: 0 }}>Qualifications</h2>
-            </div>
-          </AnimBox>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem", maxWidth: 800, margin: "0 auto" }}>
-            {qualifications.map((q:any, i:number) => (
-              <AnimBox key={i} delay={i * 0.1}>
-                <div style={{ background: "linear-gradient(135deg,#1B1463,#31285a)", borderRadius: "20px", padding: "2.5rem 2rem", textAlign: "center", boxShadow: "0 12px 40px rgba(27,20,99,0.2)" }}>
-                  <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.2rem", fontSize: "1.8rem" }}>🎓</div>
-                  <p style={{ fontFamily: "'Montserrat',sans-serif", fontSize: "1.8rem", fontWeight: 800, color: "#fff", margin: "0 0 4px" }}>{q.degree}</p>
-                  <p style={{ color: "#a78bfa", fontWeight: 600, fontSize: "0.85rem", margin: "0 0 6px" }}>{q.institute}</p>
-                  <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem" }}>{q.year}</p>
-                </div>
-              </AnimBox>
-            ))}
+type QualificationItem = {
+  degree: string;
+  institute: string;
+  year: string;
+};
+
+const qualificationIcons = [GraduationCap, BookOpenCheck, Award];
+
+function QualificationsSection({
+  qualifications,
+}: {
+  qualifications: QualificationItem[];
+}) {
+  return (
+    <section className="bg-white py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <AnimBox>
+          <div className="mx-auto mb-12 max-w-3xl text-center">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--primary-color)]/15 bg-[var(--background)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-color)] shadow-sm">
+              <GraduationCap size={16} />
+              Education
+            </span>
+            <h2 className="font-[var(--font-primary)] text-3xl font-black leading-tight text-[var(--primary-text-color)] sm:text-5xl">
+              Qualifications
+            </h2>
           </div>
-        </div>
-      </section>
-    );
-  }
+        </AnimBox>
 
-  export default QualificationsSection
+        <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-3">
+          {qualifications.map((q, i) => {
+            const Icon = qualificationIcons[i % qualificationIcons.length];
+
+            return (
+              <AnimBox key={q.degree} delay={i * 0.1}>
+                <article className="group h-full overflow-hidden rounded-[28px] border border-[var(--primary-color)]/10 bg-[var(--background)] p-2 shadow-[0_18px_44px_rgba(27,20,99,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(27,20,99,0.12)]">
+                  <div className="relative h-full overflow-hidden rounded-[22px] bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] p-6 text-center">
+                    <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:54px_54px]" />
+                    <div className="relative">
+                      <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[var(--primary-color)] shadow-[0_14px_30px_rgba(27,20,99,0.16)] transition group-hover:scale-105">
+                        <Icon size={28} />
+                      </span>
+                      <p className="mt-5 font-[var(--font-primary)] text-3xl font-black text-white">
+                        {q.degree}
+                      </p>
+                      <p className="mt-2 text-sm font-bold leading-6 text-white/78">
+                        {q.institute}
+                      </p>
+                      <p className="mt-3 inline-flex rounded-full bg-white/12 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-white/68">
+                        {q.year}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </AnimBox>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default QualificationsSection;

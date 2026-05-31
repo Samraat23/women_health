@@ -1,71 +1,82 @@
 import Link from "next/link";
-import { CalendarDays, PhoneCall, ShieldCheck } from "lucide-react";
+import {
+  CalendarDays,
+  PhoneCall,
+  ShieldCheck,
+  Sparkles,
+  Video,
+} from "lucide-react";
 
 import DoctorImageWithPattern from "../../(dynamiccomponent)/DoctorImageWithPattern";
 
 const heroStats = [
   { value: "17+", label: "Years experience" },
-  { value: "10k+", label: "Women treated" },
-  { value: "AIIMS", label: "Faculty experience" },
+  { value: "10k+", label: "Patients guided" },
+  { value: "3", label: "Premier institutes" },
 ];
 
 export default function HeroSection() {
   return (
-    <section className="relative -mt-24 overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f7f4ee_78%)] pb-16 pt-36 sm:pt-40 lg:pb-20">
-      <div className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(90deg,rgba(90,79,254,0.08)_1px,transparent_1px),linear-gradient(rgba(90,79,254,0.08)_1px,transparent_1px)] [background-size:48px_48px]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,rgba(247,244,238,0),#f7f4ee)]" />
+    <section className="relative left-1/2  w-screen -translate-x-1/2 overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-4 pb-16 pt-36 sm:px-6 sm:pt-40 lg:pb-20">
+      <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:82px_82px]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(247,244,238,0)_0%,rgba(247,244,238,0.88)_100%)]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 md:px-6">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
-          <div className="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-lg border border-[#5a4ffe]/15 bg-white/80 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-color)] shadow-sm">
-              <ShieldCheck size={16} />
-              Available for consultation
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="grid items-center gap-10 lg:min-h-[660px] lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <div className="mx-auto max-w-3xl text-center text-white lg:mx-0 lg:text-left">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-text-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)]">
+              <Sparkles size={16} className="text-[var(--primary-color)]" />
+              About Dr. Kusum Lata
             </div>
 
-            <p className="mb-3 text-sm font-black uppercase tracking-[0.2em] text-[#df5f45]">
-              About Dr. Kusum Lata
-            </p>
-
-            <h1 className="font-[var(--font-primary)] text-4xl font-black leading-tight text-[var(--primary-text-color)] sm:text-5xl lg:text-6xl">
-              Trusted women&apos;s healthcare with specialist surgical care
+            <h1 className=" text-4xl font-black leading-tight tracking-normal text-white  lg:text-5xl">
+              Compassionate specialist care, shaped by experience.
             </h1>
 
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 lg:mx-0 lg:text-lg">
-              MD Obstetrics &amp; Gynaecology, MBBS, Laparoscopic Surgeon and
-              Obstetrician with experience across PGIMER Chandigarh, AIIMS New
-              Delhi, and advanced minimally invasive gynecology care.
+            <p className="mx-auto mt-6 max-w-2xl text-base font-semibold leading-8 text-white/82 lg:mx-0 lg:text-lg">
+              Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician
+              focused on clear diagnosis, safe planning, and supportive
+              follow-through for every patient.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {heroStats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-lg border border-[#5a4ffe]/10 bg-white/90 p-4 shadow-sm"
+                  className="rounded-2xl border border-white/25 bg-white/14 p-4 text-left shadow-[0_16px_34px_rgba(27,20,99,0.14)] backdrop-blur-md"
                 >
-                  <p className="font-[var(--font-primary)] text-2xl font-black text-[var(--primary-text-color)]">
+                  <p className="font-[var(--font-primary)] text-3xl font-black leading-none text-white">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-slate-500">
+                  <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-white/68">
                     {stat.label}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap lg:justify-start">
               <Link
                 href="https://wa.me/919289140812"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-4 text-sm font-black text-white shadow-[0_14px_30px_rgba(90,79,254,0.25)] transition hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5"
               >
                 <CalendarDays size={18} />
                 Book Appointment
               </Link>
               <Link
+                href="https://wa.me/919289140812"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
+              >
+                <Video size={18} />
+                Video Consultation
+              </Link>
+              <Link
                 href="tel:9289140812"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--primary-color)]/20 bg-white px-6 py-4 text-sm font-black text-[var(--secondary-text)] transition hover:border-[var(--primary-color)] hover:text-[var(--primary-color)]"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
                 <PhoneCall size={18} />
                 Call Now
@@ -74,7 +85,9 @@ export default function HeroSection() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <DoctorImageWithPattern className="pb-5" priority />
+            <div className="relative w-full max-w-125 rounded-[38px] border border-white/24 bg-white/12 p-3 shadow-[0_30px_70px_rgba(27,20,99,0.24)] backdrop-blur-md">
+              <DoctorImageWithPattern className="pb-5" priority />
+            </div>
           </div>
         </div>
       </div>

@@ -1,57 +1,112 @@
+"use client";
 
-"use client"
-import { AnimBox, useInView } from "../../../../utils/AnimBox";
+import {
+  Award,
+  HeartHandshake,
+  MapPin,
+  Microscope,
+  Phone,
+  WalletCards,
+} from "lucide-react";
 
+import { AnimBox } from "../../../../utils/AnimBox";
+
+const clinicCards = [
+  {
+    icon: WalletCards,
+    title: "Affordable Care",
+    desc: "World-class treatment at accessible prices for women across Delhi NCR.",
+  },
+  {
+    icon: Microscope,
+    title: "Minimally Invasive",
+    desc: "Advanced laparoscopic surgery planned for comfort and faster recovery.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Compassionate",
+    desc: "Genuine empathy, clear communication, and personal attention.",
+  },
+  {
+    icon: Award,
+    title: "Nationally Awarded",
+    desc: "Recognised at national conferences for research excellence.",
+  },
+];
 
 function ClinicSection() {
-    return (
-      <section style={{ background: "linear-gradient(135deg,#5a4ffe,#31285a)", padding: "6rem 0", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: -100, right: -100, width: 400, height: 400, borderRadius: "50%", background: "rgba(255,255,255,0.04)" }} />
-        <div style={{ position: "absolute", bottom: -80, left: -80, width: 320, height: 320, borderRadius: "50%", background: "rgba(255,255,255,0.04)" }} />
-        <div className="container mx-auto px-6" style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center" }}>
-            <AnimBox from="left">
-              <p style={{ color: "rgba(255,255,255,0.6)", fontWeight: 700, fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.5rem" }}>Established 2021</p>
-              <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontSize: "clamp(1.8rem,3vw,2.8rem)", fontWeight: 800, color: "#fff", lineHeight: 1.2, marginBottom: "1.5rem" }}>
-                Dr. Kusum<br />
-                <span style={{ color: "#a78bfa" }}>Gynecology Centre</span>
-              </h2>
-              <p style={{ color: "rgba(255,255,255,0.75)", lineHeight: 1.9, marginBottom: "2rem", fontSize: "0.97rem" }}>
-                Founded in 2021 with a mission to provide <strong style={{ color: "#fff" }}>affordable, world-class women's healthcare</strong> across Delhi NCR. Located in the heart of Golf Course Road, Gurgaon, Sector 55.
+  return (
+    <section className="relative overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] py-16 lg:py-24">
+      <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.16)_1px,transparent_1px)] [background-size:78px_78px]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-6">
+        <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+          <AnimBox from="left">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-text-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)]">
+              <MapPin size={16} className="text-[var(--primary-color)]" />
+              Established 2021
+            </span>
+
+            <h2 className="font-[var(--font-primary)] text-3xl font-black leading-tight text-white sm:text-5xl">
+              Dr. Kusum Gynecology Centre
+            </h2>
+
+            <div className="mt-6 space-y-5 text-base font-semibold leading-8 text-white/76">
+              <p>
+                Founded in 2021 with a mission to provide affordable,
+                world-class women&apos;s healthcare across Delhi NCR. The centre
+                is located near Golf Course Road, Gurgaon, Sector 55.
               </p>
-              <p style={{ color: "rgba(255,255,255,0.75)", lineHeight: 1.9, marginBottom: "2rem", fontSize: "0.97rem" }}>
-                The clinic specialises in outpatient consultations, while laparoscopic and gynecological procedures are performed at associated hospitals. Dr. Kusum is renowned across the region for her precision in treating <strong style={{ color: "#fff" }}>endometriosis, fibroids, and ovarian cysts</strong>.
+              <p>
+                The clinic specialises in outpatient consultations, while
+                laparoscopic and gynecological procedures are performed at
+                associated hospitals with careful surgical planning.
               </p>
-              <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
-                {["📍 Sushant Lok-2, Sec 55, Gurgaon", "📞 +91 92891 40812"].map((item, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px", color: "rgba(255,255,255,0.8)", fontSize: "0.9rem" }}>
-                    {item}
-                  </div>
-                ))}
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-3 text-sm font-bold text-white backdrop-blur-md">
+                <MapPin size={17} />
+                Sushant Lok-2, Sec 55, Gurgaon
               </div>
-            </AnimBox>
-  
-            <AnimBox from="right" delay={0.15}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                {[
-                  { icon: "💰", title: "Affordable Care", desc: "World-class treatment at accessible prices for all women" },
-                  { icon: "🔬", title: "Minimally Invasive", desc: "Advanced laparoscopic surgery with faster recovery" },
-                  { icon: "❤️", title: "Compassionate", desc: "Genuine empathy and personalised attention for every patient" },
-                  { icon: "🏆", title: "Nationally Awarded", desc: "Recognised at national conferences for research excellence" },
-                ].map((card, i) => (
-                  <div key={i} style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "16px", padding: "1.5rem" }}>
-                    <span style={{ fontSize: "1.8rem", display: "block", marginBottom: 10 }}>{card.icon}</span>
-                    <h4 style={{ color: "#fff", fontWeight: 700, fontSize: "0.95rem", margin: "0 0 6px" }}>{card.title}</h4>
-                    <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.8rem", lineHeight: 1.6, margin: 0 }}>{card.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </AnimBox>
-          </div>
+              <a
+                href="tel:9289140812"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-3 text-sm font-bold text-white backdrop-blur-md transition hover:bg-white/18"
+              >
+                <Phone size={17} />
+                +91 92891 40812
+              </a>
+            </div>
+          </AnimBox>
+
+          <AnimBox from="right" delay={0.15}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {clinicCards.map((card) => {
+                const Icon = card.icon;
+
+                return (
+                  <article
+                    key={card.title}
+                    className="rounded-[26px] border border-white/18 bg-white/10 p-6 shadow-[0_18px_42px_rgba(27,20,99,0.12)] backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/16"
+                  >
+                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[var(--primary-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)]">
+                      <Icon size={23} />
+                    </span>
+                    <h3 className="mt-5 font-[var(--font-primary)] text-lg font-black text-white">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm font-semibold leading-7 text-white/66">
+                      {card.desc}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </AnimBox>
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
+}
 
-
-  export default ClinicSection
+export default ClinicSection;

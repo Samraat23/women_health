@@ -27,7 +27,7 @@ function Navbar() {
   const menuBar = [
     { id: 1, name: "Home", redirect :"/"  },
     { id: 2, name: "About",redirect :"about-us" },
-    { id: 7, name: "Endometrosis" , redirect :"endometrosis" },
+    { id: 7, name: "Endometrosis" , redirect :"endometriosis-treatment" },
     {
       id: 4,
       name: "Women Health",

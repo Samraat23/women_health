@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import NavbarPregnancyItem from "./NavbarPregnancyItem";
 import Link from "next/link";
 import logo from '../(assets)/ logo.png'
@@ -10,6 +10,19 @@ import Image from "next/image";
 
 function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 24);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const menuBar = [
     { id: 1, name: "Home", redirect :"/"  },
@@ -106,26 +119,44 @@ function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="relative z-50 mx-auto mt-1 w-[calc(100%-8px)] max-w-7xl rounded-[42px] border border-[var(--border)]/15 bg-white px-6 py-5 shadow-[0_8px_24px_rgba(27,20,99,0.16)] backdrop-blur-3xl md:px-12"
+      className={`fixed left-1/2 top-5 z-[100] w-[calc(100%-16px)] max-w-7xl -translate-x-1/2 rounded-[36px] border px-4 transition-all duration-300 md:px-8 
+        ${
+        isScrolled
+          ? "border-white/40 bg-white/75 py-2 shadow-[0_18px_42px_rgba(27,20,99,0.18)] backdrop-blur-2xl"
+          : "border-white/20 bg-white/10 py-3 shadow-[0_14px_34px_rgba(27,20,99,0.12)] backdrop-blur-2xl"
+      }
+      `
+    }
       onMouseLeave={() => setActiveMenu(null)}
     >
       {/* NAVBAR */}
       <div className="flex items-center justify-between gap-8">
         {/* Logo */}
-        <div className="relative h-14 w-36 shrink-0">
-          <Link href={"/"} >
-          <Image src={logo} alt="logo" fill className="object-contain" />
+        <div
+          className={`relative h-18 w-18 shrink-0 rounded-full px-4 transition-all duration-300 ${
+            isScrolled ? "bg-white/70" : "bg-white/90"
+          }`}
+        >
+          <Link href={"/"}>
+            <Image src={logo} alt="logo" fill className="object-cover" />
           </Link>
-          
         </div>
 
         {/* Menu */}
-        <div className="hidden items-center gap-10 text-base font-black text-[var(--secondary-text)] md:flex">
+        <div
+          className={`hidden items-center gap-8 text-sm font-black transition-colors md:flex lg:gap-10 ${
+            isScrolled ? "text-[var(--primary-text-color)]" : "text-white"
+          }`}
+        >
           {menuBar.map((item) => (
             <div
               key={item.id}
               onMouseEnter={() => item.subMenu && setActiveMenu(item.name)}
-              className="group flex cursor-pointer items-center gap-1 transition-colors hover:text-[var(--primary-color)]"
+              className={`group flex cursor-pointer items-center gap-1 transition-colors ${
+                isScrolled
+                  ? "hover:text-[var(--primary-color)]"
+                  : "hover:text-white/70"
+              }`}
             >
               <Link href={item.redirect} >{item.name}</Link>
               
@@ -139,10 +170,23 @@ function Navbar() {
           href="https://wa.me/919289140812"
           target="_blank"
           rel="noreferrer"
-          className="hidden shrink-0 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-10 py-4 text-sm font-black uppercase tracking-wide text-white shadow-[0_10px_24px_rgba(90,79,254,0.28)] transition hover:-translate-y-0.5 md:inline-flex"
+          className={`hidden shrink-0 rounded-full px-8 py-3.5 text-sm font-black uppercase tracking-wide shadow-[0_10px_24px_rgba(90,79,254,0.28)] transition hover:-translate-y-0.5 md:inline-flex ${
+            isScrolled
+              ? "bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white"
+              : "bg-white text-[var(--primary-text-color)]"
+          }`}
         >
           Book Appointment
         </Link>
+
+        <button
+          type="button"
+          aria-label="Toggle navigation menu"
+          onClick={() => setIsMobileMenuOpen((value) => !value)}
+          className="grid h-11 w-11 place-items-center rounded-full bg-white text-[var(--primary-text-color)] shadow-sm md:hidden"
+        >
+          {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       
       </div>
 
@@ -170,7 +214,7 @@ function Navbar() {
               bg-blend-color
             "
             style={{ background:
-              "linear-gradient(135deg, #1B1463 0%, #31285a 50%, #5a4ffe 100%)",}}
+              "linear-gradient(135deg, rgba(27,20,99,0.88) 0%, rgba(49,40,90,0.86) 50%, rgba(90,79,254,0.86) 100%)",}}
             
           >
             <div className="px-10 py-8  flex justify-between">
@@ -190,6 +234,40 @@ function Navbar() {
               {activeItem.name === "Women Health" && (
                 <NavbarPregnancyItem Menu={activeItem}  />
               )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.22 }}
+            className="absolute left-0 right-0 top-[calc(100%+10px)] rounded-[28px] border border-white/25 bg-white/78 p-4 shadow-[0_20px_50px_rgba(27,20,99,0.18)] backdrop-blur-2xl md:hidden"
+          >
+            <div className="grid gap-2">
+              {menuBar.map((item) => (
+                <Link
+                  key={item.id}
+                  href={item.redirect}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-2xl px-4 py-3 text-sm font-black text-[var(--primary-text-color)] transition hover:bg-[var(--primary-color)]/10"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <Link
+                href="https://wa.me/919289140812"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-5 py-3 text-center text-sm font-black text-white"
+              >
+                Book Appointment
+              </Link>
             </div>
           </motion.div>
         )}

@@ -84,7 +84,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-(--background) text-(--secondary-text)">
       <HeroSection />
-      <Hospital hospitalLogo={hospitalLogo} />
+      {/* <Hospital hospitalLogo={hospitalLogo} /> */}
       <Trainer d={trianer} />
       <AboutUs  />
       <SurgeryCategory data={LaparoscopicSurgery} />

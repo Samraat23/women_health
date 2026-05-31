@@ -1,144 +1,198 @@
-
-
 "use client";
+
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import {Scissors} from "lucide-react"
 import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  CalendarCheck,
+  GraduationCap,
+  Microscope,
+  Scissors,
+  UsersRound,
+} from "lucide-react";
+
+const appointmentHref = "https://wa.me/919289140812";
+
+const trainerImages = [
+  {
+    img: "/image/ lecturecertificated.jpeg",
+    alt: "Training certificate ceremony",
+  },
+  {
+    img: "/image/ lacture.jpeg",
+    alt: "Women health lecture session",
+  },
+  {
+    img: "/image/ drkusumlatamedicity.jpeg",
+    alt: "Dr. Kusum Lata at Medicity",
+  },
+  {
+    img: "/image/ collegesession.jpeg",
+    alt: "Doctors and students attending a training session",
+  },
+  {
+    img: "/image/ partycipate.jpeg",
+    alt: "Training participation moment",
+  },
+  {
+    img: "/image/ ujbistan.jpeg",
+    alt: "International professional learning moment",
+  },
+  {
+    img: "/image/ medicityfaculty.jpeg",
+    alt: "Medicity faculty session",
+  },
+];
+
+const trainingStats = [
+  {
+    icon: GraduationCap,
+    value: "Hands-on",
+    label: "Expert mentorship",
+  },
+  {
+    icon: Microscope,
+    value: "Live cases",
+    label: "Practical learning",
+  },
+  {
+    icon: UsersRound,
+    value: "Focused",
+    label: "Doctor training",
+  },
+];
 
 function Trainer({ d }) {
-  const item = (delay) => ({
-    hidden: { opacity: 0, y: 80 },
+  const item = (delay = 0) => ({
+    hidden: { opacity: 0, y: 28 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        delay: delay,
-        ease: "easeOut",
+        duration: 0.62,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   });
 
   return (
-    <section className=" min-h-screen ">
+    <section className="bg-[var(--background)] px-4 py-20 md:px-6">
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          variants={item(0.05)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--primary-color)]/15 bg-white px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[var(--primary-color)] shadow-sm">
+            <Scissors size={16} />
+            {d.subtitle}
+          </span>
 
-      {/* ===== TEXT ===== */}
-      <motion.div
-       variants={item(0.1)}
-       initial="hidden"
-       whileInView="show"
-        className="text-center max-w-3xl  mx-auto mb-14"
-      >
-       <div className="flex w-130 mx-auto  border p-3  bg-pink-50  border-pink-200    rounded-3xl  items-center justify-center" >
-       <span ><Scissors  size={20} className="text-black " /></span>
-       <p className=" text-xs font-medium text-slate-700  px-2  tracking-[3px] uppercase ">
-          {d.subtitle} 
-        </p>
-       </div>
+          <h2 className="mt-5 font-[var(--font-primary)] text-3xl font-black leading-tight text-[var(--primary-text-color)] md:text-5xl">
+            {d.title}
+          </h2>
 
-        <h1 className=" my-5  text-(--primary-text) text-4xl md:text-5xl font-bold ">
-          {d.title}
-        </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-8 text-[var(--secondary-text)]/75 md:text-base">
+            {d.description}
+          </p>
 
-        <p className="text-(--secondary-text)">{d.description}</p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                        <Button size="lg" className="px-8 py-6 text-base md:text-lg cursor-pointer hover:scale-105 font-medium text-white bg-(--primary-color) shadow-lg">
-                          Book Appointment
-                        </Button>
-                       <Link  href={'https://themedicity.com/dr-kusum-lata/'} target="_blank" >
-                       <Button size="lg" variant="outline" className="px-8 cursor-pointer py-6 text-base md:text-lg border-(--primary-color) hover:scale-105 text-(--secondary-color) hover:bg-pink-50">
-                          {d.secondaryCta}
-                        </Button>
-                       </Link>
-                      </div>
-      </motion.div>
-
-      {/* ===== MOSAIC ===== */}
-      <div className="mx-4">
-        <div className="flex items-center justify-center gap-3 h-150">
-
-          {/* Far Left */}
-          <motion.div
-            variants={item(0.1)}
-            initial="hidden"
-            whileInView="show"
-            className="hidden border-4 border-(--primary-text) lg:block w-[18%] h-[50%] self-center rounded-2xl overflow-hidden relative"
-          >
-            <Image src={d.images[0].img} alt="" fill className="object-cover scale-105" />
-          </motion.div>
-
-          {/* Left Stack */}
-          <div className="hidden md:flex w-[18%] h-[80%] flex-col gap-3 self-center">
-            
-            <motion.div
-              variants={item(0.2)}
-              initial="hidden"
-              whileInView="show"
-              className="relative border-4 border-(--primary-text) h-1/2 rounded-2xl overflow-hidden"
+          <div className="mt-7 flex flex-col justify-center gap-4 sm:flex-row">
+            <a
+              href={appointmentHref}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-7 py-4 text-sm font-black text-white shadow-[0_14px_28px_rgba(90,79,254,0.24)] transition hover:-translate-y-0.5"
             >
-              <Image src={d.images[1].img} alt="" fill className="object-cover scale-120 " />
-            </motion.div>
-
-            <motion.div
-              variants={item(0.35)}
-              initial="hidden"
-              whileInView="show"
-              className="relative border-4 border-(--primary-text) h-1/2 rounded-2xl overflow-hidden"
+              <CalendarCheck size={18} />
+              {d.primaryCta || "Join Training Program"}
+            </a>
+            <Link
+              href="https://themedicity.com/dr-kusum-lata/"
+              target="_blank"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--primary-color)]/20 bg-white px-7 py-4 text-sm font-black text-[var(--primary-text-color)] shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--primary-color)]/35"
             >
-              <Image src={d.images[2].img} alt="" fill className="object-cover scale-105" />
-            </motion.div>
-
+              {d.secondaryCta}
+              <ArrowUpRight size={18} />
+            </Link>
           </div>
+        </motion.div>
 
-          {/* Center */}
+        <div className="mt-12">
+         
+
           <motion.div
-            variants={item(0.5)}
+            variants={item(0.18)}
             initial="hidden"
             whileInView="show"
-            className="w-[26%]  border-4 border-(--primary-text) h-full rounded-2xl overflow-hidden shadow-xl relative"
-          >
-            <Image src={d.images[3].img} alt="" fill className="object-cover scale-110 " />
-          </motion.div>
-
-          {/* Right Stack */}
-          <div className="hidden md:flex w-[18%] h-[80%] flex-col gap-3 self-center">
+            viewport={{ once: true, margin: "-80px" }}
             
-            <motion.div
-              variants={item(0.65)}
-              initial="hidden"
-              whileInView="show"
-              className="relative border-4 border-(--primary-text) h-1/2 rounded-2xl overflow-hidden"
-            >
-              <Image src={d.images[4]?.img || d.images[1].img} alt="" fill className="object-cover scale-110 " />
-            </motion.div>
-
-            <motion.div
-              variants={item(0.8)}
-              initial="hidden"
-              whileInView="show"
-              className="relative border-4 border-(--primary-text) h-1/2 rounded-2xl overflow-hidden"
-            >
-              <Image src={d.images[5]?.img || d.images[2].src} alt="" fill className="object-cover scale-110" />
-            </motion.div>
-
-          </div>
-
-          {/* Far Right */}
-          <motion.div
-            variants={item(0.95)}
-            initial="hidden"
-            whileInView="show"
-            className="hidden border-4 border-(--primary-text) lg:block w-[18%] h-[50%] self-center rounded-2xl overflow-hidden relative"
           >
-            <Image src={d.images[6].img} alt="" fill className="object-cover scale-105" />
-          </motion.div>
+            <div className="grid gap-3 md:h-[560px] md:grid-cols-[0.8fr_0.95fr_1.35fr_0.95fr_0.8fr]">
+              <TrainerImage
+                image={trainerImages[0]}
+                className="hidden md:block md:h-[58%] md:self-center"
+                delay={0.1}
+                item={item}
+              />
 
+              <div className="grid gap-3 md:h-[84%] md:self-center">
+                <TrainerImage image={trainerImages[1]} delay={0.18} item={item} />
+                <TrainerImage image={trainerImages[2]} delay={0.26} item={item} />
+              </div>
+
+              <TrainerImage
+                image={trainerImages[3]}
+                className="min-h-[360px] md:h-full"
+                delay={0.34}
+                item={item}
+                featured
+              />
+
+              <div className="grid gap-3 md:h-[84%] md:self-center">
+                <TrainerImage image={trainerImages[4]} delay={0.42} item={item} />
+                <TrainerImage image={trainerImages[5]} delay={0.5} item={item} />
+              </div>
+
+              <TrainerImage
+                image={trainerImages[6]}
+                className="hidden md:block md:h-[58%] md:self-center"
+                delay={0.58}
+                item={item}
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+function TrainerImage({ image, className = "", delay, item, featured = false }) {
+  return (
+    <motion.div
+      variants={item(delay)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-60px" }}
+      className={`group relative min-h-[180px] overflow-hidden rounded-3xl border border-[var(--border)]/10 bg-[var(--background)] shadow-sm ${className}`}
+    >
+      <Image
+        src={image.img}
+        alt={image.alt}
+        fill
+        sizes={
+          featured
+            ? "(min-width: 1024px) 360px, 92vw"
+            : "(min-width: 1024px) 220px, (min-width: 640px) 45vw, 92vw"
+        }
+        className="object-cover transition duration-500 group-hover:scale-105"
+      />
+      <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(27,20,99,0)_45%,rgba(27,20,99,0.58)_100%)] opacity-80" />
+    </motion.div>
   );
 }
 

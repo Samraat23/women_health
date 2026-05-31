@@ -1,270 +1,381 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 import {
+  Activity,
   ArrowRight,
-  Clock,
+  Baby,
+  BadgeCheck,
+  BookOpenCheck,
+  Clock3,
+  HeartPulse,
+  Home,
+  Microscope,
   Search,
   ShieldCheck,
   Sparkles,
+  Stethoscope,
+  SunMedium,
+  Users,
+  Video,
 } from "lucide-react";
 
-import { gynecologyCategories } from "@/data/Categories";
-import { allBlogData } from "@/data/BlogData";
+import {
+  gynecologyCategories,
+  type GynecologyCategory,
+} from "@/data/Categories";
+import { allBlogData, type BlogPageData } from "@/data/BlogData";
+
+type CategoryStat = {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+};
+
+const categoryIconMap: Record<string, LucideIcon> = {
+  "Laparoscopic Surgery": Microscope,
+  "Young Women Care": Users,
+  "Preventive Women Health": BadgeCheck,
+  "Hormonal Imbalance": Activity,
+  "Pregnancy Care": Baby,
+  "Fertility & Infertility": HeartPulse,
+  "Menopause Care": SunMedium,
+  "Sexual & Intimate Health": ShieldCheck,
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0 },
+};
+
+function getCategoryIcon(title: string) {
+  return categoryIconMap[title] || Stethoscope;
+}
+
+function renderCategoryIcon(title: string, size: number) {
+  const Icon = getCategoryIcon(title);
+
+  return <Icon size={size} />;
+}
+
+function getCategoryBlogs(category: GynecologyCategory) {
+  return category.blogSlugs
+    .map((slug) =>
+      allBlogData.find((blog) => blog.article.slug && blog.article.slug === slug)
+    )
+    .filter((blog): blog is BlogPageData => Boolean(blog));
+}
+
+function getCategoryPreviewImage(
+  category: GynecologyCategory
+): string | StaticImageData {
+  const firstBlog = getCategoryBlogs(category)[0];
+
+  return firstBlog?.article.image || category.image;
+}
 
 function CategoryPage() {
   const params = useParams();
-  const pathname = usePathname();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const routeCategorySlug = params?.slug as string;
-  const selectedCategorySlug =
-    searchParams.get("category") || routeCategorySlug;
-
-  const routeCategory = gynecologyCategories.find(
-    (item) => item.slug === routeCategorySlug
-  );
-  const category = gynecologyCategories.find(
-    (item) => item.slug === selectedCategorySlug
-  );
-  const activeCategory = category || routeCategory;
-
-  const blogs = allBlogData.filter(
-    (blog) =>
-      blog.article.slug &&
-      activeCategory?.blogSlugs.includes(blog.article.slug)
+  const slugParam = params?.slug;
+  const routeCategorySlug = Array.isArray(slugParam) ? slugParam[0] : slugParam;
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState(
+    () => routeCategorySlug || gynecologyCategories[0]?.slug || ""
   );
 
-  const handleCategoryChange = (slug: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("category", slug);
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  useEffect(() => {
+    const handlePopState = () => {
+      const nextSlug = window.location.pathname
+        .split("/category/")
+        .at(1)
+        ?.split("/")
+        .at(0);
+
+      if (nextSlug) {
+        setSelectedCategorySlug(decodeURIComponent(nextSlug));
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const activeCategory = useMemo(
+    () =>
+      gynecologyCategories.find((item) => item.slug === selectedCategorySlug),
+    [selectedCategorySlug]
+  );
+
+  const blogs = useMemo(
+    () => (activeCategory ? getCategoryBlogs(activeCategory) : []),
+    [activeCategory]
+  );
+
+  const categoryStats: CategoryStat[] = useMemo(
+    () => [
+      {
+        icon: BookOpenCheck,
+        label: "Care Guides",
+        value: `${blogs.length} topics`,
+      },
+      {
+        icon: Clock3,
+        label: "Reading",
+        value: "Quick explainers",
+      },
+      {
+        icon: ShieldCheck,
+        label: "Reviewed",
+        value: "Doctor-led",
+      },
+    ],
+    [blogs.length]
+  );
+
+  const handleCategorySelect = (slug: string) => {
+    setSelectedCategorySlug(slug);
+
+    const nextUrl = `/category/${slug}`;
+
+    if (window.location.pathname !== nextUrl) {
+      window.history.replaceState({ categorySlug: slug }, "", nextUrl);
+    }
   };
 
   if (!activeCategory) {
-    return (
-      <main className="min-h-screen bg-[var(--background)] px-4 py-24">
-        <div className="mx-auto max-w-4xl rounded-2xl border border-[#e8dfd4] bg-white p-10 text-center shadow-sm">
-          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#f1eefc] text-[var(--primary-text)]">
-            <Search size={24} />
-          </span>
-          <h1 className="mt-5 text-3xl font-bold text-[var(--secondary-text)]">
-            Category not found
-          </h1>
-          <p className="mt-3 text-gray-600">
-            Please check your category slug.
-          </p>
-        </div>
-      </main>
-    );
+    return <CategoryNotFound />;
   }
 
-  return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--secondary-text)]">
-      {/* Hero Section */}
-      <section className="relative  -top-30 overflow-hidden bg-[linear-gradient(135deg,var(--primary-text-color)_0%,var(--secondary-color)_12%,var(--primary-color)_100%)]">
-        <Image
-          src={activeCategory.image}
-          alt={activeCategory.title}
-          fill
-          priority
-          className="object-cover opacity-20 mix-blend-luminosity"
-        />
-      
+  const heroImage = blogs[0]?.article.image || activeCategory.image;
 
-        <div className="relative z-10 mx-auto flex  h-180 max-w-7xl items-center justify-center px-4 py-20  md:px-8">
-          <div className="max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-xl">
-              <Sparkles size={15} className="text-pink-300" />
-              Gynecology Care Category
+  return (
+    <main className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--secondary-text)]">
+      <section className="relative left-1/2  w-screen -translate-x-1/2 overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-4 pb-16 pt-36 sm:px-6 sm:pt-40 lg:pb-20">
+        <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:82px_82px]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(247,244,238,0)_0%,rgba(247,244,238,0.88)_100%)]" />
+
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:min-h-[660px] lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto max-w-3xl text-center text-white lg:mx-0 lg:text-left"
+          >
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-text-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)]">
+              <Sparkles size={16} className="text-[var(--primary-color)]" />
+              Care Category
             </div>
 
-            <h1 className="text-4xl font-black leading-tight text-white md:text-6xl md:leading-[1.1]">
+            <h1 className="font-[var(--font-primary)] text-4xl font-black leading-tight tracking-normal text-white sm:text-5xl lg:text-7xl">
               {activeCategory.title}
             </h1>
 
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-white/80 md:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base font-semibold leading-8 text-white/82 lg:mx-0 lg:text-lg">
               {activeCategory.description}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-white/85">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md">
-                <Search size={17} />
-                {blogs.length} Treatments
-              </span>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {categoryStats.map((stat) => {
+                const Icon = stat.icon;
 
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md">
-                <Clock size={17} />
-                Quick Reading
-              </span>
-
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md">
-                <ShieldCheck size={17} />
-                Doctor Reviewed
-              </span>
+                return (
+                  <div
+                    key={stat.label}
+                    className="rounded-2xl border border-white/22 bg-white/12 p-4 text-left shadow-[0_16px_34px_rgba(27,20,99,0.14)] backdrop-blur-md"
+                  >
+                    <Icon size={20} className="text-white" />
+                    <p className="mt-3 text-sm font-black text-white">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-white/65">
+                      {stat.label}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
 
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap lg:justify-start">
               <Link
                 href="#treatments"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[var(--primary-text)] transition hover:-translate-y-0.5 hover:bg-pink-50"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5"
               >
                 Explore Treatments
-                <ArrowRight size={17} />
+                <ArrowRight size={18} />
               </Link>
               <Link
-                href="/"
-                className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-md transition hover:bg-white/20"
+                href="https://wa.me/919289140812"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
-                Back to Home
+                <Video size={18} />
+                Consultation
               </Link>
             </div>
-          </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 40, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ delay: 0.12, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto w-full max-w-[520px] lg:mx-0 lg:justify-self-end"
+          >
+            <div className="relative overflow-hidden rounded-[38px] border border-white/24 bg-white/12 p-3 shadow-[0_30px_70px_rgba(27,20,99,0.24)] backdrop-blur-md">
+              <div className="relative h-[420px] overflow-hidden rounded-[30px] bg-[var(--background)] sm:h-[540px]">
+                <Image
+                  src={heroImage}
+                  alt={activeCategory.title}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 520px, 92vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(27,20,99,0)_42%,rgba(27,20,99,0.78)_100%)]" />
+              </div>
+
+              <div className="absolute bottom-7 left-7 right-7 rounded-3xl border border-white/70 bg-white/95 p-4 text-[var(--primary-text-color)] shadow-[0_16px_38px_rgba(27,20,99,0.16)] backdrop-blur-md">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white">
+                    {renderCategoryIcon(activeCategory.title, 23)}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-black">{activeCategory.title}</p>
+                    <p className="mt-1 text-xs font-bold text-[var(--secondary-text)]/65">
+                      Guided by Dr. Kusum Lata Bhardwaj
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Category Filter + Treatment Cards */}
-      <section
-        id="treatments"
-        className="relative -top-16 px-4 pb-10 md:px-8 lg:pb-20"
-      >
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[280px_1fr]">
-          <aside className="lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-2xl border border-[#e8dfd4] bg-white p-4 shadow-sm">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--primary-text)]">
-                Categories
-              </p>
-              <h2 className="mt-1 text-xl font-bold text-[var(--secondary-text)]">
-                Browse care topics
-              </h2>
+      <section id="treatments" className="relative z-10 -mt-10 px-4 pb-16 md:px-6 lg:pb-24">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[320px_1fr]">
+          <aside className="lg:sticky lg:top-28 lg:self-start">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45 }}
+              className="overflow-hidden rounded-[30px] border border-white/70 bg-white/95 p-4 shadow-[0_24px_60px_rgba(27,20,99,0.12)] backdrop-blur-md"
+            >
+              <div className="rounded-3xl bg-[rgba(90,79,254,0.08)] p-4">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-color)]">
+                  Categories
+                </p>
+                <h2 className="mt-2 font-[var(--font-primary)] text-2xl font-black leading-tight text-[var(--primary-text-color)]">
+                  Browse care topics
+                </h2>
+              </div>
 
-              <div className="mt-5 space-y-2">
+              <div className="mt-4 space-y-2">
                 {gynecologyCategories.map((cat) => {
                   const isActive = cat.slug === activeCategory.slug;
+                  const previewImage = getCategoryPreviewImage(cat);
 
                   return (
                     <button
                       key={cat.id}
                       type="button"
-                      onClick={() => handleCategoryChange(cat.slug)}
+                      onClick={() => handleCategorySelect(cat.slug)}
                       aria-current={isActive ? "page" : undefined}
-                      className={`group flex w-full items-center gap-3 rounded-xl border px-3 py-3 text-left transition ${
+                      className={`group flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition ${
                         isActive
-                          ? "border-[var(--primary-color)] bg-[#f1eefc] text-[var(--primary-text)]"
-                          : "border-transparent bg-white text-[var(--secondary-text)] hover:border-[#e8dfd4] hover:bg-[#fffaf6]"
+                          ? "border-[var(--primary-color)] bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white shadow-[0_14px_30px_rgba(90,79,254,0.22)]"
+                          : "border-transparent bg-white text-[var(--secondary-text)] hover:border-[var(--primary-color)]/12 hover:bg-[rgba(90,79,254,0.06)]"
                       }`}
                     >
-                      <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-[#f7f4ee]">
+                      <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl bg-[var(--background)]">
                         <Image
-                          src={cat.image}
+                          src={previewImage}
                           alt={cat.title}
                           fill
-                          className="object-cover transition-transform group-hover:scale-105"
+                          sizes="48px"
+                          className="object-cover transition-transform duration-300 group-hover:scale-110"
                         />
                       </span>
 
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-sm font-bold">
+                        <span className="block truncate text-sm font-black">
                           {cat.title}
                         </span>
-                        <span className="block text-xs text-gray-500">
+                        <span
+                          className={`mt-0.5 block text-xs font-bold ${
+                            isActive
+                              ? "text-white/68"
+                              : "text-[var(--secondary-text)]/58"
+                          }`}
+                        >
                           {cat.blogSlugs.length} topics
                         </span>
                       </span>
 
-                      {isActive && (
-                        <span className="h-2 w-2 rounded-full bg-[var(--primary-color)]" />
-                      )}
+                      <span
+                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
+                          isActive
+                            ? "bg-white text-[var(--primary-color)]"
+                            : "bg-[rgba(90,79,254,0.08)] text-[var(--primary-color)]"
+                        }`}
+                      >
+                        {renderCategoryIcon(cat.title, 17)}
+                      </span>
                     </button>
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
           </aside>
 
           <div>
-            <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-              <div>
-                <p className="text-sm font-bold uppercase tracking-[0.25em] text-[var(--primary-text)]">
-                  Treatments
-                </p>
-                <h2 className="mt-3 text-3xl font-bold leading-tight text-(--secondary-text) ">
-                  Explore {activeCategory.title}
-                </h2>
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.25 }}
+              variants={fadeUp}
+              transition={{ duration: 0.45 }}
+              className="mb-8 rounded-[30px] border border-white/70 bg-white/95 p-5 shadow-[0_24px_60px_rgba(27,20,99,0.10)] backdrop-blur-md sm:p-6"
+            >
+              <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--primary-color)]">
+                    Treatments
+                  </p>
+                  <h2 className="mt-3 font-[var(--font-primary)] text-3xl font-black leading-tight text-[var(--primary-text-color)] sm:text-4xl">
+                    Explore {activeCategory.title}
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-[var(--secondary-text)]/68">
+                    Choose a topic to understand symptoms, care options,
+                    procedures, recovery, and when to speak with a specialist.
+                  </p>
+                </div>
+
+                <div className="flex w-fit items-center gap-2 rounded-full bg-[rgba(90,79,254,0.08)] px-4 py-3 text-sm font-black text-[var(--primary-color)]">
+                  <Search size={17} />
+                  {blogs.length} results
+                </div>
               </div>
+            </motion.div>
 
-            </div>
-
-            <div className="grid gap-6 gr w-180 grid-cols-2 ">
-              {blogs.map((blog) => (
-                <Link
-                  key={blog.article.slug}
-                  href={`/${blog.article.slug}`}
-                  className="block"
-                >
-                  <motion.div
-                    whileHover={{ y: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="group h-full min-h-[390px] cursor-pointer rounded-2xl border border-gray-100 bg-white shadow-sm "
-                  >
-                    <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
-                      <div className="flex min-w-0 items-center gap-3">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-[var(--primary-text)] text-[var(--primary-text)]">
-                          <ShieldCheck size={22} />
-                        </div>
-                        <p className="line-clamp-2 text-base font-bold leading-5 text-[var(--primary-text)]">
-                          {blog.article.title}
-                        </p>
-                      </div>
-
-                      <ArrowRight
-                        size={26}
-                        className="-rotate-45 shrink-0 text-gray-900 transition-all duration-200 group-hover:rotate-0"
-                      />
-                    </div>
-
-                    <div className="px-5 pt-4">
-                      <p className="line-clamp-2 text-sm leading-6 text-gray-600">
-                        {blog.article.intro}
-                      </p>
-
-                    
-                    </div>
-
-                    <div className="relative mx-5 mt-4 h-[200px] overflow-hidden rounded-xl bg-[#f7f4ee]">
-                      <Image
-                        src={blog.article.image}
-                        alt={blog.article.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                  </motion.div>
-                </Link>
-              ))}
-            </div>
-
-            {blogs.length === 0 && (
-              <div className="rounded-3xl border border-[#eee7df] bg-white p-10 text-center shadow-sm">
-                <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#f1eefc] text-[var(--primary-text)]">
-                  <Search size={24} />
-                </span>
-                <h3 className="mt-5 text-2xl font-bold text-[var(--secondary-text)]">
-                  No blogs found
-                </h3>
-                <p className="mt-2 text-gray-600">
-                  Please add blogs for this category slug.
-                </p>
+            {blogs.length > 0 ? (
+              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {blogs.map((blog) => (
+                  <TreatmentCard
+                    key={blog.article.slug}
+                    blog={blog}
+                  />
+                ))}
               </div>
+            ) : (
+              <EmptyState />
             )}
           </div>
         </div>
@@ -274,3 +385,94 @@ function CategoryPage() {
 }
 
 export default CategoryPage;
+
+function TreatmentCard({
+  blog,
+}: {
+  blog: BlogPageData;
+}) {
+  return (
+    <Link href={`/${blog.article.slug}`} className="block h-full">
+      <motion.article
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2 }}
+        className="group h-full min-h-[390px] overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm"
+      >
+        <div className="flex items-center justify-between border-b border-[var(--border)]/10 px-5 py-4">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-[var(--primary-color)]/20 bg-[var(--primary-color)]/10 text-[var(--primary-color)]">
+              <ShieldCheck size={22} />
+            </div>
+            <p className="line-clamp-2 text-base font-black leading-5 text-[var(--primary-text-color)]">
+              {blog.article.title}
+            </p>
+          </div>
+
+          <ArrowRight
+            size={25}
+            className="-rotate-45 shrink-0 text-[var(--secondary-text)] transition-all duration-200 group-hover:rotate-0 group-hover:text-[var(--primary-color)]"
+          />
+        </div>
+
+        <div className="px-5 pt-4">
+          <p className="line-clamp-2 text-sm leading-6 text-[#667085]">
+            {blog.article.intro}
+          </p>
+        </div>
+
+        <div className="relative mx-5 mt-4 h-[210px] overflow-hidden rounded-xl bg-[var(--background)]">
+          <Image
+            src={blog.article.image}
+            alt={blog.article.title}
+            fill
+            sizes="(min-width: 1280px) 300px, (min-width: 768px) 45vw, 92vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-110"
+          />
+        </div>
+      </motion.article>
+    </Link>
+  );
+}
+
+function CategoryNotFound() {
+  return (
+    <main className="min-h-screen bg-[var(--background)] px-4 py-24">
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-[34px] bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] p-3 shadow-[0_30px_70px_rgba(27,20,99,0.18)]">
+        <div className="rounded-[26px] bg-white p-8 text-center sm:p-12">
+          <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[rgba(90,79,254,0.10)] text-[var(--primary-color)]">
+            <Search size={26} />
+          </span>
+          <h1 className="mt-6 font-[var(--font-primary)] text-3xl font-black text-[var(--primary-text-color)]">
+            Category not found
+          </h1>
+          <p className="mx-auto mt-3 max-w-xl text-sm font-semibold leading-7 text-[var(--secondary-text)]/68">
+            Please check the category URL or browse the available care topics.
+          </p>
+          <Link
+            href="/"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5"
+          >
+            <Home size={17} />
+            Back to Home
+          </Link>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="rounded-[30px] border border-white/70 bg-white/95 p-10 text-center shadow-[0_24px_60px_rgba(27,20,99,0.10)] backdrop-blur-md">
+      <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[rgba(90,79,254,0.10)] text-[var(--primary-color)]">
+        <Search size={26} />
+      </span>
+      <h3 className="mt-6 font-[var(--font-primary)] text-2xl font-black text-[var(--primary-text-color)]">
+        No treatment guides found
+      </h3>
+      <p className="mx-auto mt-3 max-w-xl text-sm font-semibold leading-7 text-[var(--secondary-text)]/68">
+        Please add article slugs to this category to show treatment guides here.
+      </p>
+    </div>
+  );
+}

@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import SectionHeader from "../(dynamiccomponent)/SectionHeader";
+import Link from "next/link";
+import { slugify } from "@/components/blogs/Slugify";
 
 type Item = {
   id: number;
@@ -24,7 +26,10 @@ function WHealthCategory({ data }: { data: Item[] }) {
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {data.map((cat) => (
+          <Link href={slugify(cat.name)} >
           <CatCard key={cat.id} item={cat} />
+          </Link>
+          
         ))}
       </div>
     </section>

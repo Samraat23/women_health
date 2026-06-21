@@ -3,6 +3,7 @@ import React from 'react'
 import { motion } from "framer-motion";
 import Kusum from "../(assets)/kusummam.jpg"
 import Image from 'next/image';
+import { slugify } from '@/components/blogs/Slugify';
 
 function NavbarPregnancyItem({Menu}:any) {
 
@@ -11,7 +12,7 @@ function NavbarPregnancyItem({Menu}:any) {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className=" overflow-hidden  "
+      className=" overflow-hidden   "
     >
       <div className='flex justify-between gap-6 '>
         {/* Image Section with Enhanced Styling */}
@@ -56,7 +57,7 @@ function NavbarPregnancyItem({Menu}:any) {
                 {category.links.map((link:any, linkIndex:any) => (
                   <motion.a
                     key={linkIndex}
-                    href='#'
+                    href={slugify(link)}
                     whileHover={{ x: 6, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className={`relative  text-md font-medium transition-all duration-300  hover:text-primary text-white group/link`}

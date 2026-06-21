@@ -69,14 +69,14 @@ function Page() {
     : "/category/young-women-care";
 
   return (
-    <main className="relative -top-30 bg-[#faf7f2]">
+    <main className="relative  bg-[#faf7f2]">
       <ReadingProgress />
       <HeroSection data={blog.hero} />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-14 md:px-6 lg:grid-cols-[260px_1fr_320px]">
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8  py-14 lg:grid-cols-[260px_1fr_320px]">
         {/* Left Side */}
         <aside className="hidden lg:block">
-          <div className="sticky top-24">
+          <div className="sticky top-33">
             <ContentTopics
               articleId={blog.article.id}
               articleTitle={blog.article.title}
@@ -97,7 +97,7 @@ function Page() {
 
         {/* Right Side */}
         <aside className="hidden lg:block">
-          <div className="sticky top-24 space-y-6">
+          <div className="sticky top-33 ">
             <DoctorBanner />
           </div>
         </aside>

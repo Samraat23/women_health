@@ -35,7 +35,7 @@ function PatientReview({ data }: { data: PatientReviewData }) {
     <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
       <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[var(--primary-color)]">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-(--primary-color)">
             {data.badge}
           </p>
           <h2 className="mt-3 font-[var(--font-primary)] text-3xl font-black text-[var(--primary-text-color)] md:text-5xl">
@@ -127,13 +127,17 @@ export default PatientReview;
 function TestimonialCard({ item }: { item: Review }) {
   return (
     <article
-      className={`group relative flex h-[360px] flex-col overflow-hidden rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(27,20,99,0.10)] ${
+      className={`group relative flex h-[360px] flex-col overflow-hidden rounded-2xl border bg-white p-6 shadow-sm transition
+        
+        ${
         item.highlight
           ? "border-[var(--primary-color)]/25"
           : "border-[var(--border)]/10"
-      }`}
+      }
+      `
+    }
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--primary-color),var(--secondary-color))] opacity-0 transition group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 " />
 
       <div className="mb-6 flex items-start justify-between gap-4">
         <div className="flex min-w-0 items-center gap-4">

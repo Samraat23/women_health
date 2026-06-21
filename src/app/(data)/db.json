@@ -357,65 +357,64 @@
       "title": "Gynecology & Laparoscopic Surgery",
       "highlight": "Advanced • Minimally Invasive • Faster Recovery",
       "image": "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b",
-      "surgery": [
-        {
-          "id": 101,
-          "name": "Endometriosis Surgery",
-          "key": "hysterectomy",
-          "img":"/image/ fibroid.png",
-          
-          "description": "A minimally invasive procedure to remove the uterus, often recommended for fibroids, heavy bleeding, or cancer."
-        },
-        {
-          "id": 102,
-          "name": "Fibroid Removal",
-          "key": "myomectomy",
-          "img":"/image/ fibroid.png",
-          "description": "Surgical removal of uterine fibroids while preserving the uterus, ideal for women planning future pregnancies."
-        },
-        {
-          "id": 103,
-          "name": "Ovarian Cyst Removal",
-          "key": "cyst",
-          "img":"/image/ fibroid.png",
-          "description": "Laparoscopic removal of cysts from the ovary to relieve pain and prevent complications."
-        },
-        {
-          "id": 104,
-          "name": "Uterus Removal",
-          "key": "endometriosis",
-          "img":"/image/ fibroid.png",
-          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
-        },
-        {
-          "id": 105,
-          "name": "Fertility Enhancing surgery",
-          "key": "fertility",
-          "img":"/image/ fibroid.png",
-          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
-        },
-        {
-          "id": 106,
-          "name": "Hysteroscopy",
-          "key": "fertility",
-          "img":"/image/ fibroid.png",
-          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
-        },
-        {
-          "id": 106,
-          "name": "Cancer Surgery",
-          "key": "fertility",
-          "img":"/image/ fibroid.png",
-          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
-        },
-        {
-          "id": 106,
-          "name": "Cervical Encerclage",
-          "key": "fertility",
-          "img":"/image/ fibroid.png",
-          "description": "Procedure to remove endometrial tissue growing outside the uterus, helping reduce pain and improve fertility."
-        }
-      ]
+     "surgery": [
+  {
+    "id": 101,
+    "name": "Endometriosis Surgery",
+    "key": "endometriosis",
+    "img": "/image/ fibroid.png",
+    "description": "Advanced laparoscopic surgery to remove endometriosis tissue, reduce chronic pelvic pain, preserve fertility, and improve quality of life."
+  },
+  {
+    "id": 102,
+    "name": "Fibroid Removal",
+    "key": "myomectomy",
+    "img": "/image/ fibroid.png",
+    "description": "Minimally invasive removal of uterine fibroids while preserving the uterus, ideal for women planning future pregnancies."
+  },
+  {
+    "id": 103,
+    "name": "Ovarian Cyst Removal",
+    "key": "ovarian-cyst",
+    "img": "/image/ fibroid.png",
+    "description": "Laparoscopic ovarian cyst removal with fertility-preserving techniques to relieve pain, prevent complications, and protect ovarian function."
+  },
+  {
+    "id": 104,
+    "name": "Uterus Removal",
+    "key": "hysterectomy",
+    "img": "/image/ fibroid.png",
+    "description": "Minimally invasive hysterectomy performed for large fibroids, abnormal bleeding, adenomyosis, or other uterine conditions when necessary."
+  },
+  {
+    "id": 105,
+    "name": "Fertility Enhancing Surgery",
+    "key": "fertility-enhancing-surgery",
+    "img": "/image/ fibroid.png",
+    "description": "Specialized laparoscopic and hysteroscopic procedures designed to improve fertility by treating endometriosis, fibroids, adhesions, and tubal problems."
+  },
+  {
+    "id": 106,
+    "name": "Hysteroscopy",
+    "key": "hysteroscopy-treatment",
+    "img": "/image/ fibroid.png",
+    "description": "Advanced day-care procedure used to diagnose and treat uterine polyps, fibroids, adhesions, abnormal bleeding, infertility, and recurrent miscarriages."
+  },
+  {
+    "id": 107,
+    "name": "Cancer Surgery",
+    "key": "gynecologic-cancer-surgery",
+    "img": "/image/ fibroid.png",
+    "description": "Comprehensive surgical treatment for gynecological cancers including uterine, ovarian, and cervical cancers using advanced minimally invasive techniques whenever possible."
+  },
+  {
+    "id": 108,
+    "name": "Cervical Cerclage",
+    "key": "cervical-cerclage",
+    "img": "/image/ fibroid.png",
+    "description": "Laparoscopic cervical cerclage provides strong cervical support to help prevent recurrent miscarriages, preterm birth, and pregnancy loss due to cervical weakness."
+  }
+]
     }
   ],
   "trianer": {
@@ -423,7 +422,7 @@
     "title": "Master Laparoscopic Surgery with Expert Guidance",
     "subtitle": "A Trusted Gynecologist & Laparoscopic Trainer",
     "description": "Empowering doctors with advanced laparoscopic surgical skills through hands-on training, live case demonstrations, and expert mentorship under Dr. Kusum Lata. The program focuses on real-time surgical exposure, precision techniques, and building confidence in minimally invasive gynecological procedures.",
-    "primaryCta": "Join Training Program",
+    "primaryCta": "Consult For Laparoscopy",
     "secondaryCta": "Read More",
     "images": [
       {

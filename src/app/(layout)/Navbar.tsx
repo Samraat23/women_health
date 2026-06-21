@@ -105,7 +105,7 @@ function Navbar() {
       subMenu: [
         { id: 1, name: "Normal Delivery" },
         { id: 2, name: "Pre-Pregnancy Counseling" },
-        { id: 3, name: "Antenatal Care" },
+        { id: 3, name: "Care in Pregnancy" },
       ],
     },
     
@@ -210,11 +210,8 @@ function Navbar() {
               backdrop-blur-xl 
               shadow-2xl 
               z-50
-            
-              bg-blend-color
+              bg-(--secondary-text)
             "
-            style={{ background:
-              "linear-gradient(135deg, rgba(27,20,99,0.88) 0%, rgba(49,40,90,0.86) 50%, rgba(90,79,254,0.86) 100%)",}}
             
           >
             <div className="px-10 py-8  flex justify-between">

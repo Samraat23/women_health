@@ -94,7 +94,7 @@ function InstaReels() {
     <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
       <SectionHeader headingObj={headingObj} />
 
-      <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-6 pr-4 [scrollbar-color:rgba(90,79,254,0.42)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[rgba(90,79,254,0.42)] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-[rgba(90,79,254,0.10)]">
+      <div className="flex  gap-5 overflow-x-auto  pb-6   ">
         {instaReel.map((item) => (
           <a
             key={item.id}

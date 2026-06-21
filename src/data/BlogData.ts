@@ -3647,12 +3647,7 @@ export const laparoscopicSurgeryBlogs = [
             description:
               "Patients usually return to normal activities early.",
           },
-          {
-            label: "Approx Cost",
-            title: "₹1–1.5 lakh",
-            description:
-              "Cost varies depending on complexity and previous surgeries.",
-          },
+         
           {
             label: "Consultation",
             title: "Expert evaluation",

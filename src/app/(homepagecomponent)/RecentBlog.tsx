@@ -82,7 +82,7 @@ function ArticleComponent({ item }: any) {
       <div className='h-80 relative' >
         <Image src={item.coverImage} alt='db' fill className='object-center rounded-lg' />
 
-        <div  className='absolute  inset-0 top-4 flex justify-center items-center left-2 rounded-lg w-24  h-8 bg-(--primary-text)/60'>{item.category}</div>
+        <div  className='absolute  inset-0 top-4 flex justify-center items-center left-2 rounded-lg w-24  h-8 bg-(--secondary-color) text-white '>{item.category}</div>
       </div>
 
       <div className="py-6">

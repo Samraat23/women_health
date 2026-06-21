@@ -108,7 +108,7 @@ function Trainer({ d }) {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-7 py-4 text-sm font-black text-white shadow-[0_14px_28px_rgba(90,79,254,0.24)] transition hover:-translate-y-0.5"
             >
               <CalendarCheck size={18} />
-              {d.primaryCta || "Join Training Program"}
+              {d.primaryCta || "Consult for Surgery"}
             </a>
             <Link
               href="https://themedicity.com/dr-kusum-lata/"

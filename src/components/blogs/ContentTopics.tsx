@@ -57,13 +57,10 @@ function ContentTopics({
 
   return (
     <div className="overflow-hidden rounded-3xl border border-[#eadfd5] bg-white shadow-sm">
-      <motion.div
-        className="h-1 bg-[var(--primary-color)]"
-        style={{ width, transformOrigin: "left" }}
-      />
+      <motion.div/>
 
       <div className="p-5">
-        <div className="mb-4 flex items-center gap-2 font-black text-[var(--primary-text-color)]">
+        <div className="mb-4 flex items-center gap-2 font-black text-(--secondary-text)">
           <BookOpen size={18} />
           Contents
         </div>
@@ -98,7 +95,7 @@ function ContentTopics({
           })}
         </nav>
 
-        <div className="mt-6 rounded-2xl bg-[linear-gradient(135deg,var(--primary-text-color),var(--primary-color))] p-4 text-white">
+        <div className=" mt-4  rounded-2xl bg-[linear-gradient(135deg,var(--primary-text-color),var(--primary-color))] px-4 py-2 text-white">
           <p className="text-xs uppercase tracking-[0.14em] text-white/55">
             Need help?
           </p>

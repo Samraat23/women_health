@@ -115,7 +115,7 @@ function HeroSection() {
                 href={appointmentHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
                 <Video size={18} />
                 Instant Video Consultation
@@ -150,10 +150,10 @@ function HeroSection() {
                   <div className="absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(180deg,rgba(27,20,99,0)_0%,rgba(27,20,99,0.78)_100%)]" />
                   <div className="absolute bottom-5 left-5 right-5 rounded-3xl bg-white/90 p-4 text-[var(--primary-text-color)] shadow-[0_16px_38px_rgba(27,20,99,0.16)] backdrop-blur-md">
                     <p className="text-base font-black">
-                      Dr. Kusum Lata Bhardwaj
+                      Dr. Kusum Lata Bhardwaj (Ex-AIIMS)
                     </p>
                     <p className="mt-1 text-xs font-bold text-[var(--secondary-text)]/70">
-                      MBBS, MD OBG, Ex-AIIMS New Delhi
+                      MD, FICOG , FMAS , Endometrosis Surgeon
                     </p>
                   </div>
                 </div>

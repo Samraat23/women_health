@@ -136,7 +136,7 @@ export default function SurgeryCategory({ data }: { data: SurgerySection[] }) {
   const activeMeta = getProcedureMeta(activeSurgery.name, activeIdx);
   const ActiveIcon = activeMeta.icon;
   const headingObj = {
-    budge: "Surgical Care",
+    budge: "Centre of Excellence",
     heading: "Advanced Laparoscopic",
     bold: "Surgery",
     paragraph:

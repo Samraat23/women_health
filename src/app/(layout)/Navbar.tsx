@@ -26,12 +26,12 @@ function Navbar() {
 
   const menuBar = [
     { id: 1, name: "Home", redirect :"/"  },
-    { id: 2, name: "About",redirect :"about-us" },
-    { id: 7, name: "Endometrosis" , redirect :"endometriosis-treatment" },
+    { id: 2, name: "About",redirect :"/about-us" },
+    { id: 7, name: "Endometriosis" , redirect :"/endometriosis-treatment" },
     {
       id: 4,
       name: "Women Health",
-      redirect :"women-health",
+      redirect :"/category/young-women-care",
 
       subMenu:  [
         { 
@@ -97,15 +97,15 @@ function Navbar() {
       ]
        
     },
-    { id: 5, name: "Surgery" ,redirect :"surgery" },
+    { id: 5, name: "Surgery" ,redirect :"/surgery" },
     {
       id: 6,
       name: "Pregnancy",
-      redirect :"pregnancy",
+      redirect :"/pregnancy",
       subMenu: [
-        { id: 1, name: "Normal Delivery" },
-        { id: 2, name: "Pre-Pregnancy Counseling" },
-        { id: 3, name: "Care in Pregnancy" },
+        { id: 1, name: "Week by Week", href: "/pregnancy#weekly-guide" },
+        { id: 2, name: "Trimester Care", href: "/pregnancy#trimester-care" },
+        { id: 3, name: "Food & Vaccines", href: "/pregnancy#food-care" },
       ],
     },
     
@@ -220,7 +220,7 @@ function Navbar() {
                 activeItem.subMenu.map((sub) => (
                   <Link
                     key={sub.id}
-                    href={sub.name}
+                    href={"href" in sub ? sub.href : sub.name}
                     className="px-4 py-2 text-white font-black rounded-xl "
                   >
                     {sub.name}

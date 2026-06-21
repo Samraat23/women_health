@@ -16,33 +16,26 @@ import {
 import data from "../(data)/db.json";
 import logo from "../(assets)/ logo.png";
 import { gynecologyCategories } from "@/data/Categories";
+import { getSurgeryProcedureMeta } from "@/data/SurgeryServices";
 
 const appointmentHref = "https://wa.me/919289140812";
 const instagramHref =
   "https://www.instagram.com/drkusumendometriosissurgeon/";
 
-const surgeryHrefByName = {
-  "Endometriosis Surgery": "/endometriosis-treatment",
-  "Fibroid Removal": "/fibroid-removal-surgery",
-  "Ovarian Cyst Removal": "/ovarian-cyst-surgery",
-  "Uterus Removal": "/uterus-removal-hysterectomy",
-  "Fertility Enhancing surgery": "/fertility-enhancing-surgery",
-  Hysteroscopy: "/hysteroscopy-treatment",
-  "Cancer Surgery": "/category/laparoscopic-surgery",
-  "Cervical Encerclage": "/cervical-cerclage",
-};
-
 const siteMapLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about-us" },
   { name: "Women Health", href: "/category/young-women-care" },
-  { name: "Surgery", href: "/category/laparoscopic-surgery" },
-  { name: "Pregnancy Care", href: "/category/pregnancy-care" },
+  { name: "Surgery", href: "/surgery" },
+  { name: "Pregnancy Care", href: "/pregnancy" },
   { name: "Articles", href: "/article" },
 ];
 
 const pregnancyLinks = [
-  { name: "Pregnancy Care", href: "/category/pregnancy-care" },
+  { name: "Week by Week Pregnancy", href: "/pregnancy#weekly-guide" },
+  { name: "Trimester Care", href: "/pregnancy#trimester-care" },
+  { name: "Pregnancy Food", href: "/pregnancy#food-care" },
+  { name: "Pregnancy Vaccines", href: "/pregnancy#vaccine-care" },
   { name: "Normal Pregnancy Care", href: "/normal-pregnancy-care" },
   { name: "High Risk Pregnancy", href: "/high-risk-pregnancy" },
   { name: "Pregnancy Ultrasound", href: "/pregnancy-ultrasound" },
@@ -111,7 +104,7 @@ function Footer() {
 
   const surgeryLinks = (LaparoscopicSurgery[0]?.surgery || []).map((item) => ({
     name: item.name,
-    href: surgeryHrefByName[item.name] || "/category/laparoscopic-surgery",
+    href: getSurgeryProcedureMeta(item.name).href,
   }));
 
   const womenHealthLinks = gynecologyCategories

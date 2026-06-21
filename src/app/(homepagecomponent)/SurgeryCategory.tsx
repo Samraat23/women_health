@@ -3,18 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import {
-  Activity,
-  ArrowRight,
-  BadgeCheck,
-  HeartPulse,
-  Hospital,
-  Microscope,
-  ShieldCheck,
-  Sparkles,
-  TimerReset,
-} from "lucide-react";
+  getSurgeryProcedureMeta,
+  surgeryBenefits,
+} from "@/data/SurgeryServices";
 import SectionHeader from "../(dynamiccomponent)/SectionHeader";
 
 type SurgeryItem = {
@@ -30,101 +23,6 @@ type SurgerySection = {
   surgery: SurgeryItem[];
 };
 
-type ProcedureMeta = {
-  detail: string;
-  href: string;
-  icon: LucideIcon;
-  tag: string;
-};
-
-const surgeryBenefits = [
-  {
-    icon: Microscope,
-    label: "Keyhole precision",
-    value: "Smaller cuts, better comfort",
-  },
-  {
-    icon: TimerReset,
-    label: "Faster recovery",
-    value: "Structured healing support",
-  },
-  {
-    icon: ShieldCheck,
-    label: "Fertility aware",
-    value: "Preserve healthy tissue",
-  },
-];
-
-const procedureMeta: ProcedureMeta[] = [
-  {
-    detail: "Careful excision planning for pelvic pain, endometriosis and fertility goals.",
-    href: "/endometriosis-treatment",
-    icon: Activity,
-    tag: "Deep disease care",
-  },
-  {
-    detail: "Uterus-preserving removal for fibroids, heavy bleeding and pressure symptoms.",
-    href: "/fibroid-removal-surgery",
-    icon: Sparkles,
-    tag: "Uterus preserving",
-  },
-  {
-    detail: "Ovary-conscious cyst removal planned to protect healthy ovarian tissue.",
-    href: "/ovarian-cyst-surgery",
-    icon: HeartPulse,
-    tag: "Ovary preserving",
-  },
-  {
-    detail: "Minimally invasive hysterectomy planning when uterus removal is clinically needed.",
-    href: "/uterus-removal-hysterectomy",
-    icon: Hospital,
-    tag: "Advanced route",
-  },
-  {
-    detail: "Corrective procedures designed around conception and reproductive outcomes.",
-    href: "/fertility-enhancing-surgery",
-    icon: BadgeCheck,
-    tag: "Fertility enhancing",
-  },
-  {
-    detail: "Internal uterine diagnosis and treatment without abdominal incisions.",
-    href: "/hysteroscopy-treatment",
-    icon: Microscope,
-    tag: "Scar-free access",
-  },
-  {
-    detail: "Senior specialist review for complex gynecologic surgery decisions.",
-    href: "/category/laparoscopic-surgery",
-    icon: ShieldCheck,
-    tag: "Complex care",
-  },
-  {
-    detail: "Cervical support surgery for selected high-risk pregnancy cases.",
-    href: "/cervical-cerclage",
-    icon: HeartPulse,
-    tag: "Pregnancy support",
-  },
-];
-
-function getProcedureMeta(name: string, index: number) {
-  const normalized = name.toLowerCase();
-
-  if (normalized.includes("endometriosis")) return procedureMeta[0];
-  if (normalized.includes("fibroid")) return procedureMeta[1];
-  if (normalized.includes("ovarian") || normalized.includes("cyst")) {
-    return procedureMeta[2];
-  }
-  if (normalized.includes("uterus")) return procedureMeta[3];
-  if (normalized.includes("fertility")) return procedureMeta[4];
-  if (normalized.includes("hysteroscopy")) return procedureMeta[5];
-  if (normalized.includes("cancer")) return procedureMeta[6];
-  if (normalized.includes("encerclage") || normalized.includes("cerclage")) {
-    return procedureMeta[7];
-  }
-
-  return procedureMeta[index % procedureMeta.length];
-}
-
 export default function SurgeryCategory({ data }: { data: SurgerySection[] }) {
   const section = data?.[0];
   const surgeries = useMemo(() => section?.surgery || [], [section]);
@@ -133,7 +31,7 @@ export default function SurgeryCategory({ data }: { data: SurgerySection[] }) {
   if (!section || surgeries.length === 0) return null;
 
   const activeSurgery = surgeries[activeIdx] || surgeries[0];
-  const activeMeta = getProcedureMeta(activeSurgery.name, activeIdx);
+  const activeMeta = getSurgeryProcedureMeta(activeSurgery.name, activeIdx);
   const ActiveIcon = activeMeta.icon;
   const headingObj = {
     budge: "Centre of Excellence",
@@ -199,7 +97,7 @@ export default function SurgeryCategory({ data }: { data: SurgerySection[] }) {
 
           <div className="surgery-category-grid">
             {surgeries.map((item, index) => {
-              const meta = getProcedureMeta(item.name, index);
+              const meta = getSurgeryProcedureMeta(item.name, index);
               const Icon = meta.icon;
               const isActive = activeIdx === index;
 

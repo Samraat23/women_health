@@ -6,26 +6,19 @@ import {
   Award,
   Baby,
   CalendarDays,
-  CheckCircle2,
   Smile,
   Stethoscope,
   Video,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
-import DoctorImageWithPattern from "../(dynamiccomponent)/DoctorImageWithPattern";
+import DoctorImageWithPattern from "@/components/shared/DoctorImageWithPattern";
 
 const aboutExperience = [
   { id: 1, title: "Surgeries", number: 7000, suffix: "+", icon: Stethoscope },
   { id: 2, title: "Pregnancy Care", number: 5000, suffix: "+", icon: Baby },
   { id: 3, title: "Years Experience", number: 19, suffix: "+", icon: Award },
   { id: 4, title: "Happy Patients", number: 98, suffix: "%", icon: Smile },
-];
-
-const careHighlights = [
-  "AIIMS New Delhi faculty experience",
-  "Advanced laparoscopic gynecology care",
-  "Calm, practical guidance for every visit",
 ];
 
 function AboutUs() {

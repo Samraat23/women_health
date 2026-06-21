@@ -2,7 +2,7 @@
 
 import Image, { type StaticImageData } from "next/image";
 import { motion, type Variants } from "framer-motion";
-import SectionHeader from "../(dynamiccomponent)/SectionHeader";
+import SectionHeader from "@/components/shared/SectionHeader";
 
 type HospitalLogo = {
   id: number;

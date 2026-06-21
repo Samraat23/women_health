@@ -8,7 +8,7 @@ import {
   getSurgeryProcedureMeta,
   surgeryBenefits,
 } from "@/data/SurgeryServices";
-import SectionHeader from "../(dynamiccomponent)/SectionHeader";
+import SectionHeader from "@/components/shared/SectionHeader";
 
 type SurgeryItem = {
   id?: number;

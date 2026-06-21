@@ -3,9 +3,9 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import { Calendar, Eye, User, ArrowRight } from 'lucide-react'
+import { Calendar, Eye, ArrowRight } from 'lucide-react'
 import { motion } from "framer-motion";
-import SectionHeader from '../(dynamiccomponent)/SectionHeader';
+import SectionHeader from "@/components/shared/SectionHeader";
 
 interface Author {
   name: string
@@ -21,6 +21,7 @@ interface BlogPost {
   views: number
   author: Author
   category?: string
+  excerpt?: string
 }
 
 interface RecentBlogProps {
@@ -69,7 +70,7 @@ export default RecentBlog
 
 
 
-function ArticleComponent({ item }: any) {
+function ArticleComponent({ item }: { item: BlogPost }) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',

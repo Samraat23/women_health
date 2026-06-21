@@ -6,10 +6,7 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   CalendarCheck,
-  GraduationCap,
-  Microscope,
   Scissors,
-  UsersRound,
 } from "lucide-react";
 
 const appointmentHref = "https://wa.me/919289140812";
@@ -42,24 +39,6 @@ const trainerImages = [
   {
     img: "/image/ medicityfaculty.jpeg",
     alt: "Medicity faculty session",
-  },
-];
-
-const trainingStats = [
-  {
-    icon: GraduationCap,
-    value: "Hands-on",
-    label: "Expert mentorship",
-  },
-  {
-    icon: Microscope,
-    value: "Live cases",
-    label: "Practical learning",
-  },
-  {
-    icon: UsersRound,
-    value: "Focused",
-    label: "Doctor training",
   },
 ];
 

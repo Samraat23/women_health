@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import NavbarPregnancyItem from "./NavbarPregnancyItem";
 import Link from "next/link";
-import logo from '../(assets)/ logo.png'
+import logo from "@/assets/ logo.png"
 import Image from "next/image";
 
 function Navbar() {

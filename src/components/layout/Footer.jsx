@@ -13,8 +13,8 @@ import {
   Youtube,
 } from "lucide-react";
 
-import data from "../(data)/db.json";
-import logo from "../(assets)/ logo.png";
+import data from "@/data/siteData.json";
+import logo from "@/assets/ logo.png";
 import { gynecologyCategories } from "@/data/Categories";
 import { getSurgeryProcedureMeta } from "@/data/SurgeryServices";
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ShieldCheck, type LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
-import SectionHeader from "../(dynamiccomponent)/SectionHeader";
+import SectionHeader from "@/components/shared/SectionHeader";
 import { slugify } from "@/components/blogs/Slugify";
 
 type ServiceItem = {

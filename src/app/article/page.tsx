@@ -1,5 +1,4 @@
 "use client"
-import type { Metadata } from "next";
 import ArticlePageClient from "./ArticlePageClient";
 import { pregnancyArticle } from "./articleData";
 

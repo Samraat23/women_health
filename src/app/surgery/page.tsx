@@ -19,7 +19,7 @@ import {
   TimerReset,
 } from "lucide-react";
 
-import data from "../(data)/db.json";
+import data from "@/data/siteData.json";
 import {
   getSurgeryProcedureMeta,
   surgeryBenefits,

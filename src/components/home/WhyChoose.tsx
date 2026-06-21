@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Award, Baby, HeartPulse, Microscope, ShieldCheck, Stethoscope } from "lucide-react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
-import SectionHeader from "../(dynamiccomponent)/SectionHeader";
+import SectionHeader from "@/components/shared/SectionHeader";
 import kusum from "../../../public/image/ FLIPING1.jpeg";
 import robot from "../../../public/image/ robottariner.jpeg";
 import lacture from "../../../public/image/ lacture.jpeg";

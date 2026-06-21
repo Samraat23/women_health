@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { BadgeCheck, Play } from "lucide-react";
-import SectionHeader from "../(dynamiccomponent)/SectionHeader";
+import SectionHeader from "@/components/shared/SectionHeader";
 
 function InstaReels() {
   const profileUrl =

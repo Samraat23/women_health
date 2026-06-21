@@ -2,7 +2,7 @@
 
 import { Award, Building2, HeartPulse, ShieldCheck } from "lucide-react";
 
-import { AnimBox } from "../../../../utils/AnimBox";
+import { AnimBox } from "@/utils/AnimBox";
 
 interface StatsItem {
   value: string;

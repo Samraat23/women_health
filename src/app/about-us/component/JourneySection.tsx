@@ -11,7 +11,7 @@ import {
   Stethoscope,
 } from "lucide-react";
 
-import { AnimBox } from "../../../../utils/AnimBox";
+import { AnimBox } from "@/utils/AnimBox";
 
 type JourneyItem = {
   period: string;

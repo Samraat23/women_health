@@ -10,8 +10,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import { AnimBox } from "../../../../utils/AnimBox";
-import doctorPhoto from "../../(assets)/kusummam.jpg";
+import { AnimBox } from "@/utils/AnimBox";
+import doctorPhoto from "@/assets/kusummam.jpg";
 
 const badges = [
   {

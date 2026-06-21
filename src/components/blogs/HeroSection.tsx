@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import type { BlogPageData } from "@/data/BlogData";
-import doctorPortrait from "../../app/(assets)/kusummam.jpg";
+import doctorPortrait from "@/assets/kusummam.jpg";
 
 type HeroSectionProps = {
   data: BlogPageData["hero"];

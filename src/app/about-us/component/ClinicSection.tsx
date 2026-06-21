@@ -9,7 +9,7 @@ import {
   WalletCards,
 } from "lucide-react";
 
-import { AnimBox } from "../../../../utils/AnimBox";
+import { AnimBox } from "@/utils/AnimBox";
 
 const clinicCards = [
   {

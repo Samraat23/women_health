@@ -1,6 +1,6 @@
 import { Award, BookOpenCheck, GraduationCap } from "lucide-react";
 
-import { AnimBox } from "../../../../utils/AnimBox";
+import { AnimBox } from "@/utils/AnimBox";
 
 type QualificationItem = {
   degree: string;

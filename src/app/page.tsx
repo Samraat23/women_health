@@ -1,27 +1,26 @@
 
-import HeroSection from "./(homepagecomponent)/HeroSection";
-import AboutUs from "./(homepagecomponent)/AboutUs";
-import Service from "./(homepagecomponent)/Service";
-import IntroVideo from "./(homepagecomponent)/IntroVideo";
-import WhyChoose from "./(homepagecomponent)/WhyChoose"
-import data from "./(data)/db.json"
+import HeroSection from "@/components/home/HeroSection";
+import AboutUs from "@/components/home/AboutUs";
+import Service from "@/components/home/Service";
+import IntroVideo from "@/components/home/IntroVideo";
+import WhyChoose from "@/components/home/WhyChoose"
+import data from "@/data/siteData.json"
 import Faq from "@/components/Faq";
-import PatientReview from "./(homepagecomponent)/PatientReview";
-import AssociationSection from "./(homepagecomponent)/AssociationSection"
-import SurgeryCategory from "./(homepagecomponent)/SurgeryCategory";
-import WHealthCategory from "./(homepagecomponent)/WHealthCategory";
-import  RecentBlog from "./(homepagecomponent)/RecentBlog"
-import InstaReels from "./(homepagecomponent)/InstaReels"
-import Trainer from "./(homepagecomponent)/Trainer"
-import Hospital from "./(homepagecomponent)/Hospital";
-import clinicLogo from "./(assets)/ logo.png"
-import sanar from "./(assets)/ sanal_Logo.png"
-import motherhood from "./(assets)/MotherHoodlogo.png"
-import medicity from "./(assets)/ medicity.webp"
-import sitaram from "./(assets)/ sitarambhartiLogo.png"
-import aiimsnewdelhi from "./(assets)/AiimsNewDelhi.png"
-import paras from "./(assets)/ paras.jpg"
-import pgimr from "./(assets)/ pgimr.png"
+import PatientReview from "@/components/home/PatientReview";
+import AssociationSection from "@/components/home/AssociationSection"
+import SurgeryCategory from "@/components/home/SurgeryCategory";
+import WHealthCategory from "@/components/home/WHealthCategory";
+import  RecentBlog from "@/components/home/RecentBlog"
+import InstaReels from "@/components/home/InstaReels"
+import Trainer from "@/components/home/Trainer"
+import clinicLogo from "@/assets/ logo.png"
+import sanar from "@/assets/ sanal_Logo.png"
+import motherhood from "@/assets/MotherHoodlogo.png"
+import medicity from "@/assets/ medicity.webp"
+import sitaram from "@/assets/ sitarambhartiLogo.png"
+import aiimsnewdelhi from "@/assets/AiimsNewDelhi.png"
+import paras from "@/assets/ paras.jpg"
+import pgimr from "@/assets/ pgimr.png"
 import {gynecologyCategories} from "@/data/Categories"
 
 export default function Home() {
@@ -100,6 +99,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-

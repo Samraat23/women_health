@@ -1,6 +1,6 @@
 import { Award, Medal, Trophy } from "lucide-react";
 
-import { AnimBox } from "../../../../utils/AnimBox";
+import { AnimBox } from "@/utils/AnimBox";
 
 type AwardItem = {
   title: string;

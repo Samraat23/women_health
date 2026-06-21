@@ -1,11 +1,21 @@
 "use client"
 import React from 'react'
 import { motion } from "framer-motion";
-import Kusum from "../(assets)/kusummam.jpg"
+import Kusum from "@/assets/kusummam.jpg"
 import Image from 'next/image';
 import { slugify } from '@/components/blogs/Slugify';
 
-function NavbarPregnancyItem({Menu}:any) {
+type NavbarSubMenu = {
+  id: number;
+  name: string;
+  links?: string[];
+};
+
+type NavbarMenu = {
+  subMenu: NavbarSubMenu[];
+};
+
+function NavbarPregnancyItem({ Menu }: { Menu: NavbarMenu }) {
 
   return (
     <motion.div
@@ -29,14 +39,14 @@ function NavbarPregnancyItem({Menu}:any) {
             className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-700' 
           />
           <div className='absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black/70 via-black/40 to-transparent z-20'>
-            <h3 className='text-white font-semibold text-lg'>Complete Women's Healthcare</h3>
+            <h3 className='text-white font-semibold text-lg'>Complete Women&apos;s Healthcare</h3>
             <p className='text-white/80 text-sm'>Compassionate care at every stage</p>
           </div>
         </motion.div>
 
         {/* Content Section with Enhanced Cards */}
         <div className='w-[78%] flex justify-between  gap-4'>
-          {Menu.subMenu.map((category:any) => (
+          {Menu.subMenu.map((category) => (
             <motion.div 
               key={category.id}
               initial={{ y: 20, opacity: 0 }}
@@ -54,7 +64,7 @@ function NavbarPregnancyItem({Menu}:any) {
 
               {/* Links with Enhanced Hover Effects */}
               <div className='flex flex-col gap-2'>
-                {category.links.map((link:any, linkIndex:any) => (
+                {(category.links || []).map((link, linkIndex) => (
                   <motion.a
                     key={linkIndex}
                     href={slugify(link)}

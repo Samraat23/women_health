@@ -2,7 +2,7 @@
 import React from 'react'
 import {motion} from "framer-motion"
 
-function Cbutton({name}:any) {
+function Cbutton({ name }: { name: string }) {
   return (
     <div>
          <motion.button

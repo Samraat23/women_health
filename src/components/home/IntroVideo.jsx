@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import kusum_lata from "../(assets)/ kusumLata.png";
-import logo from "../(assets)/ logo.png";
-import { Play, X , Sparkles } from "lucide-react";
-import SectionHeader from "../(dynamiccomponent)/SectionHeader";
+import kusum_lata from "@/assets/ kusumLata.png";
+import logo from "@/assets/ logo.png";
+import { Play, X } from "lucide-react";
+import SectionHeader from "@/components/shared/SectionHeader";
 
 function IntroVideo() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,10 +45,12 @@ function IntroVideo() {
             onClick={openModal}
           >
             {/* YouTube thumbnail as static image */}
-            <img
+            <Image
               src="https://img.youtube.com/vi/WHjNV8dEh5U/maxresdefault.jpg"
               alt="Video thumbnail"
-              className="w-full h-full object-cover"
+              fill
+              sizes="(min-width: 1024px) 1024px, 92vw"
+              className="object-cover"
             />
 
             {/* Dark overlay on hover */}
@@ -65,8 +67,8 @@ function IntroVideo() {
           {/* Quote + Attribution */}
           <div className="px-7 py-5">
             <p className="text-lg my-2 md:text-xl text-black leading-relaxed">
-              August Health is more than just a system. It's become how we
-              operate and how we succeed together."
+              August Health is more than just a system. It has become how we
+              operate and how we succeed together.
             </p>
 
             <div className="flex items-center justify-between flex-wrap gap-4 mt-4 pb-2">

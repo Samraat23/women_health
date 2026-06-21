@@ -24,8 +24,6 @@ const symptomsData = {
 };
 
 function SymptomsSection({ data = symptomsData }) {
-  const Icon = data.icon;
-
   return (
     <motion.section
       id={data.id}

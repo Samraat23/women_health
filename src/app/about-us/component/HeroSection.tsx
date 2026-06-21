@@ -2,12 +2,11 @@ import Link from "next/link";
 import {
   CalendarDays,
   PhoneCall,
-  ShieldCheck,
   Sparkles,
   Video,
 } from "lucide-react";
 
-import DoctorImageWithPattern from "../../(dynamiccomponent)/DoctorImageWithPattern";
+import DoctorImageWithPattern from "@/components/shared/DoctorImageWithPattern";
 
 const heroStats = [
   { value: "17+", label: "Years experience" },

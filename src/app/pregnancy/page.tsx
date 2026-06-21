@@ -16,7 +16,7 @@ import {
   Video,
 } from "lucide-react";
 
-import doctorPortrait from "../(assets)/kusummam.jpg";
+import doctorPortrait from "@/assets/kusummam.jpg";
 import {
   foodPillars,
   getTrimesterGuide,

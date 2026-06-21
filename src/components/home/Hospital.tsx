@@ -4,9 +4,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import {motion , type Variants } from "framer-motion"
 import { Autoplay } from "swiper/modules";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
-function Hospital({hospitalLogo}:any) {
+type HospitalLogo = {
+  id: number;
+  img: string | StaticImageData;
+  name: string;
+};
+
+function Hospital({ hospitalLogo }: { hospitalLogo: HospitalLogo[] }) {
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 0 },
     visible: {
@@ -43,7 +49,7 @@ function Hospital({hospitalLogo}:any) {
           }}
           className="h-full"
         >
-          {hospitalLogo.map((item:any) => (
+          {hospitalLogo.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="flex items-center justify-center h-full group">
                 

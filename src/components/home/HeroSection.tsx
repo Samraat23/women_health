@@ -1,18 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowUpRight,
   CalendarCheck,
-  Phone,
-  ShieldCheck,
   Sparkles,
   Video,
 } from "lucide-react";
 
-import doctorPortrait from "../(assets)/kusummam.jpg";
+import doctorPortrait from "@/assets/kusummam.jpg";
 
 const appointmentHref = "https://wa.me/919289140812";
 const headingText = "Compassionate gynecology care for every stage of life.";

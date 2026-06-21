@@ -1,6 +1,6 @@
 import { CalendarCheck, MapPin, MessageCircle, Phone } from "lucide-react";
 
-import { AnimBox } from "../../../../utils/AnimBox";
+import { AnimBox } from "@/utils/AnimBox";
 
 function CTASection() {
   return (

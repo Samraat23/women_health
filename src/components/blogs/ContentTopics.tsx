@@ -57,7 +57,10 @@ function ContentTopics({
 
   return (
     <div className="overflow-hidden rounded-3xl border border-[#eadfd5] bg-white shadow-sm">
-      <motion.div/>
+      <motion.div
+        className="h-1 bg-[linear-gradient(90deg,var(--primary-color),var(--secondary-color))]"
+        style={{ width }}
+      />
 
       <div className="p-5">
         <div className="mb-4 flex items-center gap-2 font-black text-(--secondary-text)">

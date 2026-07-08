@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 const appointmentHref = "https://wa.me/919289140812";
+const readMoreHref = "https://themedicity.com/dr-kusum-lata/";
 
 const trainerImages = [
   {
@@ -43,6 +44,11 @@ const trainerImages = [
 ];
 
 function Trainer({ d }) {
+  const trainerData = d || {};
+  const images =
+    Array.isArray(trainerData.images) && trainerData.images.length
+      ? trainerData.images
+      : trainerImages;
   const item = (delay = 0) => ({
     hidden: { opacity: 0, y: 28 },
     show: {
@@ -68,33 +74,33 @@ function Trainer({ d }) {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--primary-color)]/15 bg-white px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[var(--primary-color)] shadow-sm">
             <Scissors size={16} />
-            {d.subtitle}
+            {trainerData.subtitle}
           </span>
 
           <h2 className="mt-5 font-[var(--font-primary)] text-3xl font-black leading-tight text-[var(--primary-text-color)] md:text-5xl">
-            {d.title}
+            {trainerData.title}
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-8 text-[var(--secondary-text)]/75 md:text-base">
-            {d.description}
+            {trainerData.description}
           </p>
 
           <div className="mt-7 flex flex-col justify-center gap-4 sm:flex-row">
             <a
-              href={appointmentHref}
+              href={trainerData.primaryCtaUrl || appointmentHref}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-7 py-4 text-sm font-black text-white shadow-[0_14px_28px_rgba(90,79,254,0.24)] transition hover:-translate-y-0.5"
             >
               <CalendarCheck size={18} />
-              {d.primaryCta || "Consult for Surgery"}
+              {trainerData.primaryCta || "Consult for Surgery"}
             </a>
             <Link
-              href="https://themedicity.com/dr-kusum-lata/"
+              href={trainerData.secondaryCtaUrl || readMoreHref}
               target="_blank"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--primary-color)]/20 bg-white px-7 py-4 text-sm font-black text-[var(--primary-text-color)] shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--primary-color)]/35"
             >
-              {d.secondaryCta}
+              {trainerData.secondaryCta}
               <ArrowUpRight size={18} />
             </Link>
           </div>
@@ -112,19 +118,19 @@ function Trainer({ d }) {
           >
             <div className="grid gap-3 md:h-[560px] md:grid-cols-[0.8fr_0.95fr_1.35fr_0.95fr_0.8fr]">
               <TrainerImage
-                image={trainerImages[0]}
+                image={images[0]}
                 className="hidden md:block md:h-[58%] md:self-center"
                 delay={0.1}
                 item={item}
               />
 
               <div className="grid gap-3 md:h-[84%] md:self-center">
-                <TrainerImage image={trainerImages[1]} delay={0.18} item={item} />
-                <TrainerImage image={trainerImages[2]} delay={0.26} item={item} />
+                <TrainerImage image={images[1]} delay={0.18} item={item} />
+                <TrainerImage image={images[2]} delay={0.26} item={item} />
               </div>
 
               <TrainerImage
-                image={trainerImages[3]}
+                image={images[3]}
                 className="min-h-[360px] md:h-full"
                 delay={0.34}
                 item={item}
@@ -132,12 +138,12 @@ function Trainer({ d }) {
               />
 
               <div className="grid gap-3 md:h-[84%] md:self-center">
-                <TrainerImage image={trainerImages[4]} delay={0.42} item={item} />
-                <TrainerImage image={trainerImages[5]} delay={0.5} item={item} />
+                <TrainerImage image={images[4]} delay={0.42} item={item} />
+                <TrainerImage image={images[5]} delay={0.5} item={item} />
               </div>
 
               <TrainerImage
-                image={trainerImages[6]}
+                image={images[6]}
                 className="hidden md:block md:h-[58%] md:self-center"
                 delay={0.58}
                 item={item}
@@ -151,6 +157,10 @@ function Trainer({ d }) {
 }
 
 function TrainerImage({ image, className = "", delay, item, featured = false }) {
+  if (!image?.img) {
+    return null;
+  }
+
   return (
     <motion.div
       variants={item(delay)}

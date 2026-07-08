@@ -9,9 +9,14 @@ import {
 } from "lucide-react";
 
 import doctorPortrait from "@/assets/kusummam.jpg";
+import type { HomeHeroContent } from "@/types/homeContent";
 
 const appointmentHref = "https://wa.me/919289140812";
 const headingText = "Compassionate gynecology care for every stage of life.";
+
+type HeroSectionProps = {
+  data?: HomeHeroContent;
+};
 
 function TypingText({ text, className }: { text: string; className: string }) {
   return (
@@ -52,7 +57,23 @@ function TypingText({ text, className }: { text: string; className: string }) {
   );
 }
 
-function HeroSection() {
+function HeroSection({ data }: HeroSectionProps) {
+  const hero = data || {
+    badge: "Expert Women's Healthcare",
+    heading: headingText,
+    description:
+      "Consult Dr. Kusum Lata Bhardwaj for pregnancy care, infertility support, women's health concerns, and advanced laparoscopic surgery with calm, expert guidance.",
+    primaryCtaLabel: "Book Appointment",
+    primaryCtaUrl: appointmentHref,
+    secondaryCtaLabel: "Instant Video Consultation",
+    secondaryCtaUrl: appointmentHref,
+    imageUrl: "",
+    imageAlt: "Dr. Kusum Lata Bhardwaj",
+    doctorName: "Dr. Kusum Lata Bhardwaj (Ex-AIIMS)",
+    doctorMeta: "MD, FICOG , FMAS , Endometrosis Surgeon",
+  };
+  const imageSource = hero.imageUrl || doctorPortrait;
+
   return (
     <section className="relative left-1/2  w-screen -translate-x-1/2 overflow-hidden">
       <motion.div
@@ -79,17 +100,15 @@ function HeroSection() {
               className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-black text-[var(--primary-text-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)]"
             >
               <Sparkles size={16} className="text-[var(--primary-color)]" />
-              Expert Women&apos;s Healthcare
+              {hero.badge}
             </motion.div>
 
             <h1 className="mt-7  max-w-3xl font-[var(--font-primary)] text-4xl font-black  tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
-              <TypingText text={headingText} className="block" />
+              <TypingText text={hero.heading || headingText} className="block" />
             </h1>
 
             <p className="mt-6 max-w-2xl text-base font-semibold leading-8 text-white/82 md:text-lg">
-              Consult Dr. Kusum Lata Bhardwaj for pregnancy care, infertility
-              support, women&apos;s health concerns, and advanced laparoscopic
-              surgery with calm, expert guidance.
+              {hero.description}
             </p>
 
             <motion.div
@@ -99,22 +118,22 @@ function HeroSection() {
               className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap"
             >
               <a
-                href={appointmentHref}
+                href={hero.primaryCtaUrl || appointmentHref}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5"
               >
                 <CalendarCheck size={18} />
-                Book Appointment
+                {hero.primaryCtaLabel}
               </a>
               <a
-                href={appointmentHref}
+                href={hero.secondaryCtaUrl || appointmentHref}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
                 <Video size={18} />
-                Instant Video Consultation
+                {hero.secondaryCtaLabel}
               </a>
              
             </motion.div>
@@ -136,8 +155,8 @@ function HeroSection() {
               <div className="relative h-[500px] overflow-hidden rounded-[36px] border border-white/28 bg-white/14 p-3 shadow-[0_30px_70px_rgba(27,20,99,0.24)] backdrop-blur-md sm:h-[560px] lg:h-[610px]">
                 <div className="relative h-full overflow-hidden rounded-[28px] bg-[var(--background)]">
                   <Image
-                    src={doctorPortrait}
-                    alt="Dr. Kusum Lata Bhardwaj"
+                    src={imageSource}
+                    alt={hero.imageAlt || "Dr. Kusum Lata Bhardwaj"}
                     fill
                     priority
                     sizes="(min-width: 1024px) 500px, 92vw"
@@ -146,10 +165,10 @@ function HeroSection() {
                   <div className="absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(180deg,rgba(27,20,99,0)_0%,rgba(27,20,99,0.78)_100%)]" />
                   <div className="absolute bottom-5 left-5 right-5 rounded-3xl bg-white/90 p-4 text-[var(--primary-text-color)] shadow-[0_16px_38px_rgba(27,20,99,0.16)] backdrop-blur-md">
                     <p className="text-base font-black">
-                      Dr. Kusum Lata Bhardwaj (Ex-AIIMS)
+                      {hero.doctorName}
                     </p>
                     <p className="mt-1 text-xs font-bold text-[var(--secondary-text)]/70">
-                      MD, FICOG , FMAS , Endometrosis Surgeon
+                      {hero.doctorMeta}
                     </p>
                   </div>
                 </div>

@@ -1,17 +1,141 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
-import NavbarPregnancyItem from "./NavbarPregnancyItem";
-import Link from "next/link";
-import logo from "@/assets/ logo.png"
 import Image from "next/image";
+import Link from "next/link";
 
-function Navbar() {
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+import logo from "@/assets/ logo.png";
+import NavbarPregnancyItem from "@/components/layout/NavbarPregnancyItem";
+import type {
+  HomeNavbarContent,
+  HomeNavItem,
+  HomeNavSubmenuType,
+} from "@/types/homeContent";
+
+type NavbarProps = {
+  content?: HomeNavbarContent | null;
+};
+
+type RenderNavItem = {
+  id: string;
+  name: string;
+  redirect: string;
+  submenuType?: HomeNavSubmenuType;
+  subMenu?: Array<{
+    id: number;
+    name: string;
+    href?: string;
+    links?: string[];
+  }>;
+};
+
+const womenHealthSubMenu = [
+  {
+    id: 1,
+    name: "We Treatment",
+    links: [
+      "Abnormal Bleeding",
+      "Vaginal Infections",
+      "Uterine Disorders",
+      "Endometriosis",
+      "Ovarian Cysts",
+      "Fibroids",
+    ],
+  },
+  {
+    id: 2,
+    name: "Young Women Care",
+    links: [
+      "Puberty & Menstrual Health",
+      "Irregular Periods",
+      "PCOS / PCOD",
+      "Menstrual Pain",
+      "Hygiene & Lifestyle Education",
+    ],
+  },
+  {
+    id: 3,
+    name: "Prevent Women Health",
+    links: [
+      "Annual Checkup",
+      "Pap Smear",
+      "HPV Screening",
+      "Breast Examination",
+      "Cervical Cancer Examination",
+    ],
+  },
+  {
+    id: 4,
+    name: "Menopause",
+    links: [
+      "Menopause Management",
+      "Hormonal Imbalance",
+      "Urinary Problem",
+      "Osteoporosis",
+      "Lifestyle Counselling",
+    ],
+  },
+  {
+    id: 5,
+    name: "Vaccination",
+    links: ["HPV Vaccination", "Flu", "Boostrix", "Tetanus"],
+  },
+];
+
+const pregnancySubMenu = [
+  { id: 1, name: "Week by Week", href: "/pregnancy#weekly-guide" },
+  { id: 2, name: "Trimester Care", href: "/pregnancy#trimester-care" },
+  { id: 3, name: "Food & Vaccines", href: "/pregnancy#food-care" },
+];
+
+const defaultNavbarContent: HomeNavbarContent = {
+  logoUrl: "",
+  appointmentLabel: "Book Appointment",
+  appointmentUrl: "https://wa.me/919289140812",
+  items: [
+    { id: "home", label: "Home", href: "/" },
+    { id: "about", label: "About", href: "/about-us" },
+    { id: "endometriosis", label: "Endometriosis", href: "/endometriosis-treatment" },
+    {
+      id: "women-health",
+      label: "Women Health",
+      href: "/category/young-women-care",
+      submenuType: "womenHealth",
+    },
+    { id: "surgery", label: "Surgery", href: "/surgery" },
+    {
+      id: "pregnancy",
+      label: "Pregnancy",
+      href: "/pregnancy",
+      submenuType: "pregnancy",
+    },
+  ],
+};
+
+function getSubMenu(type?: HomeNavSubmenuType) {
+  if (type === "womenHealth") return womenHealthSubMenu;
+  if (type === "pregnancy") return pregnancySubMenu;
+
+  return undefined;
+}
+
+function toRenderItems(items: HomeNavItem[]): RenderNavItem[] {
+  return items.map((item) => ({
+    id: item.id,
+    name: item.label,
+    redirect: item.href,
+    submenuType: item.submenuType,
+    subMenu: getSubMenu(item.submenuType),
+  }));
+}
+
+function Navbar({ content }: NavbarProps) {
+  const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navbarContent = content || defaultNavbarContent;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,125 +148,40 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuBar = [
-    { id: 1, name: "Home", redirect :"/"  },
-    { id: 2, name: "About",redirect :"/about-us" },
-    { id: 7, name: "Endometriosis" , redirect :"/endometriosis-treatment" },
-    {
-      id: 4,
-      name: "Women Health ",
-      redirect :"/category/young-women-care",
+  const menuBar = useMemo(
+    () =>
+      toRenderItems(
+        navbarContent.items.length ? navbarContent.items : defaultNavbarContent.items
+      ),
+    [navbarContent.items]
+  );
 
-      subMenu:  [
-        { 
-          id:1,
-          name: "We Treatment",
-          links: [
-            "Abnormal Bleeding",
-            "Vaginal Infections",
-            "Uterine Disorders",
-            "Endometriosis",
-            "Ovarian Cysts",
-            "Fibroids"
-          ],
-        },
-        {
-          id:2,
-          name: "Young Women Care",
-
-          links: [
-            "Puberty & Menstrual Health",
-            "Irregular Periods",
-            "PCOS / PCOD",
-            "Menstrual Pain",
-            "Hygiene & Lifestyle Education"
-          ],
-          
-        },
-        {
-          id:3,
-          name: "Prevent Women Health",
-          links: [
-            "Annual Checkup",
-            "Pap Smear",
-            "HPV Screening",
-            "Breast Examination",
-            "Cervical Cancer Examination"
-          ],
-          
-        },
-        {
-          id:4,
-          name: "Menopause",
-          links: [
-            "Menopause Management",
-            "Hormonal Imbalance",
-            "Urinary Problem",
-            "Osteoporosis",
-            "Lifestyle Counselling"
-          ],
-    
-        },
-        {
-          id:5,
-          name: "Vaccination",
-          links: [
-            "HPV Vaccination",
-            "Flu",
-            "Boostrix",
-            "Tetanus"
-          ],
-         
-        }
-      ]
-       
-    },
-    { id: 5, name: "Surgery" ,redirect :"/surgery" },
-    {
-      id: 6,
-      name: "Pregnancy",
-      redirect :"/pregnancy",
-      subMenu: [
-        { id: 1, name: "Week by Week", href: "/pregnancy#weekly-guide" },
-        { id: 2, name: "Trimester Care", href: "/pregnancy#trimester-care" },
-        { id: 3, name: "Food & Vaccines", href: "/pregnancy#food-care" },
-      ],
-    },
-    
-    
-  ];
-
-  const activeItem = menuBar.find((i) => i.name === activeMenu);
+  const activeItem = menuBar.find((item) => item.id === activeMenuId);
+  const logoSrc = navbarContent.logoUrl || logo;
 
   return (
     <motion.div
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className={`fixed left-1/2 top-5 z-[100] w-[calc(100%-16px)] max-w-7xl -translate-x-1/2 rounded-[36px] border px-4 transition-all duration-300 md:px-8 
-        ${
+      className={`fixed left-1/2 top-5 z-[100] w-[calc(100%-16px)] max-w-7xl -translate-x-1/2 rounded-[36px] border px-4 transition-all duration-300 md:px-8 ${
         isScrolled
           ? "border-white/40 bg-white/75 py-2 shadow-[0_18px_42px_rgba(27,20,99,0.18)] backdrop-blur-2xl"
           : "border-white/20 bg-white/10 py-3 shadow-[0_14px_34px_rgba(27,20,99,0.12)] backdrop-blur-2xl"
-      }
-      `
-    }
-      onMouseLeave={() => setActiveMenu(null)}
+      }`}
+      onMouseLeave={() => setActiveMenuId(null)}
     >
-      {/* NAVBAR */}
       <div className="flex items-center justify-between gap-8">
-        {/* Logo */}
         <div
-          className={`relative h-18 w-18 shrink-0 rounded-full px-4 transition-all duration-300 ${
+          className={`relative h-18 w-18 shrink-0 overflow-hidden rounded-full transition-all duration-300 ${
             isScrolled ? "bg-white/70" : "bg-white/90"
           }`}
         >
-          <Link href={"/"}>
-            <Image src={logo} alt="logo" fill className="object-cover" />
+          <Link href="/">
+            <Image src={logoSrc} alt="logo" fill className="object-cover" />
           </Link>
         </div>
 
-        {/* Menu */}
         <div
           className={`hidden items-center gap-8 text-sm font-black transition-colors md:flex lg:gap-10 ${
             isScrolled ? "text-[var(--primary-text-color)]" : "text-white"
@@ -151,23 +190,26 @@ function Navbar() {
           {menuBar.map((item) => (
             <div
               key={item.id}
-              onMouseEnter={() => item.subMenu && setActiveMenu(item.name)}
+              onMouseEnter={() => item.subMenu && setActiveMenuId(item.id)}
               className={`group flex cursor-pointer items-center gap-1 transition-colors ${
                 isScrolled
                   ? "hover:text-[var(--primary-color)]"
                   : "hover:text-white/70"
               }`}
             >
-              <Link href={item.redirect} >{item.name}</Link>
-              
-              {item.subMenu && <ChevronDown size={16} className="group-hover:rotate-180 group-hover:scale-120  duration-200 transition-transform " />}
+              <Link href={item.redirect}>{item.name}</Link>
+              {item.subMenu && (
+                <ChevronDown
+                  size={16}
+                  className="transition-transform duration-200 group-hover:rotate-180 group-hover:scale-120"
+                />
+              )}
             </div>
           ))}
         </div>
 
-        {/* CTA */}
         <Link
-          href="https://wa.me/919289140812"
+          href={navbarContent.appointmentUrl || defaultNavbarContent.appointmentUrl}
           target="_blank"
           rel="noreferrer"
           className={`hidden shrink-0 rounded-full px-8 py-3.5 text-sm font-black uppercase tracking-wide shadow-[0_10px_24px_rgba(90,79,254,0.28)] transition hover:-translate-y-0.5 md:inline-flex ${
@@ -176,7 +218,7 @@ function Navbar() {
               : "bg-white text-[var(--primary-text-color)]"
           }`}
         >
-          Book Appointment
+          {navbarContent.appointmentLabel || defaultNavbarContent.appointmentLabel}
         </Link>
 
         <button
@@ -187,49 +229,31 @@ function Navbar() {
         >
           {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
-      
       </div>
 
-
       <AnimatePresence>
-        {activeItem?.subMenu && ( 
+        {activeItem?.subMenu && (
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.25 }}
-            className="
-              absolute 
-              left-1/2 
-              -translate-x-1/2 
-              top-full 
-              mt-4 
-              w-full 
-              mx-auto 
-              rounded-3xl 
-              backdrop-blur-xl 
-              shadow-2xl 
-              z-50
-              bg-(--secondary-text)
-            "
-            
+            className="absolute left-1/2 top-full z-50 mx-auto mt-4 w-full -translate-x-1/2 rounded-3xl bg-(--secondary-text) shadow-2xl backdrop-blur-xl"
           >
-            <div className="px-10 py-8  flex justify-between">
-              {/* NORMAL SUBMENU */}
-              {activeItem.name !== "Women Health" &&
+            <div className="flex justify-between px-10 py-8">
+              {activeItem.submenuType !== "womenHealth" &&
                 activeItem.subMenu.map((sub) => (
                   <Link
                     key={sub.id}
-                    href={"href" in sub ? sub.href : sub.name}
-                    className="px-4 py-2 text-white font-black rounded-xl "
+                    href={sub.href || sub.name}
+                    className="rounded-xl px-4 py-2 font-black text-white"
                   >
                     {sub.name}
                   </Link>
                 ))}
 
-              {/* MEGA MENU */}
-              {activeItem.name === "Women Health" && (
-                <NavbarPregnancyItem Menu={activeItem}  />
+              {activeItem.submenuType === "womenHealth" && (
+                <NavbarPregnancyItem Menu={{ subMenu: activeItem.subMenu }} />
               )}
             </div>
           </motion.div>
@@ -257,13 +281,13 @@ function Navbar() {
                 </Link>
               ))}
               <Link
-                href="https://wa.me/919289140812"
+                href={navbarContent.appointmentUrl || defaultNavbarContent.appointmentUrl}
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="mt-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-5 py-3 text-center text-sm font-black text-white"
               >
-                Book Appointment
+                {navbarContent.appointmentLabel || defaultNavbarContent.appointmentLabel}
               </Link>
             </div>
           </motion.div>

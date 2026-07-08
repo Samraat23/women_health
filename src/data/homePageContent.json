@@ -1,0 +1,100 @@
+{
+  "navbar": {
+    "logoUrl": "",
+    "appointmentLabel": "Book Appointment",
+    "appointmentUrl": "https://wa.me/919289140812",
+    "items": [
+      {
+        "id": "home",
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "id": "about",
+        "label": "About",
+        "href": "/about-us"
+      },
+      {
+        "id": "endometriosis",
+        "label": "Endometriosis",
+        "href": "/endometriosis-treatment"
+      },
+      {
+        "id": "women-health",
+        "label": "Women Health",
+        "href": "/category/young-women-care",
+        "submenuType": "womenHealth"
+      },
+      {
+        "id": "surgery",
+        "label": "Surgery",
+        "href": "/surgery"
+      },
+      {
+        "id": "pregnancy",
+        "label": "Pregnancy",
+        "href": "/pregnancy",
+        "submenuType": "pregnancy"
+      }
+    ]
+  },
+  "hero": {
+    "badge": "Expert Women's Healthcare",
+    "heading": "Compassionate gynecology care for every stage of life.",
+    "description": "Consult Dr. Kusum Lata Bhardwaj for pregnancy care, infertility support, women's health concerns, and advanced laparoscopic surgery with calm, expert guidance.",
+    "primaryCtaLabel": "Book Appointment",
+    "primaryCtaUrl": "https://wa.me/919289140812",
+    "secondaryCtaLabel": "Instant Video Consultation",
+    "secondaryCtaUrl": "https://wa.me/919289140812",
+    "imageUrl": "",
+    "imageAlt": "Dr. Kusum Lata Bhardwaj",
+    "doctorName": "Dr. Kusum Lata Bhardwaj (Ex-AIIMS)",
+    "doctorMeta": "MD, FICOG, FMAS, Endometriosis Surgeon"
+  },
+  "trainer": {
+    "subtitle": "A Trusted Gynecologist & Laparoscopic Trainer",
+    "title": "Master Laparoscopic Surgery with Expert Guidance",
+    "description": "Empowering doctors with advanced laparoscopic surgical skills through hands-on training, live case demonstrations, and expert mentorship under Dr. Kusum Lata. The program focuses on real-time surgical exposure, precision techniques, and building confidence in minimally invasive gynecological procedures.",
+    "primaryCta": "Consult For Laparoscopy",
+    "primaryCtaUrl": "https://wa.me/919289140812",
+    "secondaryCta": "Read More",
+    "secondaryCtaUrl": "https://themedicity.com/dr-kusum-lata/",
+    "images": [
+      {
+        "id": "trainer-1",
+        "img": "/image/ lecturecertificated.jpeg",
+        "alt": "Training certificate ceremony"
+      },
+      {
+        "id": "trainer-2",
+        "img": "/image/ lacture.jpeg",
+        "alt": "Women health lecture session"
+      },
+      {
+        "id": "trainer-3",
+        "img": "/image/ drkusumlatamedicity.jpeg",
+        "alt": "Dr. Kusum Lata at Medicity"
+      },
+      {
+        "id": "trainer-4",
+        "img": "/image/ collegesession.jpeg",
+        "alt": "Doctors and students attending a training session"
+      },
+      {
+        "id": "trainer-5",
+        "img": "/image/ partycipate.jpeg",
+        "alt": "Training participation moment"
+      },
+      {
+        "id": "trainer-6",
+        "img": "/image/ ujbistan.jpeg",
+        "alt": "International professional learning moment"
+      },
+      {
+        "id": "trainer-7",
+        "img": "/image/ medicityfaculty.jpeg",
+        "alt": "Medicity faculty session"
+      }
+    ]
+  }
+}

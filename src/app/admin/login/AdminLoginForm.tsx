@@ -4,10 +4,15 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, LockKeyhole, Mail, ShieldCheck } from "lucide-react";
 
+import { login } from "@/services/firebase/auth";
+
 type LoginState = {
   message: string;
   type: "error" | "success" | null;
 };
+
+const defaultAdminEmail =
+  process.env.NEXT_PUBLIC_ADMIN_EMAIL || "drkusumlata@gmail.com";
 
 function getNextPath() {
   if (typeof window === "undefined") {
@@ -19,9 +24,34 @@ function getNextPath() {
   return nextPath?.startsWith("/admin") ? nextPath : "/admin";
 }
 
+function getFirebaseLoginErrorMessage(error: unknown) {
+  const code =
+    error && typeof error === "object" && "code" in error
+      ? String((error as { code?: string }).code)
+      : "";
+
+  if (code === "auth/invalid-credential" || code === "auth/wrong-password") {
+    return "Invalid Firebase email or password.";
+  }
+
+  if (code === "auth/user-not-found") {
+    return "No Firebase user exists for this email.";
+  }
+
+  if (code === "auth/too-many-requests") {
+    return "Too many login attempts. Please wait and try again.";
+  }
+
+  if (code === "auth/network-request-failed") {
+    return "Firebase is not reachable. Please check your connection.";
+  }
+
+  return "Firebase login failed. Please try again.";
+}
+
 export default function AdminLoginForm() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(defaultAdminEmail);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,12 +66,15 @@ export default function AdminLoginForm() {
     setState({ message: "", type: null });
 
     try {
+      const credential = await login(email.trim(), password);
+      const idToken = await credential.user.getIdToken();
+
       const response = await fetch("/api/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ idToken }),
       });
 
       const data = (await response.json().catch(() => null)) as {
@@ -64,9 +97,9 @@ export default function AdminLoginForm() {
 
       router.push(getNextPath());
       router.refresh();
-    } catch {
+    } catch (error) {
       setState({
-        message: "Login service is not reachable. Please try again.",
+        message: getFirebaseLoginErrorMessage(error),
         type: "error",
       });
       setIsSubmitting(false);
@@ -90,7 +123,7 @@ export default function AdminLoginForm() {
           Login to website control panel
         </h1>
         <p className="mt-3 text-sm font-semibold leading-6 text-slate-500">
-          Use the admin email and password from your environment settings.
+          Use the Firebase Auth email and password for the administrator account.
         </p>
       </div>
 
@@ -103,7 +136,7 @@ export default function AdminLoginForm() {
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="admin@example.com"
+              placeholder={defaultAdminEmail}
               autoComplete="email"
               required
               className="h-full min-w-0 flex-1 bg-transparent text-sm font-semibold text-slate-900 outline-none placeholder:text-slate-400"
@@ -153,7 +186,7 @@ export default function AdminLoginForm() {
         disabled={isSubmitting}
         className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-lg bg-[#4f46e5] px-5 text-sm font-black text-white shadow-[0_14px_28px_rgba(79,70,229,0.28)] transition hover:bg-[#4338ca] disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {isSubmitting ? "Checking..." : "Login"}
+        {isSubmitting ? "Signing in..." : "Login"}
       </button>
     </form>
   );

@@ -22,10 +22,14 @@ import aiimsnewdelhi from "@/assets/AiimsNewDelhi.png"
 import paras from "@/assets/ paras.jpg"
 import pgimr from "@/assets/ pgimr.png"
 import {gynecologyCategories} from "@/data/Categories"
+import { getHomePageContent } from "@/lib/homeContentStore";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const homeContent = await getHomePageContent();
   const WhyChooseData = data?.whyChooseUs;
-  const { faq, testimonial, WHealth, LaparoscopicSurgery, blogs, trianer } = data;
+  const { faq, testimonial, WHealth, LaparoscopicSurgery, blogs } = data;
 
   const hospitalLogo = [
     {
@@ -82,9 +86,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-(--background) text-(--secondary-text)">
-      <HeroSection />
+      <HeroSection data={homeContent.hero} />
       {/* <Hospital hospitalLogo={hospitalLogo} /> */}
-      <Trainer d={trianer} />
+      <Trainer d={homeContent.trainer} />
       <AboutUs  />
       <SurgeryCategory data={LaparoscopicSurgery} />
       <Service service={gynecologyCategories} />

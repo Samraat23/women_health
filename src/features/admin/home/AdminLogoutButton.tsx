@@ -3,10 +3,14 @@
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 
+import { logout } from "@/services/firebase/auth";
+
 export default function AdminLogoutButton() {
   const router = useRouter();
 
   async function handleLogout() {
+    await logout().catch(() => null);
+
     await fetch("/api/admin/logout", {
       method: "POST",
     });

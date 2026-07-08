@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { Calendar, Eye, ArrowRight } from 'lucide-react'
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/shared/SectionHeader";
+import Link from 'next/link';
+import { slugify } from '../blogs/Slugify';
 
 interface Author {
   name: string
@@ -100,12 +102,17 @@ function ArticleComponent({ item }: { item: BlogPost }) {
         <div className='' >
           <div className='text-(--secondary-text) font-semibold py-2 text-2xl ' >{item.title}</div>
           <p className='text-gray-700 line-clamp-2 ' >{item.excerpt}</p>
+          <Link href={`/articles/${slugify(item.title)}`}>
           <div className='flex items-center hover:border-b hover:text-(--primary-text) duration-150 ease-in-out  transition-transform  w-[30%] cursor-pointer py-1' >
+        
             <div className='text-(--primary-text)'>Explore Tips </div>
             <div>
               <ArrowRight size={20} className='text-(--primary-text)' />
               </div>
+           
+
           </div>
+          </Link>
         </div>
       </div>
 

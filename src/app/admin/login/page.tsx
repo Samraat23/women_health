@@ -1,15 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { ArrowLeft, Database, ShieldCheck } from "lucide-react";
 
 import AdminLoginForm from "./AdminLoginForm";
+import {
+  adminSessionCookieName,
+  isAdminSessionValid,
+} from "@/lib/adminAuth";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Admin Login | WHealth",
   description: "Private login for the WHealth website admin panel.",
 };
 
-export default function AdminLoginPage() {
+export default async function AdminLoginPage() {
+  const cookieStore = await cookies();
+  const sessionValue = cookieStore.get(adminSessionCookieName)?.value;
+
+  if (await isAdminSessionValid(sessionValue)) {
+    redirect("/admin");
+  }
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#f8fafc] text-slate-950">
       <section className="relative flex min-h-screen items-center justify-center px-4 py-10">
@@ -45,7 +60,7 @@ export default function AdminLoginPage() {
               {[
                 "Private email and password login",
                 "HTTP-only session cookie",
-                "Firebase-ready control modules",
+                "Firebase Auth verified access",
                 "Public navbar hidden in admin",
               ].map((item) => (
                 <div
@@ -63,7 +78,7 @@ export default function AdminLoginPage() {
               <AdminLoginForm />
               <div className="mt-4 flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-6 text-amber-800">
                 <Database size={18} className="mt-0.5 shrink-0" />
-                Add admin credentials in <span className="font-black">.env.local</span> before login.
+              
               </div>
             </div>
           </div>

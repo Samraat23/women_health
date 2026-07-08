@@ -5,11 +5,11 @@ import {
   isAdminSessionValid,
 } from "@/lib/adminAuth";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const isLoginRoute = pathname === "/admin/login";
   const sessionValue = request.cookies.get(adminSessionCookieName)?.value;
-  const isAuthenticated = isAdminSessionValid(sessionValue);
+  const isAuthenticated = await isAdminSessionValid(sessionValue);
 
   if (!isAuthenticated && !isLoginRoute) {
     const loginUrl = new URL("/admin/login", request.url);

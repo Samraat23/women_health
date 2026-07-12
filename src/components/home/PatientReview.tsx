@@ -32,18 +32,18 @@ type PatientReviewData = {
 
 function PatientReview({ data }: { data: PatientReviewData }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
-      <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+    <section className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-20">
+      <div className="mb-6 flex flex-col justify-between gap-5 md:mb-8 md:flex-row md:items-end">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.22em] text-(--primary-color)">
             {data.badge}
           </p>
-          <h2 className="mt-3 font-[var(--font-primary)] text-3xl font-black text-[var(--primary-text-color)] md:text-5xl">
+          <h2 className="mt-2 font-[var(--font-primary)] text-2xl font-black text-[var(--primary-text-color)] sm:text-4xl md:mt-3 md:text-5xl">
             {data.title}
           </h2>
         </div>
 
-        <div className="flex items-center gap-4 rounded-2xl border border-[var(--border)]/10 bg-white px-5 py-4 shadow-sm">
+        <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-[var(--border)]/10 bg-white px-4 py-3 shadow-sm md:px-5 md:py-4">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.16em] text-[#667085]">
               {data.googleRating.label}
@@ -80,7 +80,7 @@ function PatientReview({ data }: { data: PatientReviewData }) {
         </div>
       </div>
 
-      <div className="relative pb-14">
+      <div className="relative pb-12 md:pb-14">
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={24}
@@ -109,10 +109,10 @@ function PatientReview({ data }: { data: PatientReviewData }) {
         <div className="absolute bottom-0 left-0 flex w-full items-center justify-between">
           <div className="custom-pagination flex flex-1 justify-start" />
           <div className="flex gap-3">
-            <button className="custom-prev flex h-12 w-12 items-center justify-center rounded-full border border-[var(--primary-color)]/20 bg-white text-[var(--primary-color)] shadow-sm transition hover:bg-[var(--primary-color)] hover:text-white">
+            <button className="custom-prev flex h-11 w-11 items-center justify-center rounded-full border border-[var(--primary-color)]/20 bg-white text-[var(--primary-color)] shadow-sm transition hover:bg-[var(--primary-color)] hover:text-white md:h-12 md:w-12">
               <ArrowLeft size={19} />
             </button>
-            <button className="custom-next flex h-12 w-12 items-center justify-center rounded-full border border-[var(--primary-color)]/20 bg-white text-[var(--primary-color)] shadow-sm transition hover:bg-[var(--primary-color)] hover:text-white">
+            <button className="custom-next flex h-11 w-11 items-center justify-center rounded-full border border-[var(--primary-color)]/20 bg-white text-[var(--primary-color)] shadow-sm transition hover:bg-[var(--primary-color)] hover:text-white md:h-12 md:w-12">
               <ArrowRight size={19} />
             </button>
           </div>
@@ -127,7 +127,7 @@ export default PatientReview;
 function TestimonialCard({ item }: { item: Review }) {
   return (
     <article
-      className={`group relative flex h-[360px] flex-col overflow-hidden rounded-2xl border bg-white p-6 shadow-sm transition
+      className={`group relative flex h-auto min-h-[320px] flex-col overflow-hidden rounded-2xl border bg-white p-5 shadow-sm transition md:h-[360px] md:p-6
         
         ${
         item.highlight
@@ -139,9 +139,9 @@ function TestimonialCard({ item }: { item: Review }) {
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 " />
 
-      <div className="mb-6 flex items-start justify-between gap-4">
+      <div className="mb-5 flex items-start justify-between gap-4 md:mb-6">
         <div className="flex min-w-0 items-center gap-4">
-          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border-2 border-[var(--primary-color)]/10 bg-[var(--background)]">
+          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border-2 border-[var(--primary-color)]/10 bg-[var(--background)] md:h-16 md:w-16">
             <Image
               alt={item.name}
               fill
@@ -165,18 +165,18 @@ function TestimonialCard({ item }: { item: Review }) {
           </div>
         </div>
 
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-color)]/10 text-[var(--primary-color)]">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-color)]/10 text-[var(--primary-color)] md:h-11 md:w-11">
           <Quote size={22} />
         </div>
       </div>
 
-      <blockquote className="flex-1 rounded-2xl bg-[var(--background)] px-5 py-4">
-        <p className="line-clamp-6 text-[15px] leading-7 text-[#667085]">
+      <blockquote className="flex-1 rounded-2xl bg-[var(--background)] px-4 py-4 md:px-5">
+        <p className="line-clamp-5 text-sm leading-6 text-[#667085] md:line-clamp-6 md:text-[15px] md:leading-7">
           &ldquo;{item.message}&rdquo;
         </p>
       </blockquote>
 
-      <div className="mt-5 flex items-center justify-between gap-3">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 md:mt-5">
         <span className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-color)]/10 px-3 py-2 text-xs font-black text-[var(--primary-color)]">
           <BadgeCheck size={15} />
           Verified Patient

@@ -16,17 +16,17 @@ function SectionHeader({headingObj}) {
           initial={{ opacity: 0, y: 24 }}
           animate={titleInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mb-12 max-w-3xl text-center"
+          className="mx-auto mb-8 max-w-3xl text-center md:mb-12"
         >
           {headingObj.budge && (
-                  <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--primary-color)]/15 bg-white px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--primary-color)] shadow-sm">
+                  <span className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-[var(--primary-color)]/15 bg-white px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--primary-color)] shadow-sm sm:px-4 sm:text-[11px] sm:tracking-[0.22em] md:mb-5">
                   <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary-color)]" />
                   {headingObj.budge}
                 </span>
           )}
        
 
-          <h2 className="mb-4 font-[var(--font-primary)] text-3xl font-black leading-tight text-[var(--primary-text-color)] sm:text-5xl">
+          <h2 className="mb-3 font-[var(--font-primary)] text-2xl font-black leading-tight text-[var(--primary-text-color)] sm:text-4xl lg:text-5xl">
             {headingObj.heading} { " "}
             <span className="relative">
               <span className="relative z-10">{headingObj.bold}</span>
@@ -45,7 +45,7 @@ function SectionHeader({headingObj}) {
             </span>
           </h2>
 
-          <p className="mx-auto max-w-2xl text-base leading-7 text-[#667085]">
+          <p className="mx-auto max-w-2xl text-sm leading-6 text-[#667085] sm:text-base sm:leading-7">
            {headingObj.paragraph}
           </p>
         </motion.div>

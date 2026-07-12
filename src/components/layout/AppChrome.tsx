@@ -42,8 +42,16 @@ export default function AppChrome({ children }: AppChromeProps) {
   return (
     <>
       {!isAdminRoute && <Navbar content={homeContent?.navbar} />}
-      <div>{children}</div>
-      {!isAdminRoute && <Footer />}
+      <div
+        className={
+          isAdminRoute
+            ? undefined
+            : "overflow-x-clip pb-[calc(78px+env(safe-area-inset-bottom))] md:pb-0"
+        }
+      >
+        <div>{children}</div>
+        {!isAdminRoute && <Footer />}
+      </div>
       {!isAdminRoute && <FirstVisitDoctorModal />}
     </>
   );

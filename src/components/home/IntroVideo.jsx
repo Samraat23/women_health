@@ -30,14 +30,14 @@ function IntroVideo() {
 
   return (
     <>
-      <section className="my-20">
+      <section className="my-12 px-4 md:my-20 md:px-6">
 
         {/* Header */}
        
           <SectionHeader headingObj={headingObj} />
 
         {/* Video Card */}
-        <div className="max-w-5xl mx-auto bg-white rounded-2xl overflow-hidden">
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl bg-white shadow-sm">
 
           {/* Thumbnail + Play Button */}
           <div
@@ -58,28 +58,28 @@ function IntroVideo() {
 
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-20 h-20 bg-white/85 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Play className="text-blue-600 w-8 h-8 ml-1" fill="currentColor" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/85 shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 md:h-20 md:w-20">
+                <Play className="ml-1 h-7 w-7 text-blue-600 md:h-8 md:w-8" fill="currentColor" />
               </div>
             </div>
           </div>
 
           {/* Quote + Attribution */}
-          <div className="px-7 py-5">
-            <p className="text-lg my-2 md:text-xl text-black leading-relaxed">
+          <div className="px-5 py-5 md:px-7">
+            <p className="my-1 text-base leading-7 text-black md:my-2 md:text-xl md:leading-relaxed">
               August Health is more than just a system. It has become how we
               operate and how we succeed together.
             </p>
 
-            <div className="flex items-center justify-between flex-wrap gap-4 mt-4 pb-2">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-4 pb-2">
               {/* Avatar + Name */}
               <div className="flex items-center gap-3">
                 <Image
                   src={kusum_lata}
                   alt="Dr Kusum Lata"
-                  width={60}
-                  height={60}
-                  className="rounded-full  object-cover border border-(--border) shadow"
+                  width={56}
+                  height={56}
+                  className="rounded-full border border-(--border) object-cover shadow"
                 />
                 <div>
                   <p className="font-bold text-(--primary-color) text-sm">
@@ -93,7 +93,7 @@ function IntroVideo() {
 
               {/* Logo */}
               <div>
-                <Image src={logo} alt="Logo" width={100} height={100} />
+                <Image src={logo} alt="Logo" width={86} height={86} />
               </div>
             </div>
           </div>

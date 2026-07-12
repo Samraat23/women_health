@@ -91,10 +91,10 @@ function InstaReels() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
+    <section className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-20">
       <SectionHeader headingObj={headingObj} />
 
-      <div className="flex  gap-5 overflow-x-auto  pb-6   ">
+      <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 no-scrollbar md:gap-5 md:pb-6">
         {instaReel.map((item) => (
           <a
             key={item.id}
@@ -102,7 +102,7 @@ function InstaReels() {
             target="_blank"
             rel="noreferrer"
             aria-label={`Watch ${item.heading} on Instagram`}
-            className="group relative block aspect-[9/16] w-[min(76vw,280px)] flex-none snap-start overflow-hidden rounded-[28px] border border-[var(--border)]/10 bg-[var(--background)] shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(27,20,99,0.14)] focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/20 sm:w-[286px]"
+            className="group relative block aspect-[9/16] w-[min(68vw,230px)] flex-none snap-start overflow-hidden rounded-[24px] border border-[var(--border)]/10 bg-[var(--background)] shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(27,20,99,0.14)] focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/20 sm:w-[286px] sm:rounded-[28px]"
           >
             <Image
               src={item.image}
@@ -116,12 +116,12 @@ function InstaReels() {
 
             <span className="absolute inset-0 flex items-center justify-center">
               <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/25 text-white shadow-[0_18px_42px_rgba(0,0,0,0.25)] backdrop-blur-md transition group-hover:scale-110 group-hover:bg-white/35">
-                <Play size={34} fill="currentColor" className="ml-1" />
+                <Play size={30} fill="currentColor" className="ml-1 md:size-[34px]" />
               </span>
             </span>
 
-            <span className="absolute inset-x-6 bottom-7">
-              <span className="flex min-w-0 items-center gap-2 text-lg font-black leading-none text-white">
+            <span className="absolute inset-x-4 bottom-5 sm:inset-x-6 sm:bottom-7">
+              <span className="flex min-w-0 items-center gap-2 text-base font-black leading-none text-white sm:text-lg">
                 <span className="truncate">@{username}</span>
                 <BadgeCheck
                   size={22}

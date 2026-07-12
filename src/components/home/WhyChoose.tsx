@@ -90,11 +90,11 @@ export default function WhyChoose({ data: _data }: { data?: unknown }) {
   }, [images.length]);
 
   return (
-    <section className="px-4 py-20 md:px-6">
+    <section className="px-4 py-12 md:px-6 md:py-20">
       <div className="mx-auto max-w-7xl">
         <SectionHeader headingObj={headingObj} />
 
-        <div className="grid gap-6 lg:grid-cols-[1fr_360px_1fr]">
+        <div className="grid gap-4 md:gap-6 lg:grid-cols-[1fr_360px_1fr]">
           <div className="grid gap-4">
             {cards.slice(0, 3).map((card, index) => (
               <FeatureCard key={card.title} card={card} index={index} />
@@ -106,7 +106,7 @@ export default function WhyChoose({ data: _data }: { data?: unknown }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="relative min-h-[520px] overflow-hidden rounded-[2rem] bg-white shadow-xl"
+            className="relative min-h-[340px] overflow-hidden rounded-[1.5rem] bg-white shadow-xl sm:min-h-[430px] lg:min-h-[520px] lg:rounded-[2rem]"
           >
             <motion.div
               animate={{ x: `-${current * 100}%` }}
@@ -137,7 +137,7 @@ export default function WhyChoose({ data: _data }: { data?: unknown }) {
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-3 md:mt-8 md:grid-cols-4 md:gap-4">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -145,9 +145,9 @@ export default function WhyChoose({ data: _data }: { data?: unknown }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="rounded-2xl border border-[var(--border)]/10 bg-white p-5 text-center shadow-sm"
+              className="rounded-2xl border border-[var(--border)]/10 bg-white p-4 text-center shadow-sm md:p-5"
             >
-              <p className="font-[var(--font-primary)] text-3xl font-black text-[var(--primary-text-color)]">
+              <p className="font-[var(--font-primary)] text-2xl font-black text-[var(--primary-text-color)] md:text-3xl">
                 <CountUp start={0} end={stat.n} duration={3} separator="," suffix={stat.suffix} />
               </p>
               <p className="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-[#667085]">
@@ -170,17 +170,17 @@ function FeatureCard({ card, index }: { card: (typeof cards)[number]; index: num
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.45, delay: index * 0.04 }}
-      className="rounded-2xl border border-[var(--border)]/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+      className="rounded-2xl border border-[var(--border)]/10 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:p-5"
     >
-      <div className="mb-4 flex items-center gap-3">
+      <div className="mb-3 flex items-center gap-3 md:mb-4">
         <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--primary-color)]/10 text-[var(--primary-color)]">
           <Icon size={21} />
         </span>
-        <span className="rounded-full bg-[var(--background)] px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-[var(--primary-color)]">
+        <span className="rounded-full bg-[var(--background)] px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-[var(--primary-color)] md:tracking-[0.16em]">
           {card.badge}
         </span>
       </div>
-      <h3 className="font-[var(--font-primary)] text-lg font-black text-[var(--primary-text-color)]">
+      <h3 className="font-[var(--font-primary)] text-base font-black text-[var(--primary-text-color)] md:text-lg">
         {card.title}
       </h3>
       <p className="mt-2 text-sm leading-6 text-[#667085]">{card.text}</p>

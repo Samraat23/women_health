@@ -28,10 +28,10 @@ const headingObj = {
 
 function Service({ service }: { service: ServiceItem[] }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
+    <section id="services" className="mx-auto max-w-7xl scroll-mt-28 px-4 py-12 md:px-6 md:py-20">
       <SectionHeader headingObj={headingObj} />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
         {service.map((item) => (
           <Link key={item.id} href={`category/${slugify(item.title)}`} className="block">
             <ServiceCard item={item} />
@@ -51,14 +51,14 @@ function ServiceCard({ item }: { item: ServiceItem }) {
     <motion.article
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
-      className="group h-full min-h-[390px] overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm"
+      className="group h-full min-h-[320px] overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm md:min-h-[390px]"
     >
-      <div className="flex items-center justify-between border-b border-[var(--border)]/10 px-5 py-4">
+      <div className="flex items-center justify-between border-b border-[var(--border)]/10 px-4 py-3.5 md:px-5 md:py-4">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-[var(--primary-color)]/20 bg-[var(--primary-color)]/10 text-[var(--primary-color)]">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-2 border-[var(--primary-color)]/20 bg-[var(--primary-color)]/10 text-[var(--primary-color)] md:h-11 md:w-11">
             {Icon ? <Icon size={22} /> : <ShieldCheck size={22} />}
           </div>
-          <p className="line-clamp-2 text-base font-black leading-5 text-[var(--primary-text-color)]">
+          <p className="line-clamp-2 text-[15px] font-black leading-5 text-[var(--primary-text-color)] md:text-base">
             {item.title}
           </p>
         </div>
@@ -69,17 +69,18 @@ function ServiceCard({ item }: { item: ServiceItem }) {
         />
       </div>
 
-      <div className="px-5 pt-4">
+      <div className="px-4 pt-3 md:px-5 md:pt-4">
         <p className="line-clamp-2 text-sm leading-6 text-[#667085]">
           {item.description}
         </p>
       </div>
 
-      <div className="relative mx-5 mt-4 h-[210px] overflow-hidden rounded-xl bg-[var(--background)]">
+      <div className="relative mx-4 mt-3 h-[150px] overflow-hidden rounded-xl bg-[var(--background)] sm:h-[180px] md:mx-5 md:mt-4 md:h-[210px]">
         <Image
           src={item.image}
           alt={item.title}
           fill
+          sizes="(min-width: 1024px) 390px, (min-width: 768px) 45vw, 92vw"
           className="object-cover transition-transform duration-300 group-hover:scale-110"
         />
       </div>

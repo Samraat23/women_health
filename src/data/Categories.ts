@@ -34,7 +34,7 @@ export type GynecologyCategory = {
       slug: "young-women-care",
       description:
         "Special care for teenage girls and young women dealing with periods, PCOD, acne, weight gain, and hormonal changes.",
-      image: "/images/categories/young-women-care.jpg",
+      image: "/image/Mentural.png",
       blogSlugs: [
         "pcod-pcos-treatment",
         "menstrual-cycle-problems",
@@ -48,7 +48,7 @@ export type GynecologyCategory = {
       slug: "preventive-women-health",
       description:
         "Preventive screenings and checkups to detect women’s health problems early and reduce future risks.",
-      image: "/images/categories/preventive-women-health.jpg",
+      image: "/image/papTest.png",
       blogSlugs: [
         "cervical-cancer-screening",
         "hpv-vaccination",
@@ -62,7 +62,7 @@ export type GynecologyCategory = {
       slug: "hormonal-imbalance",
       description:
         "Complete care for hormonal problems affecting periods, weight, skin, mood, fertility, and menopause.",
-      image: "/images/categories/hormonal-imbalance.jpg",
+      image: "/image/ hormonalImbalance.png",
       blogSlugs: [
         "thyroid-problems-women",
         "hormonal-weight-gain",
@@ -76,7 +76,7 @@ export type GynecologyCategory = {
       slug: "pregnancy-care",
       description:
         "Complete pregnancy care from early pregnancy confirmation to prenatal checkups, delivery guidance, and postnatal recovery.",
-      image: "/images/categories/pregnancy-care.jpg",
+      image: "/image/pregagancy.png",
       blogSlugs: [
         "normal-pregnancy-care",
         "high-risk-pregnancy",
@@ -90,7 +90,7 @@ export type GynecologyCategory = {
       slug: "fertility-infertility",
       description:
         "Advanced fertility evaluation and treatment support for ovulation problems, tubal blockage, low AMH, and recurrent pregnancy loss.",
-      image: "/images/categories/fertility-infertility.jpg",
+      image: "/image/normalPregnancy.png",
       blogSlugs: [
         "infertility-treatment",
         "ivf-consultation",
@@ -104,7 +104,7 @@ export type GynecologyCategory = {
       slug: "menopause-care",
       description:
         "Personalized menopause care for hot flashes, mood changes, sleep problems, vaginal dryness, and bone health.",
-      image: "/images/categories/menopause-care.jpg",
+      image: "/image/ menopaised.png",
       blogSlugs: [
         "menopause-management",
         "hot-flashes-treatment",
@@ -118,7 +118,7 @@ export type GynecologyCategory = {
       slug: "sexual-intimate-health",
       description:
         "Confidential care for intimate hygiene, vaginal infections, white discharge, urinary problems, and sexual wellness concerns.",
-      image: "/images/categories/sexual-intimate-health.jpg",
+      image: "/image/ veginal Infection.png",
       blogSlugs: [
         "vaginal-infection-treatment",
         "white-discharge-treatment",

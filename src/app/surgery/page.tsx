@@ -150,7 +150,7 @@ const consultReasons = [
 export default function SurgeryPage() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--secondary-text)]">
-      <section className="relative left-1/2 min-h-[760px] w-screen -translate-x-1/2 overflow-hidden px-4 pb-20 pt-36 text-white sm:px-6 lg:pt-40">
+      <section className="relative left-1/2 min-h-[760px] w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden px-4 pb-20 pt-36 text-white sm:px-6 lg:pt-40">
         <Image
           src="/image/ drkusumlatagynecologist.jpeg"
           alt="Dr. Kusum Lata gynecology surgery care"

@@ -43,13 +43,13 @@ function RecentBlog({ data }: RecentBlogProps) {
 
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12">
+    <section className="mx-auto max-w-7xl px-4 py-12 md:py-20">
       
       <SectionHeader headingObj={headingObj} />
 
       <div className="overflow-hidden">
         <motion.div
-          className="flex gap-10 w-max"
+          className="flex w-max gap-5 md:gap-10"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             duration: 30,
@@ -81,9 +81,9 @@ function ArticleComponent({ item }: { item: BlogPost }) {
     })
   }
   return (
-    <div className='w-96  cursor-pointer pb-2' >
-      <div className='h-80 relative' >
-        <Image src={item.coverImage} alt='db' fill className='object-center rounded-lg' />
+    <div className='w-[78vw] max-w-80 cursor-pointer pb-2 sm:w-96 sm:max-w-none' >
+      <div className='relative h-56 sm:h-80' >
+        <Image src={item.coverImage} alt='db' fill sizes="(min-width: 640px) 384px, 78vw" className='rounded-lg object-cover object-center' />
 
         <div  className='absolute  inset-0 top-4 flex justify-center items-center left-2 rounded-lg w-24  h-8 bg-(--secondary-color) text-white '>{item.category}</div>
       </div>
@@ -100,7 +100,7 @@ function ArticleComponent({ item }: { item: BlogPost }) {
         </div>
 
         <div className='' >
-          <div className='text-(--secondary-text) font-semibold py-2 text-2xl ' >{item.title}</div>
+          <div className='py-2 text-xl font-semibold text-(--secondary-text) sm:text-2xl' >{item.title}</div>
           <p className='text-gray-700 line-clamp-2 ' >{item.excerpt}</p>
           <Link href={`/articles/${slugify(item.title)}`}>
           <div className='flex items-center hover:border-b hover:text-(--primary-text) duration-150 ease-in-out  transition-transform  w-[30%] cursor-pointer py-1' >

@@ -39,11 +39,11 @@ export default function AssociationSection({
   };
 
   return (
-    <section className="px-4 py-20 md:px-6">
+    <section className="px-4 py-12 md:px-6 md:py-20">
       <div className="mx-auto max-w-7xl">
         <SectionHeader headingObj={headingObj} />
 
-        <div className="rounded-[32px] border border-[var(--border)]/10 bg-white p-4 shadow-sm md:p-6">
+        <div className="rounded-[24px] border border-[var(--border)]/10 bg-white p-3 shadow-sm md:rounded-[32px] md:p-6">
           <motion.div
             variants={container}
             initial="hidden"
@@ -59,9 +59,9 @@ export default function AssociationSection({
                 rel="noreferrer"
                 aria-label={`Open ${logo.name} website`}
                 variants={item}
-                className="group flex h-32 items-center justify-center rounded-2xl border border-[var(--border)]/10 bg-[var(--background)] px-5 transition hover:-translate-y-1 hover:border-[var(--primary-color)]/20 hover:bg-white hover:shadow-[0_18px_34px_rgba(27,20,99,0.10)] focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/15 sm:h-36"
+                className="group flex h-24 items-center justify-center rounded-2xl border border-[var(--border)]/10 bg-[var(--background)] px-4 transition hover:-translate-y-1 hover:border-[var(--primary-color)]/20 hover:bg-white hover:shadow-[0_18px_34px_rgba(27,20,99,0.10)] focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/15 sm:h-32 md:h-36"
               >
-                <div className="relative h-16 w-40 max-w-full transition duration-300 group-hover:scale-105 sm:w-44">
+                <div className="relative h-12 w-32 max-w-full transition duration-300 group-hover:scale-105 sm:h-16 sm:w-44">
                   <Image
                     src={logo.img}
                     alt={`${logo.name} logo`}

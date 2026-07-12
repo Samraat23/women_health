@@ -75,39 +75,44 @@ function HeroSection({ data }: HeroSectionProps) {
   const imageSource = hero.imageUrl || doctorPortrait;
 
   return (
-    <section className="relative left-1/2  w-screen -translate-x-1/2 overflow-hidden">
+    <section className="relative left-1/2 w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        className="relative overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-5 py-8 shadow-[0_28px_70px_rgba(27,20,99,0.20)] sm:px-8 md:px-12 lg:py-12"
+        className="relative overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-4 pb-7 pt-6 shadow-[0_28px_70px_rgba(27,20,99,0.20)] sm:px-8 md:px-12 md:py-8 lg:py-12"
       >
         <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:82px_82px]" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(247,244,238,0.84)_100%)]" />
         <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-white/12 blur-3xl" />
 
-        <div className="relative z-10 mx-auto mt-20 flex max-w-7xl flex-col gap-10 lg:min-h-[660px] lg:flex-row lg:items-center lg:justify-between">
+        <div className="relative z-10 mx-auto mt-16 flex max-w-7xl flex-col gap-7 md:mt-20 md:gap-10 lg:min-h-[660px] lg:flex-row lg:items-center lg:justify-between">
           <motion.div
             initial={{ opacity: 0, x: -34 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl py-4 text-white lg:w-[54%]"
+            className="mx-auto w-full max-w-[360px] py-0 text-center text-white md:mx-0 md:max-w-3xl md:py-4 md:text-left lg:w-[54%]"
           >
+            {/* Mobile: tighten the hero intro and center it before restoring the original md+ flow. */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-black text-[var(--primary-text-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)]"
+              className="inline-flex max-w-full items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[11px] font-black text-(--primary-text-color) shadow-[0_12px_26px_rgba(27,20,99,0.16)] md:gap-2 md:px-4 md:py-2 md:text-sm"
             >
-              <Sparkles size={16} className="text-[var(--primary-color)]" />
+              <Sparkles size={16} className="shrink-0 text-(--primary-color)  " />
               {hero.badge}
             </motion.div>
 
-            <h1 className="mt-7  max-w-3xl font-[var(--font-primary)] text-4xl font-black  tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
-              <TypingText text={hero.heading || headingText} className="block" />
+            <h1 className="mx-auto mt-5 max-w-[340px] break-words font-(--font-primary) text-[2.05rem] font-black leading-[1.12] tracking-normal text-white sm:max-w-[560px] sm:text-[2.65rem] md:mx-0 md:mt-7 md:max-w-3xl md:text-6xl md:leading-[1.08] lg:text-7xl">
+              <span className="block md:hidden">{hero.heading || headingText}</span>
+              <TypingText
+                text={hero.heading || headingText}
+                className="hidden md:block"
+              />
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base font-semibold leading-8 text-white/82 md:text-lg">
+            <p className="mx-auto mt-4 max-w-[335px] text-[15px] font-semibold leading-6 text-white/82 md:mx-0 md:mt-6 md:max-w-2xl md:text-lg md:leading-8">
               {hero.description}
             </p>
 
@@ -115,13 +120,14 @@ function HeroSection({ data }: HeroSectionProps) {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.48 }}
-              className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap"
+              className="mx-auto mt-6 grid w-full max-w-[340px] grid-cols-1 gap-3 md:mx-0 md:mt-8 md:flex md:max-w-none md:flex-row md:flex-wrap md:gap-4"
             >
+              {/* Mobile: make both CTAs full-width for cleaner scanning and easier thumb reach. */}
               <a
                 href={hero.primaryCtaUrl || appointmentHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5 md:w-auto md:px-7 md:py-4"
               >
                 <CalendarCheck size={18} />
                 {hero.primaryCtaLabel}
@@ -130,7 +136,7 @@ function HeroSection({ data }: HeroSectionProps) {
                 href={hero.secondaryCtaUrl || appointmentHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/45 bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-3.5 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18 md:w-auto md:px-7 md:py-4"
               >
                 <Video size={18} />
                 {hero.secondaryCtaLabel}
@@ -140,7 +146,8 @@ function HeroSection({ data }: HeroSectionProps) {
 
           </motion.div>
 
-          <div className="relative min-h-[540px] lg:min-h-[648px] lg:w-[42%] lg:shrink-0">
+          {/* Mobile: shorten and polish the image stage while md+ keeps the original tall portrait card. */}
+          <div className="relative min-h-[382px] sm:min-h-[452px] md:min-h-[540px] lg:min-h-[648px] lg:w-[42%] lg:shrink-0">
 
             <motion.div
               initial={{ opacity: 0, x: 45, scale: 0.96 }}
@@ -150,10 +157,10 @@ function HeroSection({ data }: HeroSectionProps) {
                 duration: 0.75,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="absolute inset-x-0 bottom-0 mx-auto max-w-[430px] lg:right-0 lg:mx-0 lg:max-w-[500px]"
+              className="absolute inset-x-0 bottom-0 mx-auto max-w-[335px] sm:max-w-[380px] md:max-w-[430px] lg:right-0 lg:mx-0 lg:max-w-[500px]"
             >
-              <div className="relative h-[500px] overflow-hidden rounded-[36px] border border-white/28 bg-white/14 p-3 shadow-[0_30px_70px_rgba(27,20,99,0.24)] backdrop-blur-md sm:h-[560px] lg:h-[610px]">
-                <div className="relative h-full overflow-hidden rounded-[28px] bg-[var(--background)]">
+              <div className="relative h-[360px] overflow-hidden rounded-[30px] border border-white/28 bg-white/14 p-2.5 shadow-[0_24px_54px_rgba(27,20,99,0.22)] backdrop-blur-md sm:h-[430px] md:h-[560px] md:rounded-[36px] md:p-3 md:shadow-[0_30px_70px_rgba(27,20,99,0.24)] lg:h-[610px]">
+                <div className="relative h-full overflow-hidden rounded-[24px] bg-[var(--background)] md:rounded-[28px]">
                   <Image
                     src={imageSource}
                     alt={hero.imageAlt || "Dr. Kusum Lata Bhardwaj"}
@@ -163,11 +170,11 @@ function HeroSection({ data }: HeroSectionProps) {
                     className="object-cover object-[center_18%]"
                   />
                   <div className="absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(180deg,rgba(27,20,99,0)_0%,rgba(27,20,99,0.78)_100%)]" />
-                  <div className="absolute bottom-5 left-5 right-5 rounded-3xl bg-white/90 p-4 text-[var(--primary-text-color)] shadow-[0_16px_38px_rgba(27,20,99,0.16)] backdrop-blur-md">
-                    <p className="text-base font-black">
+                  <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-white/90 p-3 text-left text-[var(--primary-text-color)] shadow-[0_16px_38px_rgba(27,20,99,0.16)] backdrop-blur-md md:bottom-5 md:left-5 md:right-5 md:rounded-3xl md:p-4">
+                    <p className="text-sm font-black md:text-base">
                       {hero.doctorName}
                     </p>
-                    <p className="mt-1 text-xs font-bold text-[var(--secondary-text)]/70">
+                    <p className="mt-1 text-[11px] font-bold leading-4 text-[var(--secondary-text)]/70 md:text-xs md:leading-normal">
                       {hero.doctorMeta}
                     </p>
                   </div>

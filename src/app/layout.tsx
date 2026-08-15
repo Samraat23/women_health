@@ -4,9 +4,9 @@ import "./globals.css";
 import AppChrome from "@/components/layout/AppChrome";
 
 export const metadata: Metadata = {
-  title: "WHealth | Dr. Kusum Lata Bhardwaj",
+  title: "Best Gynecologist for Women's Health | Dr. Kusum Lata Bhardwaj",
   description:
-    "Gynecology, pregnancy care, surgery and women's health support by Dr. Kusum Lata Bhardwaj.",
+    "Dr. Kusum Lata Bhardwaj provides expert gynecology, pregnancy care, infertility treatment, endometriosis care, and advanced laparoscopic surgery for women's health.",
 };
 
 export default function RootLayout({

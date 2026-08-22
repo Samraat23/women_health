@@ -1,24 +1,17 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import type { StaticImageData } from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import HeroSection from "@/components/blogs/HeroSection";
 import ContentTopics from "@/components/blogs/ContentTopics";
 import DoctorBanner from "@/components/blogs/DoctorBanner";
 import ReadArticle from "@/components/blogs/ReadArticle";
+import ServiceCard from "@/components/shared/ServiceCard";
 import { allBlogData } from "@/data/BlogData";
 import { gynecologyCategories } from "@/data/Categories";
-import { ArrowRight, Search, ShieldCheck } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-type RelatedCardItem = {
-  title: string;
-  description: string;
-  image: string | StaticImageData;
-};
 
 function Page() {
   const params = useParams();
@@ -126,21 +119,19 @@ function Page() {
             )}
           </div>
 
-          <div className="flex gap-5 overflow-x-auto pb-3 lg:grid lg:grid-cols-3 lg:overflow-visible">
+          <div className="flex gap-5 overflow-x-auto pb-3 lg:grid lg:auto-rows-fr lg:grid-cols-3 lg:overflow-visible">
             {relatedBlogs.slice(0, 3).map((item) => (
-              <Link
+              <ServiceCard
                 key={item.article.slug}
                 href={`/${item.article.slug}`}
-                className="block"
-              >
-                <ServiceCard
-                  item={{
-                    title: item.article.title,
-                    description: item.article.intro,
-                    image: item.article.image,
-                  }}
-                />
-              </Link>
+                item={{
+                  title: item.article.title,
+                  description: item.article.intro,
+                  image: item.article.image,
+                }}
+                wrapperClassName="w-[min(88vw,380px)] flex-shrink-0 lg:w-full"
+                imageSizes="(min-width: 1024px) 380px, 88vw"
+              />
             ))}
           </div>
         </section>
@@ -162,42 +153,3 @@ function ReadingProgress() {
     />
   );
 }
-
-const ServiceCard = ({ item }: { item: RelatedCardItem }) => (
-  <motion.div
-    className="group h-100 w-95 max-w-[calc(100vw-2rem)] flex-shrink-0 cursor-pointer rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md lg:w-full"
-  >
-    <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
-      <div className="flex items-center gap-3">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-[var(--primary-text)] text-[var(--primary-text)]">
-          <ShieldCheck size={22} />
-        </div>
-        <p className="text-md line-clamp-2 font-bold text-[var(--primary-text)]">
-          {item.title}
-        </p>
-      </div>
-
-      <ArrowRight
-        size={26}
-        className="-rotate-45 text-gray-900 transition-all duration-200 group-hover:rotate-0"
-      />
-    </div>
-
-    {/* Content */}
-    <div className="mt-4 px-5">
-      <p className="line-clamp-2 text-sm text-gray-600">
-        {item.description}
-      </p>
-    </div>
-
-    {/* Image */}
-    <div className="relative mx-5 mt-4 h-50 overflow-hidden rounded-xl bg-[#f7f4ee]">
-      <Image
-        src={item.image}
-        alt={item.title}
-        fill
-        className="object-cover transition-transform duration-300 group-hover:scale-110"
-      />
-    </div>
-  </motion.div>
-);

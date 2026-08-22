@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BadgeCheck, Play } from "lucide-react";
+import { ArrowRight, BadgeCheck, Play } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
 
 function InstaReels() {
@@ -16,13 +16,15 @@ function InstaReels() {
       url: "https://www.instagram.com/reel/DUDC8xekWUI/",
       image: "/image/ fibroid.png",
       label: "Surgery",
+      accent: "#e11d48",
     },
     {
       id: "2",
       heading: "Pregnancy reel",
       url: "https://www.instagram.com/reel/DNSrmu1hQyd/",
-      image: "/image/ normalPregnancy.png",
+      image: "/image/normalPregnancy.png",
       label: "Pregnancy",
+      accent: "#7c3aed",
     },
     {
       id: "3",
@@ -30,6 +32,7 @@ function InstaReels() {
       url: "https://www.instagram.com/reel/DOG783RgWlh/",
       image: "/image/ lacture.jpeg",
       label: "Podcast",
+      accent: "#0891b2",
     },
     {
       id: "4",
@@ -37,6 +40,7 @@ function InstaReels() {
       url: "https://www.instagram.com/reel/DL4tt0puZDW/",
       image: "/image/ FLIP3.jpeg",
       label: "Delivery",
+      accent: "#2563eb",
     },
     {
       id: "5",
@@ -44,6 +48,7 @@ function InstaReels() {
       url: "https://www.instagram.com/reel/DVJFgAOEb13/",
       image: "/image/ happytestimonial.jpeg",
       label: "Patient Story",
+      accent: "#059669",
     },
     {
       id: "6",
@@ -51,6 +56,7 @@ function InstaReels() {
       url: "https://www.instagram.com/reel/DOxp9j5Ece4/",
       image: "/image/ drkusumlata_bestTrainer.jpeg",
       label: "Women Health",
+      accent: "#db2777",
     },
     {
       id: "7",
@@ -58,6 +64,7 @@ function InstaReels() {
       url: profileUrl,
       image: "/image/ FLIPING1.jpeg",
       label: "Mother Care",
+      accent: "#ea580c",
     },
     {
       id: "8",
@@ -65,6 +72,7 @@ function InstaReels() {
       url: profileUrl,
       image: "/image/ robottrianer2.jpeg",
       label: "Laparoscopy",
+      accent: "#4f46e5",
     },
     {
       id: "9",
@@ -72,6 +80,7 @@ function InstaReels() {
       url: profileUrl,
       image: "/image/ medicityfaculty.jpeg",
       label: "Doctor Talk",
+      accent: "#0d9488",
     },
     {
       id: "10",
@@ -79,6 +88,7 @@ function InstaReels() {
       url: profileUrl,
       image: "/image/ impowerwomen.jpeg",
       label: "Awareness",
+      accent: "#b45309",
     },
   ];
 
@@ -102,7 +112,7 @@ function InstaReels() {
             target="_blank"
             rel="noreferrer"
             aria-label={`Watch ${item.heading} on Instagram`}
-            className="group relative block aspect-[9/16] w-[min(68vw,230px)] flex-none snap-start overflow-hidden rounded-[24px] border border-[var(--border)]/10 bg-[var(--background)] shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(27,20,99,0.14)] focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/20 sm:w-[286px] sm:rounded-[28px]"
+            className="group relative block aspect-[9/16] w-[min(68vw,230px)] flex-none snap-start overflow-hidden rounded-2xl bg-[var(--background)] shadow-[0_10px_30px_rgba(27,20,99,0.10)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(27,20,99,0.18)] focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/20 sm:w-[286px] sm:rounded-[20px]"
           >
             <Image
               src={item.image}
@@ -112,28 +122,47 @@ function InstaReels() {
               className="object-cover transition duration-500 group-hover:scale-105"
             />
 
-            <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.34)_45%,rgba(0,0,0,0.82)_100%)]" />
+            <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.10)_0%,rgba(0,0,0,0)_34%,rgba(0,0,0,0.78)_100%)]" />
+
+            <span
+              className="absolute left-3 top-3 inline-flex items-center rounded-lg px-2.5 py-1 text-[11px] font-black leading-none text-white shadow-[0_6px_16px_rgba(0,0,0,0.22)] sm:left-4 sm:top-4 sm:text-xs"
+              style={{ backgroundColor: item.accent }}
+            >
+              {item.label}
+            </span>
 
             <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/25 text-white shadow-[0_18px_42px_rgba(0,0,0,0.25)] backdrop-blur-md transition group-hover:scale-110 group-hover:bg-white/35">
-                <Play size={30} fill="currentColor" className="ml-1 md:size-[34px]" />
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/22 text-white shadow-[0_14px_32px_rgba(0,0,0,0.28)] ring-1 ring-white/40 backdrop-blur-md transition duration-300 group-hover:scale-110 group-hover:bg-white/35">
+                <Play size={22} fill="currentColor" className="ml-0.5" />
               </span>
             </span>
 
-            <span className="absolute inset-x-4 bottom-5 sm:inset-x-6 sm:bottom-7">
-              <span className="flex min-w-0 items-center gap-2 text-base font-black leading-none text-white sm:text-lg">
+            <span className="absolute inset-x-3 bottom-3 sm:inset-x-4 sm:bottom-4">
+              <span className="line-clamp-2 block text-[15px] font-black leading-snug text-white sm:text-base">
+                {item.heading}
+              </span>
+              <span className="mt-1.5 flex min-w-0 items-center gap-1 text-[11px] font-bold text-white/65">
                 <span className="truncate">@{username}</span>
                 <BadgeCheck
-                  size={22}
+                  size={14}
                   className="shrink-0 fill-[#19a7ff] text-white"
                 />
-              </span>
-              <span className="mt-3 inline-flex rounded-full bg-white/20 px-3 py-1.5 text-sm font-bold text-white/85 backdrop-blur-md">
-                {item.label}
               </span>
             </span>
           </a>
         ))}
+      </div>
+
+      <div className="mt-4 flex justify-center md:mt-6">
+        <a
+          href={profileUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-black text-[var(--primary-color)] transition hover:gap-3 sm:text-base"
+        >
+          Explore all reels
+          <ArrowRight size={18} />
+        </a>
       </div>
     </section>
   );

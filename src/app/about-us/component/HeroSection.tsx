@@ -16,7 +16,10 @@ const heroStats = [
 
 export default function HeroSection() {
   return (
-    <section className="relative left-1/2 w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-4 pb-16 pt-36 sm:px-6 sm:pt-40 lg:pb-20">
+    <section
+      data-nav-surface="dark"
+      className="relative left-1/2 w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-4 pb-16 pt-36 sm:px-6 sm:pt-40 lg:pb-20"
+    >
       <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:82px_82px]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(247,244,238,0)_0%,rgba(247,244,238,0.88)_100%)]" />
 

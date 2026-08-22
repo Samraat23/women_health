@@ -45,7 +45,10 @@ const weeklySections = trimesterGuides.map((trimester) => ({
 export default function PregnancyPage() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--secondary-text)]">
-      <section className="relative left-1/2 w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-5 py-8 text-white shadow-[0_28px_70px_rgba(27,20,99,0.20)] sm:px-8 md:px-12 lg:py-12">
+      <section
+        data-nav-surface="dark"
+        className="relative left-1/2 w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-5 py-8 text-white shadow-[0_28px_70px_rgba(27,20,99,0.20)] sm:px-8 md:px-12 lg:py-12"
+      >
         <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:82px_82px]" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(247,244,238,0.84)_100%)]" />
 

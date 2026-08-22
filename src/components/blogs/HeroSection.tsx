@@ -61,7 +61,10 @@ function TypingText({ text, className }: { text: string; className: string }) {
 
 function HeroSection({ data }: HeroSectionProps) {
   return (
-    <section className="relative left-1/2 w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden">
+    <section
+      data-nav-surface="dark"
+      className="relative left-1/2 w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden"
+    >
       <motion.div
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}

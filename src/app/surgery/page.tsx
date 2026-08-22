@@ -9,7 +9,6 @@ import {
   CalendarCheck,
   CheckCircle2,
   ClipboardCheck,
-  Clock3,
   FileText,
   HeartPulse,
   Microscope,
@@ -19,11 +18,9 @@ import {
   TimerReset,
 } from "lucide-react";
 
+import SurgeryServiceCard from "@/app/surgery/SurgeryServiceCard";
 import data from "@/data/siteData.json";
-import {
-  getSurgeryProcedureMeta,
-  surgeryBenefits,
-} from "@/data/SurgeryServices";
+import { surgeryBenefits } from "@/data/SurgeryServices";
 
 type SurgeryItem = {
   id?: number;
@@ -150,7 +147,10 @@ const consultReasons = [
 export default function SurgeryPage() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--secondary-text)]">
-      <section className="relative left-1/2 min-h-[760px] w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden px-4 pb-20 pt-36 text-white sm:px-6 lg:pt-40">
+      <section
+        data-nav-surface="dark"
+        className="relative left-1/2 min-h-[760px] w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden px-4 pb-20 pt-36 text-white sm:px-6 lg:pt-40"
+      >
         <Image
           src="/image/ drkusumlatagynecologist.jpeg"
           alt="Dr. Kusum Lata gynecology surgery care"
@@ -302,7 +302,7 @@ export default function SurgeryPage() {
             </div>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid auto-rows-fr gap-5 md:grid-cols-2 xl:grid-cols-3">
             {surgeries.map((service, index) => (
               <SurgeryServiceCard
                 key={`${service.id}-${service.name}`}
@@ -410,104 +410,5 @@ export default function SurgeryPage() {
         </div>
       </section>
     </main>
-  );
-}
-
-function SurgeryServiceCard({
-  service,
-  index,
-}: {
-  service: SurgeryItem;
-  index: number;
-}) {
-  const meta = getSurgeryProcedureMeta(service.name, index);
-  const Icon = meta.icon;
-  const isEndometriosis = service.name.toLowerCase().includes("endometriosis");
-
-  return (
-    <Link href={meta.href} className="group block h-full">
-      <article className="relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-lg border border-[var(--border)]/10 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[var(--primary-color)]/25 hover:shadow-[0_20px_46px_rgba(27,20,99,0.12)]">
-        <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#0f766e,var(--primary-color),#be185d)]" />
-
-        <div className="p-5 pb-0">
-          <div className="flex items-start justify-between gap-4">
-            <span className="flex h-[52px] w-[52px] items-center justify-center rounded-lg bg-[rgba(90,79,254,0.08)] text-[var(--primary-color)] transition group-hover:bg-[var(--primary-color)] group-hover:text-white">
-              <Icon size={25} />
-            </span>
-            <span className="rounded-full bg-[var(--background)] px-3 py-1.5 text-xs font-black text-[var(--primary-color)]">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          </div>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            <span className="rounded-full bg-[rgba(15,118,110,0.10)] px-3 py-1.5 text-xs font-black text-[#0f766e]">
-              {meta.tag}
-            </span>
-            {isEndometriosis && (
-              <span className="rounded-full bg-[rgba(236,72,153,0.10)] px-3 py-1.5 text-xs font-black text-[#be185d]">
-                Opens Endometriosis guide
-              </span>
-            )}
-          </div>
-
-          <h3 className="mt-4 font-[var(--font-primary)] text-2xl font-black leading-tight text-[var(--primary-text-color)]">
-            {service.name}
-          </h3>
-          <p className="mt-3 text-sm font-semibold leading-7 text-[var(--secondary-text)]/70">
-            {meta.detail}
-          </p>
-        </div>
-
-        <div className="relative mx-5 mt-5 h-36 overflow-hidden rounded-lg bg-[var(--background)]">
-          <Image
-            src={service.img}
-            alt={service.name}
-            fill
-            sizes="(min-width: 1280px) 360px, (min-width: 768px) 45vw, 92vw"
-            className="object-cover transition duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(27,20,99,0)_40%,rgba(27,20,99,0.62)_100%)]" />
-          <span className="absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-black text-[var(--primary-color)]">
-            <Clock3 size={14} />
-            Guided recovery
-          </span>
-        </div>
-
-        <div className="flex flex-1 flex-col p-5">
-          <p className="line-clamp-2 text-sm font-semibold leading-7 text-[var(--secondary-text)]/60">
-            {service.description}
-          </p>
-
-          <div className="mt-5">
-            <p className="text-xs font-black text-[var(--primary-text-color)]">
-              Often discussed for
-            </p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {meta.focus.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-[var(--border)]/10 bg-[var(--background)] px-3 py-1.5 text-xs font-black text-[var(--secondary-text)]/72"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-auto flex items-center justify-between border-t border-[var(--border)]/10 pt-5">
-            <span className="inline-flex items-center gap-2 text-sm font-black text-[var(--primary-color)]">
-              Read full guide
-              <ArrowRight
-                size={17}
-                className="transition group-hover:translate-x-1"
-              />
-            </span>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[rgba(90,79,254,0.08)] text-[var(--primary-color)] transition group-hover:bg-[var(--primary-color)] group-hover:text-white">
-              <BadgeCheck size={17} />
-            </span>
-          </div>
-        </div>
-      </article>
-    </Link>
   );
 }

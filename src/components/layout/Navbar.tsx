@@ -42,6 +42,9 @@ type RenderNavItem = {
   }>;
 };
 
+// Vertical space the floating navbar occupies, used to work out what sits behind it.
+const NAV_SURFACE_HEIGHT = 108;
+
 const womenHealthSubMenu = [
   {
     id: 1,
@@ -156,19 +159,56 @@ function Navbar({ content }: NavbarProps) {
   const pathname = usePathname();
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOverDarkHero, setIsOverDarkHero] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navbarContent = content || defaultNavbarContent;
 
   useEffect(() => {
-    const handleScroll = () => {
+    let frame = 0;
+
+    const readNavSurface = () => {
       setIsScrolled(window.scrollY > 24);
+
+      const hero = document.querySelector<HTMLElement>(
+        '[data-nav-surface="dark"]'
+      );
+
+      // Pages without a dark hero keep the solid navbar so it never blends
+      // into the light page background.
+      if (!hero) {
+        setIsOverDarkHero(false);
+
+        return;
+      }
+
+      // Heroes fade into the page background across their lower half, so only
+      // the solid upper part counts as a dark surface behind the navbar.
+      const { bottom, height } = hero.getBoundingClientRect();
+      setIsOverDarkHero(bottom - height * 0.35 > NAV_SURFACE_HEIGHT);
+    };
+
+    const handleScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(readNavSurface);
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // A route change can stream the next hero in after this effect has run.
+    const timers = [0, 150, 450].map((delay) =>
+      window.setTimeout(readNavSurface, delay)
+    );
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      timers.forEach((timer) => window.clearTimeout(timer));
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [pathname]);
 
   const menuBar = useMemo(
     () =>
@@ -207,9 +247,12 @@ function Navbar({ content }: NavbarProps) {
 
     return pathname === item.href || pathname.startsWith(`${item.href}/`);
   };
-  const mobileSurfaceClass = isScrolled
-    ? "border-white/70 bg-white/80 text-[var(--primary-text-color)] shadow-[0_14px_30px_rgba(27,20,99,0.14)]"
-    : "border-white/45 bg-white/20 text-white shadow-[0_14px_30px_rgba(27,20,99,0.16)]";
+  // Translucent white-on-dark styling is only safe while the navbar actually
+  // sits on top of a dark hero; everywhere else it needs a solid surface.
+  const isTransparent = isOverDarkHero;
+  const mobileSurfaceClass = isTransparent
+    ? "border-white/45 bg-white/20 text-white shadow-[0_14px_30px_rgba(27,20,99,0.16)]"
+    : "border-[var(--primary-color)]/12 bg-white/92 text-[var(--primary-text-color)] shadow-[0_14px_30px_rgba(27,20,99,0.14)]";
 
   return (
     <>
@@ -237,7 +280,7 @@ function Navbar({ content }: NavbarProps) {
               aria-label={isMobileMenuOpen ? "Close more menu" : "Open more menu"}
               aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((value) => !value)}
-              className={`grid h-14 w-14 place-items-center rounded-full border bg-red-600 transition-all duration-300 active:scale-95 ${mobileSurfaceClass}`}
+              className={`grid h-14 w-14 place-items-center rounded-full border backdrop-blur-2xl transition-all duration-300 active:scale-95 ${mobileSurfaceClass}`}
             >
               {isMobileMenuOpen ? <X size={23} /> : <Menu size={24} />}
             </button>
@@ -247,16 +290,20 @@ function Navbar({ content }: NavbarProps) {
 
       <header
         className={`fixed left-1/2 top-5 z-[100] hidden w-[calc(100%-32px)] max-w-7xl -translate-x-1/2 rounded-[36px] border px-8 transition-all duration-300 md:block ${
-          isScrolled
-            ? "border-white/50 bg-white/90 py-2 shadow-[0_14px_34px_rgba(27,20,99,0.18)] backdrop-blur-2xl md:bg-white/75"
-            : "border-white/25 bg-white/15 py-2.5 shadow-[0_12px_30px_rgba(27,20,99,0.16)] backdrop-blur-2xl md:bg-white/10 md:py-3"
+          isTransparent
+            ? "border-white/25 bg-white/15 py-2.5 shadow-[0_12px_30px_rgba(27,20,99,0.16)] backdrop-blur-2xl md:bg-white/10 md:py-3"
+            : `border-[var(--primary-color)]/12 bg-white/92 py-2 backdrop-blur-2xl md:bg-white/90 ${
+                isScrolled
+                  ? "shadow-[0_16px_38px_rgba(27,20,99,0.16)]"
+                  : "shadow-[0_10px_26px_rgba(27,20,99,0.10)]"
+              }`
         }`}
         onMouseLeave={() => setActiveMenuId(null)}
       >
         <div className="relative flex min-h-14 items-center justify-between gap-3 md:gap-8">
           <div
             className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-1 ring-white/60 transition-all duration-300 md:h-18 md:w-18 ${
-              isScrolled ? "bg-white/90" : "bg-white/95"
+              isTransparent ? "bg-white/95" : "bg-white"
             }`}
           >
             <Link href="/" aria-label="Go to home">
@@ -271,7 +318,9 @@ function Navbar({ content }: NavbarProps) {
 
           <div
             className={`hidden items-center gap-8 text-sm font-black transition-colors md:flex lg:gap-10 ${
-              isScrolled ? "text-[var(--primary-text-color)]" : "text-white"
+              isTransparent
+                ? "text-white [text-shadow:0_1px_12px_rgba(15,10,60,0.45)]"
+                : "text-[var(--primary-text-color)]"
             }`}
           >
             {menuBar.map((item) => (
@@ -279,9 +328,9 @@ function Navbar({ content }: NavbarProps) {
                 key={item.id}
                 onMouseEnter={() => item.subMenu && setActiveMenuId(item.id)}
                 className={`group flex cursor-pointer items-center gap-1 transition-colors ${
-                  isScrolled
-                    ? "hover:text-[var(--primary-color)]"
-                    : "hover:text-white/70"
+                  isTransparent
+                    ? "hover:text-white/70"
+                    : "hover:text-[var(--primary-color)]"
                 }`}
               >
                 <Link href={item.redirect}>{item.name}</Link>
@@ -300,9 +349,9 @@ function Navbar({ content }: NavbarProps) {
             target="_blank"
             rel="noreferrer"
             className={`hidden shrink-0 rounded-full px-8 py-3.5 text-sm font-black uppercase tracking-wide shadow-[0_10px_24px_rgba(90,79,254,0.28)] transition hover:-translate-y-0.5 md:inline-flex ${
-              isScrolled
-                ? "bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white"
-                : "bg-white text-[var(--primary-text-color)]"
+              isTransparent
+                ? "bg-white text-[var(--primary-text-color)]"
+                : "bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white"
             }`}
           >
             {appointmentLabel}

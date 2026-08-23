@@ -3,7 +3,8 @@ import React from 'react'
 import { motion } from "framer-motion";
 import Kusum from "@/assets/kusummam.jpg"
 import Image from 'next/image';
-import { slugify } from '@/components/blogs/Slugify';
+import Link from "next/link";
+import { getTopicHref } from "@/lib/topicRoutes";
 
 type NavbarSubMenu = {
   id: number;
@@ -15,7 +16,14 @@ type NavbarMenu = {
   subMenu: NavbarSubMenu[];
 };
 
-function NavbarPregnancyItem({ Menu }: { Menu: NavbarMenu }) {
+function NavbarPregnancyItem({
+  Menu,
+  onNavigate,
+}: {
+  Menu: NavbarMenu;
+  // Lets the navbar close the dropdown as soon as a topic is picked.
+  onNavigate?: () => void;
+}) {
 
   return (
     <motion.div
@@ -65,18 +73,20 @@ function NavbarPregnancyItem({ Menu }: { Menu: NavbarMenu }) {
               {/* Links with Enhanced Hover Effects */}
               <div className='flex flex-col gap-2'>
                 {(category.links || []).map((link, linkIndex) => (
-                  <motion.a
+                  <Link
                     key={linkIndex}
-                    href={slugify(link)}
-                    whileHover={{ x: 6, scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`relative  text-md font-medium transition-all duration-300  hover:text-primary text-white group/link`}
+                    href={getTopicHref(link)}
+                    // Opening the menu must not fire 23 route prefetches at
+                    // once; hover still prefetches the one being aimed at.
+                    prefetch={false}
+                    onClick={onNavigate}
+                    className="relative text-md font-medium text-white transition-all duration-300 hover:translate-x-1.5 hover:text-primary active:scale-[0.98] group/link"
                   >
                     <span className='relative z-10 flex items-center gap-2'>
                       <span className='w-1.5 h-1.5 rounded-full bg-gray-400 group-hover/link:scale-125 transition-transform' />
                       {link}
                     </span>
-                  </motion.a>
+                  </Link>
                 ))}
               </div>
             </motion.div>

@@ -28,7 +28,8 @@ const siteMapLinks = [
   { name: "Women Health", href: "/category/young-women-care" },
   { name: "Surgery", href: "/surgery" },
   { name: "Pregnancy Care", href: "/pregnancy" },
-  { name: "Articles", href: "/article" },
+  // /article has no page behind it; the category hub is the article index.
+  { name: "Articles", href: "/category/young-women-care" },
 ];
 
 const pregnancyLinks = [

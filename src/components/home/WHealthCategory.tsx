@@ -3,7 +3,7 @@
 import Image from "next/image";
 import SectionHeader from "@/components/shared/SectionHeader";
 import Link from "next/link";
-import { slugify } from "@/components/blogs/Slugify";
+import { getTopicHref } from "@/lib/topicRoutes";
 
 type Item = {
   id: number;
@@ -26,10 +26,9 @@ function WHealthCategory({ data }: { data: Item[] }) {
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6">
         {data.map((cat) => (
-          <Link href={slugify(cat.name)} key={cat.id} className="block h-full">
-          <CatCard item={cat} />
+          <Link href={getTopicHref(cat.name)} key={cat.id} className="block h-full">
+            <CatCard item={cat} />
           </Link>
-          
         ))}
       </div>
     </section>

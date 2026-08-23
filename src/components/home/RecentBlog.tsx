@@ -7,7 +7,7 @@ import { Calendar, Eye, ArrowRight } from 'lucide-react'
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/shared/SectionHeader";
 import Link from 'next/link';
-import { slugify } from '../blogs/Slugify';
+import { getArticleHref } from '@/lib/topicRoutes';
 
 interface Author {
   name: string
@@ -17,6 +17,7 @@ interface Author {
 
 interface BlogPost {
   id: string | number
+  slug?: string
   title: string
   coverImage: string
   publishedDate: string
@@ -102,7 +103,9 @@ function ArticleComponent({ item }: { item: BlogPost }) {
         <div className='' >
           <div className='py-2 text-xl font-semibold text-(--secondary-text) sm:text-2xl' >{item.title}</div>
           <p className='text-gray-700 line-clamp-2 ' >{item.excerpt}</p>
-          <Link href={`/articles/${slugify(item.title)}`}>
+          {/* /articles/<slugified-title> had no page behind it, so every card
+              landed on a blank route. */}
+          <Link href={getArticleHref(item.slug, item.title)}>
           <div className='flex items-center hover:border-b hover:text-(--primary-text) duration-150 ease-in-out  transition-transform  w-[30%] cursor-pointer py-1' >
         
             <div className='text-(--primary-text)'>Explore Tips </div>

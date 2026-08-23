@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   CalendarHeart,
@@ -19,6 +19,7 @@ import { usePathname } from "next/navigation";
 
 import logo from "@/assets/ logo.png";
 import NavbarPregnancyItem from "@/components/layout/NavbarPregnancyItem";
+import { getTopicHref } from "@/lib/topicRoutes";
 import type {
   HomeNavbarContent,
   HomeNavItem,
@@ -135,6 +136,34 @@ function getSubMenu(type?: HomeNavSubmenuType) {
   return undefined;
 }
 
+type SubLink = {
+  key: string;
+  label: string;
+  href: string;
+};
+
+// The desktop dropdown renders grouped columns; the mobile sheet needs the
+// same destinations as a flat list, so resolve both from one place.
+function getSubLinks(item: RenderNavItem): SubLink[] {
+  if (!item.subMenu) return [];
+
+  return item.subMenu.flatMap((group) =>
+    group.links?.length
+      ? group.links.map((link) => ({
+          key: `${group.id}-${link}`,
+          label: link,
+          href: getTopicHref(link),
+        }))
+      : [
+          {
+            key: `${group.id}`,
+            label: group.name,
+            href: group.href || getTopicHref(group.name),
+          },
+        ]
+  );
+}
+
 function toRenderItems(items: HomeNavItem[]): RenderNavItem[] {
   return items.map((item) => ({
     id: item.id,
@@ -161,6 +190,8 @@ function Navbar({ content }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOverDarkHero, setIsOverDarkHero] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openMobileGroupId, setOpenMobileGroupId] = useState<string | null>(null);
+  const [lastPathname, setLastPathname] = useState(pathname);
   const navbarContent = content || defaultNavbarContent;
 
   useEffect(() => {
@@ -209,6 +240,29 @@ function Navbar({ content }: NavbarProps) {
       window.removeEventListener("resize", handleScroll);
     };
   }, [pathname]);
+
+  // A finished navigation must never leave the dropdown or the mobile sheet
+  // hanging over the new page. Adjusting during render (rather than in an
+  // effect) closes them before the new page paints.
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    setActiveMenuId(null);
+    setIsMobileMenuOpen(false);
+    setOpenMobileGroupId(null);
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+
+      setActiveMenuId(null);
+      setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const menuBar = useMemo(
     () =>
@@ -323,25 +377,57 @@ function Navbar({ content }: NavbarProps) {
                 : "text-[var(--primary-text-color)]"
             }`}
           >
-            {menuBar.map((item) => (
-              <div
-                key={item.id}
-                onMouseEnter={() => item.subMenu && setActiveMenuId(item.id)}
-                className={`group flex cursor-pointer items-center gap-1 transition-colors ${
-                  isTransparent
-                    ? "hover:text-white/70"
-                    : "hover:text-[var(--primary-color)]"
-                }`}
-              >
-                <Link href={item.redirect}>{item.name}</Link>
-                {item.subMenu && (
-                  <ChevronDown
-                    size={16}
-                    className="transition-transform duration-200 group-hover:rotate-180 group-hover:scale-120"
-                  />
-                )}
-              </div>
-            ))}
+            {menuBar.map((item) => {
+              const isOpen = activeMenuId === item.id;
+
+              return (
+                <div
+                  key={item.id}
+                  // Moving onto an item without a submenu has to close whatever
+                  // dropdown is open, otherwise it stays stuck over the page.
+                  onMouseEnter={() =>
+                    setActiveMenuId(item.subMenu ? item.id : null)
+                  }
+                  className={`group flex cursor-pointer items-center gap-1 transition-colors ${
+                    isTransparent
+                      ? "hover:text-white/70"
+                      : "hover:text-[var(--primary-color)]"
+                  }`}
+                >
+                  <Link
+                    href={item.redirect}
+                    onFocus={() =>
+                      setActiveMenuId(item.subMenu ? item.id : null)
+                    }
+                    onClick={() => setActiveMenuId(null)}
+                  >
+                    {item.name}
+                  </Link>
+                  {item.subMenu && (
+                    <button
+                      type="button"
+                      // Tablets and keyboards never fire hover, so the arrow is
+                      // the accessible way into the submenu.
+                      aria-label={`${item.name} submenu`}
+                      aria-expanded={isOpen}
+                      onClick={() =>
+                        setActiveMenuId((current) =>
+                          current === item.id ? null : item.id
+                        )
+                      }
+                      className="flex items-center"
+                    >
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-200 ${
+                          isOpen ? "rotate-180 scale-120" : ""
+                        }`}
+                      />
+                    </button>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <Link
@@ -365,23 +451,33 @@ function Navbar({ content }: NavbarProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.25 }}
-              className="absolute left-1/2 top-full z-50 mx-auto mt-4 w-full -translate-x-1/2 rounded-3xl bg-(--secondary-text) shadow-2xl backdrop-blur-xl"
+              // The offset below the navbar is padding, not margin: it keeps the
+              // gap inside the header so travelling into the panel never leaves
+              // the hover area.
+              className="absolute left-1/2 top-full z-50 mx-auto w-full -translate-x-1/2 pt-4"
+              onMouseEnter={() => setActiveMenuId(activeItem.id)}
             >
-              <div className="flex justify-between px-10 py-8">
-                {activeItem.submenuType !== "womenHealth" &&
-                  activeItem.subMenu.map((sub) => (
-                    <Link
-                      key={sub.id}
-                      href={sub.href || sub.name}
-                      className="rounded-xl px-4 py-2 font-black text-white"
-                    >
-                      {sub.name}
-                    </Link>
-                  ))}
+              <div className="rounded-3xl bg-(--secondary-text) shadow-2xl backdrop-blur-xl">
+                <div className="flex justify-between px-10 py-8">
+                  {activeItem.submenuType !== "womenHealth" &&
+                    activeItem.subMenu.map((sub) => (
+                      <Link
+                        key={sub.id}
+                        href={sub.href || getTopicHref(sub.name)}
+                        onClick={() => setActiveMenuId(null)}
+                        className="rounded-xl px-4 py-2 font-black text-white"
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
 
-                {activeItem.submenuType === "womenHealth" && (
-                  <NavbarPregnancyItem Menu={{ subMenu: activeItem.subMenu }} />
-                )}
+                  {activeItem.submenuType === "womenHealth" && (
+                    <NavbarPregnancyItem
+                      Menu={{ subMenu: activeItem.subMenu }}
+                      onNavigate={() => setActiveMenuId(null)}
+                    />
+                  )}
+                </div>
               </div>
             </motion.div>
           )}
@@ -396,19 +492,64 @@ function Navbar({ content }: NavbarProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-4 bottom-[calc(74px+env(safe-area-inset-bottom))] z-[118] overflow-hidden rounded-[28px] border border-white/10 bg-[#11162b]/96 p-3 shadow-[0_24px_70px_rgba(6,10,28,0.4)] backdrop-blur-2xl md:hidden"
+            className="fixed inset-x-4 bottom-[calc(74px+env(safe-area-inset-bottom))] z-[118] max-h-[70dvh] overflow-y-auto overscroll-contain rounded-[28px] border border-white/10 bg-[#11162b]/96 p-3 shadow-[0_24px_70px_rgba(6,10,28,0.4)] backdrop-blur-2xl md:hidden"
           >
             <div className="grid grid-cols-2 gap-2">
-              {menuBar.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.redirect}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-black text-white/85 transition active:scale-[0.98]"
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {menuBar.map((item) => {
+                const subLinks = getSubLinks(item);
+                const isGroupOpen = openMobileGroupId === item.id;
+
+                return (
+                  <Fragment key={item.id}>
+                    <div className="flex items-stretch overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06]">
+                      <Link
+                        href={item.redirect}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex-1 px-4 py-3 text-sm font-black text-white/85 transition active:scale-[0.98]"
+                      >
+                        {item.name}
+                      </Link>
+                      {subLinks.length > 0 && (
+                        <button
+                          type="button"
+                          // Without this the phone menu had no route at all into
+                          // the category and treatment pages.
+                          aria-label={`${item.name} topics`}
+                          aria-expanded={isGroupOpen}
+                          onClick={() =>
+                            setOpenMobileGroupId((current) =>
+                              current === item.id ? null : item.id
+                            )
+                          }
+                          className="grid w-11 shrink-0 place-items-center border-l border-white/10 text-white/70 transition active:scale-95"
+                        >
+                          <ChevronDown
+                            size={17}
+                            className={`transition-transform duration-200 ${
+                              isGroupOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      )}
+                    </div>
+
+                    {isGroupOpen && subLinks.length > 0 && (
+                      <div className="col-span-2 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-2">
+                        {subLinks.map((subLink) => (
+                          <Link
+                            key={subLink.key}
+                            href={subLink.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="rounded-xl px-3 py-2.5 text-xs font-bold leading-4 text-white/75 transition active:scale-[0.98]"
+                          >
+                            {subLink.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </Fragment>
+                );
+              })}
               <Link
                 href={appointmentUrl}
                 target="_blank"

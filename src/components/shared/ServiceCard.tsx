@@ -1,12 +1,45 @@
-"use client";
-
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, type LucideIcon } from "lucide-react";
-import { motion } from "framer-motion";
-import * as Icons from "lucide-react";
+import {
+  Activity,
+  ArrowRight,
+  Baby,
+  HeartPulse,
+  Salad,
+  Settings,
+  ShieldCheck,
+  Sparkles,
+  Stethoscope,
+  Syringe,
+  Thermometer,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 
-const iconSet = Icons as unknown as Record<string, LucideIcon>;
+const iconSet: Record<string, LucideIcon> = {
+  Activity,
+  activity: Activity,
+  Baby,
+  baby: Baby,
+  HeartPulse,
+  heartPulse: HeartPulse,
+  Salad,
+  salad: Salad,
+  Settings,
+  settings: Settings,
+  ShieldCheck,
+  shieldCheck: ShieldCheck,
+  Sparkles,
+  sparkles: Sparkles,
+  Stethoscope,
+  stethoscope: Stethoscope,
+  Syringe,
+  syringe: Syringe,
+  Thermometer,
+  thermometer: Thermometer,
+  Users,
+  users: Users,
+};
 
 export type ServiceCardItem = {
   title: string;
@@ -59,10 +92,8 @@ function ServiceCard({
   const hasChips = Boolean(chips?.length);
 
   const card = (
-    <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
-      className={`group flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition-shadow duration-200 hover:border-[var(--primary-color)]/25 hover:shadow-[0_20px_44px_rgba(27,20,99,0.10)] md:min-h-[390px] ${className}`}
+    <article
+      className={`group flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[var(--primary-color)]/25 hover:shadow-[0_20px_44px_rgba(27,20,99,0.10)] md:min-h-[390px] ${className}`}
     >
       <div className="flex items-center justify-between gap-3 border-b border-[var(--border)]/10 px-4 py-3.5 md:px-5 md:py-4">
         <div className="flex min-w-0 items-center gap-3">
@@ -150,7 +181,7 @@ function ServiceCard({
           </span>
         </div>
       )}
-    </motion.article>
+    </article>
   );
 
   if (!href) return card;

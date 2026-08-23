@@ -1,10 +1,7 @@
-"use client";
-
-import { useEffect, useMemo, useState } from "react";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
@@ -14,7 +11,6 @@ import {
   BookOpenCheck,
   Clock3,
   HeartPulse,
-  Home,
   Microscope,
   Search,
   ShieldCheck,
@@ -30,6 +26,12 @@ import {
   type GynecologyCategory,
 } from "@/data/Categories";
 import { allBlogData, type BlogPageData } from "@/data/BlogData";
+
+type CategoryPageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
 
 type CategoryStat = {
   icon: LucideIcon;
@@ -48,10 +50,56 @@ const categoryIconMap: Record<string, LucideIcon> = {
   "Sexual & Intimate Health": ShieldCheck,
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0 },
-};
+const blogsBySlug = new Map<string, BlogPageData>();
+
+for (const blog of allBlogData) {
+  if (blog.article.slug) {
+    blogsBySlug.set(blog.article.slug, blog);
+  }
+}
+
+const categoryBlogsBySlug = new Map<string, BlogPageData[]>();
+
+for (const category of gynecologyCategories) {
+  categoryBlogsBySlug.set(
+    category.slug,
+    category.blogSlugs
+      .map((slug) => blogsBySlug.get(slug))
+      .filter((blog): blog is BlogPageData => Boolean(blog))
+  );
+}
+
+export function generateStaticParams() {
+  return gynecologyCategories.map((category) => ({
+    slug: category.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const category = getCategoryBySlug(slug);
+
+  if (!category) {
+    return {
+      title: "Category Not Found | Dr. Kusum Lata",
+    };
+  }
+
+  return {
+    title: `${category.title} | Dr. Kusum Lata`,
+    description: category.description,
+  };
+}
+
+function getCategoryBySlug(slug: string) {
+  return gynecologyCategories.find((item) => item.slug === slug);
+}
+
+function getCategoryBlogs(category: GynecologyCategory) {
+  return categoryBlogsBySlug.get(category.slug) || [];
+}
 
 function getCategoryIcon(title: string) {
   return categoryIconMap[title] || Stethoscope;
@@ -63,14 +111,6 @@ function renderCategoryIcon(title: string, size: number) {
   return <Icon size={size} />;
 }
 
-function getCategoryBlogs(category: GynecologyCategory) {
-  return category.blogSlugs
-    .map((slug) =>
-      allBlogData.find((blog) => blog.article.slug && blog.article.slug === slug)
-    )
-    .filter((blog): blog is BlogPageData => Boolean(blog));
-}
-
 function getCategoryPreviewImage(
   category: GynecologyCategory
 ): string | StaticImageData {
@@ -79,79 +119,33 @@ function getCategoryPreviewImage(
   return firstBlog?.article.image || category.image;
 }
 
-function CategoryPage() {
-  const params = useParams();
-  const slugParam = params?.slug;
-  const routeCategorySlug = Array.isArray(slugParam) ? slugParam[0] : slugParam;
-  const [selectedCategorySlug, setSelectedCategorySlug] = useState(
-    () => routeCategorySlug || gynecologyCategories[0]?.slug || ""
-  );
-
-  useEffect(() => {
-    const handlePopState = () => {
-      const nextSlug = window.location.pathname
-        .split("/category/")
-        .at(1)
-        ?.split("/")
-        .at(0);
-
-      if (nextSlug) {
-        setSelectedCategorySlug(decodeURIComponent(nextSlug));
-      }
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
-
-  const activeCategory = useMemo(
-    () =>
-      gynecologyCategories.find((item) => item.slug === selectedCategorySlug),
-    [selectedCategorySlug]
-  );
-
-  const blogs = useMemo(
-    () => (activeCategory ? getCategoryBlogs(activeCategory) : []),
-    [activeCategory]
-  );
-
-  const categoryStats: CategoryStat[] = useMemo(
-    () => [
-      {
-        icon: BookOpenCheck,
-        label: "Care Guides",
-        value: `${blogs.length} topics`,
-      },
-      {
-        icon: Clock3,
-        label: "Reading",
-        value: "Quick explainers",
-      },
-      {
-        icon: ShieldCheck,
-        label: "Reviewed",
-        value: "Doctor-led",
-      },
-    ],
-    [blogs.length]
-  );
-
-  const handleCategorySelect = (slug: string) => {
-    setSelectedCategorySlug(slug);
-
-    const nextUrl = `/category/${slug}`;
-
-    if (window.location.pathname !== nextUrl) {
-      window.history.replaceState({ categorySlug: slug }, "", nextUrl);
-    }
-  };
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params;
+  const activeCategory = getCategoryBySlug(slug);
 
   if (!activeCategory) {
-    return <CategoryNotFound />;
+    notFound();
   }
 
+  const blogs = getCategoryBlogs(activeCategory);
   const heroImage = blogs[0]?.article.image || activeCategory.image;
+  const categoryStats: CategoryStat[] = [
+    {
+      icon: BookOpenCheck,
+      label: "Care Guides",
+      value: `${blogs.length} topics`,
+    },
+    {
+      icon: Clock3,
+      label: "Reading",
+      value: "Quick explainers",
+    },
+    {
+      icon: ShieldCheck,
+      label: "Reviewed",
+      value: "Doctor-led",
+    },
+  ];
 
   return (
     <main className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--secondary-text)]">
@@ -163,13 +157,7 @@ function CategoryPage() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(247,244,238,0)_0%,rgba(247,244,238,0.88)_100%)]" />
 
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:min-h-[660px] lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto max-w-3xl text-center text-white lg:mx-0 lg:text-left"
-          >
+          <div className="mx-auto max-w-3xl text-center text-white lg:mx-0 lg:text-left">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-text-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)]">
               <Sparkles size={16} className="text-[var(--primary-color)]" />
               Care Category
@@ -222,14 +210,9 @@ function CategoryPage() {
                 Consultation
               </Link>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ delay: 0.12, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto w-full max-w-[520px] lg:mx-0 lg:justify-self-end"
-          >
+          <div className="relative mx-auto w-full max-w-[520px] lg:mx-0 lg:justify-self-end">
             <div className="relative overflow-hidden rounded-[38px] border border-white/24 bg-white/12 p-3 shadow-[0_30px_70px_rgba(27,20,99,0.24)] backdrop-blur-md">
               <div className="relative h-[420px] overflow-hidden rounded-[30px] bg-[var(--background)] sm:h-[540px]">
                 <Image
@@ -257,20 +240,17 @@ function CategoryPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      <section id="treatments" className="relative z-10 -mt-10 px-4 pb-16 md:px-6 lg:pb-24">
+      <section
+        id="treatments"
+        className="relative z-10 -mt-10 px-4 pb-16 md:px-6 lg:pb-24"
+      >
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[320px_1fr]">
           <aside className="lg:sticky lg:top-28 lg:self-start">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45 }}
-              className="overflow-hidden rounded-[30px] border border-white/70 bg-white/95 p-4 shadow-[0_24px_60px_rgba(27,20,99,0.12)] backdrop-blur-md"
-            >
+            <div className="overflow-hidden rounded-[30px] border border-white/70 bg-white/95 p-4 shadow-[0_24px_60px_rgba(27,20,99,0.12)] backdrop-blur-md">
               <div className="rounded-3xl bg-[rgba(90,79,254,0.08)] p-4">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--primary-color)]">
                   Categories
@@ -286,10 +266,10 @@ function CategoryPage() {
                   const previewImage = getCategoryPreviewImage(cat);
 
                   return (
-                    <button
+                    <Link
                       key={cat.id}
-                      type="button"
-                      onClick={() => handleCategorySelect(cat.slug)}
+                      href={`/category/${cat.slug}`}
+                      prefetch={false}
                       aria-current={isActive ? "page" : undefined}
                       className={`group flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition ${
                         isActive
@@ -318,7 +298,7 @@ function CategoryPage() {
                               : "text-[var(--secondary-text)]/58"
                           }`}
                         >
-                          {cat.blogSlugs.length} topics
+                          {getCategoryBlogs(cat).length} topics
                         </span>
                       </span>
 
@@ -331,22 +311,15 @@ function CategoryPage() {
                       >
                         {renderCategoryIcon(cat.title, 17)}
                       </span>
-                    </button>
+                    </Link>
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
           </aside>
 
           <div>
-            <motion.div
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.25 }}
-              variants={fadeUp}
-              transition={{ duration: 0.45 }}
-              className="mb-8 rounded-[30px] border border-white/70 bg-white/95 p-5 shadow-[0_24px_60px_rgba(27,20,99,0.10)] backdrop-blur-md sm:p-6"
-            >
+            <div className="mb-8 rounded-[30px] border border-white/70 bg-white/95 p-5 shadow-[0_24px_60px_rgba(27,20,99,0.10)] backdrop-blur-md sm:p-6">
               <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
                 <div>
                   <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--primary-color)]">
@@ -366,15 +339,12 @@ function CategoryPage() {
                   {blogs.length} results
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {blogs.length > 0 ? (
               <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                 {blogs.map((blog) => (
-                  <TreatmentCard
-                    key={blog.article.slug}
-                    blog={blog}
-                  />
+                  <TreatmentCard key={blog.article.slug} blog={blog} />
                 ))}
               </div>
             ) : (
@@ -387,20 +357,10 @@ function CategoryPage() {
   );
 }
 
-export default CategoryPage;
-
-function TreatmentCard({
-  blog,
-}: {
-  blog: BlogPageData;
-}) {
+function TreatmentCard({ blog }: { blog: BlogPageData }) {
   return (
-    <Link href={`/${blog.article.slug}`} className="block h-full">
-      <motion.article
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.2 }}
-        className="group h-full min-h-[390px] overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm"
-      >
+    <Link href={`/${blog.article.slug}`} prefetch={false} className="block h-full">
+      <article className="group h-full min-h-[390px] overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(27,20,99,0.10)]">
         <div className="flex items-center justify-between border-b border-[var(--border)]/10 px-5 py-4">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-[var(--primary-color)]/20 bg-[var(--primary-color)]/10 text-[var(--primary-color)]">
@@ -432,35 +392,8 @@ function TreatmentCard({
             className="object-cover transition-transform duration-300 group-hover:scale-110"
           />
         </div>
-      </motion.article>
+      </article>
     </Link>
-  );
-}
-
-function CategoryNotFound() {
-  return (
-    <main className="min-h-screen bg-[var(--background)] px-4 py-24">
-      <div className="mx-auto max-w-4xl overflow-hidden rounded-[34px] bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] p-3 shadow-[0_30px_70px_rgba(27,20,99,0.18)]">
-        <div className="rounded-[26px] bg-white p-8 text-center sm:p-12">
-          <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[rgba(90,79,254,0.10)] text-[var(--primary-color)]">
-            <Search size={26} />
-          </span>
-          <h1 className="mt-6 font-[var(--font-primary)] text-3xl font-black text-[var(--primary-text-color)]">
-            Category not found
-          </h1>
-          <p className="mx-auto mt-3 max-w-xl text-sm font-semibold leading-7 text-[var(--secondary-text)]/68">
-            Please check the category URL or browse the available care topics.
-          </p>
-          <Link
-            href="/"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5"
-          >
-            <Home size={17} />
-            Back to Home
-          </Link>
-        </div>
-      </div>
-    </main>
   );
 }
 

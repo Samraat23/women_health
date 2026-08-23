@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -21,33 +22,40 @@ type HeroSectionProps = {
 const appointmentHref = "https://wa.me/919289140812";
 
 function TypingText({ text, className }: { text: string; className: string }) {
+  const words = text.split(" ");
+  // Per-letter inline-blocks let the line break inside a word, which mangled
+  // every article headline. Group the letters per word instead.
+  const wordChunks: Array<{ word: string; offset: number }> = [];
+
+  for (let index = 0, offset = 0; index < words.length; index += 1) {
+    wordChunks.push({ word: words[index], offset });
+    offset += words[index].length + 1;
+  }
+
   return (
-    <motion.span
-      aria-label={text}
-      className={className}
-      initial="hidden"
-      animate="visible"
-      variants={{
-        visible: {
-          transition: {
-            staggerChildren: 0.018,
-          },
-        },
-      }}
-    >
-      {text.split("").map((letter, index) => (
-        <motion.span
-          key={`${letter}-${index}`}
-          aria-hidden="true"
-          className="inline-block"
-          variants={{
-            hidden: { opacity: 0, y: 14 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {letter === " " ? "\u00A0" : letter}
-        </motion.span>
+    <span aria-label={text} className={className}>
+      {wordChunks.map(({ word, offset }, wordIndex) => (
+        <Fragment key={`${word}-${wordIndex}`}>
+          <span className="inline-block whitespace-nowrap">
+            {word.split("").map((letter, index) => (
+              <motion.span
+                key={`${letter}-${index}`}
+                aria-hidden="true"
+                className="inline-block"
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.26,
+                  delay: (offset + index) * 0.018,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </span>
+          {wordIndex < wordChunks.length - 1 ? " " : null}
+        </Fragment>
       ))}
       <motion.span
         aria-hidden="true"
@@ -55,7 +63,7 @@ function TypingText({ text, className }: { text: string; className: string }) {
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         className="ml-1 inline-block h-[0.9em] w-1 translate-y-1 rounded-full bg-white"
       />
-    </motion.span>
+    </span>
   );
 }
 

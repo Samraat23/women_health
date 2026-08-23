@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -19,33 +20,45 @@ type HeroSectionProps = {
 };
 
 function TypingText({ text, className }: { text: string; className: string }) {
+  const words = text.split(" ");
+  // Each letter is its own inline-block, so the line box can break between
+  // letters. Grouping them per word (with a real space in between) keeps the
+  // break opportunities on word boundaries instead of mid-word.
+  const wordChunks: Array<{ word: string; offset: number }> = [];
+
+  for (let index = 0, offset = 0; index < words.length; index += 1) {
+    wordChunks.push({ word: words[index], offset });
+    offset += words[index].length + 1;
+  }
+
   return (
-    <motion.span
-      className={className}
-      aria-label={text}
-      initial="hidden"
-      animate="visible"
-      variants={{
-        visible: {
-          transition: {
-            staggerChildren: 0.022,
-          },
-        },
-      }}
-    >
-      {text.split("").map((letter, index) => (
-        <motion.span
-          key={`${letter}-${index}`}
-          aria-hidden="true"
-          variants={{
-            hidden: { opacity: 0, y: 14 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block"
-        >
-          {letter === " " ? "\u00A0" : letter}
-        </motion.span>
+    <span className={className} aria-label={text}>
+      {wordChunks.map(({ word, offset }, wordIndex) => (
+        <Fragment key={`${word}-${wordIndex}`}>
+          <span className="inline-block whitespace-nowrap">
+            {word.split("").map((letter, index) => {
+              const delay = (offset + index) * 0.022;
+
+              return (
+                <motion.span
+                  key={`${letter}-${index}`}
+                  aria-hidden="true"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.28,
+                    delay,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="inline-block"
+                >
+                  {letter}
+                </motion.span>
+              );
+            })}
+          </span>
+          {wordIndex < wordChunks.length - 1 ? " " : null}
+        </Fragment>
       ))}
       <motion.span
         aria-hidden="true"
@@ -53,7 +66,7 @@ function TypingText({ text, className }: { text: string; className: string }) {
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         className="ml-1 inline-block h-[0.9em] w-1 translate-y-1 rounded-full bg-white"
       />
-    </motion.span>
+    </span>
   );
 }
 

@@ -3,11 +3,11 @@
 import { type StaticImageData } from "next/image";
 import SectionHeader from "@/components/shared/SectionHeader";
 import ServiceCard from "@/components/shared/ServiceCard";
-import { slugify } from "@/components/blogs/Slugify";
 
 type ServiceItem = {
   id: number;
   title: string;
+  slug: string;
   description: string;
   image: string | StaticImageData;
   icon?: string;
@@ -31,7 +31,9 @@ function Service({ service }: { service: ServiceItem[] }) {
           <ServiceCard
             key={item.id}
             item={item}
-            href={`/category/${slugify(item.title)}`}
+            // The category owns its slug: deriving one from the title sent
+            // "Fertility & Infertility" to /category/fertility-and-infertility.
+            href={`/category/${item.slug}`}
           />
         ))}
       </div>

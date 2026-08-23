@@ -1,50 +1,62 @@
-"use client";
-
-import React from "react";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import HeroSection from "@/components/blogs/HeroSection";
+import { ArrowRight } from "lucide-react";
+
 import ContentTopics from "@/components/blogs/ContentTopics";
 import DoctorBanner from "@/components/blogs/DoctorBanner";
+import HeroSection from "@/components/blogs/HeroSection";
 import ReadArticle from "@/components/blogs/ReadArticle";
+import ReadingProgress from "@/components/blogs/ReadingProgress";
 import ServiceCard from "@/components/shared/ServiceCard";
-import { allBlogData } from "@/data/BlogData";
+import { allBlogData, type BlogPageData } from "@/data/BlogData";
 import { gynecologyCategories } from "@/data/Categories";
-import { ArrowRight, Search } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
 
-function Page() {
-  const params = useParams();
-  const articleSlug = params?.slug as string;
+type ArticlePageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
 
-  const blog = allBlogData.find(
-    (item) => item.article.slug === articleSlug
-  );
+const blogsBySlug = new Map<string, BlogPageData>();
+
+for (const blog of allBlogData) {
+  if (blog.article.slug) {
+    blogsBySlug.set(blog.article.slug, blog);
+  }
+}
+
+export function generateStaticParams() {
+  return allBlogData
+    .map((blog) => blog.article.slug)
+    .filter((slug): slug is string => Boolean(slug))
+    .map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: ArticlePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const blog = blogsBySlug.get(slug);
 
   if (!blog) {
-    return (
-      <main className="min-h-screen bg-[var(--background)] px-4 py-24">
-        <div className="mx-auto max-w-4xl rounded-3xl border border-[#eadfd5] bg-white p-8 text-center shadow-sm md:p-12">
-          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#f1eefc] text-[var(--primary-text)]">
-            <Search size={24} />
-          </span>
-          <h1 className="mt-5 text-3xl font-black text-[var(--secondary-text)]">
-            Article not found
-          </h1>
-          <p className="mx-auto mt-3 max-w-xl text-gray-600">
-            This article slug does not match any available blog. Please choose
-            another health topic from the category page.
-          </p>
-          <Link
-            href="/category/young-women-care"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-[var(--primary-color)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[var(--secondary-color)]"
-          >
-            Browse Articles
-            <ArrowRight size={17} />
-          </Link>
-        </div>
-      </main>
-    );
+    return {
+      title: "Article Not Found | Dr. Kusum Lata",
+    };
+  }
+
+  return {
+    title: `${blog.article.title} | Dr. Kusum Lata`,
+    description: blog.article.intro,
+  };
+}
+
+export default async function Page({ params }: ArticlePageProps) {
+  const { slug } = await params;
+  const blog = blogsBySlug.get(slug);
+
+  if (!blog) {
+    notFound();
   }
 
   const category = gynecologyCategories.find(
@@ -62,12 +74,11 @@ function Page() {
     : "/category/young-women-care";
 
   return (
-    <main className="relative  bg-[#faf7f2]">
+    <main className="relative bg-[#faf7f2]">
       <ReadingProgress />
       <HeroSection data={blog.hero} />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8  py-14 lg:grid-cols-[260px_1fr_320px]">
-        {/* Left Side */}
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8 py-14 lg:grid-cols-[260px_1fr_320px]">
         <aside className="hidden lg:block">
           <div className="sticky top-33">
             <ContentTopics
@@ -78,19 +89,23 @@ function Page() {
           </div>
         </aside>
 
-        {/* Center */}
         <article>
-          <div className="flex gap-2 text-[var(--primary-text)]">
+          <div className="flex flex-wrap gap-2 text-[var(--primary-text)]">
             <Link href="/">Home</Link>
             <span>/</span>
-            <Link href={categoryHref}>{category?.slug}</Link>
+            <Link href={categoryHref}>
+              {category?.title || "Women Health"}
+            </Link>
+            <span>/</span>
+            <span className="text-[var(--secondary-text)]/70">
+              {blog.article.title}
+            </span>
           </div>
           <ReadArticle data={blog} />
         </article>
 
-        {/* Right Side */}
         <aside className="hidden lg:block">
-          <div className="sticky top-33 ">
+          <div className="sticky top-33">
             <DoctorBanner />
           </div>
         </aside>
@@ -137,19 +152,5 @@ function Page() {
         </section>
       )}
     </main>
-  );
-}
-
-export default Page;
-
-function ReadingProgress() {
-  const { scrollYProgress } = useScroll();
-  const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
-  return (
-    <motion.div
-      className="fixed left-0 top-0 z-[999] h-1 bg-gradient-to-r from-[var(--primary-color)] via-[#8b7cff] to-[#38bdf8]"
-      style={{ width, transformOrigin: "left" }}
-    />
   );
 }

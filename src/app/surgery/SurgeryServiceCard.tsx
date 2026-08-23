@@ -1,5 +1,3 @@
-"use client";
-
 import ServiceCard from "@/components/shared/ServiceCard";
 import { getSurgeryProcedureMeta } from "@/data/SurgeryServices";
 
@@ -11,7 +9,6 @@ export type SurgeryCardItem = {
   description: string;
 };
 
-// Resolved on the client so the Lucide icon never crosses the server boundary.
 function SurgeryServiceCard({
   service,
   index,

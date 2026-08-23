@@ -20,7 +20,6 @@ export type GynecologyCategory = {
       image: happyPatient,
       blogSlugs: [
         "endometriosis-treatment",
-        "uterus-removal-hysterectomy",
         "fibroid-removal-surgery",
         "ovarian-cyst-surgery",
         "cervical-cerclage",

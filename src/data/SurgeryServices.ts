@@ -80,7 +80,9 @@ const surgeryProcedureMeta: SurgeryProcedureMeta[] = [
     detail:
       "Minimally invasive hysterectomy planning when uterus removal is clinically needed.",
     focus: ["Hysterectomy", "Large fibroids", "Abnormal bleeding"],
-    href: "/uterus-removal-hysterectomy",
+    // No hysterectomy guide exists yet; point at the parent category instead
+    // of a slug that renders the "article not found" screen.
+    href: "/category/laparoscopic-surgery",
     icon: Hospital,
     tag: "Advanced route",
   },

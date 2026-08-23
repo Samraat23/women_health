@@ -85,6 +85,7 @@ export default async function Page({ params }: ArticlePageProps) {
               articleId={blog.article.id}
               articleTitle={blog.article.title}
               sections={blog.sections}
+              hasFaq={Boolean(blog.faqs?.length)}
             />
           </div>
         </aside>

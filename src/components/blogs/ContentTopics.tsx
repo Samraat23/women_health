@@ -9,12 +9,14 @@ type ContentTopicsProps = {
   articleId: string;
   articleTitle: string;
   sections: BlogSection[];
+  hasFaq?: boolean;
 };
 
 function ContentTopics({
   articleId,
   articleTitle,
   sections,
+  hasFaq = false,
 }: ContentTopicsProps) {
   const [activeSection, setActiveSection] = useState(articleId);
   const { scrollYProgress } = useScroll();
@@ -26,8 +28,9 @@ function ContentTopics({
         id: section.id,
         title: section.title,
       })),
+      ...(hasFaq ? [{ id: "faq", title: "Frequently asked questions" }] : []),
     ],
-    [articleId, sections]
+    [articleId, sections, hasFaq]
   );
 
   useEffect(() => {

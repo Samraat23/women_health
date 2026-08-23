@@ -19,6 +19,7 @@ import {
   type BlogSectionType,
 } from "@/data/BlogData";
 
+import ArticleFaq from "./ArticleFaq";
 import Author from "./Author";
 import Consultation from "./Consultation";
 
@@ -74,9 +75,17 @@ function DynamicBlogSection({ section }: DynamicBlogSectionProps) {
     >
       <SectionHeader section={section} />
 
-      <p className="mb-6 text-base leading-8 text-[#5f6877]">
+      <p className="mb-4 text-base leading-8 text-[#5f6877]">
         {section.paragraph}
       </p>
+
+      {section.paragraphs?.map((text) => (
+        <p key={text} className="mb-4 text-base leading-8 text-[#5f6877]">
+          {text}
+        </p>
+      ))}
+
+      <div className="mb-6" />
 
       {section.type === "checkList" && section.items && (
         <div className="rounded-3xl border border-[#dedaff] bg-white p-4 md:p-5">
@@ -199,7 +208,7 @@ type ReadArticleProps = {
 };
 
 function ReadArticle({ data }: ReadArticleProps) {
-  const { article, sections, author } = data;
+  const { article, sections, faqs, author } = data;
 
   return (
     <div className="space-y-8 font-[var(--font-primary)]">
@@ -237,6 +246,8 @@ function ReadArticle({ data }: ReadArticleProps) {
       {sections.map((section) => (
         <DynamicBlogSection key={section.id} section={section} />
       ))}
+
+      {faqs?.length ? <ArticleFaq faqs={faqs} /> : null}
 
       <Author data={author} />
       <Consultation />

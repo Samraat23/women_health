@@ -28,9 +28,17 @@ export type BlogSection = {
   title: string;
   color: string;
   paragraph: string;
+  /** Extra body paragraphs rendered under `paragraph`. */
+  paragraphs?: string[];
   items?: string[];
   cards?: BlogCard[];
   timeline?: BlogTimeline[];
+};
+
+export type BlogFaq = {
+  id: string;
+  question: string;
+  answer: string;
 };
 
 export type BlogAuthor = {
@@ -58,6 +66,7 @@ export type BlogPageData = {
     paragraphs: string[];
   };
   sections: BlogSection[];
+  faqs?: BlogFaq[];
   author: BlogAuthor;
 };
 
@@ -343,6 +352,69 @@ export const youngWomenCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is the difference between PCOD and PCOS?",
+        answer:
+          "Both involve the ovaries and hormonal imbalance. PCOD usually means the ovaries release immature eggs, while PCOS is a wider hormonal and metabolic condition. Your doctor can explain which pattern fits your reports.",
+      },
+      {
+        id: "2",
+        question: "What are the first signs of PCOS?",
+        answer:
+          "Irregular or missed periods, acne, unwanted facial hair, hair thinning, weight gain around the abdomen, and difficulty conceiving are common early signs.",
+      },
+      {
+        id: "3",
+        question: "How is PCOS diagnosed?",
+        answer:
+          "Diagnosis is usually based on your symptoms, menstrual history, a pelvic ultrasound, and blood tests that check hormone and sugar levels.",
+      },
+      {
+        id: "4",
+        question: "Can PCOS be cured completely?",
+        answer:
+          "PCOS is a long-term condition rather than a one-time illness, but symptoms can be controlled well with the right treatment, diet, and lifestyle changes.",
+      },
+      {
+        id: "5",
+        question: "Does PCOS always cause infertility?",
+        answer:
+          "No. Many women with PCOS conceive naturally. When ovulation is irregular, treatment can help improve the chances of pregnancy.",
+      },
+      {
+        id: "6",
+        question: "Will I need lifelong medicines for PCOS?",
+        answer:
+          "Not always. Medicines are often used for a period of time to regulate cycles or support ovulation, and lifestyle changes may reduce how much medication is needed.",
+      },
+      {
+        id: "7",
+        question: "Does weight loss help PCOS?",
+        answer:
+          "Yes. Even a modest reduction in weight can help regulate periods, improve insulin response, and reduce symptoms in many women.",
+      },
+      {
+        id: "8",
+        question: "Can teenagers have PCOS?",
+        answer:
+          "Yes. PCOS can begin around puberty. Irregular cycles, acne, or unusual hair growth in teenagers should be evaluated rather than ignored.",
+      },
+      {
+        id: "9",
+        question: "Is PCOS linked to diabetes?",
+        answer:
+          "PCOS is often associated with insulin resistance, which can raise the long-term risk of type 2 diabetes. Regular screening helps detect this early.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor for PCOS?",
+        answer:
+          "See a doctor if your periods are irregular or absent, if you have troubling acne or hair changes, if your weight is rising rapidly, or if you are finding it hard to conceive.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -456,6 +528,69 @@ export const youngWomenCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is considered a normal menstrual cycle?",
+        answer:
+          "A cycle between roughly 21 and 35 days, with bleeding for about 2 to 7 days, is generally considered normal. What matters most is that your own pattern stays fairly consistent.",
+      },
+      {
+        id: "2",
+        question: "What counts as a menstrual cycle problem?",
+        answer:
+          "Very heavy bleeding, very painful periods, cycles that are much shorter or longer than usual, missed periods, or bleeding between periods can all be considered menstrual problems.",
+      },
+      {
+        id: "3",
+        question: "Why are my periods suddenly heavier than before?",
+        answer:
+          "Hormonal changes, fibroids, polyps, thyroid problems, or conditions such as endometriosis can increase bleeding. A change in your usual pattern should be checked.",
+      },
+      {
+        id: "4",
+        question: "Is severe period pain normal?",
+        answer:
+          "Mild cramping is common, but pain that stops you from working, studying, or sleeping is not something you should have to live with and should be evaluated.",
+      },
+      {
+        id: "5",
+        question: "Can stress affect my menstrual cycle?",
+        answer:
+          "Yes. Stress, sudden weight change, disturbed sleep, and intense exercise can all delay or disturb periods.",
+      },
+      {
+        id: "6",
+        question: "Do menstrual problems affect fertility?",
+        answer:
+          "Some do. Irregular ovulation, untreated hormonal problems, or conditions such as endometriosis may make conception harder, which is why early evaluation helps.",
+      },
+      {
+        id: "7",
+        question: "What tests are usually done for menstrual problems?",
+        answer:
+          "A doctor may suggest a pelvic ultrasound, hormone and thyroid blood tests, and a haemoglobin check to look for anaemia from heavy bleeding.",
+      },
+      {
+        id: "8",
+        question: "Can menstrual problems be treated without surgery?",
+        answer:
+          "In many cases yes. Medicines, hormonal treatment, correcting anaemia, and lifestyle support are often enough. Surgery is considered only for specific causes.",
+      },
+      {
+        id: "9",
+        question: "Is it normal to miss a period occasionally?",
+        answer:
+          "An occasional late or missed period can happen. Repeatedly missing periods, or missing them for three months or more, should be assessed.",
+      },
+      {
+        id: "10",
+        question: "When should I see a gynecologist about my periods?",
+        answer:
+          "See a gynecologist if bleeding is very heavy, if pain is severe, if cycles become irregular, if you bleed between periods, or if periods stop without an obvious reason.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -538,6 +673,69 @@ export const youngWomenCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What are irregular periods?",
+        answer:
+          "Periods are considered irregular when the gap between cycles keeps changing, when cycles are shorter than 21 days or longer than 35 days, or when periods are frequently missed.",
+      },
+      {
+        id: "2",
+        question: "What causes irregular periods?",
+        answer:
+          "Common causes include PCOS, thyroid problems, stress, sudden weight change, excessive exercise, certain medicines, and the years approaching menopause.",
+      },
+      {
+        id: "3",
+        question: "Are irregular periods dangerous?",
+        answer:
+          "They are not always dangerous, but they can signal an underlying hormonal problem. Long gaps between periods may also need treatment to protect the uterine lining.",
+      },
+      {
+        id: "4",
+        question: "How are irregular periods diagnosed?",
+        answer:
+          "Your doctor will review your cycle history and may advise a pelvic ultrasound along with hormone and thyroid blood tests.",
+      },
+      {
+        id: "5",
+        question: "Can irregular periods be treated?",
+        answer:
+          "Yes. Treatment depends on the cause and may include hormonal medicines, thyroid correction, PCOS management, and lifestyle changes.",
+      },
+      {
+        id: "6",
+        question: "Can I get pregnant with irregular periods?",
+        answer:
+          "Yes, though it may take longer because ovulation is harder to predict. Treatment can help make cycles and ovulation more regular.",
+      },
+      {
+        id: "7",
+        question: "Do irregular periods mean I have PCOS?",
+        answer:
+          "Not necessarily. PCOS is one common cause, but thyroid disorders, stress, and other conditions can also cause irregular cycles.",
+      },
+      {
+        id: "8",
+        question: "How long should I wait before seeing a doctor?",
+        answer:
+          "If your cycles have been irregular for three months or more, or if you have missed periods without being pregnant, it is reasonable to get checked.",
+      },
+      {
+        id: "9",
+        question: "Can diet and exercise regulate periods?",
+        answer:
+          "Balanced nutrition, steady weight, regular sleep, and moderate exercise support hormonal balance and can help, though some causes still need medical treatment.",
+      },
+      {
+        id: "10",
+        question: "Are irregular periods normal in teenagers?",
+        answer:
+          "Cycles can be irregular for the first year or two after periods begin. If they remain irregular beyond that, an evaluation is advisable.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -635,6 +833,69 @@ export const youngWomenCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "At what age do periods usually start?",
+        answer:
+          "Most girls start their periods between about 10 and 15 years of age. Timing varies from person to person.",
+      },
+      {
+        id: "2",
+        question: "Is it normal for a teenager to have irregular periods?",
+        answer:
+          "Yes, cycles are often irregular in the first year or two. If irregularity continues beyond that, it is worth getting checked.",
+      },
+      {
+        id: "3",
+        question: "When should a teenager first see a gynecologist?",
+        answer:
+          "A visit is helpful if periods have not started by around 15, if periods are very painful or heavy, if cycles remain irregular, or if there is any unusual discharge or discomfort.",
+      },
+      {
+        id: "4",
+        question: "Does a teenage gynecology visit involve an internal examination?",
+        answer:
+          "Usually not. For most teenagers the visit is a conversation, a general examination, and if needed an ultrasound. Nothing is done without explanation and consent.",
+      },
+      {
+        id: "5",
+        question: "Is period pain normal in teenagers?",
+        answer:
+          "Mild cramps are common. Pain that causes missed school, vomiting, or fainting is not normal and should be evaluated.",
+      },
+      {
+        id: "6",
+        question: "Can teenagers have PCOS?",
+        answer:
+          "Yes. Irregular cycles, acne, unwanted hair growth, or rapid weight gain in teenagers can point to PCOS and should be assessed.",
+      },
+      {
+        id: "7",
+        question: "What hygiene habits matter during periods?",
+        answer:
+          "Changing pads or tampons regularly, washing with plain water, wearing breathable cotton underwear, and avoiding harsh intimate washes all help.",
+      },
+      {
+        id: "8",
+        question: "Should teenagers get the HPV vaccine?",
+        answer:
+          "HPV vaccination is generally recommended in the teenage years, before any exposure. Your doctor can advise on timing and doses.",
+      },
+      {
+        id: "9",
+        question: "Is white discharge normal in teenage girls?",
+        answer:
+          "A small amount of clear or white discharge without itching or odour is usually normal. Discharge with itching, burning, or a strong smell should be checked.",
+      },
+      {
+        id: "10",
+        question: "Can a teenager visit a gynecologist with a parent?",
+        answer:
+          "Yes. Teenagers are welcome to come with a parent or guardian, and consultations are handled privately and sensitively.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -757,6 +1018,69 @@ export const preventiveWomenHealthBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is cervical cancer screening?",
+        answer:
+          "It is a routine test that looks for early changes in the cells of the cervix, long before cancer develops, so that treatment can begin early.",
+      },
+      {
+        id: "2",
+        question: "What is a Pap smear?",
+        answer:
+          "A Pap smear collects a small sample of cells from the cervix to check for abnormal changes. It takes only a few minutes.",
+      },
+      {
+        id: "3",
+        question: "Is a Pap smear painful?",
+        answer:
+          "Most women feel mild pressure or brief discomfort rather than pain. The test is quick and does not usually need any preparation.",
+      },
+      {
+        id: "4",
+        question: "At what age should cervical screening start?",
+        answer:
+          "Screening usually begins in the early twenties or as advised by your doctor, based on your age and history.",
+      },
+      {
+        id: "5",
+        question: "How often should I be screened?",
+        answer:
+          "Depending on the test used and your previous results, screening is generally repeated every three to five years. Your doctor will advise your schedule.",
+      },
+      {
+        id: "6",
+        question: "What is an HPV test?",
+        answer:
+          "An HPV test checks for the virus that causes most cervical cancers. It may be done alone or together with a Pap smear.",
+      },
+      {
+        id: "7",
+        question: "What happens if my result is abnormal?",
+        answer:
+          "An abnormal result does not mean cancer. It usually means some cells need a closer look, often with a colposcopy, and early changes are very treatable.",
+      },
+      {
+        id: "8",
+        question: "Do I still need screening if I have had the HPV vaccine?",
+        answer:
+          "Yes. The vaccine protects against most high-risk HPV types but not all of them, so routine screening is still recommended.",
+      },
+      {
+        id: "9",
+        question: "Do I need screening after menopause?",
+        answer:
+          "Yes. Screening continues after menopause according to your doctor's advice, as risk does not disappear with age.",
+      },
+      {
+        id: "10",
+        question: "Can cervical cancer be prevented?",
+        answer:
+          "In most cases early changes can be found and treated before they become cancer, which is why regular screening and HPV vaccination are so effective.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -854,6 +1178,69 @@ export const preventiveWomenHealthBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is the HPV vaccine?",
+        answer:
+          "It is a vaccine that protects against the human papillomavirus types most often linked to cervical cancer and genital warts.",
+      },
+      {
+        id: "2",
+        question: "Who should get the HPV vaccine?",
+        answer:
+          "It is generally recommended for girls and young women, ideally before any exposure to the virus. Your doctor can advise based on your age.",
+      },
+      {
+        id: "3",
+        question: "What is the best age for HPV vaccination?",
+        answer:
+          "The vaccine works best when given in the pre-teen or teenage years, though older women may still benefit. Your doctor can guide you.",
+      },
+      {
+        id: "4",
+        question: "How many doses are needed?",
+        answer:
+          "Depending on the age at which the course is started, two or three doses are usually given over several months.",
+      },
+      {
+        id: "5",
+        question: "Is the HPV vaccine safe?",
+        answer:
+          "It has been widely used and studied. Most people have no more than mild arm soreness, slight fever, or brief tiredness.",
+      },
+      {
+        id: "6",
+        question: "Can adult women take the HPV vaccine?",
+        answer:
+          "Yes, many adult women can still be vaccinated. The benefit depends on age and previous exposure, so discuss it with your doctor.",
+      },
+      {
+        id: "7",
+        question: "Can I take the vaccine if I am already sexually active?",
+        answer:
+          "Yes. You may still be protected against HPV types you have not encountered, though the benefit may be smaller.",
+      },
+      {
+        id: "8",
+        question: "Does the vaccine mean I can skip Pap smears?",
+        answer:
+          "No. Vaccination does not cover every high-risk HPV type, so routine cervical screening is still needed.",
+      },
+      {
+        id: "9",
+        question: "Can the HPV vaccine be taken during pregnancy?",
+        answer:
+          "Vaccination is usually postponed until after pregnancy. Tell your doctor if you are pregnant or planning to conceive.",
+      },
+      {
+        id: "10",
+        question: "Does the HPV vaccine affect fertility?",
+        answer:
+          "There is no evidence that HPV vaccination affects fertility or future pregnancy.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -970,6 +1357,69 @@ export const preventiveWomenHealthBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "How often should I have a gynecology checkup?",
+        answer:
+          "An annual visit suits most women. Your doctor may suggest more frequent visits if you have ongoing symptoms or a specific condition.",
+      },
+      {
+        id: "2",
+        question: "What happens during a routine gynecology checkup?",
+        answer:
+          "It usually includes a discussion of your cycle and symptoms, a general and pelvic examination, and screening tests such as a Pap smear where appropriate.",
+      },
+      {
+        id: "3",
+        question: "Do I need a checkup if I have no symptoms?",
+        answer:
+          "Yes. Many conditions, including early cervical changes, fibroids, and thyroid problems, cause no symptoms at first and are found on routine review.",
+      },
+      {
+        id: "4",
+        question: "Should I book the visit at a particular time in my cycle?",
+        answer:
+          "For most tests, a few days after your period ends is convenient. If you have unusual bleeding, do not delay the visit waiting for a particular day.",
+      },
+      {
+        id: "5",
+        question: "Do unmarried women need gynecology checkups?",
+        answer:
+          "Yes. Gynecological health concerns periods, hormones, and general well-being, and they apply regardless of marital status.",
+      },
+      {
+        id: "6",
+        question: "Is a pelvic examination always done?",
+        answer:
+          "Not always. What is examined depends on your age, symptoms, and consent, and everything is explained to you beforehand.",
+      },
+      {
+        id: "7",
+        question: "Which tests are commonly advised?",
+        answer:
+          "Depending on your age and history, a doctor may suggest a Pap smear, pelvic ultrasound, haemoglobin, thyroid, and blood sugar tests.",
+      },
+      {
+        id: "8",
+        question: "Should I continue checkups after menopause?",
+        answer:
+          "Yes. Post-menopausal visits help monitor bone health, screening tests, and any unusual bleeding, which should always be reported.",
+      },
+      {
+        id: "9",
+        question: "Can I discuss contraception at a routine visit?",
+        answer:
+          "Yes. A routine visit is a good time to discuss contraception, family planning, and any concerns about intimate health.",
+      },
+      {
+        id: "10",
+        question: "When should I book an appointment sooner than planned?",
+        answer:
+          "Book earlier if you have heavy or irregular bleeding, pelvic pain, unusual discharge, breast changes, or bleeding after intercourse or after menopause.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -1068,6 +1518,69 @@ export const preventiveWomenHealthBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "How often should I examine my breasts?",
+        answer:
+          "A monthly self-check, a few days after your period ends, helps you learn what is normal for you and notice changes early.",
+      },
+      {
+        id: "2",
+        question: "What breast changes should I report?",
+        answer:
+          "Report a new lump, a change in size or shape, skin dimpling, nipple discharge, nipple inversion, or persistent pain in one area.",
+      },
+      {
+        id: "3",
+        question: "Are all breast lumps cancerous?",
+        answer:
+          "No. Most breast lumps are benign, such as fibroadenomas or cysts, but every new lump should be examined to be sure.",
+      },
+      {
+        id: "4",
+        question: "What is a mammogram?",
+        answer:
+          "A mammogram is a low-dose X-ray of the breast used to detect changes that may be too small to feel.",
+      },
+      {
+        id: "5",
+        question: "At what age should mammograms start?",
+        answer:
+          "Screening usually begins around the age of 40, or earlier if you have a strong family history. Your doctor will advise the right age for you.",
+      },
+      {
+        id: "6",
+        question: "What is a breast ultrasound?",
+        answer:
+          "An ultrasound uses sound waves to look at breast tissue. It is often preferred in younger women, whose breast tissue is denser.",
+      },
+      {
+        id: "7",
+        question: "Is breast pain a sign of cancer?",
+        answer:
+          "Breast pain is far more often hormonal than cancerous, especially when it comes and goes with your cycle. Persistent one-sided pain should still be checked.",
+      },
+      {
+        id: "8",
+        question: "Does a family history of breast cancer increase my risk?",
+        answer:
+          "It can. Tell your doctor about any close relatives affected so that screening can begin earlier or be done more often.",
+      },
+      {
+        id: "9",
+        question: "Is nipple discharge always abnormal?",
+        answer:
+          "Not always, but discharge that is bloody, occurs without squeezing, or comes from one breast only should be evaluated.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor about my breasts?",
+        answer:
+          "See a doctor promptly for any new lump, skin or nipple change, unusual discharge, or persistent localised pain.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -1188,6 +1701,69 @@ export const hormonalImbalanceBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "Why are thyroid problems more common in women?",
+        answer:
+          "Women are more prone to thyroid disorders because of hormonal changes around periods, pregnancy, and menopause, and a higher rate of autoimmune thyroid conditions.",
+      },
+      {
+        id: "2",
+        question: "What are the symptoms of an underactive thyroid?",
+        answer:
+          "Tiredness, weight gain, feeling cold, dry skin, hair fall, constipation, low mood, and heavier or irregular periods are common.",
+      },
+      {
+        id: "3",
+        question: "What are the symptoms of an overactive thyroid?",
+        answer:
+          "Weight loss, rapid heartbeat, anxiety, tremor, feeling hot, disturbed sleep, and lighter or irregular periods can occur.",
+      },
+      {
+        id: "4",
+        question: "How are thyroid problems diagnosed?",
+        answer:
+          "A blood test measuring TSH along with T3 and T4 is the main test. An ultrasound or antibody test may be added if needed.",
+      },
+      {
+        id: "5",
+        question: "Can thyroid problems affect my periods?",
+        answer:
+          "Yes. Both underactive and overactive thyroid can make periods heavier, lighter, irregular, or absent.",
+      },
+      {
+        id: "6",
+        question: "Can thyroid problems affect fertility?",
+        answer:
+          "Yes. Untreated thyroid disorders can interfere with ovulation and increase the risk of miscarriage, which is why testing is common in fertility evaluation.",
+      },
+      {
+        id: "7",
+        question: "Do I need thyroid testing in pregnancy?",
+        answer:
+          "Thyroid testing is often advised in early pregnancy, particularly if you have symptoms, a family history, or a previous thyroid problem.",
+      },
+      {
+        id: "8",
+        question: "Is thyroid medication lifelong?",
+        answer:
+          "Often it is, especially for an underactive thyroid, but the dose is reviewed regularly and adjusted as needed.",
+      },
+      {
+        id: "9",
+        question: "Can diet alone correct a thyroid problem?",
+        answer:
+          "Diet supports general health but does not replace medication when it is needed. Adequate iodine and a balanced diet are helpful alongside treatment.",
+      },
+      {
+        id: "10",
+        question: "How often should thyroid levels be rechecked?",
+        answer:
+          "Usually every few months when starting or adjusting treatment, and then once or twice a year when levels are stable.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -1304,6 +1880,69 @@ export const hormonalImbalanceBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is hormonal weight gain?",
+        answer:
+          "It is weight gain driven mainly by hormonal changes rather than diet alone, often involving insulin, thyroid hormones, cortisol, or estrogen.",
+      },
+      {
+        id: "2",
+        question: "Which hormonal conditions commonly cause weight gain?",
+        answer:
+          "PCOS, an underactive thyroid, insulin resistance, high cortisol from long-term stress, and the menopausal transition are common contributors.",
+      },
+      {
+        id: "3",
+        question: "Why does hormonal weight settle around the abdomen?",
+        answer:
+          "Insulin resistance and cortisol tend to encourage fat storage around the waist, which is why the change is often noticed there first.",
+      },
+      {
+        id: "4",
+        question: "How do I know if my weight gain is hormonal?",
+        answer:
+          "Weight gain that continues despite reasonable eating and activity, especially with irregular periods, tiredness, hair changes, or skin changes, may be hormonal and should be tested.",
+      },
+      {
+        id: "5",
+        question: "Which tests help identify the cause?",
+        answer:
+          "Thyroid function, fasting insulin and blood sugar, and hormone tests such as prolactin and androgens are commonly used, along with a pelvic ultrasound where relevant.",
+      },
+      {
+        id: "6",
+        question: "Can hormonal weight gain be reversed?",
+        answer:
+          "In many cases yes. Treating the underlying hormonal problem alongside sustained diet, activity, and sleep changes usually improves weight over time.",
+      },
+      {
+        id: "7",
+        question: "Does crash dieting help?",
+        answer:
+          "No. Very restrictive dieting can worsen hormonal balance, slow metabolism, and disturb periods. Gradual, sustainable change works better.",
+      },
+      {
+        id: "8",
+        question: "What type of exercise is most useful?",
+        answer:
+          "A combination of regular walking or cardio with strength training helps improve insulin sensitivity and preserve muscle.",
+      },
+      {
+        id: "9",
+        question: "Does poor sleep affect weight?",
+        answer:
+          "Yes. Insufficient or irregular sleep raises cortisol and appetite-related hormones and can make weight harder to control.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor about weight gain?",
+        answer:
+          "See a doctor if weight rises quickly without a change in habits, or if it comes with irregular periods, extreme tiredness, hair fall, or unusual hair growth.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -1420,6 +2059,69 @@ export const hormonalImbalanceBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What causes hormonal acne?",
+        answer:
+          "Higher androgen activity increases oil production and blocks pores, which leads to acne along the jawline, chin, and lower face.",
+      },
+      {
+        id: "2",
+        question: "What causes hormonal hair fall?",
+        answer:
+          "Androgen sensitivity, thyroid problems, low iron, PCOS, and post-pregnancy hormonal shifts are common causes of hair thinning in women.",
+      },
+      {
+        id: "3",
+        question: "How is hormonal acne different from ordinary acne?",
+        answer:
+          "Hormonal acne tends to appear on the lower face and jawline, flares before periods, and often persists into adult life.",
+      },
+      {
+        id: "4",
+        question: "Which tests may be advised?",
+        answer:
+          "Depending on your symptoms, a doctor may check thyroid function, androgens, prolactin, vitamin D, iron stores, and blood sugar, along with a pelvic ultrasound.",
+      },
+      {
+        id: "5",
+        question: "Can PCOS cause both acne and hair fall?",
+        answer:
+          "Yes. PCOS commonly causes acne, scalp hair thinning, and unwanted facial or body hair together with irregular periods.",
+      },
+      {
+        id: "6",
+        question: "How long does treatment take to show results?",
+        answer:
+          "Skin usually improves over about two to three months, and hair changes take longer, often three to six months, because of the hair growth cycle.",
+      },
+      {
+        id: "7",
+        question: "Do hormonal treatments help acne and hair fall?",
+        answer:
+          "They can. Hormonal medicines may reduce androgen effects, but they are prescribed after assessment and are not suitable for everyone.",
+      },
+      {
+        id: "8",
+        question: "Does diet affect hormonal acne?",
+        answer:
+          "For some women, high-sugar and highly processed foods worsen acne through insulin effects. A balanced diet supports treatment but rarely replaces it.",
+      },
+      {
+        id: "9",
+        question: "Will hair grow back after treatment?",
+        answer:
+          "Regrowth is often possible when the underlying cause is corrected early, though long-standing thinning may improve only partially.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor?",
+        answer:
+          "See a doctor if acne is persistent or scarring, if hair fall is heavy or patchy, or if these come with irregular periods or unwanted hair growth.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -1536,6 +2238,69 @@ export const hormonalImbalanceBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "Why do hormones affect mood?",
+        answer:
+          "Estrogen and progesterone influence brain chemicals that regulate mood and sleep, so when their levels shift, mood can change too.",
+      },
+      {
+        id: "2",
+        question: "What is PMS?",
+        answer:
+          "Premenstrual syndrome refers to mood and physical symptoms in the days before a period, such as irritability, low mood, bloating, and breast tenderness.",
+      },
+      {
+        id: "3",
+        question: "What is PMDD?",
+        answer:
+          "Premenstrual dysphoric disorder is a more severe form of PMS with intense mood symptoms that interfere with work and relationships. It is treatable.",
+      },
+      {
+        id: "4",
+        question: "When are hormonal mood changes most common?",
+        answer:
+          "They are most common before periods, after childbirth, during breastfeeding, and during the years approaching menopause.",
+      },
+      {
+        id: "5",
+        question: "Are mood swings a sign of thyroid problems?",
+        answer:
+          "They can be. Both underactive and overactive thyroid can cause low mood, anxiety, or irritability, so thyroid testing is often advised.",
+      },
+      {
+        id: "6",
+        question: "How are hormonal mood changes diagnosed?",
+        answer:
+          "A doctor will review your symptom pattern in relation to your cycle and may advise thyroid, hormone, vitamin D, and haemoglobin tests.",
+      },
+      {
+        id: "7",
+        question: "Can lifestyle changes improve mood symptoms?",
+        answer:
+          "Yes. Regular sleep, physical activity, reduced caffeine, balanced meals, and stress management often make a noticeable difference.",
+      },
+      {
+        id: "8",
+        question: "Do these symptoms need medication?",
+        answer:
+          "Not always. Many women improve with lifestyle support. Medication or hormonal treatment is considered when symptoms are severe or persistent.",
+      },
+      {
+        id: "9",
+        question: "Is postnatal low mood the same as hormonal mood swings?",
+        answer:
+          "No. Persistent low mood after childbirth may be postnatal depression, which needs proper assessment and support rather than being dismissed as normal.",
+      },
+      {
+        id: "10",
+        question: "When should I seek help?",
+        answer:
+          "Seek help if mood changes affect your daily life, relationships, or work, if they last beyond your period, or if you have thoughts of harming yourself.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -1652,6 +2417,69 @@ export const pregnancyCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "When should I book my first pregnancy visit?",
+        answer:
+          "Book as soon as your pregnancy is confirmed, ideally within the first six to eight weeks, so that early checks and supplements can begin.",
+      },
+      {
+        id: "2",
+        question: "How often are antenatal visits needed?",
+        answer:
+          "Usually monthly until about 28 weeks, then every two weeks until 36 weeks, and weekly after that, unless your doctor advises otherwise.",
+      },
+      {
+        id: "3",
+        question: "Which supplements are important in pregnancy?",
+        answer:
+          "Folic acid in early pregnancy, along with iron, calcium, and vitamin D as advised by your doctor, are commonly recommended.",
+      },
+      {
+        id: "4",
+        question: "What are common early pregnancy symptoms?",
+        answer:
+          "Nausea, tiredness, breast tenderness, frequent urination, food aversions, and mild cramping are common in the first trimester.",
+      },
+      {
+        id: "5",
+        question: "Is exercise safe during pregnancy?",
+        answer:
+          "Moderate activity such as walking or prenatal yoga is usually safe in an uncomplicated pregnancy. Check with your doctor before starting.",
+      },
+      {
+        id: "6",
+        question: "What foods should be avoided?",
+        answer:
+          "Raw or undercooked meat and eggs, unpasteurised dairy, high-mercury fish, excess caffeine, and alcohol are generally avoided.",
+      },
+      {
+        id: "7",
+        question: "How much weight gain is normal?",
+        answer:
+          "It depends on your pre-pregnancy weight. Your doctor will suggest a suitable range and monitor it at each visit.",
+      },
+      {
+        id: "8",
+        question: "Which warning signs need urgent attention?",
+        answer:
+          "Bleeding, severe abdominal pain, severe headache, blurred vision, high fever, fluid leaking, or reduced baby movements need prompt medical attention.",
+      },
+      {
+        id: "9",
+        question: "Is travel safe during pregnancy?",
+        answer:
+          "Travel is often safest in the second trimester. Discuss your plans with your doctor, especially for long journeys or air travel.",
+      },
+      {
+        id: "10",
+        question: "When should I contact my doctor between visits?",
+        answer:
+          "Contact your doctor any time you have bleeding, persistent pain, fever, vomiting that prevents eating or drinking, or reduced fetal movements.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -1768,6 +2596,69 @@ export const pregnancyCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What makes a pregnancy high risk?",
+        answer:
+          "Factors include maternal age, high blood pressure, diabetes, thyroid disease, twin pregnancy, previous pregnancy loss, previous caesarean, and certain medical conditions.",
+      },
+      {
+        id: "2",
+        question: "Does high risk mean something will go wrong?",
+        answer:
+          "No. It means the pregnancy needs closer monitoring so that problems can be identified and managed early. Many high-risk pregnancies have healthy outcomes.",
+      },
+      {
+        id: "3",
+        question: "How is a high-risk pregnancy monitored?",
+        answer:
+          "With more frequent visits, additional ultrasound scans, blood pressure and blood sugar checks, and growth and Doppler studies as needed.",
+      },
+      {
+        id: "4",
+        question: "What is gestational diabetes?",
+        answer:
+          "It is diabetes that appears during pregnancy. It is usually detected by a glucose test and managed with diet, monitoring, and sometimes medication.",
+      },
+      {
+        id: "5",
+        question: "What is preeclampsia?",
+        answer:
+          "Preeclampsia involves high blood pressure with protein in the urine during pregnancy. It needs close monitoring and can be serious if untreated.",
+      },
+      {
+        id: "6",
+        question: "Can I have a normal delivery in a high-risk pregnancy?",
+        answer:
+          "Sometimes yes. The mode of delivery depends on your specific condition, the baby's position and growth, and how the pregnancy progresses.",
+      },
+      {
+        id: "7",
+        question: "Are extra scans harmful to the baby?",
+        answer:
+          "Ultrasound scans are considered safe in pregnancy and are done only when clinically useful.",
+      },
+      {
+        id: "8",
+        question: "Does a previous miscarriage make this pregnancy high risk?",
+        answer:
+          "Repeated pregnancy loss can place a pregnancy in the high-risk group, and additional tests and monitoring are usually offered.",
+      },
+      {
+        id: "9",
+        question: "Will I need to be admitted early?",
+        answer:
+          "Not always. Admission is advised only if monitoring, medication, or early delivery becomes necessary for your safety or the baby's.",
+      },
+      {
+        id: "10",
+        question: "What warning signs should I never ignore?",
+        answer:
+          "Bleeding, severe headache, blurred vision, swelling of the face or hands, severe abdominal pain, fever, or reduced baby movements need immediate attention.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -1884,6 +2775,69 @@ export const pregnancyCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "Are pregnancy ultrasounds safe?",
+        answer:
+          "Yes. Ultrasound uses sound waves rather than radiation and is considered safe when performed for medical reasons.",
+      },
+      {
+        id: "2",
+        question: "How many scans are needed in pregnancy?",
+        answer:
+          "Most uncomplicated pregnancies need about three to four scans, though more may be advised if closer monitoring is required.",
+      },
+      {
+        id: "3",
+        question: "What is the dating scan?",
+        answer:
+          "An early scan, usually in the first trimester, that confirms the pregnancy, checks the heartbeat, and estimates the due date.",
+      },
+      {
+        id: "4",
+        question: "What is the NT scan?",
+        answer:
+          "The nuchal translucency scan is done around 11 to 14 weeks and helps assess the risk of certain chromosomal conditions.",
+      },
+      {
+        id: "5",
+        question: "What is the anomaly scan?",
+        answer:
+          "Performed around 18 to 22 weeks, it examines the baby's organs and structure in detail.",
+      },
+      {
+        id: "6",
+        question: "What is a growth scan?",
+        answer:
+          "A third-trimester scan that checks the baby's growth, amniotic fluid, and blood flow through the placenta.",
+      },
+      {
+        id: "7",
+        question: "Do I need a full bladder for the scan?",
+        answer:
+          "A full bladder is usually needed for early scans. For later scans it is generally not required. The clinic will tell you what to do.",
+      },
+      {
+        id: "8",
+        question: "Can an ultrasound tell the baby's sex?",
+        answer:
+          "Determining or disclosing the sex of the fetus is prohibited by law in India, so scans are used only for medical assessment.",
+      },
+      {
+        id: "9",
+        question: "What is a Doppler scan?",
+        answer:
+          "A Doppler study assesses blood flow between the placenta and the baby, and is often used in high-risk pregnancies.",
+      },
+      {
+        id: "10",
+        question: "What if the scan shows something unexpected?",
+        answer:
+          "Your doctor will explain the finding, arrange any further tests needed, and discuss the options with you. Many findings turn out to be minor.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2000,6 +2954,69 @@ export const pregnancyCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "How long does recovery after delivery take?",
+        answer:
+          "Most women feel substantially better within about six weeks, though full recovery, especially after a caesarean, can take longer.",
+      },
+      {
+        id: "2",
+        question: "How long does bleeding continue after delivery?",
+        answer:
+          "Postnatal bleeding usually lasts around two to six weeks and gradually reduces. Sudden heavy bleeding or clots should be reported.",
+      },
+      {
+        id: "3",
+        question: "When is the first postnatal checkup?",
+        answer:
+          "A checkup around six weeks after delivery is usual, with an earlier visit if you had a caesarean or any complication.",
+      },
+      {
+        id: "4",
+        question: "When do periods return after delivery?",
+        answer:
+          "This varies. Periods may return within a couple of months if you are not breastfeeding, or take several months if you are breastfeeding.",
+      },
+      {
+        id: "5",
+        question: "Can I get pregnant before my periods return?",
+        answer:
+          "Yes. Ovulation can occur before the first period, so contraception should be discussed even while breastfeeding.",
+      },
+      {
+        id: "6",
+        question: "How should I care for a caesarean wound?",
+        answer:
+          "Keep it clean and dry, avoid heavy lifting, and report redness, swelling, discharge, or increasing pain to your doctor.",
+      },
+      {
+        id: "7",
+        question: "When can I resume exercise?",
+        answer:
+          "Gentle walking can usually begin early. More intense exercise and core work are generally started after your postnatal check and your doctor's approval.",
+      },
+      {
+        id: "8",
+        question: "What is postnatal depression?",
+        answer:
+          "It is persistent low mood, anxiety, or hopelessness after childbirth that goes beyond the short-lived baby blues and needs proper support and treatment.",
+      },
+      {
+        id: "9",
+        question: "What diet supports recovery and breastfeeding?",
+        answer:
+          "A balanced diet with adequate protein, iron, calcium, and fluids, along with any supplements your doctor advises, supports recovery and milk supply.",
+      },
+      {
+        id: "10",
+        question: "Which symptoms need urgent care after delivery?",
+        answer:
+          "Heavy bleeding, fever, severe abdominal or wound pain, foul-smelling discharge, breathing difficulty, calf pain, or thoughts of self-harm need urgent attention.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2120,6 +3137,69 @@ export const fertilityInfertilityBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "When is a couple considered infertile?",
+        answer:
+          "Usually after one year of regular unprotected intercourse without conception, or after six months if the woman is over 35.",
+      },
+      {
+        id: "2",
+        question: "Is infertility always a female problem?",
+        answer:
+          "No. Male factors account for a substantial share of cases, so evaluation of both partners is standard.",
+      },
+      {
+        id: "3",
+        question: "What tests are done for the female partner?",
+        answer:
+          "Common tests include hormone and thyroid blood tests, ovulation assessment, a pelvic ultrasound, and tubal patency tests such as an HSG.",
+      },
+      {
+        id: "4",
+        question: "What tests are done for the male partner?",
+        answer:
+          "A semen analysis is the main first test, sometimes followed by hormone tests or a specialist referral.",
+      },
+      {
+        id: "5",
+        question: "What are the common causes of infertility?",
+        answer:
+          "Ovulation disorders such as PCOS, blocked fallopian tubes, endometriosis, fibroids, low sperm count or motility, and age-related decline are common.",
+      },
+      {
+        id: "6",
+        question: "Does age affect fertility?",
+        answer:
+          "Yes. Egg quality and quantity decline with age, particularly after the mid-thirties, which is why earlier evaluation is advised for older couples.",
+      },
+      {
+        id: "7",
+        question: "Can infertility be treated without IVF?",
+        answer:
+          "Often yes. Ovulation induction, timed intercourse, correction of hormonal problems, IUI, and surgery help many couples conceive without IVF.",
+      },
+      {
+        id: "8",
+        question: "Does stress cause infertility?",
+        answer:
+          "Stress alone is rarely the sole cause, but it can affect cycles and intimacy. Managing stress supports treatment without replacing it.",
+      },
+      {
+        id: "9",
+        question: "How long does fertility treatment take?",
+        answer:
+          "It varies widely. Some couples conceive within a few cycles of simple treatment, while others need longer or more advanced care.",
+      },
+      {
+        id: "10",
+        question: "When should we see a fertility specialist?",
+        answer:
+          "See a specialist after a year of trying, after six months if over 35, or sooner if there are irregular periods, known endometriosis, previous pelvic surgery, or repeated miscarriage.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2236,6 +3316,69 @@ export const fertilityInfertilityBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is IVF?",
+        answer:
+          "In vitro fertilisation is a procedure where eggs and sperm are combined in a laboratory and the resulting embryo is transferred into the uterus.",
+      },
+      {
+        id: "2",
+        question: "Who may need IVF?",
+        answer:
+          "IVF may be advised for blocked tubes, severe male factor infertility, advanced endometriosis, reduced ovarian reserve, or when other treatments have not worked.",
+      },
+      {
+        id: "3",
+        question: "What are the main stages of IVF?",
+        answer:
+          "Ovarian stimulation, egg retrieval, fertilisation in the laboratory, embryo culture, embryo transfer, and a pregnancy test about two weeks later.",
+      },
+      {
+        id: "4",
+        question: "How long does one IVF cycle take?",
+        answer:
+          "A single cycle usually takes around four to six weeks from the start of stimulation to the pregnancy test.",
+      },
+      {
+        id: "5",
+        question: "Is egg retrieval painful?",
+        answer:
+          "It is done under sedation or short anaesthesia, so you should not feel pain during the procedure. Mild cramping afterwards is common.",
+      },
+      {
+        id: "6",
+        question: "What is the success rate of IVF?",
+        answer:
+          "Success depends strongly on age, egg and sperm quality, and the underlying cause. Your doctor can give a realistic estimate for your situation.",
+      },
+      {
+        id: "7",
+        question: "Does IVF always result in twins?",
+        answer:
+          "No. Transferring a single embryo, which is now commonly preferred, greatly reduces the chance of a multiple pregnancy.",
+      },
+      {
+        id: "8",
+        question: "Do I need bed rest after embryo transfer?",
+        answer:
+          "Prolonged bed rest is not required. Most women can return to normal light activity, avoiding heavy exertion.",
+      },
+      {
+        id: "9",
+        question: "Are IVF babies different from naturally conceived babies?",
+        answer:
+          "No. Children conceived through IVF develop in the same way as naturally conceived children.",
+      },
+      {
+        id: "10",
+        question: "What should I bring to an IVF consultation?",
+        answer:
+          "Bring previous test reports, scan records, semen analysis, details of past treatments, and a list of your questions.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2352,6 +3495,69 @@ export const fertilityInfertilityBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is an ovulation problem?",
+        answer:
+          "It means the ovary does not release an egg regularly or at all, which makes conception difficult and often causes irregular periods.",
+      },
+      {
+        id: "2",
+        question: "What are the signs of not ovulating?",
+        answer:
+          "Irregular or absent periods, very unpredictable cycles, absent mid-cycle discharge changes, and difficulty conceiving can all suggest an ovulation problem.",
+      },
+      {
+        id: "3",
+        question: "What causes ovulation problems?",
+        answer:
+          "PCOS is the most common cause. Thyroid disorders, raised prolactin, very low or very high body weight, excessive exercise, and stress can also contribute.",
+      },
+      {
+        id: "4",
+        question: "How is ovulation confirmed?",
+        answer:
+          "Through cycle tracking, mid-luteal progesterone blood tests, follicular ultrasound monitoring, and sometimes ovulation predictor kits.",
+      },
+      {
+        id: "5",
+        question: "Can I ovulate without having a period?",
+        answer:
+          "It is uncommon. Regular periods usually indicate ovulation, though ovulation can occasionally occur before periods return, for example after childbirth.",
+      },
+      {
+        id: "6",
+        question: "Are ovulation problems treatable?",
+        answer:
+          "Yes. Treatment may include correcting thyroid or prolactin problems, weight and lifestyle changes, and ovulation induction medicines.",
+      },
+      {
+        id: "7",
+        question: "What is ovulation induction?",
+        answer:
+          "It is the use of medicines to stimulate the ovary to release an egg, usually with ultrasound monitoring to track the response.",
+      },
+      {
+        id: "8",
+        question: "Can lifestyle changes restore ovulation?",
+        answer:
+          "In many women with PCOS or weight-related problems, weight and lifestyle changes alone can restore regular ovulation.",
+      },
+      {
+        id: "9",
+        question: "Does irregular ovulation mean I cannot conceive?",
+        answer:
+          "No. It means conception may take longer or need help, but many women with ovulation problems conceive with treatment.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor about ovulation?",
+        answer:
+          "See a doctor if your cycles are irregular or absent, if you have been trying to conceive for six to twelve months, or if you have PCOS or thyroid problems.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2468,6 +3674,69 @@ export const fertilityInfertilityBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is tubal blockage?",
+        answer:
+          "It is an obstruction in one or both fallopian tubes that prevents the egg and sperm from meeting or stops a fertilised egg reaching the uterus.",
+      },
+      {
+        id: "2",
+        question: "What causes blocked fallopian tubes?",
+        answer:
+          "Previous pelvic infection, tuberculosis, endometriosis, previous pelvic or abdominal surgery, and ectopic pregnancy are common causes.",
+      },
+      {
+        id: "3",
+        question: "Are there symptoms of blocked tubes?",
+        answer:
+          "Often there are none. Many women discover it only during a fertility evaluation, though some have pelvic pain or a history of infection.",
+      },
+      {
+        id: "4",
+        question: "How is tubal blockage diagnosed?",
+        answer:
+          "Usually with a hysterosalpingography (HSG), a sono-salpingography, or laparoscopy with a dye test.",
+      },
+      {
+        id: "5",
+        question: "What is an HSG test?",
+        answer:
+          "It is an X-ray test in which dye is passed through the uterus and tubes to see whether they are open. It takes a few minutes and may cause brief cramping.",
+      },
+      {
+        id: "6",
+        question: "Can blocked tubes be opened?",
+        answer:
+          "Sometimes. Laparoscopic surgery may correct adhesions or mild blockage, though severely damaged tubes may not be repairable.",
+      },
+      {
+        id: "7",
+        question: "Can I conceive naturally with one open tube?",
+        answer:
+          "Yes, natural conception is possible with one healthy tube, though it may take longer.",
+      },
+      {
+        id: "8",
+        question: "When is IVF advised instead of surgery?",
+        answer:
+          "IVF is often preferred when both tubes are severely damaged, when age or ovarian reserve is a concern, or when surgery has not succeeded.",
+      },
+      {
+        id: "9",
+        question: "Does tubal blockage increase ectopic pregnancy risk?",
+        answer:
+          "Yes. Damaged tubes raise the risk of ectopic pregnancy, so early pregnancy monitoring is important.",
+      },
+      {
+        id: "10",
+        question: "Can blocked tubes be treated with medicines?",
+        answer:
+          "Medicines do not open a mechanical blockage. They are used only to treat an underlying infection such as tuberculosis when present.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2586,6 +3855,69 @@ export const menopauseCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is menopause?",
+        answer:
+          "Menopause is confirmed when a woman has had no periods for twelve consecutive months, marking the natural end of reproductive years.",
+      },
+      {
+        id: "2",
+        question: "At what age does menopause usually occur?",
+        answer:
+          "Most commonly between 45 and 55 years, though it can happen earlier or later.",
+      },
+      {
+        id: "3",
+        question: "What is perimenopause?",
+        answer:
+          "It is the transition period before menopause, often lasting several years, when cycles become irregular and symptoms begin.",
+      },
+      {
+        id: "4",
+        question: "What are the common symptoms?",
+        answer:
+          "Hot flashes, night sweats, disturbed sleep, mood changes, vaginal dryness, reduced libido, joint aches, and irregular periods.",
+      },
+      {
+        id: "5",
+        question: "Is menopause a disease?",
+        answer:
+          "No, it is a natural life stage. However, its symptoms and long-term effects on bone and heart health can be managed.",
+      },
+      {
+        id: "6",
+        question: "What is hormone replacement therapy?",
+        answer:
+          "HRT replaces declining estrogen, sometimes with progesterone, to relieve symptoms. It suits some women and not others, and needs individual assessment.",
+      },
+      {
+        id: "7",
+        question: "Is HRT safe?",
+        answer:
+          "For many women it is effective and reasonably safe when started at the right time and monitored, but risks and benefits differ for each person.",
+      },
+      {
+        id: "8",
+        question: "Can menopause symptoms be managed without hormones?",
+        answer:
+          "Yes. Lifestyle changes, non-hormonal medicines, vaginal moisturisers, calcium and vitamin D, and exercise all help.",
+      },
+      {
+        id: "9",
+        question: "Is bleeding after menopause normal?",
+        answer:
+          "No. Any bleeding after menopause should be evaluated promptly, even if it is light or occurs only once.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor about menopause?",
+        answer:
+          "See a doctor if symptoms disturb your sleep or daily life, if periods become very heavy or irregular, or if you have any bleeding after menopause.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2700,6 +4032,69 @@ export const menopauseCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is a hot flash?",
+        answer:
+          "It is a sudden feeling of intense heat, usually in the face, neck, and chest, often with flushing, sweating, and a rapid heartbeat.",
+      },
+      {
+        id: "2",
+        question: "Why do hot flashes happen?",
+        answer:
+          "Falling estrogen affects the part of the brain that regulates body temperature, making it react to small temperature changes.",
+      },
+      {
+        id: "3",
+        question: "How long do hot flashes last?",
+        answer:
+          "Each episode usually lasts a few minutes. The overall phase can continue for several years, varying widely between women.",
+      },
+      {
+        id: "4",
+        question: "What are night sweats?",
+        answer:
+          "They are hot flashes that occur during sleep, often causing sweating that disturbs rest.",
+      },
+      {
+        id: "5",
+        question: "What triggers hot flashes?",
+        answer:
+          "Spicy food, hot drinks, caffeine, alcohol, smoking, stress, warm rooms, and heavy clothing are common triggers.",
+      },
+      {
+        id: "6",
+        question: "What lifestyle changes help?",
+        answer:
+          "Dressing in layers, keeping the room cool, avoiding known triggers, regular exercise, and relaxation techniques often reduce frequency.",
+      },
+      {
+        id: "7",
+        question: "Which treatments are available?",
+        answer:
+          "Options include hormone therapy for suitable women, non-hormonal prescription medicines, and supportive measures. Your doctor will advise what fits you.",
+      },
+      {
+        id: "8",
+        question: "Are hot flashes dangerous?",
+        answer:
+          "They are not dangerous in themselves, but frequent episodes can disturb sleep and quality of life and deserve treatment.",
+      },
+      {
+        id: "9",
+        question: "Can younger women get hot flashes?",
+        answer:
+          "Yes. They can occur in early menopause, after surgical removal of the ovaries, or with certain medical treatments.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor about hot flashes?",
+        answer:
+          "See a doctor if hot flashes disturb your sleep or daily activities, or if they occur with palpitations, weight loss, or other unexplained symptoms.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2814,6 +4209,69 @@ export const menopauseCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What causes vaginal dryness after menopause?",
+        answer:
+          "Falling estrogen thins and dries the vaginal lining, reducing natural lubrication and elasticity.",
+      },
+      {
+        id: "2",
+        question: "What are the symptoms?",
+        answer:
+          "Dryness, itching, burning, irritation, discomfort or pain during intercourse, and sometimes urinary symptoms.",
+      },
+      {
+        id: "3",
+        question: "Is vaginal dryness only a menopausal problem?",
+        answer:
+          "No. It can also occur while breastfeeding, with certain medicines, after cancer treatment, or with some medical conditions.",
+      },
+      {
+        id: "4",
+        question: "Is it a normal part of ageing that I must accept?",
+        answer:
+          "It is common, but it is treatable. There is no need to live with discomfort or pain.",
+      },
+      {
+        id: "5",
+        question: "What treatments are available?",
+        answer:
+          "Vaginal moisturisers, lubricants for intercourse, local vaginal estrogen, and systemic hormone therapy in suitable women.",
+      },
+      {
+        id: "6",
+        question: "What is the difference between a moisturiser and a lubricant?",
+        answer:
+          "A moisturiser is used regularly to improve tissue hydration, while a lubricant is used at the time of intercourse to reduce friction.",
+      },
+      {
+        id: "7",
+        question: "Is local vaginal estrogen safe?",
+        answer:
+          "Local estrogen acts mainly in the vaginal tissue with very little absorption, and is often suitable even for women who cannot take systemic hormones.",
+      },
+      {
+        id: "8",
+        question: "Can vaginal dryness cause urinary problems?",
+        answer:
+          "Yes. The same tissue changes can cause urinary urgency, discomfort, and recurrent urinary infections.",
+      },
+      {
+        id: "9",
+        question: "How long does treatment take to work?",
+        answer:
+          "Lubricants help immediately, while moisturisers and local estrogen usually show clear improvement over a few weeks of regular use.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor?",
+        answer:
+          "See a doctor if there is bleeding, persistent pain during intercourse, unusual discharge, or if symptoms do not improve with simple measures.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -2928,6 +4386,69 @@ export const menopauseCareBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "Why does bone loss increase after menopause?",
+        answer:
+          "Estrogen helps protect bone. When its level falls after menopause, bone is lost faster than it is rebuilt.",
+      },
+      {
+        id: "2",
+        question: "What is osteoporosis?",
+        answer:
+          "Osteoporosis is a condition in which bones become thin and fragile, increasing the risk of fracture even after a minor fall.",
+      },
+      {
+        id: "3",
+        question: "Does osteoporosis have symptoms?",
+        answer:
+          "Usually not until a fracture occurs. Loss of height, a stooped posture, or back pain may be later signs.",
+      },
+      {
+        id: "4",
+        question: "What is a DEXA scan?",
+        answer:
+          "A DEXA scan is a quick, low-radiation test that measures bone density and helps diagnose osteopenia or osteoporosis.",
+      },
+      {
+        id: "5",
+        question: "When should bone density testing begin?",
+        answer:
+          "Often around or after menopause, and earlier if you have risk factors such as early menopause, steroid use, or a family history.",
+      },
+      {
+        id: "6",
+        question: "How much calcium and vitamin D do I need?",
+        answer:
+          "Requirements vary, but adequate dietary calcium with vitamin D is important. Your doctor will advise the right amount and whether supplements are needed.",
+      },
+      {
+        id: "7",
+        question: "Which exercises protect bone?",
+        answer:
+          "Weight-bearing activity such as brisk walking, along with resistance and balance training, helps maintain bone strength and prevent falls.",
+      },
+      {
+        id: "8",
+        question: "Which habits weaken bone?",
+        answer:
+          "Smoking, excessive alcohol, very low body weight, prolonged inactivity, and long-term steroid use all reduce bone strength.",
+      },
+      {
+        id: "9",
+        question: "Can osteoporosis be treated?",
+        answer:
+          "Yes. Calcium and vitamin D, exercise, and prescription medicines can slow bone loss and reduce fracture risk.",
+      },
+      {
+        id: "10",
+        question: "How can I reduce my risk of falling?",
+        answer:
+          "Good lighting, non-slip mats, avoiding loose rugs, suitable footwear, regular vision checks, and balance exercises all help.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -3048,6 +4569,69 @@ export const sexualIntimateHealthBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What are the common signs of a vaginal infection?",
+        answer:
+          "Itching, burning, unusual discharge, an unpleasant odour, redness, swelling, and discomfort while passing urine or during intercourse.",
+      },
+      {
+        id: "2",
+        question: "What are the common types of vaginal infection?",
+        answer:
+          "Bacterial vaginosis, yeast (candida) infection, and trichomoniasis are the most common. Each needs a different treatment.",
+      },
+      {
+        id: "3",
+        question: "Why do vaginal infections keep coming back?",
+        answer:
+          "Uncontrolled blood sugar, repeated antibiotic use, harsh intimate washes, tight synthetic underwear, and an untreated partner can all cause recurrence.",
+      },
+      {
+        id: "4",
+        question: "How is a vaginal infection diagnosed?",
+        answer:
+          "Through an examination and, when needed, a swab test or vaginal pH check to identify the exact organism.",
+      },
+      {
+        id: "5",
+        question: "Can vaginal infections be treated at home?",
+        answer:
+          "Self-treatment often targets the wrong organism and delays recovery. A proper diagnosis ensures the correct treatment.",
+      },
+      {
+        id: "6",
+        question: "Are vaginal infections sexually transmitted?",
+        answer:
+          "Some, such as trichomoniasis, are. Others, such as yeast infection and bacterial vaginosis, are not always sexually transmitted.",
+      },
+      {
+        id: "7",
+        question: "Does my partner need treatment too?",
+        answer:
+          "For certain infections yes. Your doctor will advise whether partner treatment is required to prevent reinfection.",
+      },
+      {
+        id: "8",
+        question: "Can vaginal infections affect pregnancy?",
+        answer:
+          "Some untreated infections have been associated with pregnancy complications, so infections in pregnancy should always be treated under medical guidance.",
+      },
+      {
+        id: "9",
+        question: "How can I prevent vaginal infections?",
+        answer:
+          "Wash with plain water, avoid douching and scented products, wear breathable cotton underwear, change out of wet clothing promptly, and manage blood sugar.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor?",
+        answer:
+          "See a doctor if symptoms are severe, keep returning, occur with fever or pelvic pain, or if you are pregnant.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -3164,6 +4748,69 @@ export const sexualIntimateHealthBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "Is white discharge normal?",
+        answer:
+          "A small amount of clear or milky discharge without itching or odour is normal and changes naturally through the cycle.",
+      },
+      {
+        id: "2",
+        question: "When is white discharge a concern?",
+        answer:
+          "When it is thick and curd-like, yellow or green, foul-smelling, blood-stained, or comes with itching, burning, or pelvic pain.",
+      },
+      {
+        id: "3",
+        question: "What causes abnormal white discharge?",
+        answer:
+          "Yeast infection, bacterial vaginosis, sexually transmitted infections, cervical problems, and sometimes hormonal changes.",
+      },
+      {
+        id: "4",
+        question: "Does discharge change during the menstrual cycle?",
+        answer:
+          "Yes. It typically becomes clearer and stretchier around ovulation and thicker afterwards. This variation is normal.",
+      },
+      {
+        id: "5",
+        question: "Can stress cause white discharge?",
+        answer:
+          "Stress does not directly cause discharge, but it can affect hormones and immunity, which may make infections more likely.",
+      },
+      {
+        id: "6",
+        question: "Does white discharge cause weakness?",
+        answer:
+          "Discharge itself does not cause weakness. Persistent tiredness usually has another cause, such as anaemia, and should be checked separately.",
+      },
+      {
+        id: "7",
+        question: "How is abnormal discharge diagnosed?",
+        answer:
+          "Through an examination and, where needed, a swab test, vaginal pH testing, and sometimes a Pap smear or ultrasound.",
+      },
+      {
+        id: "8",
+        question: "Can white discharge affect fertility?",
+        answer:
+          "Ordinary discharge does not. Untreated infections that spread to the uterus or tubes can affect fertility, which is why treatment matters.",
+      },
+      {
+        id: "9",
+        question: "Is discharge normal in pregnancy?",
+        answer:
+          "Increased clear or white discharge is common in pregnancy. Any itching, odour, blood, or watery leaking should be reported promptly.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor?",
+        answer:
+          "See a doctor if discharge changes in colour, smell, or amount, or if it comes with itching, pain, fever, or bleeding.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -3280,6 +4927,69 @@ export const sexualIntimateHealthBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is a urinary tract infection?",
+        answer:
+          "A UTI is an infection of the urinary system, most often the bladder, usually caused by bacteria entering through the urethra.",
+      },
+      {
+        id: "2",
+        question: "What are the symptoms of a UTI?",
+        answer:
+          "Burning while passing urine, frequent urge to urinate, passing small amounts, lower abdominal discomfort, cloudy or strong-smelling urine, and sometimes blood in the urine.",
+      },
+      {
+        id: "3",
+        question: "Why are UTIs more common in women?",
+        answer:
+          "The female urethra is shorter and closer to the anus, making it easier for bacteria to reach the bladder.",
+      },
+      {
+        id: "4",
+        question: "How is a UTI diagnosed?",
+        answer:
+          "With a urine routine examination and, when needed, a urine culture to identify the bacteria and the right antibiotic.",
+      },
+      {
+        id: "5",
+        question: "Can a UTI go away without treatment?",
+        answer:
+          "Mild cases occasionally settle, but untreated infection can spread to the kidneys, so a UTI should be assessed rather than ignored.",
+      },
+      {
+        id: "6",
+        question: "What are the signs of a kidney infection?",
+        answer:
+          "Fever with chills, back or flank pain, nausea, and vomiting alongside urinary symptoms suggest the infection has spread and need prompt care.",
+      },
+      {
+        id: "7",
+        question: "Why do I keep getting UTIs?",
+        answer:
+          "Recurrence can relate to incomplete bladder emptying, diabetes, menopause-related tissue changes, sexual activity, or an incomplete previous course of treatment.",
+      },
+      {
+        id: "8",
+        question: "How can I prevent UTIs?",
+        answer:
+          "Drink plenty of water, do not hold urine, pass urine after intercourse, wipe front to back, and wear breathable cotton underwear.",
+      },
+      {
+        id: "9",
+        question: "Are UTIs dangerous in pregnancy?",
+        answer:
+          "They need prompt treatment in pregnancy, as untreated infection can cause complications. Urine is routinely checked during antenatal visits.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor?",
+        answer:
+          "See a doctor if symptoms last more than a day or two, if there is fever or back pain, if you see blood in the urine, or if you are pregnant.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -3396,6 +5106,69 @@ export const sexualIntimateHealthBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is dyspareunia?",
+        answer:
+          "Dyspareunia is the medical term for persistent or recurrent pain during or after sexual intercourse.",
+      },
+      {
+        id: "2",
+        question: "Is pain during intercourse common?",
+        answer:
+          "It is common and many women experience it at some point. It is not something you have to accept, as most causes are treatable.",
+      },
+      {
+        id: "3",
+        question: "What causes pain during intercourse?",
+        answer:
+          "Vaginal dryness, infection, endometriosis, fibroids, pelvic inflammatory disease, vaginismus, scarring after childbirth or surgery, and menopausal tissue changes.",
+      },
+      {
+        id: "4",
+        question: "What is vaginismus?",
+        answer:
+          "Vaginismus is involuntary tightening of the pelvic floor muscles that makes penetration painful or impossible. It responds well to treatment.",
+      },
+      {
+        id: "5",
+        question: "Can psychological factors cause it?",
+        answer:
+          "Yes. Anxiety, past trauma, relationship stress, and fear of pain can contribute, often alongside a physical cause.",
+      },
+      {
+        id: "6",
+        question: "How is it evaluated?",
+        answer:
+          "Through a careful history and a gentle examination, with an ultrasound or swab tests when needed to identify the cause.",
+      },
+      {
+        id: "7",
+        question: "Can it be treated?",
+        answer:
+          "Yes. Treatment depends on the cause and may include lubricants, local estrogen, treating infection or endometriosis, pelvic floor therapy, and counselling.",
+      },
+      {
+        id: "8",
+        question: "Can pain during intercourse affect fertility?",
+        answer:
+          "It does not directly cause infertility, but it can make conception harder by making intercourse difficult, and some underlying causes affect fertility.",
+      },
+      {
+        id: "9",
+        question: "Is pain after childbirth normal?",
+        answer:
+          "Some discomfort is common in the early months, especially after stitches or while breastfeeding. Persistent pain should be evaluated.",
+      },
+      {
+        id: "10",
+        question: "When should I see a doctor?",
+        answer:
+          "See a doctor if pain is persistent, worsening, occurs with bleeding, unusual discharge, or pelvic pain, or if it is affecting your relationship.",
+      },
+    ] satisfies BlogFaq[],
+
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -3412,9 +5185,9 @@ export const laparoscopicSurgeryBlogs = [
   {
     hero: {
       badge: "Laparoscopic Surgery",
-      title: "Endometriosis Treatment in Gurgaon",
+      title: "Endometriosis Doctor In Gurgaon",
       date: "May 24, 2026",
-      readTime: "8 min read",
+      readTime: "9 min read",
       status: "Doctor Reviewed",
     },
 
@@ -3422,15 +5195,14 @@ export const laparoscopicSurgeryBlogs = [
       id: "endometriosis-treatment",
       slug: "endometriosis-treatment",
       category: "laparoscopic-surgery",
-      title: "Endometriosis Treatment in Gurgaon",
+      title: "Endometriosis Doctor In Gurgaon",
       intro:
-        "Endometriosis is a painful gynecological condition where tissue similar to the lining of the uterus grows outside the uterus, affecting ovaries, tubes, bladder, and pelvic organs.",
+        "Endometriosis is a condition in which tissue that resembles the lining of the uterus develops outside of the uterus. It can cause painful periods, pelvic pain, heavy bleeding, pain during intercourse, and sometimes difficulty getting pregnant.",
       image:
         "https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=1400&auto=format&fit=crop",
 
       paragraphs: [
-        "Many women silently suffer from severe period pain, fertility problems, and chronic pelvic discomfort without realizing that endometriosis may be the reason.",
-        "Early diagnosis and advanced laparoscopic surgery can help preserve fertility, reduce pain, and improve quality of life significantly.",
+        "Having some period pain can be normal, but very painful or ongoing symptoms should not be ignored. If you are facing these problems, an experienced Endometriosis Doctor In Gurgaon can help find the cause and suggest the right treatment based on your condition.",
       ],
     },
 
@@ -3438,26 +5210,30 @@ export const laparoscopicSurgeryBlogs = [
       {
         id: "about",
         type: "cards",
-        eyebrow: "What is Endometriosis?",
+        eyebrow: "What Is Endometriosis?",
         title: "Understanding endometriosis",
         color: "#ec4899",
         paragraph:
-          "Endometriosis happens when tissue similar to the uterine lining grows outside the uterus and causes inflammation, pain, and scarring.",
+          "Endometriosis is a condition where tissue similar to the lining of the uterus grows outside the uterus, often around the ovaries, fallopian tubes, or other parts of the pelvic area. It can cause inflammation, pain, and sometimes scar tissue. In some cases, it may also affect the bowel or bladder.",
+        paragraphs: ["Common areas affected:"],
         cards: [
           {
-            title: "Pelvic pain",
+            title: "Ovaries",
             description:
-              "Pain may become severe during periods and daily activities.",
+              "Can cause pain, inflammation, cysts, and menstrual discomfort.",
           },
           {
-            title: "Fertility issues",
+            title: "Fallopian tubes",
             description:
-              "Endometriosis may affect ovaries, tubes, and conception chances.",
+              "Can cause inflammation, blockage, and fertility problems.",
           },
           {
-            title: "Progressive condition",
-            description:
-              "Without treatment, disease severity may increase over time.",
+            title: "Pelvic area",
+            description: "May cause pain, pressure, and daily discomfort.",
+          },
+          {
+            title: "Bowel or bladder",
+            description: "Can cause pain while urinating or passing stool.",
           },
         ],
       },
@@ -3466,18 +5242,31 @@ export const laparoscopicSurgeryBlogs = [
         id: "symptoms",
         type: "warning",
         eyebrow: "Symptoms",
-        title: "Symptoms you should not ignore",
+        title: "20 symptoms of endometriosis you should not ignore",
         color: "#ef4444",
         paragraph:
-          "Many women think severe pain is normal — but it is not.",
+          "Endometriosis does not produce exactly the same symptoms in everyone. Some people experience only a few symptoms, while others may have several. Common symptoms that can be associated with endometriosis include:",
         items: [
-          "Severe pain during periods",
-          "Pain during or after intercourse",
-          "Difficulty in conceiving",
-          "Chronic pelvic pain",
-          "Painful urination during periods",
-          "Painful bowel movements",
-          "Recurrent chocolate cyst",
+          "Severe period pain",
+          "Pelvic pain",
+          "Lower abdominal pain",
+          "Lower back pain",
+          "Heavy menstrual bleeding",
+          "Pain during or after sexual intercourse",
+          "Pain while passing stool",
+          "Pain while urinating",
+          "Bloating",
+          "Abdominal discomfort",
+          "Fatigue or extreme tiredness",
+          "Nausea",
+          "Irregular or difficult periods",
+          "Pain that continues beyond menstruation",
+          "Difficulty becoming pregnant",
+          "Pain that interferes with work or everyday activities",
+          "Bowel-related discomfort during periods",
+          "Urinary discomfort during periods",
+          "Mood changes or emotional distress related to chronic symptoms",
+          "Persistent pelvic discomfort between periods",
         ],
       },
 
@@ -3515,49 +5304,67 @@ export const laparoscopicSurgeryBlogs = [
         title: "Possible causes of endometriosis",
         color: "#f97316",
         paragraph:
-          "The exact cause is not completely understood, but several factors may contribute.",
+          "The exact cause of endometriosis is not fully known. Doctors believe that several factors may play a role in causing the condition. It may be linked to:",
         items: [
-          "Retrograde menstruation",
-          "Hormonal imbalance",
-          "Genetic factors",
-          "Immune system abnormalities",
-          "Estrogen-related growth stimulation",
-          "Inflammatory pelvic environment",
+          "Hormonal factors: hormonal changes, especially estrogen, may support the growth of endometriosis tissue.",
+          "Family history: having a close family member with endometriosis may increase your risk.",
+          "Backward menstrual flow: menstrual blood may flow backward through the fallopian tubes into the pelvic area.",
+        ],
+      },
+
+      {
+        id: "when-to-see",
+        type: "warning",
+        eyebrow: "When To See A Doctor",
+        title: "When should you see an endometriosis doctor?",
+        color: "#f43f5e",
+        paragraph:
+          "Period pain can be common, but severe or ongoing pain should not be ignored. If your symptoms are affecting your daily life or getting worse over time, it may be time to consult an Endometriosis Doctor In Gurgaon.",
+        paragraphs: ["You should consider seeing a doctor if you have:"],
+        items: [
+          "Severe period pain",
+          "Persistent pelvic pain",
+          "Pain during sex",
+          "Pain during bowel movements",
+          "Pain while urinating",
+          "Heavy periods",
+          "Difficulty getting pregnant",
+          "Worsening symptoms",
         ],
       },
 
       {
         id: "risk",
         type: "timeline",
-        eyebrow: "Why Early Diagnosis Matters",
-        title: "How delayed treatment affects health",
+        eyebrow: "Stages Of Endometriosis",
+        title: "How delayed treatment can affect health",
         color: "#10b981",
         paragraph:
-          "Endometriosis is a progressive condition and may worsen without treatment.",
+          "Endometriosis symptoms can continue or become harder to manage when proper medical care is delayed. The effects are different for everyone and may depend on the extent of the condition.",
         timeline: [
           {
             label: "Stage 1",
             title: "Increasing pain",
             description:
-              "Pelvic pain and period pain may become more severe.",
+              "Period and pelvic pain may become more frequent or difficult to manage.",
           },
           {
             label: "Stage 2",
-            title: "Ovarian damage",
+            title: "Ovarian cysts",
             description:
-              "Chocolate cysts may affect healthy ovarian tissue.",
+              "Endometriosis may lead to cysts on the ovaries, which can cause pain and discomfort.",
           },
           {
             label: "Stage 3",
-            title: "Fertility reduction",
+            title: "Fertility concerns",
             description:
-              "Adhesions and inflammation may reduce pregnancy chances.",
+              "Deeper lesions and adhesions may affect the reproductive organs and make pregnancy more difficult.",
           },
           {
             label: "Stage 4",
             title: "Organ adhesions",
             description:
-              "Scar tissue may affect bowel, bladder, and pelvic organs.",
+              "Extensive scar tissue may cause pelvic organs, including the bowel or bladder, to stick together.",
           },
         ],
       },
@@ -3566,25 +5373,37 @@ export const laparoscopicSurgeryBlogs = [
         id: "treatment",
         type: "cards",
         eyebrow: "Advanced Treatment",
-        title: "Treatment options we offer",
+        title: "Endometriosis treatment in Gurgaon",
         color: "#14b8a6",
         paragraph:
-          "Treatment depends on symptoms, fertility goals, age, and disease severity.",
+          "Endometriosis treatment depends on your symptoms, age, overall health, and whether you are planning a pregnancy. There is no single treatment that works for everyone. The best Endometriosis Doctor In Gurgaon may recommend medicines, hormonal treatment, pain management, surgery, or fertility support based on your individual condition.",
         cards: [
           {
-            title: "Medical management",
-            description:
-              "Pain relief medicines and hormonal therapy help control progression.",
+            title: "Pain relief",
+            description: "Medicines can help manage period and pelvic pain.",
+          },
+          {
+            title: "Hormonal therapy",
+            description: "Helps control hormone-related symptoms.",
           },
           {
             title: "Laparoscopic surgery",
-            description:
-              "Keyhole surgery removes endometriosis tissue with minimal cuts.",
+            description: "May remove endometriosis tissue and adhesions.",
           },
           {
-            title: "Fertility preservation",
+            title: "Ovarian cyst treatment",
             description:
-              "Treatment focuses on protecting reproductive health whenever possible.",
+              "Cysts related to endometriosis may require treatment.",
+          },
+          {
+            title: "Fertility support",
+            description:
+              "Treatment can be planned if you are having difficulty conceiving.",
+          },
+          {
+            title: "Regular follow-up",
+            description:
+              "Check-ups help monitor symptoms and treatment progress.",
           },
         ],
       },
@@ -3593,36 +5412,19 @@ export const laparoscopicSurgeryBlogs = [
         id: "laparoscopy",
         type: "checkList",
         eyebrow: "Laparoscopic Surgery",
-        title: "Benefits of minimally invasive surgery",
+        title: "Laparoscopic surgery for endometriosis",
         color: "#0ea5e9",
         paragraph:
-          "Advanced laparoscopic surgery offers faster recovery and better long-term results.",
+          "Laparoscopic surgery may be considered for severe symptoms, when medicines do not provide enough relief, or when endometriosis affects fertility. It uses small incisions to examine and treat affected areas.",
         items: [
-          "Tiny keyhole incisions",
-          "Minimal scars",
-          "Faster recovery",
-          "Less postoperative pain",
-          "Early return to work",
-          "Precise disease removal",
-          "Better fertility outcomes",
-        ],
-      },
-
-      {
-        id: "consult",
-        type: "warning",
-        eyebrow: "When To Consult",
-        title: "When should you meet a specialist?",
-        color: "#dc2626",
-        paragraph:
-          "Do not delay medical evaluation if symptoms affect your quality of life.",
-        items: [
-          "Pain affects daily routine",
-          "Difficulty conceiving",
-          "Repeated chocolate cysts",
-          "Heavy painful periods",
-          "Previous treatment failure",
-          "Severe pelvic discomfort",
+          "Pain relief",
+          "Lesion removal",
+          "Adhesion treatment",
+          "Ovarian cyst treatment",
+          "Fertility support",
+          "Reduced pelvic pain",
+          "Improved daily comfort",
+          "Better quality of life",
         ],
       },
 
@@ -3647,7 +5449,7 @@ export const laparoscopicSurgeryBlogs = [
             description:
               "Patients usually return to normal activities early.",
           },
-         
+
           {
             label: "Consultation",
             title: "Expert evaluation",
@@ -3656,7 +5458,104 @@ export const laparoscopicSurgeryBlogs = [
           },
         ],
       },
+
+      {
+        id: "consult",
+        type: "warning",
+        eyebrow: "When To Consult",
+        title: "When should you meet a specialist?",
+        color: "#dc2626",
+        paragraph:
+          "If your period pain is getting worse or affecting your daily life, it's time to see a specialist. Early diagnosis and treatment can help manage symptoms and prevent the condition from becoming more severe.",
+        paragraphs: ["See a specialist if you have:"],
+        items: [
+          "Severe period pain",
+          "Pelvic pain between periods",
+          "Heavy or irregular periods",
+          "Pain during intercourse",
+          "Pain while passing urine or stool",
+          "Difficulty getting pregnant",
+          "Symptoms not improving with medicines",
+          "Frequent missed work or school due to pain",
+        ],
+      },
+
+      {
+        id: "why-choose",
+        type: "cards",
+        eyebrow: "Why Choose Us",
+        title: "Why choose the best endometriosis doctor in Gurgaon?",
+        color: "#6366f1",
+        paragraph:
+          "Choosing the right specialist is important when endometriosis symptoms are affecting your daily life, periods, or fertility. The Best Endometriosis Doctor In Gurgaon can carefully understand your symptoms, medical history, and concerns before suggesting the right tests and treatment. A specialist can also explain your condition in simple terms so you can make informed decisions about your care.",
+        paragraphs: [
+          "Every patient experiences endometriosis differently, so treatment should be planned according to individual needs. An experienced doctor can discuss different options, including medicines, hormonal treatment, laparoscopic surgery, and fertility support when required. Regular follow-ups can also help monitor your symptoms and make changes to the treatment plan when needed.",
+        ],
+      },
     ] satisfies BlogSection[],
+
+    faqs: [
+      {
+        id: "1",
+        question: "What is endometriosis?",
+        answer:
+          "Endometriosis happens when tissue similar to the uterus lining grows outside the uterus. It can cause pain, heavy periods, and fertility problems.",
+      },
+      {
+        id: "2",
+        question: "What are the common symptoms of endometriosis?",
+        answer:
+          "Common symptoms include severe period pain, pelvic pain, heavy bleeding, pain during sex, bloating, and difficulty getting pregnant.",
+      },
+      {
+        id: "3",
+        question: "What causes endometriosis?",
+        answer:
+          "The exact cause is not known. Hormones, family history, genetics, and other factors may play a role.",
+      },
+      {
+        id: "4",
+        question: "How is endometriosis diagnosed?",
+        answer:
+          "Your doctor will review your symptoms and medical history and may recommend an ultrasound, MRI, or other tests.",
+      },
+      {
+        id: "5",
+        question: "What are the stages of endometriosis?",
+        answer:
+          "There are four stages: minimal, mild, moderate, and severe. The stage does not always indicate how much pain you may have.",
+      },
+      {
+        id: "6",
+        question: "Can endometriosis be treated without surgery?",
+        answer:
+          "Yes. Depending on your condition, medicines and hormonal treatment may help control symptoms.",
+      },
+      {
+        id: "7",
+        question: "When is surgery needed for endometriosis?",
+        answer:
+          "Surgery may be considered when symptoms are severe, medicines are not helping enough, or fertility is affected.",
+      },
+      {
+        id: "8",
+        question: "Can endometriosis affect fertility?",
+        answer:
+          "Yes, endometriosis can sometimes make it harder to get pregnant. Your doctor can suggest treatment based on your fertility plans.",
+      },
+      {
+        id: "9",
+        question: "Can endometriosis come back after treatment?",
+        answer:
+          "Yes, symptoms may return in some patients. Regular follow-ups can help keep the condition under control.",
+      },
+      {
+        id: "10",
+        question: "When should I see an Endometriosis Doctor In Gurgaon?",
+        answer:
+          "See a specialist if you have severe period pain, ongoing pelvic pain, heavy periods, pain during sex, or difficulty getting pregnant.",
+      },
+    ] satisfies BlogFaq[],
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -3873,38 +5772,82 @@ export const laparoscopicSurgeryBlogs = [
         ],
       },
   
-      {
-        id: "faq",
-        type: "cards",
-        eyebrow: "FAQ",
-        title: "Frequently asked questions",
-        color: "#f97316",
-        paragraph:
-          "Common questions women ask regarding fibroid treatment and surgery.",
-        cards: [
-          {
-            title: "Are fibroids cancerous?",
-            description:
-              "No, fibroids are benign (non-cancerous) in most cases.",
-          },
-          {
-            title: "Can fibroids affect fertility?",
-            description:
-              "Yes, especially large or submucosal fibroids may affect pregnancy chances.",
-          },
-          {
-            title: "Is surgery always necessary?",
-            description:
-              "No, many fibroids can be managed medically without surgery.",
-          },
-          {
-            title: "Is laparoscopy safe?",
-            description:
-              "Yes, laparoscopic surgery is a safe minimally invasive procedure with faster recovery.",
-          },
-        ],
-      },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "Are fibroids cancerous?",
+        answer:
+          "No, fibroids are benign (non-cancerous) in most cases.",
+      },
+      {
+        id: "2",
+        question: "What are uterine fibroids?",
+        answer:
+          "Fibroids are non-cancerous growths of muscle tissue in or around the wall of the uterus. They are very common in women of reproductive age.",
+      },
+      {
+        id: "3",
+        question: "What symptoms do fibroids cause?",
+        answer:
+          "Heavy or prolonged periods, pelvic pressure or pain, frequent urination, constipation, back pain, and sometimes difficulty conceiving.",
+      },
+      {
+        id: "4",
+        question: "Can fibroids affect fertility?",
+        answer:
+          "Yes, especially large or submucosal fibroids may affect pregnancy chances.",
+      },
+      {
+        id: "5",
+        question: "Is surgery always necessary?",
+        answer:
+          "No, many fibroids can be managed medically without surgery.",
+      },
+      {
+        id: "6",
+        question: "How are fibroids diagnosed?",
+        answer:
+          "Usually with a pelvic examination and ultrasound, sometimes supported by an MRI or hysteroscopy.",
+      },
+      {
+        id: "7",
+        question: "Is laparoscopy safe?",
+        answer:
+          "Yes, laparoscopic surgery is a safe minimally invasive procedure with faster recovery.",
+      },
+      {
+        id: "8",
+        question: "What is the difference between myomectomy and hysterectomy?",
+        answer:
+          "Myomectomy removes only the fibroids and preserves the uterus, while hysterectomy removes the uterus itself. The choice depends on your age and pregnancy plans.",
+      },
+      {
+        id: "9",
+        question: "Can fibroids come back after surgery?",
+        answer:
+          "New fibroids can develop after myomectomy in some women, so follow-up is advised. They do not return after hysterectomy.",
+      },
+      {
+        id: "10",
+        question: "How long is recovery after laparoscopic fibroid surgery?",
+        answer:
+          "Most women go home within a few days and return to routine activities within about two to four weeks, depending on the surgery.",
+      },
+      {
+        id: "11",
+        question: "Do fibroids shrink after menopause?",
+        answer:
+          "Many fibroids shrink after menopause as estrogen levels fall, though any new growth or bleeding after menopause must be checked.",
+      },
+      {
+        id: "12",
+        question: "Can I conceive after fibroid surgery?",
+        answer:
+          "Many women conceive after myomectomy. Your doctor will advise how long to wait before trying, based on the surgery performed.",
+      },
+    ] satisfies BlogFaq[],
+
   
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -4116,38 +6059,82 @@ export const laparoscopicSurgeryBlogs = [
         ],
       },
   
-      {
-        id: "faq",
-        type: "cards",
-        eyebrow: "Frequently Asked Questions",
-        title: "Common questions about ovarian cysts",
-        color: "#22c55e",
-        paragraph:
-          "Women commonly have questions regarding ovarian cyst diagnosis and treatment.",
-        cards: [
-          {
-            title: "Are ovarian cysts dangerous?",
-            description:
-              "Most ovarian cysts are benign and harmless, but some need monitoring or treatment.",
-          },
-          {
-            title: "Can cysts disappear naturally?",
-            description:
-              "Yes, many functional cysts resolve on their own without surgery.",
-          },
-          {
-            title: "Will surgery remove my ovary?",
-            description:
-              "No, surgery usually aims to remove only the cyst while preserving the ovary.",
-          },
-          {
-            title: "Can ovarian cysts affect pregnancy?",
-            description:
-              "Some cysts may affect fertility, but treatment can improve pregnancy chances.",
-          },
-        ],
-      },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "Are ovarian cysts dangerous?",
+        answer:
+          "Most ovarian cysts are benign and harmless, but some need monitoring or treatment.",
+      },
+      {
+        id: "2",
+        question: "What is an ovarian cyst?",
+        answer:
+          "It is a fluid-filled sac that forms on or inside an ovary. Many form as part of the normal menstrual cycle.",
+      },
+      {
+        id: "3",
+        question: "What symptoms do ovarian cysts cause?",
+        answer:
+          "Many cause none. Others bring pelvic pain or pressure, bloating, irregular periods, pain during intercourse, or discomfort during periods.",
+      },
+      {
+        id: "4",
+        question: "Can cysts disappear naturally?",
+        answer:
+          "Yes, many functional cysts resolve on their own without surgery.",
+      },
+      {
+        id: "5",
+        question: "How are ovarian cysts diagnosed?",
+        answer:
+          "Usually with a pelvic ultrasound, sometimes with blood tests or an MRI when the appearance needs further assessment.",
+      },
+      {
+        id: "6",
+        question: "When is surgery needed for an ovarian cyst?",
+        answer:
+          "Surgery is considered for large cysts, cysts that persist or grow, cysts causing severe pain, or those with features that need removal.",
+      },
+      {
+        id: "7",
+        question: "Will surgery remove my ovary?",
+        answer:
+          "No, surgery usually aims to remove only the cyst while preserving the ovary.",
+      },
+      {
+        id: "8",
+        question: "Can ovarian cysts affect pregnancy?",
+        answer:
+          "Some cysts may affect fertility, but treatment can improve pregnancy chances.",
+      },
+      {
+        id: "9",
+        question: "What is a chocolate cyst?",
+        answer:
+          "It is an ovarian cyst caused by endometriosis, filled with old blood. It often causes painful periods and may affect fertility.",
+      },
+      {
+        id: "10",
+        question: "What is ovarian torsion?",
+        answer:
+          "Torsion is twisting of the ovary, which can happen with a large cyst. It causes sudden severe pain and needs emergency care.",
+      },
+      {
+        id: "11",
+        question: "How long is recovery after laparoscopic cyst removal?",
+        answer:
+          "Most women are discharged within one to three days and resume normal activity within about two weeks.",
+      },
+      {
+        id: "12",
+        question: "Can ovarian cysts recur after surgery?",
+        answer:
+          "New cysts can form, particularly with PCOS or endometriosis, so follow-up scans are usually advised.",
+      },
+    ] satisfies BlogFaq[],
+
   
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -4327,38 +6314,82 @@ export const laparoscopicSurgeryBlogs = [
         ],
       },
   
-      {
-        id: "faq",
-        type: "cards",
-        eyebrow: "Frequently Asked Questions",
-        title: "Common questions about cervical cerclage",
-        color: "#f97316",
-        paragraph:
-          "Women often have concerns regarding pregnancy safety and cerclage procedure.",
-        cards: [
-          {
-            title: "Is the procedure safe?",
-            description:
-              "Yes, laparoscopic cerclage is a safe minimally invasive procedure in experienced hands.",
-          },
-          {
-            title: "Can I conceive naturally after cerclage?",
-            description:
-              "Yes, natural conception is possible after cerclage placement.",
-          },
-          {
-            title: "Will I need cesarean delivery?",
-            description:
-              "Yes, delivery is usually performed by C-section because the stitch stays in place.",
-          },
-          {
-            title: "Does cerclage improve pregnancy outcome?",
-            description:
-              "Yes, it significantly improves chances of carrying pregnancy to term.",
-          },
-        ],
-      },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "Is the procedure safe?",
+        answer:
+          "Yes, laparoscopic cerclage is a safe minimally invasive procedure in experienced hands.",
+      },
+      {
+        id: "2",
+        question: "What is cervical cerclage?",
+        answer:
+          "It is a stitch placed around the cervix to keep it closed and support the pregnancy when the cervix is weak.",
+      },
+      {
+        id: "3",
+        question: "What is a weak or incompetent cervix?",
+        answer:
+          "It is a cervix that opens too early in pregnancy without labour pains, which can lead to late miscarriage or premature birth.",
+      },
+      {
+        id: "4",
+        question: "Who may need a cerclage?",
+        answer:
+          "Women with a history of late miscarriage, previous premature birth, a short cervix on scan, or previous cervical surgery.",
+      },
+      {
+        id: "5",
+        question: "Can I conceive naturally after cerclage?",
+        answer:
+          "Yes, natural conception is possible after cerclage placement.",
+      },
+      {
+        id: "6",
+        question: "What is the difference between vaginal and laparoscopic cerclage?",
+        answer:
+          "A vaginal cerclage is placed through the vagina, while a laparoscopic cerclage is placed higher, through keyhole abdominal surgery, often when a vaginal stitch has failed.",
+      },
+      {
+        id: "7",
+        question: "When is cerclage usually done?",
+        answer:
+          "A vaginal stitch is commonly placed in the second trimester, while a laparoscopic cerclage may be placed before pregnancy or in early pregnancy.",
+      },
+      {
+        id: "8",
+        question: "Will I need cesarean delivery?",
+        answer:
+          "Yes, delivery is usually performed by C-section because the stitch stays in place.",
+      },
+      {
+        id: "9",
+        question: "Does cerclage improve pregnancy outcome?",
+        answer:
+          "Yes, it significantly improves chances of carrying pregnancy to term.",
+      },
+      {
+        id: "10",
+        question: "What precautions are needed after cerclage?",
+        answer:
+          "Your doctor will advise on rest, activity, and intercourse, and will monitor you with regular scans and check-ups.",
+      },
+      {
+        id: "11",
+        question: "What symptoms should I report after cerclage?",
+        answer:
+          "Report bleeding, fluid leaking, regular cramps or contractions, fever, or unusual discharge without delay.",
+      },
+      {
+        id: "12",
+        question: "Can the stitch be used again in future pregnancies?",
+        answer:
+          "A laparoscopic cerclage often remains in place for future pregnancies. Your doctor will advise based on your situation.",
+      },
+    ] satisfies BlogFaq[],
+
   
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -4549,38 +6580,82 @@ export const laparoscopicSurgeryBlogs = [
         ],
       },
   
-      {
-        id: "faq",
-        type: "cards",
-        eyebrow: "Frequently Asked Questions",
-        title: "Common questions about hysteroscopy",
-        color: "#f97316",
-        paragraph:
-          "Women often ask about pain, recovery, and fertility after hysteroscopy.",
-        cards: [
-          {
-            title: "Is hysteroscopy painful?",
-            description:
-              "The procedure is usually performed under short anesthesia or sedation, so discomfort is minimal.",
-          },
-          {
-            title: "How long does hysteroscopy take?",
-            description:
-              "Most procedures take around 15–45 minutes depending on the condition.",
-          },
-          {
-            title: "Can hysteroscopy improve pregnancy chances?",
-            description:
-              "Yes, correcting uterine abnormalities may improve fertility and IVF success.",
-          },
-          {
-            title: "Is hospital admission required?",
-            description:
-              "Most hysteroscopy procedures are day-care surgeries with same-day discharge.",
-          },
-        ],
-      },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is hysteroscopy?",
+        answer:
+          "It is a procedure in which a thin telescope is passed through the cervix to look inside the uterus, and to treat problems found there.",
+      },
+      {
+        id: "2",
+        question: "Is hysteroscopy painful?",
+        answer:
+          "The procedure is usually performed under short anesthesia or sedation, so discomfort is minimal.",
+      },
+      {
+        id: "3",
+        question: "Which conditions can hysteroscopy treat?",
+        answer:
+          "Polyps, submucosal fibroids, uterine septum, intrauterine adhesions, abnormal bleeding, and a displaced contraceptive device.",
+      },
+      {
+        id: "4",
+        question: "How long does hysteroscopy take?",
+        answer:
+          "Most procedures take around 15–45 minutes depending on the condition.",
+      },
+      {
+        id: "5",
+        question: "Is hospital admission required?",
+        answer:
+          "Most hysteroscopy procedures are day-care surgeries with same-day discharge.",
+      },
+      {
+        id: "6",
+        question: "Can hysteroscopy improve pregnancy chances?",
+        answer:
+          "Yes, correcting uterine abnormalities may improve fertility and IVF success.",
+      },
+      {
+        id: "7",
+        question: "What is the difference between diagnostic and operative hysteroscopy?",
+        answer:
+          "Diagnostic hysteroscopy only inspects the uterine cavity, while operative hysteroscopy also treats the problem in the same sitting.",
+      },
+      {
+        id: "8",
+        question: "Are there any cuts or scars?",
+        answer:
+          "No. Hysteroscopy is performed through the natural passage of the cervix, so there are no abdominal incisions or scars.",
+      },
+      {
+        id: "9",
+        question: "What is normal after the procedure?",
+        answer:
+          "Mild cramping and light spotting for a few days are common. Heavy bleeding, fever, or severe pain should be reported.",
+      },
+      {
+        id: "10",
+        question: "When can I resume normal activities?",
+        answer:
+          "Most women return to routine activities within a day or two, following the advice given at discharge.",
+      },
+      {
+        id: "11",
+        question: "When can I try to conceive after hysteroscopy?",
+        answer:
+          "Many women are advised to wait until after the next period or as guided by their doctor, depending on what was treated.",
+      },
+      {
+        id: "12",
+        question: "Is hysteroscopy safe?",
+        answer:
+          "It is a widely used and generally safe procedure. Complications are uncommon and are discussed with you beforehand.",
+      },
+    ] satisfies BlogFaq[],
+
   
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -4791,38 +6866,82 @@ export const laparoscopicSurgeryBlogs = [
         ],
       },
   
-      {
-        id: "faq",
-        type: "cards",
-        eyebrow: "Frequently Asked Questions",
-        title: "Common questions about fertility surgery",
-        color: "#f97316",
-        paragraph:
-          "Women commonly ask about fertility outcomes, ovarian reserve, and recovery after surgery.",
-        cards: [
-          {
-            title: "Can surgery improve fertility?",
-            description:
-              "Yes, treating endometriosis, fibroids, adhesions, or tubal problems may improve pregnancy chances.",
-          },
-          {
-            title: "Will surgery affect ovarian reserve?",
-            description:
-              "Fertility-preserving surgical techniques are used carefully to protect ovarian function.",
-          },
-          {
-            title: "Is fertility surgery painful?",
-            description:
-              "Most procedures are minimally invasive with less pain and faster recovery.",
-          },
-          {
-            title: "When can I try for pregnancy after surgery?",
-            description:
-              "Timing depends on the procedure and condition treated. Personalized advice is provided after surgery.",
-          },
-        ],
-      },
     ] satisfies BlogSection[],
+    faqs: [
+      {
+        id: "1",
+        question: "What is fertility-enhancing surgery?",
+        answer:
+          "It is surgery aimed at correcting conditions that reduce fertility, such as endometriosis, fibroids, adhesions, tubal disease, or uterine abnormalities.",
+      },
+      {
+        id: "2",
+        question: "Can surgery improve fertility?",
+        answer:
+          "Yes, treating endometriosis, fibroids, adhesions, or tubal problems may improve pregnancy chances.",
+      },
+      {
+        id: "3",
+        question: "Which conditions may benefit from fertility surgery?",
+        answer:
+          "Endometriosis, submucosal or large fibroids, pelvic adhesions, tubal blockage, uterine septum, polyps, and some ovarian cysts.",
+      },
+      {
+        id: "4",
+        question: "Will surgery affect ovarian reserve?",
+        answer:
+          "Fertility-preserving surgical techniques are used carefully to protect ovarian function.",
+      },
+      {
+        id: "5",
+        question: "Is fertility surgery painful?",
+        answer:
+          "Most procedures are minimally invasive with less pain and faster recovery.",
+      },
+      {
+        id: "6",
+        question: "When can I try for pregnancy after surgery?",
+        answer:
+          "Timing depends on the procedure and condition treated. Personalized advice is provided after surgery.",
+      },
+      {
+        id: "7",
+        question: "Is surgery done before or instead of IVF?",
+        answer:
+          "It depends. Surgery may improve natural conception, or improve IVF success by correcting the uterine cavity. Your doctor will advise the right sequence.",
+      },
+      {
+        id: "8",
+        question: "What is the recovery time?",
+        answer:
+          "Most laparoscopic and hysteroscopic fertility procedures allow a return to routine activity within one to two weeks.",
+      },
+      {
+        id: "9",
+        question: "Does surgery guarantee pregnancy?",
+        answer:
+          "No treatment can guarantee pregnancy. Surgery improves the conditions for conception, and outcomes depend on age, ovarian reserve, and other factors.",
+      },
+      {
+        id: "10",
+        question: "Are the tests done before surgery?",
+        answer:
+          "Yes. Hormone tests, ultrasound, tubal assessment, and a semen analysis for the partner are usually completed before planning surgery.",
+      },
+      {
+        id: "11",
+        question: "Can both partners be evaluated together?",
+        answer:
+          "Yes, and it is recommended. Fertility assessment is most useful when both partners are evaluated.",
+      },
+      {
+        id: "12",
+        question: "When should we consider fertility surgery?",
+        answer:
+          "Consider it when investigations show a correctable problem, when conception has not occurred despite other treatment, or when symptoms such as severe pelvic pain also need management.",
+      },
+    ] satisfies BlogFaq[],
+
   
     author: {
       name: "Dr. Kusum Lata Bhardwaj",

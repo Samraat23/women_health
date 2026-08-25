@@ -79,9 +79,9 @@ function SmartLink({ href, children, className, ariaLabel }) {
 function FooterLinkColumn({ title, links }) {
   return (
     <div>
-      <h3 className="font-[var(--font-primary)] text-lg font-black text-[var(--primary-text-color)]">
+      <p className="font-[var(--font-primary)] text-lg font-black text-[var(--primary-text-color)]">
         {title}
-      </h3>
+      </p>
       <ul className="mt-5 space-y-3">
         {links.map((link) => (
           <li key={`${title}-${link.name}`}>
@@ -138,9 +138,9 @@ function Footer() {
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--primary-color)]">
                 Patient Moments
               </p>
-              <h2 className="mt-2 font-[var(--font-primary)] text-2xl font-black text-[var(--primary-text-color)] md:text-3xl">
+              <p className="mt-2 font-[var(--font-primary)] text-2xl font-black text-[var(--primary-text-color)] md:text-3xl">
                 Our happy patients
-              </h2>
+              </p>
             </div>
 
             <SmartLink

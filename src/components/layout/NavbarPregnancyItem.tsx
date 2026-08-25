@@ -64,9 +64,9 @@ function NavbarPregnancyItem({
             >
               {/* Category Header with Gradient */}
               <div className='relative pb-3 mb-2'>
-                <h1 className={`text-lg font-bold font- text-primary  group-hover:scale-105 transition-transform text-white  duration-300`}>
+                <p className={`text-lg font-bold group-hover:scale-105 transition-transform text-white duration-300`}>
                   {category.name}
-                </h1>
+                </p>
                 <div className={`absolute bottom-0 left-0 h-1 w-12  bg-pink_color rounded-full group-hover:w-full transition-all duration-500`} />
               </div>
 
@@ -80,7 +80,7 @@ function NavbarPregnancyItem({
                     // once; hover still prefetches the one being aimed at.
                     prefetch={false}
                     onClick={onNavigate}
-                    className="relative text-md font-medium text-white transition-all duration-300 hover:translate-x-1.5 hover:text-primary active:scale-[0.98] group/link"
+                    className="relative text-md font-medium text-white transition-all duration-300 hover:translate-x-1.5 active:scale-[0.98] group/link"
                   >
                     <span className='relative z-10 flex items-center gap-2'>
                       <span className='w-1.5 h-1.5 rounded-full bg-gray-400 group-hover/link:scale-125 transition-transform' />

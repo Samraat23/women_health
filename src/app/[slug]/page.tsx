@@ -9,8 +9,9 @@ import HeroSection from "@/components/blogs/HeroSection";
 import ReadArticle from "@/components/blogs/ReadArticle";
 import ReadingProgress from "@/components/blogs/ReadingProgress";
 import ServiceCard from "@/components/shared/ServiceCard";
-import { allBlogData, type BlogPageData } from "@/data/BlogData";
 import { gynecologyCategories } from "@/data/Categories";
+import { getSeedArticleSlugs } from "@/lib/articleSeed";
+import { getArticleRecord, getArticleRecords } from "@/lib/articleStore";
 
 type ArticlePageProps = {
   params: Promise<{
@@ -18,26 +19,17 @@ type ArticlePageProps = {
   }>;
 };
 
-const blogsBySlug = new Map<string, BlogPageData>();
-
-for (const blog of allBlogData) {
-  if (blog.article.slug) {
-    blogsBySlug.set(blog.article.slug, blog);
-  }
-}
-
 export function generateStaticParams() {
-  return allBlogData
-    .map((blog) => blog.article.slug)
-    .filter((slug): slug is string => Boolean(slug))
-    .map((slug) => ({ slug }));
+  // Prerender from the shipped article set; admin-only additions still render
+  // on demand.
+  return getSeedArticleSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const blog = blogsBySlug.get(slug);
+  const blog = await getArticleRecord(slug);
 
   if (!blog) {
     return {
@@ -53,7 +45,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: ArticlePageProps) {
   const { slug } = await params;
-  const blog = blogsBySlug.get(slug);
+  const blog = await getArticleRecord(slug);
 
   if (!blog) {
     notFound();
@@ -63,7 +55,7 @@ export default async function Page({ params }: ArticlePageProps) {
     (item) => item.slug === blog.article.category
   );
 
-  const relatedBlogs = allBlogData.filter(
+  const relatedBlogs = (await getArticleRecords()).filter(
     (item) =>
       item.article.category === blog.article.category &&
       item.article.slug !== blog.article.slug
@@ -78,7 +70,7 @@ export default async function Page({ params }: ArticlePageProps) {
       <ReadingProgress />
       <HeroSection data={blog.hero} />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8 py-14 lg:grid-cols-[260px_1fr_320px]">
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-8 md:px-6 md:py-12 lg:grid-cols-[260px_1fr_320px] lg:py-14">
         <aside className="hidden lg:block">
           <div className="sticky top-33">
             <ContentTopics
@@ -113,15 +105,15 @@ export default async function Page({ params }: ArticlePageProps) {
       </section>
 
       {relatedBlogs.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 pb-20 md:px-6">
+        <section className="mx-auto max-w-7xl px-4 pb-14 md:px-6 md:pb-20">
           <div className="mb-8 flex flex-col justify-between gap-3 md:flex-row md:items-end">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.25em] text-[var(--primary-text)]">
                 Read more
               </p>
-              <h2 className="mt-3 text-3xl font-black text-[var(--primary-text-color)]">
+              <p className="mt-3 text-3xl font-black text-[var(--primary-text-color)]">
                 Related articles
-              </h2>
+              </p>
             </div>
 
             {category && (

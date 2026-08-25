@@ -67,6 +67,8 @@ export type BlogPageData = {
   };
   sections: BlogSection[];
   faqs?: BlogFaq[];
+  /** Overrides the default FAQ heading when the source article names its own. */
+  faqTitle?: string;
   author: BlogAuthor;
 };
 
@@ -5211,7 +5213,7 @@ export const laparoscopicSurgeryBlogs = [
         id: "about",
         type: "cards",
         eyebrow: "What Is Endometriosis?",
-        title: "Understanding endometriosis",
+        title: "Understanding Endometriosis",
         color: "#ec4899",
         paragraph:
           "Endometriosis is a condition where tissue similar to the lining of the uterus grows outside the uterus, often around the ovaries, fallopian tubes, or other parts of the pelvic area. It can cause inflammation, pain, and sometimes scar tissue. In some cases, it may also affect the bowel or bladder.",
@@ -5223,16 +5225,16 @@ export const laparoscopicSurgeryBlogs = [
               "Can cause pain, inflammation, cysts, and menstrual discomfort.",
           },
           {
-            title: "Fallopian tubes",
+            title: "Fallopian Tubes",
             description:
               "Can cause inflammation, blockage, and fertility problems.",
           },
           {
-            title: "Pelvic area",
+            title: "Pelvic Area",
             description: "May cause pain, pressure, and daily discomfort.",
           },
           {
-            title: "Bowel or bladder",
+            title: "Bowel or Bladder",
             description: "Can cause pain while urinating or passing stool.",
           },
         ],
@@ -5242,7 +5244,7 @@ export const laparoscopicSurgeryBlogs = [
         id: "symptoms",
         type: "warning",
         eyebrow: "Symptoms",
-        title: "20 symptoms of endometriosis you should not ignore",
+        title: "20 Symptoms of Endometriosis you should not ignore",
         color: "#ef4444",
         paragraph:
           "Endometriosis does not produce exactly the same symptoms in everyone. Some people experience only a few symptoms, while others may have several. Common symptoms that can be associated with endometriosis include:",
@@ -5271,44 +5273,17 @@ export const laparoscopicSurgeryBlogs = [
       },
 
       {
-        id: "cyst",
-        type: "cards",
-        eyebrow: "Chocolate Cyst",
-        title: "What is a chocolate cyst?",
-        color: "#8b5cf6",
-        paragraph:
-          "Chocolate cysts are ovarian cysts formed because of endometriosis tissue inside ovaries.",
-        cards: [
-          {
-            title: "Dark blood-filled cyst",
-            description:
-              "The cyst contains old blood, giving a chocolate-like appearance.",
-          },
-          {
-            title: "Pelvic discomfort",
-            description:
-              "Cysts may cause pain, pressure, or discomfort during periods.",
-          },
-          {
-            title: "Fertility impact",
-            description:
-              "Large or recurrent cysts may affect ovarian reserve and fertility.",
-          },
-        ],
-      },
-
-      {
         id: "causes",
         type: "checkList",
-        eyebrow: "Why It Happens",
-        title: "Possible causes of endometriosis",
+        eyebrow: "Why it Happens",
+        title: "Possible Causes of Endometriosis",
         color: "#f97316",
         paragraph:
           "The exact cause of endometriosis is not fully known. Doctors believe that several factors may play a role in causing the condition. It may be linked to:",
         items: [
-          "Hormonal factors: hormonal changes, especially estrogen, may support the growth of endometriosis tissue.",
-          "Family history: having a close family member with endometriosis may increase your risk.",
-          "Backward menstrual flow: menstrual blood may flow backward through the fallopian tubes into the pelvic area.",
+          "Hormonal Factors: Hormonal changes, especially estrogen, may support the growth of endometriosis tissue.",
+          "Family History: Having a close family member with endometriosis may increase your risk.",
+          "Backward Menstrual Flow: Menstrual blood may flow backward through the fallopian tubes into the pelvic area.",
         ],
       },
 
@@ -5316,53 +5291,53 @@ export const laparoscopicSurgeryBlogs = [
         id: "when-to-see",
         type: "warning",
         eyebrow: "When To See A Doctor",
-        title: "When should you see an endometriosis doctor?",
+        title: "When Should You See an Endometriosis Doctor?",
         color: "#f43f5e",
         paragraph:
           "Period pain can be common, but severe or ongoing pain should not be ignored. If your symptoms are affecting your daily life or getting worse over time, it may be time to consult an Endometriosis Doctor In Gurgaon.",
         paragraphs: ["You should consider seeing a doctor if you have:"],
         items: [
-          "Severe period pain",
-          "Persistent pelvic pain",
-          "Pain during sex",
-          "Pain during bowel movements",
-          "Pain while urinating",
-          "Heavy periods",
-          "Difficulty getting pregnant",
-          "Worsening symptoms",
+          "Severe Period Pain",
+          "Persistent Pelvic Pain",
+          "Pain During Sex",
+          "Pain During Bowel Movements",
+          "Pain While Urinating",
+          "Heavy Periods",
+          "Difficulty Getting Pregnant",
+          "Worsening Symptoms",
         ],
       },
 
       {
         id: "risk",
         type: "timeline",
-        eyebrow: "Stages Of Endometriosis",
-        title: "How delayed treatment can affect health",
+        eyebrow: "Stages of Endometriosis",
+        title: "How Delayed Treatment Can Affect Health",
         color: "#10b981",
         paragraph:
           "Endometriosis symptoms can continue or become harder to manage when proper medical care is delayed. The effects are different for everyone and may depend on the extent of the condition.",
         timeline: [
           {
             label: "Stage 1",
-            title: "Increasing pain",
+            title: "Increasing Pain",
             description:
               "Period and pelvic pain may become more frequent or difficult to manage.",
           },
           {
             label: "Stage 2",
-            title: "Ovarian cysts",
+            title: "Ovarian Cysts",
             description:
               "Endometriosis may lead to cysts on the ovaries, which can cause pain and discomfort.",
           },
           {
             label: "Stage 3",
-            title: "Fertility concerns",
+            title: "Fertility Concerns",
             description:
               "Deeper lesions and adhesions may affect the reproductive organs and make pregnancy more difficult.",
           },
           {
             label: "Stage 4",
-            title: "Organ adhesions",
+            title: "Organ Adhesions",
             description:
               "Extensive scar tissue may cause pelvic organs, including the bowel or bladder, to stick together.",
           },
@@ -5372,36 +5347,36 @@ export const laparoscopicSurgeryBlogs = [
       {
         id: "treatment",
         type: "cards",
-        eyebrow: "Advanced Treatment",
-        title: "Endometriosis treatment in Gurgaon",
+        eyebrow: "ADVANCED TREATMENT",
+        title: "Endometriosis Treatment In Gurgaon",
         color: "#14b8a6",
         paragraph:
           "Endometriosis treatment depends on your symptoms, age, overall health, and whether you are planning a pregnancy. There is no single treatment that works for everyone. The best Endometriosis Doctor In Gurgaon may recommend medicines, hormonal treatment, pain management, surgery, or fertility support based on your individual condition.",
         cards: [
           {
-            title: "Pain relief",
+            title: "Pain Relief",
             description: "Medicines can help manage period and pelvic pain.",
           },
           {
-            title: "Hormonal therapy",
+            title: "Hormonal Therapy",
             description: "Helps control hormone-related symptoms.",
           },
           {
-            title: "Laparoscopic surgery",
+            title: "Laparoscopic Surgery",
             description: "May remove endometriosis tissue and adhesions.",
           },
           {
-            title: "Ovarian cyst treatment",
+            title: "Ovarian Cyst Treatment",
             description:
               "Cysts related to endometriosis may require treatment.",
           },
           {
-            title: "Fertility support",
+            title: "Fertility Support",
             description:
               "Treatment can be planned if you are having difficulty conceiving.",
           },
           {
-            title: "Regular follow-up",
+            title: "Regular Follow-Up",
             description:
               "Check-ups help monitor symptoms and treatment progress.",
           },
@@ -5412,71 +5387,40 @@ export const laparoscopicSurgeryBlogs = [
         id: "laparoscopy",
         type: "checkList",
         eyebrow: "Laparoscopic Surgery",
-        title: "Laparoscopic surgery for endometriosis",
+        title: "Laparoscopic Surgery for Endometriosis",
         color: "#0ea5e9",
         paragraph:
           "Laparoscopic surgery may be considered for severe symptoms, when medicines do not provide enough relief, or when endometriosis affects fertility. It uses small incisions to examine and treat affected areas.",
         items: [
-          "Pain relief",
-          "Lesion removal",
-          "Adhesion treatment",
-          "Ovarian cyst treatment",
-          "Fertility support",
-          "Reduced pelvic pain",
-          "Improved daily comfort",
-          "Better quality of life",
-        ],
-      },
-
-      {
-        id: "cost",
-        type: "timeline",
-        eyebrow: "Surgery Information",
-        title: "Endometriosis surgery and recovery",
-        color: "#22c55e",
-        paragraph:
-          "Cost and recovery depend on disease severity, cyst size, and previous surgeries.",
-        timeline: [
-          {
-            label: "Hospital Stay",
-            title: "3–4 days admission",
-            description:
-              "Most patients recover quickly after laparoscopic surgery.",
-          },
-          {
-            label: "Recovery",
-            title: "Faster healing",
-            description:
-              "Patients usually return to normal activities early.",
-          },
-
-          {
-            label: "Consultation",
-            title: "Expert evaluation",
-            description:
-              "Discuss your symptoms and fertility goals with a specialist.",
-          },
+          "Pain Relief",
+          "Lesion Removal",
+          "Adhesion Treatment",
+          "Ovarian Cyst Treatment",
+          "Fertility Support",
+          "Reduced Pelvic Pain",
+          "Improved Daily Comfort",
+          "Better Quality of Life",
         ],
       },
 
       {
         id: "consult",
         type: "warning",
-        eyebrow: "When To Consult",
-        title: "When should you meet a specialist?",
+        eyebrow: "WHEN TO CONSULT",
+        title: "When Should You Meet a Specialist?",
         color: "#dc2626",
         paragraph:
           "If your period pain is getting worse or affecting your daily life, it's time to see a specialist. Early diagnosis and treatment can help manage symptoms and prevent the condition from becoming more severe.",
         paragraphs: ["See a specialist if you have:"],
         items: [
-          "Severe period pain",
-          "Pelvic pain between periods",
-          "Heavy or irregular periods",
-          "Pain during intercourse",
-          "Pain while passing urine or stool",
-          "Difficulty getting pregnant",
-          "Symptoms not improving with medicines",
-          "Frequent missed work or school due to pain",
+          "Severe Period Pain",
+          "Pelvic Pain Between Periods",
+          "Heavy or Irregular Periods",
+          "Pain During Intercourse",
+          "Pain While Passing Urine or Stool",
+          "Difficulty Getting Pregnant",
+          "Symptoms Not Improving with Medicines",
+          "Frequent Missed Work or School Due to Pain",
         ],
       },
 
@@ -5484,7 +5428,7 @@ export const laparoscopicSurgeryBlogs = [
         id: "why-choose",
         type: "cards",
         eyebrow: "Why Choose Us",
-        title: "Why choose the best endometriosis doctor in Gurgaon?",
+        title: "Why Choose the Best Endometriosis Doctor In Gurgaon?",
         color: "#6366f1",
         paragraph:
           "Choosing the right specialist is important when endometriosis symptoms are affecting your daily life, periods, or fertility. The Best Endometriosis Doctor In Gurgaon can carefully understand your symptoms, medical history, and concerns before suggesting the right tests and treatment. A specialist can also explain your condition in simple terms so you can make informed decisions about your care.",
@@ -5493,6 +5437,8 @@ export const laparoscopicSurgeryBlogs = [
         ],
       },
     ] satisfies BlogSection[],
+
+    faqTitle: "Frequently Asked Questions About Endometriosis",
 
     faqs: [
       {

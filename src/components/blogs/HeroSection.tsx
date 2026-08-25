@@ -77,7 +77,7 @@ function HeroSection({ data }: HeroSectionProps) {
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        className="relative overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-5 pb-14 pt-28 shadow-[0_28px_70px_rgba(27,20,99,0.20)] sm:px-8 sm:pt-32 md:px-12 lg:pb-16 lg:pt-36"
+        className="relative overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-4 pb-10 pt-24 shadow-[0_28px_70px_rgba(27,20,99,0.20)] sm:px-8 sm:pb-14 sm:pt-32 md:px-12 lg:pb-16 lg:pt-36"
       >
         <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:82px_82px]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(247,244,238,0.84)_100%)]" />
@@ -94,17 +94,17 @@ function HeroSection({ data }: HeroSectionProps) {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-black text-[var(--primary-text-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)]"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-xs font-black text-[var(--primary-text-color)] shadow-[0_12px_26px_rgba(27,20,99,0.16)] sm:px-4 sm:py-2 sm:text-sm"
             >
               <Sparkles size={16} className="text-[var(--primary-color)]" />
               {data.badge}
             </motion.div>
 
-            <h1 className="mx-auto mt-5 max-w-4xl font-[var(--font-primary)] text-4xl font-black leading-tight tracking-normal text-white sm:text-5xl md:text-6xl lg:mx-0 lg:text-5xl">
+            <h1 className="mx-auto mt-4 max-w-4xl font-[var(--font-primary)] text-[1.75rem] font-black leading-tight tracking-normal text-white sm:mt-5 sm:text-4xl md:text-5xl lg:mx-0 lg:text-[2.75rem]">
               <TypingText text={data.title} className="block" />
             </h1>
 
-            <p className="mx-auto mt-6 max-w-2xl text-base font-semibold leading-8 text-white/82 md:text-lg lg:mx-0">
+            <p className="mx-auto mt-4 max-w-2xl text-[15px] font-semibold leading-7 text-white/82 sm:mt-6 sm:text-base sm:leading-8 md:text-lg lg:mx-0">
               Doctor-reviewed women&apos;s health guidance from Dr. Kusum Lata
               Bhardwaj, created to help you understand symptoms, treatment
               options, and the right time to consult.

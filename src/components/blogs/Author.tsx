@@ -27,9 +27,9 @@ function Author({ data }: AuthorProps) {
             {data.label}
           </p>
 
-          <h2 className="mt-1 text-base font-black text-[#21145f]">
+          <p className="mt-1 text-base font-black text-[#21145f]">
             {data.name}
-          </h2>
+          </p>
 
           <p className="text-xs font-medium text-[#667085]">
             {data.designation}

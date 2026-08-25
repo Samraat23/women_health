@@ -1,10 +1,17 @@
 import Link from "next/link";
-import { LayoutDashboard, Menu, PanelBottom, ShieldCheck } from "lucide-react";
+import {
+  FileText,
+  LayoutDashboard,
+  Menu,
+  PanelBottom,
+  ShieldCheck,
+} from "lucide-react";
 
 import { adminModules } from "@/features/admin/firebase/adminModules";
 import AdminLogoutButton from "@/features/admin/home/AdminLogoutButton";
 
 const moduleIcons = {
+  articles: FileText,
   navbar: Menu,
   footer: PanelBottom,
 };

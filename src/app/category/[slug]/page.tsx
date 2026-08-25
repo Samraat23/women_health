@@ -25,7 +25,8 @@ import {
   gynecologyCategories,
   type GynecologyCategory,
 } from "@/data/Categories";
-import { allBlogData, type BlogPageData } from "@/data/BlogData";
+import { getArticleRecords } from "@/lib/articleStore";
+import type { ArticleRecord } from "@/types/article";
 
 type CategoryPageProps = {
   params: Promise<{
@@ -50,23 +51,29 @@ const categoryIconMap: Record<string, LucideIcon> = {
   "Sexual & Intimate Health": ShieldCheck,
 };
 
-const blogsBySlug = new Map<string, BlogPageData>();
+/**
+ * Resolves each category's article list from the store, so admin edits to a
+ * title or image show up on the category page too.
+ */
+async function getCategoryBlogMap() {
+  const blogsBySlug = new Map<string, ArticleRecord>();
 
-for (const blog of allBlogData) {
-  if (blog.article.slug) {
-    blogsBySlug.set(blog.article.slug, blog);
+  for (const record of await getArticleRecords()) {
+    blogsBySlug.set(record.slug, record);
   }
-}
 
-const categoryBlogsBySlug = new Map<string, BlogPageData[]>();
+  const byCategory = new Map<string, ArticleRecord[]>();
 
-for (const category of gynecologyCategories) {
-  categoryBlogsBySlug.set(
-    category.slug,
-    category.blogSlugs
-      .map((slug) => blogsBySlug.get(slug))
-      .filter((blog): blog is BlogPageData => Boolean(blog))
-  );
+  for (const category of gynecologyCategories) {
+    byCategory.set(
+      category.slug,
+      category.blogSlugs
+        .map((slug) => blogsBySlug.get(slug))
+        .filter((blog): blog is ArticleRecord => Boolean(blog))
+    );
+  }
+
+  return byCategory;
 }
 
 export function generateStaticParams() {
@@ -97,9 +104,7 @@ function getCategoryBySlug(slug: string) {
   return gynecologyCategories.find((item) => item.slug === slug);
 }
 
-function getCategoryBlogs(category: GynecologyCategory) {
-  return categoryBlogsBySlug.get(category.slug) || [];
-}
+
 
 function getCategoryIcon(title: string) {
   return categoryIconMap[title] || Stethoscope;
@@ -112,11 +117,10 @@ function renderCategoryIcon(title: string, size: number) {
 }
 
 function getCategoryPreviewImage(
-  category: GynecologyCategory
+  category: GynecologyCategory,
+  blogs: ArticleRecord[]
 ): string | StaticImageData {
-  const firstBlog = getCategoryBlogs(category)[0];
-
-  return firstBlog?.article.image || category.image;
+  return blogs[0]?.article.image || category.image;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -127,7 +131,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  const blogs = getCategoryBlogs(activeCategory);
+  const categoryBlogs = await getCategoryBlogMap();
+  const blogs = categoryBlogs.get(activeCategory.slug) || [];
   const heroImage = blogs[0]?.article.image || activeCategory.image;
   const categoryStats: CategoryStat[] = [
     {
@@ -263,7 +268,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               <div className="mt-4 space-y-2">
                 {gynecologyCategories.map((cat) => {
                   const isActive = cat.slug === activeCategory.slug;
-                  const previewImage = getCategoryPreviewImage(cat);
+                  const catBlogs = categoryBlogs.get(cat.slug) || [];
+                  const previewImage = getCategoryPreviewImage(cat, catBlogs);
 
                   return (
                     <Link
@@ -298,7 +304,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                               : "text-[var(--secondary-text)]/58"
                           }`}
                         >
-                          {getCategoryBlogs(cat).length} topics
+                          {catBlogs.length} topics
                         </span>
                       </span>
 
@@ -357,7 +363,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   );
 }
 
-function TreatmentCard({ blog }: { blog: BlogPageData }) {
+function TreatmentCard({ blog }: { blog: ArticleRecord }) {
   return (
     <Link href={`/${blog.article.slug}`} prefetch={false} className="block h-full">
       <article className="group h-full min-h-[390px] overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(27,20,99,0.10)]">

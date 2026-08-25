@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse, type NextRequest } from "next/server";
 
 import {
@@ -40,6 +41,8 @@ export async function PUT(request: NextRequest) {
   }
 
   await saveHomePageContent(content);
+  // Push the edit straight to the prerendered home page.
+  revalidatePath("/");
 
   return NextResponse.json({ ok: true, content });
 }

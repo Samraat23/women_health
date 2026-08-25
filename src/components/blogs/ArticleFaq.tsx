@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 import { motion } from "framer-motion";
 
 import type { BlogFaq } from "@/data/BlogData";
 
 type ArticleFaqProps = {
   faqs: BlogFaq[];
+  title?: string;
 };
 
 /**
@@ -15,7 +16,10 @@ type ArticleFaqProps = {
  * rather than reusing the home page FAQ, which is a full-width layout with a
  * fixed answer height that clips longer answers.
  */
-function ArticleFaq({ faqs }: ArticleFaqProps) {
+function ArticleFaq({
+  faqs,
+  title = "Your questions answered",
+}: ArticleFaqProps) {
   const [openId, setOpenId] = useState<string | null>(faqs[0]?.id ?? null);
 
   if (!faqs.length) return null;
@@ -23,48 +27,47 @@ function ArticleFaq({ faqs }: ArticleFaqProps) {
   return (
     <motion.section
       id="faq"
-      className="scroll-mt-28 rounded-3xl bg-[#f8f5ef] p-5 md:p-6"
+      className="scroll-mt-28 rounded-2xl bg-[#f8f5ef] p-4 md:rounded-3xl md:p-6"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
-      <div className="mb-4 flex items-start gap-4">
-        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[#5a4ffe] text-white shadow-md">
-          <HelpCircle size={27} strokeWidth={2.4} />
-        </div>
+      <div className="mb-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 md:mb-4">
+        <span className="grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-[#5a4ffe] text-white shadow-sm md:h-7 md:w-7">
+          <MessageCircleQuestion size={13} strokeWidth={2.6} />
+        </span>
 
-        <div>
-          <p className="mb-1 text-xs font-black uppercase tracking-[0.22em] text-[#5a4ffe]">
-            Frequently Asked Questions
-          </p>
-          <h2 className="text-2xl font-black leading-tight text-[#21145f] md:text-3xl">
-            Your questions answered
-          </h2>
-        </div>
+        <span className="text-[10px] font-black uppercase tracking-[0.16em] text-[#5a4ffe] md:text-[11px]">
+          Frequently Asked Questions
+        </span>
+
+        <h2 className="min-w-0 text-lg font-black leading-snug text-[#21145f] sm:text-xl md:text-[1.375rem]">
+          {title}
+        </h2>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {faqs.map((faq) => {
           const isOpen = openId === faq.id;
 
           return (
             <div
               key={faq.id}
-              className="overflow-hidden rounded-2xl border border-[#ddd9ff] bg-white"
+              className="overflow-hidden rounded-xl border border-[#ddd9ff] bg-white"
             >
               <button
                 type="button"
                 onClick={() => setOpenId(isOpen ? null : faq.id)}
                 aria-expanded={isOpen}
                 aria-controls={`faq-answer-${faq.id}`}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left md:px-5"
               >
-                <span className="text-base font-black leading-6 text-[#21145f]">
+                <span className="text-sm font-black leading-6 text-[#21145f] md:text-[15px]">
                   {faq.question}
                 </span>
 
                 <ChevronDown
-                  size={20}
+                  size={17}
                   className={`shrink-0 text-[#5a4ffe] transition-transform duration-300 ${
                     isOpen ? "rotate-180" : ""
                   }`}
@@ -74,7 +77,7 @@ function ArticleFaq({ faqs }: ArticleFaqProps) {
               {isOpen && (
                 <p
                   id={`faq-answer-${faq.id}`}
-                  className="border-t border-[#eeecff] px-5 py-4 text-sm leading-7 text-[#5f6877]"
+                  className="border-t border-[#eeecff] px-4 py-3.5 text-sm leading-6 text-[#5f6877] md:px-5"
                 >
                   {faq.answer}
                 </p>

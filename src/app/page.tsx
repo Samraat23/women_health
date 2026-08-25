@@ -24,7 +24,9 @@ import pgimr from "@/assets/ pgimr.png"
 import {gynecologyCategories} from "@/data/Categories"
 import { getHomePageContent } from "@/lib/homeContentStore";
 
-export const dynamic = "force-dynamic";
+// Prerendered like every other page; the admin save route revalidates it so
+// content edits still show up straight away.
+export const revalidate = 60;
 
 export default async function Home() {
   const homeContent = await getHomePageContent();

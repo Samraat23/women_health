@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 html,
 body {
@@ -41,9 +42,65 @@ body {
   
 }
 
-@theme inline {
- 
+/* shadcn/ui tokens.
+   Deliberately namespaced --ui-*: the site already uses --background,
+   --foreground and --border for its own palette, and reusing those names
+   would repaint every public page. */
+:root {
+  --ui-background: #ffffff;
+  --ui-foreground: #0f172a;
+  --ui-card: #ffffff;
+  --ui-card-foreground: #0f172a;
+  --ui-popover: #ffffff;
+  --ui-popover-foreground: #0f172a;
+  --ui-primary: #1b1463;
+  --ui-primary-foreground: #f8fafc;
+  --ui-secondary: #f1f5f9;
+  --ui-secondary-foreground: #0f172a;
+  --ui-muted: #f1f5f9;
+  --ui-muted-foreground: #64748b;
+  --ui-accent: #f1f5f9;
+  --ui-accent-foreground: #0f172a;
+  --ui-destructive: #dc2626;
+  --ui-destructive-foreground: #f8fafc;
+  --ui-border: #e2e8f0;
+  --ui-input: #e2e8f0;
+  --ui-ring: #94a3b8;
+}
 
+@theme inline {
+  --color-background: var(--ui-background);
+  --color-foreground: var(--ui-foreground);
+  --color-card: var(--ui-card);
+  --color-card-foreground: var(--ui-card-foreground);
+  --color-popover: var(--ui-popover);
+  --color-popover-foreground: var(--ui-popover-foreground);
+  --color-primary: var(--ui-primary);
+  --color-primary-foreground: var(--ui-primary-foreground);
+  --color-secondary: var(--ui-secondary);
+  --color-secondary-foreground: var(--ui-secondary-foreground);
+  --color-muted: var(--ui-muted);
+  --color-muted-foreground: var(--ui-muted-foreground);
+  --color-accent: var(--ui-accent);
+  --color-accent-foreground: var(--ui-accent-foreground);
+  --color-destructive: var(--ui-destructive);
+  --color-destructive-foreground: var(--ui-destructive-foreground);
+  --color-border: var(--ui-border);
+  --color-input: var(--ui-input);
+  --color-ring: var(--ui-ring);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
 }
 
 @media (prefers-color-scheme: dark) {

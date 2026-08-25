@@ -17,9 +17,9 @@ function DoctorBanner() {
           Gynecologist
         </div>
 
-        <h3 className="text-2xl font-black leading-tight">
+        <p className="text-2xl font-black leading-tight">
           Dr. Kusum Lata Bhardwaj
-        </h3>
+        </p>
 
         <p className="mt-2 text-sm leading-6 text-white/75">
           Expert pregnancy care, women health consultation, prenatal guidance,

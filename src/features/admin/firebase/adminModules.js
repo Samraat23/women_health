@@ -3,6 +3,12 @@ export const adminContentCollection =
 
 export const adminModules = [
   {
+    id: "articles",
+    label: "Article Section",
+    href: "/admin/articles",
+    description: "Edit article copy, sections, and FAQs for every blog page.",
+  },
+  {
     id: "navbar",
     label: "Navbar Section",
     href: "/admin/navbar",

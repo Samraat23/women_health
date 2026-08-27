@@ -30,6 +30,8 @@ export type BlogSection = {
   paragraph: string;
   /** Extra body paragraphs rendered under `paragraph`. */
   paragraphs?: string[];
+  /** Closing paragraph rendered after the list/cards, when the source article has one. */
+  note?: string;
   items?: string[];
   cards?: BlogCard[];
   timeline?: BlogTimeline[];
@@ -250,9 +252,9 @@ export const youngWomenCareBlogs = [
   {
     hero: {
       badge: "Young Women Care",
-      title: "PCOD / PCOS Treatment and Lifestyle Care",
+      title: "Best Doctor for PCOS/PCOD Treatment in Gurgaon",
       date: "May 24, 2026",
-      readTime: "6 min read",
+      readTime: "8 min read",
       status: "Doctor Reviewed",
     },
 
@@ -260,160 +262,348 @@ export const youngWomenCareBlogs = [
       id: "pcod-pcos-treatment",
       slug: "pcod-pcos-treatment",
       category: "young-women-care",
-      title: "PCOD / PCOS Treatment and Lifestyle Care",
+      title: "Best Doctor for PCOS/PCOD Treatment in Gurgaon",
       intro:
-        "PCOD and PCOS are common hormonal conditions affecting young women. Early diagnosis and lifestyle management can help control symptoms and improve long-term reproductive health.",
+        "PCOS, also commonly called PCOD, is a hormonal condition that can affect periods, ovulation, skin, hair growth, weight, and fertility. Some women may have irregular periods, acne, unwanted facial hair, weight changes, or difficulty getting pregnant, while others may have only a few symptoms.",
       image: pcosImage,
 
       paragraphs: [
-        "Many young women experience irregular periods, acne, weight gain, or hair fall without understanding the hormonal reason behind these symptoms.",
-        "Proper diagnosis, healthy eating habits, physical activity, stress management, and medical treatment can help manage PCOS effectively.",
+        "If your periods are irregular or you are dealing with ongoing hormonal or fertility concerns, consulting the Best Doctor for PCOS/PCOD Treatment in Gurgaon can help you understand the cause and choose a suitable treatment plan based on your symptoms and health needs.",
       ],
     },
 
     sections: [
       {
-        id: "symptoms",
-        type: "checkList",
-        eyebrow: "Symptoms",
-        title: "Common symptoms of PCOD / PCOS",
+        id: "about",
+        type: "cards",
+        eyebrow: "What Is PCOS/PCOD?",
+        title: "Understanding PCOS and PCOD",
         color: "#ec4899",
         paragraph:
-          "Symptoms can vary from person to person depending on hormonal imbalance severity.",
+          "PCOS is a common hormonal condition that can affect how the ovaries work and how the body handles hormones such as androgens. It may lead to irregular periods, problems with ovulation, acne, excess facial or body hair, and fertility concerns. Having polycystic-looking ovaries on an ultrasound is not required for a PCOS diagnosis.",
+        paragraphs: ["Common areas affected:"],
+        cards: [
+          {
+            title: "Periods",
+            description:
+              "May become irregular, delayed, or sometimes absent.",
+          },
+          {
+            title: "Hormones",
+            description:
+              "Higher androgen levels may contribute to acne or unwanted hair growth.",
+          },
+          {
+            title: "Skin & Hair",
+            description:
+              "Some women may notice acne, oily skin, or thinning scalp hair.",
+          },
+          {
+            title: "Fertility",
+            description:
+              "Irregular ovulation can make it harder to become pregnant.",
+          },
+          {
+            title: "Metabolic Health",
+            description:
+              "PCOS can also be linked with insulin resistance and other long-term health risks.",
+          },
+        ],
+      },
+
+      {
+        id: "symptoms",
+        type: "warning",
+        eyebrow: "Symptoms",
+        title: "15 Symptoms of PCOS/PCOD You Should Not Ignore",
+        color: "#ef4444",
+        paragraph:
+          "PCOS does not affect everyone in the same way. Some women may have only a few symptoms, while others may experience several hormonal, menstrual, skin, or fertility-related changes.",
         items: [
           "Irregular periods",
-          "Weight gain",
-          "Acne and oily skin",
-          "Hair fall",
-          "Facial hair growth",
-          "Mood swings",
-          "Difficulty in pregnancy",
+          "Delayed periods",
+          "Missed periods",
+          "Heavy or prolonged periods",
+          "Acne or oily skin",
+          "Excess facial hair",
+          "Increased body hair",
+          "Hair thinning or hair loss",
+          "Unexplained weight gain",
+          "Difficulty losing weight",
+          "Difficulty getting pregnant",
+          "Irregular ovulation",
+          "Darkened skin in some body areas",
+          "Mood changes",
+          "Tiredness or low energy",
         ],
+        note: "Having one or more of these symptoms does not automatically mean you have PCOS. A proper medical evaluation is important because other conditions can cause similar symptoms.",
       },
 
       {
         id: "causes",
-        type: "cards",
-        eyebrow: "Causes",
-        title: "Why PCOS happens",
+        type: "checkList",
+        eyebrow: "Why It Happens",
+        title: "Possible Causes and Risk Factors of PCOS/PCOD",
+        color: "#f97316",
+        paragraph:
+          "The exact cause of PCOS is not fully understood. Hormonal changes, genetics, insulin resistance, and family history may all play a role. PCOS can also be associated with metabolic and cardiovascular risk factors, which is why proper evaluation is important.",
+        items: [
+          "Hormonal Changes: Changes in hormone levels may affect ovulation and periods.",
+          "Insulin Resistance: The body may have difficulty using insulin effectively.",
+          "Family History: PCOS may be more common among women with a family history of the condition.",
+          "Genetic Factors: Certain inherited factors may increase the likelihood of developing PCOS.",
+        ],
+      },
+
+      {
+        id: "when-to-see",
+        type: "warning",
+        eyebrow: "When To See A Doctor",
+        title: "When Should You See a PCOS Doctor?",
+        color: "#f43f5e",
+        paragraph:
+          "Irregular periods are not always caused by PCOS, but repeated changes in your menstrual cycle should not be ignored. If you are experiencing hormonal symptoms, fertility problems, or sudden changes in your periods, it is a good idea to speak with a specialist.",
+        paragraphs: ["You should consider seeing a doctor if you have:"],
+        items: [
+          "Irregular Periods",
+          "Missed Periods",
+          "Heavy or Unusual Bleeding",
+          "Persistent Acne",
+          "Excess Facial Hair",
+          "Hair Thinning",
+          "Unexplained Weight Changes",
+          "Difficulty Getting Pregnant",
+        ],
+      },
+
+      {
+        id: "diagnosis",
+        type: "checkList",
+        eyebrow: "Diagnosis",
+        title: "How Is PCOS/PCOD Diagnosed?",
         color: "#8b5cf6",
         paragraph:
-          "PCOS is influenced by hormones, lifestyle, genetics, and insulin resistance.",
-        cards: [
+          "PCOS diagnosis is based on your symptoms, medical history, examination, and appropriate tests. In adults, doctors generally look at features such as irregular ovulation, signs or blood-test evidence of higher androgen levels, and polycystic ovaries, while ruling out other possible causes. Not every woman with PCOS will have polycystic ovaries on an ultrasound.",
+        items: [
+          "Medical History: Your doctor asks about periods, symptoms, weight changes, and fertility.",
+          "Physical Examination: May check signs such as acne, excess hair growth, or other hormonal changes.",
+          "Blood Tests: Can check hormone levels and other health markers.",
+          "Ultrasound: May be used to assess the ovaries and uterus when appropriate.",
+          "Additional Health Checks: Your doctor may also assess blood sugar and other metabolic health factors.",
+        ],
+      },
+
+      {
+        id: "risk",
+        type: "timeline",
+        eyebrow: "Health Effects",
+        title: "How Delayed PCOS Treatment Can Affect Health",
+        color: "#10b981",
+        paragraph:
+          "PCOS can affect more than just periods and fertility. If symptoms are left unmanaged, some women may have a higher risk of metabolic, cardiovascular, psychological, and reproductive health concerns. Early evaluation can help identify these concerns and plan suitable care.",
+        timeline: [
           {
-            title: "Hormonal imbalance",
+            label: "Stage 1",
+            title: "Irregular Periods",
             description:
-              "Changes in reproductive hormones can affect ovulation and periods.",
+              "Periods may become less predictable or occur less often.",
           },
           {
-            title: "Insulin resistance",
+            label: "Stage 2",
+            title: "Hormonal Symptoms",
             description:
-              "High insulin levels may increase male hormones in the body.",
+              "Acne, excess facial hair, or hair thinning may continue or become more noticeable.",
           },
           {
-            title: "Lifestyle factors",
+            label: "Stage 3",
+            title: "Fertility Concerns",
             description:
-              "Stress, unhealthy eating, and low physical activity can worsen symptoms.",
+              "Irregular ovulation may make it more difficult to become pregnant.",
+          },
+          {
+            label: "Stage 4",
+            title: "Long-Term Health Risks",
+            description:
+              "PCOS can be linked with insulin resistance and increased metabolic and cardiovascular risks.",
           },
         ],
       },
 
       {
-        id: "treatment",
-        type: "timeline",
-        eyebrow: "Treatment",
-        title: "PCOS treatment approach",
-        color: "#10b981",
+        id: "pcos-treatment",
+        type: "cards",
+        eyebrow: "ADVANCED TREATMENT",
+        title: "PCOS Treatment in Gurgaon",
+        color: "#14b8a6",
         paragraph:
-          "Treatment depends on symptoms, age, and fertility goals.",
-        timeline: [
+          "PCOS treatment is not the same for everyone. Your treatment plan depends on your symptoms, health, age, and whether you are planning a pregnancy. Treatment may focus on managing periods, hormonal symptoms, metabolic health, or fertility. Lifestyle changes are an important part of PCOS care, and medicines may be added when needed.",
+        cards: [
           {
-            label: "Step 1",
-            title: "Diagnosis",
+            title: "Period Management",
             description:
-              "Hormone tests, ultrasound, and medical history evaluation.",
+              "Treatment can help make irregular periods more manageable.",
           },
           {
-            label: "Step 2",
-            title: "Lifestyle correction",
+            title: "Hormonal Treatment",
             description:
-              "Balanced diet, weight management, and exercise routine.",
+              "Medicines may help control certain hormonal symptoms.",
           },
           {
-            label: "Step 3",
-            title: "Medical treatment",
+            title: "Acne & Hair Treatment",
             description:
-              "Hormonal medicines and symptom-specific treatment.",
+              "Suitable treatment can help manage acne and unwanted hair growth.",
           },
           {
-            label: "Step 4",
-            title: "Fertility support",
+            title: "Lifestyle Support",
             description:
-              "Ovulation support and fertility treatment if required.",
+              "Healthy eating and regular physical activity are important parts of PCOS care.",
+          },
+          {
+            title: "Fertility Treatment",
+            description:
+              "Treatment can support ovulation and pregnancy goals when required.",
+          },
+          {
+            title: "Regular Monitoring",
+            description:
+              "Follow-ups can help track symptoms and overall health.",
           },
         ],
       },
+
+      {
+        id: "pcod-treatment",
+        type: "checkList",
+        eyebrow: "PCOD Care",
+        title: "PCOD Treatment in Gurgaon",
+        color: "#0ea5e9",
+        paragraph:
+          "PCOD is a term commonly used for hormonal and ovarian problems related to irregular ovulation. Treatment depends on the symptoms and the underlying cause rather than using the same approach for everyone.",
+        items: [
+          "Cycle Regulation",
+          "Hormonal Management",
+          "Weight & Lifestyle Support",
+          "Acne Management",
+          "Fertility Support",
+          "Regular Health Monitoring",
+        ],
+      },
+
+      {
+        id: "fertility",
+        type: "checkList",
+        eyebrow: "Fertility Support",
+        title: "Fertility Treatment for PCOS/PCOD",
+        color: "#a855f7",
+        paragraph:
+          "PCOS can affect ovulation, which may make pregnancy more difficult for some women. However, many women with PCOS can become pregnant with appropriate medical care. Treatment is planned according to ovulation, age, fertility history, and other individual factors.",
+        items: [
+          "Ovulation Assessment",
+          "Fertility Evaluation",
+          "Ovulation Support",
+          "Lifestyle Guidance",
+          "Pregnancy Planning",
+          "Fertility Specialist Referral When Needed",
+        ],
+      },
+
+      {
+        id: "consult",
+        type: "warning",
+        eyebrow: "WHEN TO CONSULT",
+        title: "When Should You Meet a PCOS Specialist?",
+        color: "#dc2626",
+        paragraph:
+          "If your periods are frequently irregular, you have ongoing hormonal symptoms, or you are having difficulty getting pregnant, meeting a specialist can help identify the possible cause. Early evaluation can also help with managing symptoms and checking related health concerns.",
+        paragraphs: ["See a specialist if you have:"],
+        items: [
+          "Irregular or Missed Periods",
+          "Persistent Acne",
+          "Excess Facial Hair",
+          "Hair Thinning",
+          "Unexplained Weight Changes",
+          "Difficulty Getting Pregnant",
+          "Repeated Ovulation Problems",
+          "Symptoms Not Improving",
+        ],
+      },
+
+      {
+        id: "why-choose",
+        type: "cards",
+        eyebrow: "Why Choose Us",
+        title: "Why Choose the Best Doctor for PCOS/PCOD Treatment in Gurgaon?",
+        color: "#6366f1",
+        paragraph:
+          "Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician focused on clear diagnosis, safe planning, and supportive follow-through for every patient. With 17+ years of experience, 10k+ patients guided, and experience across 3 premier institutes, she focuses on understanding each patient's concerns and providing clear, personalised care.",
+        paragraphs: [
+          "PCOS can affect periods, hormones, skin, weight, fertility, and overall health differently in every woman. The Best Doctor for PCOS/PCOD Treatment in Gurgaon can understand your symptoms, suggest the right tests, explain the condition in simple terms, and recommend treatment based on your individual needs and health goals.",
+        ],
+        note: "Looking for Top PCOS Treatment in Gurgaon? A personalised evaluation can help identify your symptoms and guide you toward suitable treatment and long-term care.",
+      },
     ] satisfies BlogSection[],
+    faqTitle: "Frequently Asked Questions About PCOS/PCOD",
+
     faqs: [
       {
         id: "1",
-        question: "What is the difference between PCOD and PCOS?",
+        question: "What is PCOD and PCOS?",
         answer:
-          "Both involve the ovaries and hormonal imbalance. PCOD usually means the ovaries release immature eggs, while PCOS is a wider hormonal and metabolic condition. Your doctor can explain which pattern fits your reports.",
+          "PCOS stands for Polycystic Ovary Syndrome. PCOD is a commonly used term for Polycystic Ovarian Disease. A doctor can assess your symptoms and provide the correct diagnosis.",
       },
       {
         id: "2",
-        question: "What are the first signs of PCOS?",
+        question: "Is PCOS and PCOD the same?",
         answer:
-          "Irregular or missed periods, acne, unwanted facial hair, hair thinning, weight gain around the abdomen, and difficulty conceiving are common early signs.",
+          "The terms are often used interchangeably, but they are not always used in exactly the same way. A doctor can assess your symptoms and give the correct diagnosis.",
       },
       {
         id: "3",
-        question: "How is PCOS diagnosed?",
+        question: "What are the common symptoms of PCOS?",
         answer:
-          "Diagnosis is usually based on your symptoms, menstrual history, a pelvic ultrasound, and blood tests that check hormone and sugar levels.",
+          "Irregular periods, acne, excess facial hair, hair thinning, weight changes, and difficulty getting pregnant are common symptoms.",
       },
       {
         id: "4",
-        question: "Can PCOS be cured completely?",
+        question: "How is PCOS diagnosed?",
         answer:
-          "PCOS is a long-term condition rather than a one-time illness, but symptoms can be controlled well with the right treatment, diet, and lifestyle changes.",
+          "Your doctor may review your symptoms and medical history and recommend blood tests, an examination, and sometimes an ultrasound.",
       },
       {
         id: "5",
-        question: "Does PCOS always cause infertility?",
+        question: "Can PCOS be treated without surgery?",
         answer:
-          "No. Many women with PCOS conceive naturally. When ovulation is irregular, treatment can help improve the chances of pregnancy.",
+          "Yes. PCOS is usually managed with lifestyle changes, medicines, and other treatments based on your symptoms and goals.",
       },
       {
         id: "6",
-        question: "Will I need lifelong medicines for PCOS?",
+        question: "Can PCOS affect fertility?",
         answer:
-          "Not always. Medicines are often used for a period of time to regulate cycles or support ovulation, and lifestyle changes may reduce how much medication is needed.",
+          "Yes, PCOS can affect ovulation and may make getting pregnant more difficult for some women.",
       },
       {
         id: "7",
-        question: "Does weight loss help PCOS?",
+        question: "Can PCOS be completely cured?",
         answer:
-          "Yes. Even a modest reduction in weight can help regulate periods, improve insulin response, and reduce symptoms in many women.",
+          "There is no single permanent cure, but symptoms can often be managed effectively with the right treatment and regular care.",
       },
       {
         id: "8",
-        question: "Can teenagers have PCOS?",
+        question: "Does PCOS always cause weight gain?",
         answer:
-          "Yes. PCOS can begin around puberty. Irregular cycles, acne, or unusual hair growth in teenagers should be evaluated rather than ignored.",
+          "No. PCOS can affect women of different body sizes, and not everyone with PCOS experiences weight gain.",
       },
       {
         id: "9",
-        question: "Is PCOS linked to diabetes?",
+        question: "Can PCOS cause irregular periods?",
         answer:
-          "PCOS is often associated with insulin resistance, which can raise the long-term risk of type 2 diabetes. Regular screening helps detect this early.",
+          "Yes. Irregular or missed periods are common because PCOS can affect regular ovulation.",
       },
       {
         id: "10",
-        question: "When should I see a doctor for PCOS?",
+        question: "When should I see a PCOS doctor in Gurgaon?",
         answer:
-          "See a doctor if your periods are irregular or absent, if you have troubling acne or hair changes, if your weight is rising rapidly, or if you are finding it hard to conceive.",
+          "You should consider seeing a specialist if you have repeated irregular periods, hormonal symptoms, or difficulty getting pregnant.",
       },
     ] satisfies BlogFaq[],
 
@@ -429,9 +619,9 @@ export const youngWomenCareBlogs = [
   {
     hero: {
       badge: "Young Women Care",
-      title: "Menstrual Cycle Problems in Young Women",
+      title: "Best Uterine Bleeding Doctors In Gurgaon",
       date: "May 24, 2026",
-      readTime: "5 min read",
+      readTime: "8 min read",
       status: "Doctor Reviewed",
     },
 
@@ -439,160 +629,327 @@ export const youngWomenCareBlogs = [
       id: "menstrual-cycle-problems",
       slug: "menstrual-cycle-problems",
       category: "young-women-care",
-      title: "Menstrual Cycle Problems in Young Women",
+      title: "Best Uterine Bleeding Doctors In Gurgaon",
       intro:
-        "Menstrual cycle problems can affect daily life, confidence, physical health, and emotional wellbeing in teenagers and young women.",
+        "Abnormal uterine bleeding means your periods are different from what is normal for you, such as very heavy bleeding, periods that last too long, bleeding between periods, or periods that come too often or too rarely. It can happen due to hormonal changes, fibroids, polyps, thyroid problems, or other conditions.",
       image: menstrualImage,
 
       paragraphs: [
-        "Some women experience painful periods, delayed cycles, heavy bleeding, or irregular spotting due to hormonal changes or medical conditions.",
-        "Understanding the menstrual cycle helps identify early warning signs and allows timely medical care.",
+        "If your bleeding is heavy, keeps happening, or is affecting your daily life, it is important to get it checked. An experienced Best Uterine Bleeding Doctors In Gurgaon can help find the possible cause and suggest suitable treatment based on your symptoms and health.",
       ],
     },
 
     sections: [
       {
-        id: "problems",
-        type: "checkList",
-        eyebrow: "Common Problems",
-        title: "Types of menstrual cycle problems",
+        id: "about",
+        type: "cards",
+        eyebrow: "What Is Abnormal Uterine Bleeding?",
+        title: "Understanding Abnormal Uterine Bleeding",
+        color: "#ec4899",
+        paragraph:
+          "Abnormal uterine bleeding refers to bleeding that is unusual in its amount, timing, regularity, or duration. It may include very heavy periods, bleeding between periods, or periods that last longer than usual. The cause can be different for each person, so proper evaluation is important.",
+        paragraphs: ["Common types of abnormal bleeding:"],
+        cards: [
+          {
+            title: "Heavy Periods",
+            description:
+              "Bleeding may be much heavier than your usual period.",
+          },
+          {
+            title: "Long Periods",
+            description: "Your period may continue for more than 7 days.",
+          },
+          {
+            title: "Irregular Periods",
+            description:
+              "Your periods may come earlier, later, or at unpredictable times.",
+          },
+          {
+            title: "Bleeding Between Periods",
+            description:
+              "You may notice bleeding or spotting between your regular periods.",
+          },
+        ],
+      },
+
+      {
+        id: "symptoms",
+        type: "warning",
+        eyebrow: "Symptoms",
+        title: "10 Signs of Abnormal Uterine Bleeding You Should Not Ignore",
         color: "#ef4444",
         paragraph:
-          "Menstrual issues may happen occasionally or become long-term concerns.",
+          "Abnormal bleeding can look different from one person to another. Some women may notice heavier periods, while others may experience irregular cycles or bleeding between periods.",
         items: [
-          "Painful periods",
-          "Heavy bleeding",
-          "Delayed periods",
+          "Very heavy menstrual bleeding",
+          "Periods lasting more than 7 days",
+          "Bleeding between periods",
           "Frequent periods",
-          "Spotting between periods",
-          "Missed periods",
+          "Irregular menstrual cycles",
+          "Bleeding after sexual intercourse",
+          "Passing large blood clots",
+          "Feeling tired or weak during or after periods",
+          "Dizziness or light-headedness",
+          "Bleeding that affects daily activities",
         ],
+        note: "Heavy bleeding can sometimes lead to anemia, which may cause tiredness, weakness, or dizziness.",
       },
 
       {
         id: "causes",
-        type: "cards",
-        eyebrow: "Causes",
-        title: "Common causes behind menstrual problems",
-        color: "#6366f1",
+        type: "checkList",
+        eyebrow: "Why it Happens",
+        title: "Possible Causes of Abnormal Uterine Bleeding",
+        color: "#f97316",
         paragraph:
-          "Hormonal imbalance is one of the most common causes of menstrual cycle changes.",
-        cards: [
+          "The cause of abnormal uterine bleeding can vary from hormonal changes to problems affecting the uterus. Your doctor may consider several possible causes before deciding on treatment.",
+        items: [
+          "Hormonal Changes: Changes in hormones can affect ovulation and make periods irregular or heavy.",
+          "Uterine Fibroids: These are usually non-cancerous growths in the uterus that can cause heavy or prolonged bleeding.",
+          "Uterine Polyps: Small growths inside the uterus can sometimes cause irregular or heavy bleeding.",
+          "Thyroid Problems: Changes in thyroid function can affect your menstrual cycle.",
+          "PCOS: Polycystic ovary syndrome can affect ovulation and lead to irregular bleeding.",
+          "Bleeding Disorders: Some blood-clotting problems can cause unusually heavy periods.",
+        ],
+      },
+
+      {
+        id: "when-to-see",
+        type: "warning",
+        eyebrow: "When To See A Doctor",
+        title: "When Should You See a Uterine Bleeding Doctor?",
+        color: "#f43f5e",
+        paragraph:
+          "Some changes in your period can happen occasionally, but repeated or unusually heavy bleeding should not be ignored. If your bleeding is affecting your daily routine or you are feeling weak or dizzy, it is a good idea to consult a specialist.",
+        paragraphs: ["You should consider seeing a doctor if you have:"],
+        items: [
+          "Very Heavy Periods",
+          "Periods Lasting More Than 7 Days",
+          "Bleeding Between Periods",
+          "Frequent or Irregular Periods",
+          "Bleeding After Sex",
+          "Large Blood Clots",
+          "Dizziness or Weakness",
+          "Ongoing Changes in Your Period",
+        ],
+      },
+
+      {
+        id: "diagnosis",
+        type: "checkList",
+        eyebrow: "Diagnosis",
+        title: "How Is Abnormal Uterine Bleeding Diagnosed?",
+        color: "#8b5cf6",
+        paragraph:
+          "Finding the cause of abnormal bleeding usually starts with understanding your periods, symptoms, medical history, and any medicines you take. Your doctor may then recommend tests based on your symptoms and age.",
+        items: [
+          "Medical History: Your doctor may ask about your periods, previous health problems, and medicines.",
+          "Bleeding Pattern: Tracking when and how heavily you bleed can help identify changes.",
+          "Pelvic Examination: May help check for certain causes of abnormal bleeding.",
+          "Blood Tests: May be recommended to check for anemia or other problems.",
+          "Ultrasound: Can help examine the uterus, ovaries, fibroids, or other pelvic changes.",
+          "Hysteroscopy: A small camera may be used to look inside the uterus when required.",
+          "Endometrial Sampling: In selected patients, a small sample of the uterine lining may be tested to find certain abnormalities.",
+        ],
+      },
+
+      {
+        id: "risk",
+        type: "timeline",
+        eyebrow: "Risks of Delay",
+        title: "How Delayed Treatment Can Affect Health",
+        color: "#10b981",
+        paragraph:
+          "Ignoring abnormal uterine bleeding for a long time may allow the underlying problem to continue. Heavy or ongoing bleeding can also lead to anemia and may affect your energy and daily life.",
+        timeline: [
           {
-            title: "PCOS",
+            label: "Stage 1",
+            title: "Increasing Blood Loss",
             description:
-              "PCOS may disrupt ovulation and lead to irregular periods.",
+              "Repeated heavy periods may cause ongoing blood loss and leave you feeling tired or weak.",
           },
           {
-            title: "Stress",
+            label: "Stage 2",
+            title: "Iron Deficiency",
             description:
-              "Mental stress and poor sleep can affect hormonal balance.",
+              "Regular heavy bleeding can reduce iron levels and may contribute to iron-deficiency anemia.",
           },
           {
-            title: "Thyroid disorder",
+            label: "Stage 3",
+            title: "Daily Life Impact",
             description:
-              "Thyroid problems can make periods irregular or heavy.",
+              "Continued bleeding may affect work, sleep, exercise, travel, and other everyday activities.",
+          },
+          {
+            label: "Stage 4",
+            title: "Underlying Condition",
+            description:
+              "If the bleeding is caused by fibroids, polyps, hormonal problems, or another condition, delaying evaluation may delay appropriate treatment.",
           },
         ],
       },
 
       {
-        id: "care",
-        type: "nutrition",
-        eyebrow: "Care Tips",
-        title: "Lifestyle support for healthy cycles",
-        color: "#f59e0b",
+        id: "treatment",
+        type: "cards",
+        eyebrow: "ADVANCED TREATMENT",
+        title: "Treatment For Abnormal Uterine Bleeding In Gurgaon",
+        color: "#14b8a6",
         paragraph:
-          "Healthy lifestyle choices can improve hormonal balance and reduce symptoms.",
+          "The Treatment For Abnormal Uterine Bleeding depends on the cause, amount of bleeding, age, overall health, and whether you want to become pregnant in the future. Treatment may include medicines, hormonal options, treatment for an underlying condition, or procedures when needed.",
         cards: [
           {
-            title: "Healthy habits",
-            tone: "positive",
-            items: [
-              "Regular exercise",
-              "Balanced diet",
-              "Hydration",
-              "Good sleep",
-              "Stress management",
-            ],
+            title: "Hormonal Treatment",
+            description:
+              "May help regulate periods and reduce heavy bleeding.",
           },
           {
-            title: "Avoid",
-            tone: "warning",
-            items: [
-              "Excess junk food",
-              "Skipping meals",
-              "Extreme dieting",
-              "High stress",
-              "Lack of sleep",
-            ],
+            title: "Pain Management",
+            description: "Medicines may help with period-related discomfort.",
           },
+          {
+            title: "Iron Support",
+            description:
+              "Iron may be recommended if heavy bleeding has caused low iron or anemia.",
+          },
+          {
+            title: "Fibroid Treatment",
+            description:
+              "Treatment may be suggested when fibroids are causing heavy bleeding.",
+          },
+          {
+            title: "Polyp Removal",
+            description: "Polyps causing abnormal bleeding may be removed.",
+          },
+          {
+            title: "Surgical Treatment",
+            description:
+              "A procedure may be considered when medicines do not work or when a structural problem needs treatment.",
+          },
+        ],
+      },
+
+      {
+        id: "hysteroscopy",
+        type: "checkList",
+        eyebrow: "Hysteroscopy",
+        title: "Hysteroscopy for Abnormal Uterine Bleeding",
+        color: "#0ea5e9",
+        paragraph:
+          "Hysteroscopy may be recommended when your doctor needs to look inside the uterus to find the cause of abnormal bleeding. It can also allow certain problems, such as some polyps or fibroids inside the uterus, to be treated during the procedure.",
+        paragraphs: ["Possible benefits include:"],
+        items: [
+          "Finds the Cause",
+          "Checks the Uterine Lining",
+          "Identifies Polyps",
+          "Finds Some Fibroids",
+          "Allows Targeted Treatment",
+          "Can Remove Certain Growths",
+          "Helps Guide Further Treatment",
+          "Minimally Invasive Approach",
+        ],
+      },
+
+      {
+        id: "consult",
+        type: "warning",
+        eyebrow: "WHEN TO CONSULT",
+        title: "When Should You Meet a Specialist?",
+        color: "#dc2626",
+        paragraph:
+          "If your periods have suddenly become much heavier, last longer than usual, or occur at unusual times, it is worth speaking with a specialist. Getting the cause checked can help you understand your condition and choose the right treatment.",
+        paragraphs: ["See a specialist if you have:"],
+        items: [
+          "Very Heavy Periods",
+          "Periods Lasting More Than 7 Days",
+          "Bleeding Between Periods",
+          "Bleeding After Sex",
+          "Frequent or Irregular Periods",
+          "Large Blood Clots",
+          "Dizziness or Weakness",
+          "Bleeding Not Improving With Treatment",
+        ],
+      },
+
+      {
+        id: "why-choose",
+        type: "cards",
+        eyebrow: "Why Choose Us",
+        title:
+          "Why Choose Dr. Kusum Lata Bhardwaj for Best Treatment For Abnormal Uterine Bleeding In Gurgaon?",
+        color: "#6366f1",
+        paragraph:
+          "When abnormal bleeding keeps happening or starts affecting your daily life, choosing the right doctor can make the process easier. Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician with 17+ years of experience who has guided 10K+ patients across 3 premier institutes. She focuses on understanding your symptoms, finding the possible cause, and explaining treatment options in simple terms, with an approach centered on clear diagnosis, safe planning, and supportive follow-through for every patient.",
+        paragraphs: [
+          "Every woman can have different reasons for abnormal bleeding, so treatment should be planned according to individual needs. Whether the cause is hormonal changes, fibroids, polyps, or another health concern, Dr. Kusum Lata Bhardwaj considers your symptoms, overall health, and future fertility plans while discussing suitable treatment options.",
         ],
       },
     ] satisfies BlogSection[],
+
+    faqTitle: "Frequently Asked Questions About Abnormal Uterine Bleeding",
+
     faqs: [
       {
         id: "1",
-        question: "What is considered a normal menstrual cycle?",
+        question: "What is abnormal uterine bleeding?",
         answer:
-          "A cycle between roughly 21 and 35 days, with bleeding for about 2 to 7 days, is generally considered normal. What matters most is that your own pattern stays fairly consistent.",
+          "Abnormal uterine bleeding means bleeding that is heavier, longer, more frequent, or occurs at an unusual time compared with your normal menstrual pattern.",
       },
       {
         id: "2",
-        question: "What counts as a menstrual cycle problem?",
+        question: "How to stop abnormal uterine bleeding?",
         answer:
-          "Very heavy bleeding, very painful periods, cycles that are much shorter or longer than usual, missed periods, or bleeding between periods can all be considered menstrual problems.",
+          "Treatment depends on the cause of the bleeding. A doctor may recommend medicines, hormonal treatment, or other procedures after checking your symptoms and medical history.",
       },
       {
         id: "3",
-        question: "Why are my periods suddenly heavier than before?",
+        question: "Is heavy bleeding a sign of uterine cancer?",
         answer:
-          "Hormonal changes, fibroids, polyps, thyroid problems, or conditions such as endometriosis can increase bleeding. A change in your usual pattern should be checked.",
+          "Heavy bleeding can have many causes, and it does not always mean cancer. However, unusual or ongoing bleeding should be checked by a doctor, especially after menopause.",
       },
       {
         id: "4",
-        question: "Is severe period pain normal?",
+        question: "Can stress cause abnormal uterine bleeding?",
         answer:
-          "Mild cramping is common, but pain that stops you from working, studying, or sleeping is not something you should have to live with and should be evaluated.",
+          "Stress can affect your hormones and menstrual cycle, which may sometimes lead to changes in bleeding. If the bleeding continues or becomes heavy, medical evaluation is recommended.",
       },
       {
         id: "5",
-        question: "Can stress affect my menstrual cycle?",
+        question: "Can uterine fibroids cause bleeding?",
         answer:
-          "Yes. Stress, sudden weight change, disturbed sleep, and intense exercise can all delay or disturb periods.",
+          "Yes. Uterine fibroids can cause heavy periods, longer periods, spotting, or bleeding between periods.",
       },
       {
         id: "6",
-        question: "Do menstrual problems affect fertility?",
+        question: "How to stop bleeding from uterine fibroids?",
         answer:
-          "Some do. Irregular ovulation, untreated hormonal problems, or conditions such as endometriosis may make conception harder, which is why early evaluation helps.",
+          "Treatment depends on the size and location of the fibroids and how much bleeding they cause. Medicines, hormonal treatment, or procedures may be considered.",
       },
       {
         id: "7",
-        question: "What tests are usually done for menstrual problems?",
+        question: "What can cause abnormal uterine bleeding?",
         answer:
-          "A doctor may suggest a pelvic ultrasound, hormone and thyroid blood tests, and a haemoglobin check to look for anaemia from heavy bleeding.",
+          "Abnormal bleeding can be caused by hormonal changes, fibroids, polyps, adenomyosis, certain medicines, pregnancy-related problems, or other health conditions.",
       },
       {
         id: "8",
-        question: "Can menstrual problems be treated without surgery?",
+        question: "What causes dysfunctional uterine bleeding?",
         answer:
-          "In many cases yes. Medicines, hormonal treatment, correcting anaemia, and lifestyle support are often enough. Surgery is considered only for specific causes.",
+          "Dysfunctional uterine bleeding is commonly related to hormonal changes that affect ovulation and the menstrual cycle. Your doctor may recommend tests to find the underlying cause.",
       },
       {
         id: "9",
-        question: "Is it normal to miss a period occasionally?",
+        question: "When should I see a doctor for abnormal uterine bleeding?",
         answer:
-          "An occasional late or missed period can happen. Repeatedly missing periods, or missing them for three months or more, should be assessed.",
+          "See a doctor if bleeding is very heavy, lasts longer than usual, happens between periods, occurs after sex, or keeps coming back.",
       },
       {
         id: "10",
-        question: "When should I see a gynecologist about my periods?",
+        question: "Can abnormal uterine bleeding affect fertility?",
         answer:
-          "See a gynecologist if bleeding is very heavy, if pain is severe, if cycles become irregular, if you bleed between periods, or if periods stop without an obvious reason.",
+          "It depends on the underlying cause. Conditions such as fibroids, polyps, or hormonal problems may sometimes affect fertility, so finding the cause is important.",
       },
     ] satisfies BlogFaq[],
-
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -750,9 +1107,9 @@ export const youngWomenCareBlogs = [
   {
     hero: {
       badge: "Young Women Care",
-      title: "Teenage Gynecology and Puberty Care",
-      date: "May 24, 2026",
-      readTime: "4 min read",
+      title: "Best Doctor for Puberty Disorder Treatment in Gurgaon",
+      date: "Aug 27, 2026",
+      readTime: "8 min read",
       status: "Doctor Reviewed",
     },
 
@@ -760,144 +1117,360 @@ export const youngWomenCareBlogs = [
       id: "teenage-gynecology-care",
       slug: "teenage-gynecology-care",
       category: "young-women-care",
-      title: "Teenage Gynecology and Puberty Care",
+      title: "Best Doctor for Puberty Disorder Treatment in Gurgaon",
       intro:
-        "Teenage gynecology focuses on puberty, menstrual health, hormonal changes, hygiene education, and emotional wellbeing.",
+        "Puberty is a natural stage when a child's body starts changing into an adult body. Sometimes these changes may begin too early, happen later than expected, or not progress normally. These problems are known as puberty disorders and may affect growth, hormones, and emotional well-being.",
       image: teenageImage,
 
       paragraphs: [
-        "Puberty is an important stage of physical and emotional growth for young girls.",
-        "Professional guidance helps teenagers understand periods, hygiene, body changes, and hormonal health confidently.",
+        "If you notice unusual or early physical changes, delayed development, or concerns about your child's growth, consulting the Best Doctor for Puberty Disorder Treatment in Gurgaon can help identify the reason and guide the right treatment.",
       ],
     },
 
     sections: [
       {
-        id: "puberty",
+        id: "about",
         type: "cards",
-        eyebrow: "Puberty",
-        title: "Body changes during puberty",
+        eyebrow: "What Are Puberty Disorders?",
+        title: "Understanding Puberty Disorders",
         color: "#ec4899",
         paragraph:
-          "Hormonal changes during puberty can affect emotions, skin, growth, and menstrual cycles.",
+          "Puberty disorders happen when the normal timing or development of puberty is different from what is expected. Some children may enter puberty too early, while others may not show expected changes at the usual age. In some cases, hormone or other health conditions may be involved.",
+        paragraphs: ["Common puberty problems include:"],
         cards: [
           {
-            title: "Breast development",
-            description:
-              "One of the earliest signs of puberty in girls.",
+            title: "Early Puberty",
+            description: "Physical changes begin earlier than expected.",
           },
           {
-            title: "Periods begin",
-            description:
-              "Menstruation usually starts between 10 to 15 years of age.",
+            title: "Delayed Puberty",
+            description: "Puberty changes do not start at the expected age.",
           },
           {
-            title: "Hormonal skin changes",
+            title: "Hormonal Problems",
             description:
-              "Acne and oily skin are common during puberty.",
+              "Changes in hormone levels may affect normal development.",
+          },
+          {
+            title: "Growth Concerns",
+            description:
+              "Puberty disorders may sometimes affect growth and final height.",
           },
         ],
       },
 
       {
-        id: "hygiene",
-        type: "checkList",
-        eyebrow: "Healthy Habits",
-        title: "Important teenage health tips",
-        color: "#14b8a6",
-        paragraph:
-          "Healthy habits support confidence and reproductive health during teenage years.",
-        items: [
-          "Maintain menstrual hygiene",
-          "Eat balanced meals",
-          "Stay physically active",
-          "Drink enough water",
-          "Get proper sleep",
-          "Avoid excessive junk food",
-        ],
-      },
-
-      {
-        id: "support",
+        id: "symptoms",
         type: "warning",
-        eyebrow: "Medical Support",
-        title: "When to visit a gynecologist",
+        eyebrow: "Symptoms",
+        title: "20 Symptoms of Puberty Disorders You Should Not Ignore",
+        color: "#ef4444",
+        paragraph:
+          "Puberty disorders can look different from one child to another. Some changes may be normal variations, while others may need medical evaluation. Common signs can include:",
+        items: [
+          "Breast development at an unusually young age",
+          "Early periods",
+          "Pubic hair appearing early",
+          "Underarm hair appearing early",
+          "Rapid growth at a young age",
+          "Acne developing unusually early",
+          "Strong body odour at an early age",
+          "Early enlargement of the testicles",
+          "Early growth of the penis",
+          "Deepening of the voice earlier than expected",
+          "Facial hair appearing early",
+          "No signs of puberty by the expected age",
+          "Delayed breast development",
+          "No periods by the expected age",
+          "Delayed testicular development",
+          "Slow or limited pubertal changes",
+          "Growth that seems slower than expected",
+          "Puberty that starts but does not progress normally",
+          "Emotional distress related to body changes",
+          "Significant difference in development compared with peers",
+        ],
+        note: "Puberty normally occurs within a broad age range. Early or delayed development does not always mean there is a serious medical problem, but unusual changes should be discussed with a doctor when there is concern.",
+      },
+
+      {
+        id: "causes",
+        type: "checkList",
+        eyebrow: "Why it Happens",
+        title: "Why Do Puberty Disorders Happen?",
         color: "#f97316",
         paragraph:
-          "Some symptoms should not be ignored during teenage years.",
+          "The reasons behind puberty disorders can vary. Sometimes there is no clear cause, while in other cases the condition may be linked to hormones, family history, nutrition, chronic health problems, or problems affecting the glands involved in puberty.",
         items: [
-          "Very painful periods",
-          "Heavy bleeding",
-          "No periods by age 15",
-          "Severe acne",
-          "Excess facial hair",
-          "Irregular cycles for long duration",
+          "Hormonal Changes: Hormone levels can affect when and how puberty begins.",
+          "Family History: The timing of puberty can sometimes run in families.",
+          "Nutrition and Health: Poor nutrition or certain long-term health conditions may delay normal development.",
+          "Brain or Gland Problems: Conditions affecting the brain, pituitary gland, ovaries, or testicles may affect puberty.",
+          "Genetic Conditions: Some genetic conditions can affect hormone production and development.",
+          "Other Medical Conditions: Thyroid and other hormonal problems may sometimes affect normal puberty.",
+        ],
+      },
+
+      {
+        id: "when-to-see",
+        type: "warning",
+        eyebrow: "When To See A Doctor",
+        title: "When Should You See a Puberty Disorder Doctor?",
+        color: "#f43f5e",
+        paragraph:
+          "Some children naturally develop earlier or later than others. However, unusual or rapidly changing physical development should be discussed with a doctor, especially when puberty appears much earlier than expected or has not started when expected.",
+        paragraphs: [
+          "You should consider seeing a specialist if your child has:",
+        ],
+        items: [
+          "Very Early Physical Changes",
+          "Early Breast Development",
+          "Early Periods",
+          "Early Facial or Body Hair",
+          "Rapid Growth",
+          "No Signs of Puberty",
+          "Delayed Sexual Development",
+          "Puberty That Stops Progressing",
+        ],
+      },
+
+      {
+        id: "types",
+        type: "cards",
+        eyebrow: "Types",
+        title: "Types of Puberty Disorders",
+        color: "#8b5cf6",
+        paragraph:
+          "Puberty disorders can mainly involve puberty starting too early, starting later than expected, or not progressing normally.",
+        cards: [
+          {
+            title: "Early Puberty",
+            description:
+              "Early or precocious puberty means puberty-related physical changes begin earlier than expected. Signs may include breast development, pubic hair, rapid growth, acne, body odour, or other changes associated with puberty.",
+          },
+          {
+            title: "Delayed Puberty",
+            description:
+              "Delayed puberty means that expected signs of puberty have not started by the usual age. It may sometimes run in families, but medical conditions, nutritional problems, hormone issues, or other factors can also be involved.",
+          },
+        ],
+      },
+
+      {
+        id: "risk",
+        type: "timeline",
+        eyebrow: "Health Impact",
+        title: "How Delayed Treatment Can Affect Health",
+        color: "#10b981",
+        paragraph:
+          "Puberty disorders do not affect every child in the same way. When unusual development is not evaluated, an underlying hormonal or medical problem may remain untreated. Early assessment can help doctors understand the cause and decide whether treatment is needed.",
+        timeline: [
+          {
+            label: "Early Puberty",
+            title: "Growth Concerns",
+            description:
+              "Children may grow quickly at first, but their bones can mature earlier than expected, which may affect adult height.",
+          },
+          {
+            label: "Delayed Puberty",
+            title: "Delayed Development",
+            description:
+              "Puberty-related physical changes may take longer to appear and may sometimes affect a child's confidence or emotional well-being.",
+          },
+          {
+            label: "Hormonal Problems",
+            title: "Underlying Condition",
+            description:
+              "In some children, abnormal puberty may be linked to a hormone or other medical condition that needs treatment.",
+          },
+          {
+            label: "Emotional Impact",
+            title: "Confidence and Well-Being",
+            description:
+              "Being noticeably different from peers can sometimes cause embarrassment, stress, or concerns about body changes.",
+          },
+        ],
+      },
+
+      {
+        id: "treatment",
+        type: "cards",
+        eyebrow: "ADVANCED TREATMENT",
+        title: "Puberty Disorder Treatment In Gurgaon",
+        color: "#14b8a6",
+        paragraph:
+          "Puberty Disorder Treatment In Gurgaon depends on the child's age, symptoms, growth pattern, hormone levels, and the reason behind the condition. Some children may only need regular monitoring, while others may require medicines or treatment for an underlying medical problem.",
+        cards: [
+          {
+            title: "Hormone Assessment",
+            description:
+              "Helps understand whether hormone levels are appropriate for the child's age.",
+          },
+          {
+            title: "Growth Monitoring",
+            description: "Regular checks help track height and development.",
+          },
+          {
+            title: "Treatment for Early Puberty",
+            description:
+              "Medicines may be used in selected cases to delay further puberty changes.",
+          },
+          {
+            title: "Treatment for Delayed Puberty",
+            description:
+              "Treatment may be considered when an underlying hormone problem is identified.",
+          },
+          {
+            title: "Underlying Condition Treatment",
+            description:
+              "Thyroid, nutritional, or other medical problems may need appropriate care.",
+          },
+          {
+            title: "Regular Follow-Up",
+            description:
+              "Continued monitoring helps track growth, hormones, and treatment response.",
+          },
+        ],
+      },
+
+      {
+        id: "treatment-options",
+        type: "cards",
+        eyebrow: "Treatment Options",
+        title: "Treatment for Early and Delayed Puberty",
+        color: "#0ea5e9",
+        paragraph:
+          "Treatment depends on the cause and how quickly puberty is progressing. Some children may only need observation, while others may benefit from medicines that delay or support puberty.",
+        cards: [
+          {
+            title: "Early Puberty Treatment",
+            description:
+              "In selected cases of early puberty, medicines may be used to temporarily delay further pubertal development. The decision depends on the child's age, development, growth pattern, and underlying cause. Possible goals of treatment include:",
+            items: [
+              "Slow Early Development",
+              "Support Normal Growth",
+              "Protect Adult Height",
+              "Manage Hormonal Changes",
+              "Address Underlying Causes",
+              "Support Emotional Well-Being",
+            ],
+          },
+          {
+            title: "Delayed Puberty Treatment",
+            description:
+              "Treatment for delayed puberty depends on why puberty is late. Some children may simply need monitoring, while others may require treatment for an underlying medical or hormonal condition. Treatment may focus on:",
+            items: [
+              "Finding the Cause",
+              "Supporting Normal Development",
+              "Managing Hormone Problems",
+              "Monitoring Growth",
+              "Improving Bone Health",
+              "Supporting Overall Well-Being",
+            ],
+          },
+        ],
+      },
+
+      {
+        id: "consult",
+        type: "warning",
+        eyebrow: "WHEN TO CONSULT",
+        title: "When Should You Meet a Specialist?",
+        color: "#dc2626",
+        paragraph:
+          "If your child's puberty seems much earlier or later than expected, or development has started but is not progressing normally, it is worth discussing the changes with a specialist. Early evaluation can help identify whether the changes are simply part of normal development or need treatment.",
+        paragraphs: ["See a specialist if your child has:"],
+        items: [
+          "Very Early Puberty Signs",
+          "Delayed Puberty",
+          "Rapid Growth",
+          "Early Periods",
+          "Early Breast or Testicular Development",
+          "No Expected Puberty Changes",
+          "Puberty That Stops Progressing",
+          "Concerns About Growth or Development",
+        ],
+      },
+
+      {
+        id: "why-choose",
+        type: "cards",
+        eyebrow: "Why Choose Us",
+        title:
+          "Why Choose the Best Doctor for Puberty Disorder Treatment in Gurgaon?",
+        color: "#6366f1",
+        paragraph:
+          "Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician focused on clear diagnosis, safe planning, and supportive follow-through for every patient. With 17+ years of experience, 10k+ patients guided, and experience across 3 premier institutes, she focuses on understanding each child's growth, development, and health concerns before suggesting tests or treatment.",
+        paragraphs: [
+          "Puberty can be different for every child, so having a doctor who listens to parents and explains things in simple language can make the process easier. Regular follow-ups can help keep track of growth, hormone levels, physical changes, and treatment progress while providing ongoing support to the child and family.",
         ],
       },
     ] satisfies BlogSection[],
+
+    faqTitle: "Frequently Asked Questions About Puberty Disorders",
+
     faqs: [
       {
         id: "1",
-        question: "At what age do periods usually start?",
+        question: "What is a puberty disorder?",
         answer:
-          "Most girls start their periods between about 10 and 15 years of age. Timing varies from person to person.",
+          "A puberty disorder occurs when puberty starts too early, happens later than expected, or does not progress normally.",
       },
       {
         id: "2",
-        question: "Is it normal for a teenager to have irregular periods?",
+        question: "What is early puberty?",
         answer:
-          "Yes, cycles are often irregular in the first year or two. If irregularity continues beyond that, it is worth getting checked.",
+          "Early puberty means that puberty-related body changes begin earlier than expected for the child's age.",
       },
       {
         id: "3",
-        question: "When should a teenager first see a gynecologist?",
+        question: "What is delayed puberty?",
         answer:
-          "A visit is helpful if periods have not started by around 15, if periods are very painful or heavy, if cycles remain irregular, or if there is any unusual discharge or discomfort.",
+          "Delayed puberty means that expected signs of puberty have not started by the usual age or are progressing much later than expected.",
       },
       {
         id: "4",
-        question: "Does a teenage gynecology visit involve an internal examination?",
+        question: "What are the signs of early puberty?",
         answer:
-          "Usually not. For most teenagers the visit is a conversation, a general examination, and if needed an ultrasound. Nothing is done without explanation and consent.",
+          "Early body hair, breast or testicular development, rapid growth, acne, body odour, and early periods can be signs of early puberty.",
       },
       {
         id: "5",
-        question: "Is period pain normal in teenagers?",
+        question: "How are puberty disorders diagnosed?",
         answer:
-          "Mild cramps are common. Pain that causes missed school, vomiting, or fainting is not normal and should be evaluated.",
+          "The doctor may check growth and physical development and may recommend blood tests, a bone-age X-ray, ultrasound, or MRI when needed.",
       },
       {
         id: "6",
-        question: "Can teenagers have PCOS?",
+        question: "Can puberty disorders be treated?",
         answer:
-          "Yes. Irregular cycles, acne, unwanted hair growth, or rapid weight gain in teenagers can point to PCOS and should be assessed.",
+          "Yes. Treatment depends on the cause. Some children need only monitoring, while others may need medicines or treatment for an underlying condition.",
       },
       {
         id: "7",
-        question: "What hygiene habits matter during periods?",
+        question: "Can early puberty affect height?",
         answer:
-          "Changing pads or tampons regularly, washing with plain water, wearing breathable cotton underwear, and avoiding harsh intimate washes all help.",
+          "Early puberty can cause children to grow quickly at first, but their bones may mature sooner, which can affect their final adult height.",
       },
       {
         id: "8",
-        question: "Should teenagers get the HPV vaccine?",
+        question: "Can delayed puberty be treated?",
         answer:
-          "HPV vaccination is generally recommended in the teenage years, before any exposure. Your doctor can advise on timing and doses.",
+          "Yes, depending on the cause. The doctor may monitor development or recommend suitable treatment when a medical or hormonal problem is found.",
       },
       {
         id: "9",
-        question: "Is white discharge normal in teenage girls?",
+        question: "What does Puberty Disorder Treatment In Gurgaon include?",
         answer:
-          "A small amount of clear or white discharge without itching or odour is usually normal. Discharge with itching, burning, or a strong smell should be checked.",
+          "Treatment may include growth monitoring, hormone testing, medicines, treatment of underlying conditions, and regular follow-ups depending on the child's needs.",
       },
       {
         id: "10",
-        question: "Can a teenager visit a gynecologist with a parent?",
+        question:
+          "How do I choose the Best Doctor for Puberty Disorder Treatment in Gurgaon?",
         answer:
-          "Yes. Teenagers are welcome to come with a parent or guardian, and consultations are handled privately and sensitively.",
+          "Look for a qualified specialist experienced in children's growth and hormone-related conditions who explains the diagnosis and treatment options clearly.",
       },
     ] satisfies BlogFaq[],
-
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -4467,9 +5040,9 @@ export const sexualIntimateHealthBlogs = [
   {
     hero: {
       badge: "Sexual & Intimate Health",
-      title: "Vaginal Infection Treatment and Intimate Care",
+      title: "Best Vaginal Infections Doctor In Gurgaon",
       date: "May 24, 2026",
-      readTime: "6 min read",
+      readTime: "8 min read",
       status: "Doctor Reviewed",
     },
 
@@ -4477,163 +5050,312 @@ export const sexualIntimateHealthBlogs = [
       id: "vaginal-infection-treatment",
       slug: "vaginal-infection-treatment",
       category: "sexual-intimate-health",
-      title: "Vaginal Infection Treatment and Intimate Care",
+      title: "Best Vaginal Infections Doctor In Gurgaon",
       intro:
-        "Vaginal infections are common women health conditions that may cause itching, discharge, irritation, discomfort, or unusual odor. Early treatment helps prevent complications and improves intimate wellness.",
+        "Vaginal infections are common and can cause itching, unusual discharge, unpleasant smell, irritation, burning, or discomfort while urinating. Different infections can cause similar symptoms, so finding the actual cause is important before starting treatment.",
       image:
         "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1400&auto=format&fit=crop",
 
       paragraphs: [
-        "Vaginal infections may happen because of bacterial imbalance, fungal infection, poor hygiene, hormonal changes, or irritation.",
-        "A gynecology consultation helps identify the exact cause and provides the right treatment plan for long-term relief.",
+        "If you are experiencing unusual vaginal discharge, itching, burning, pain, or repeated infections, consulting a Best Vaginal Infections Doctor In Gurgaon can help identify the cause and guide you toward suitable treatment.",
       ],
     },
 
     sections: [
       {
-        id: "symptoms",
-        type: "warning",
-        eyebrow: "Symptoms",
-        title: "Common signs of vaginal infection",
-        color: "#ef4444",
+        id: "about",
+        type: "cards",
+        eyebrow: "What Is a Vaginal Infection?",
+        title: "Understanding Vaginal Infections",
+        color: "#ec4899",
         paragraph:
-          "Symptoms can vary depending on the type and severity of infection.",
-        items: [
-          "Itching or irritation",
-          "Burning sensation",
-          "Unusual vaginal discharge",
-          "Bad odor",
-          "Pain during urination",
-          "Discomfort during intimacy",
+          "A vaginal infection occurs when there is an imbalance or infection affecting the vagina. Common causes include bacterial vaginosis, yeast infection, and some sexually transmitted infections. Symptoms can vary depending on the cause, so proper evaluation is important.",
+        paragraphs: ["Common types of vaginal infections:"],
+        cards: [
+          {
+            title: "Bacterial Vaginosis",
+            description:
+              "Can cause thin discharge and a strong or fishy smell.",
+          },
+          {
+            title: "Yeast Infection",
+            description:
+              "Often causes itching, irritation, and thick white discharge.",
+          },
+          {
+            title: "Trichomoniasis",
+            description:
+              "May cause yellow-green or frothy discharge, itching, and discomfort while urinating.",
+          },
+          {
+            title: "Other Infections",
+            description:
+              "Some STIs can also cause unusual discharge, pelvic pain, bleeding, or discomfort.",
+          },
         ],
       },
 
       {
-        id: "causes",
-        type: "cards",
-        eyebrow: "Possible Causes",
-        title: "Why vaginal infections happen",
-        color: "#8b5cf6",
+        id: "symptoms",
+        type: "warning",
+        eyebrow: "Symptoms",
+        title: "15 Symptoms of Vaginal Infection You Should Not Ignore",
+        color: "#ef4444",
         paragraph:
-          "Different factors can disturb natural vaginal balance and increase infection risk.",
-        cards: [
+          "Vaginal infections can cause different symptoms, and you may not experience all of them. A change in discharge, smell, itching, or discomfort can be a reason to seek medical advice.",
+        items: [
+          "Unusual vaginal discharge",
+          "Change in discharge colour",
+          "Strong vaginal smell",
+          "Vaginal itching",
+          "Vaginal irritation",
+          "Burning sensation",
+          "Redness around the vagina",
+          "Vaginal soreness",
+          "Pain while urinating",
+          "Pain during intercourse",
+          "Vaginal dryness",
+          "Pelvic discomfort",
+          "Vaginal swelling",
+          "Spotting or unusual bleeding",
+          "Repeated vaginal infections",
+        ],
+        note: "Normal vaginal discharge can vary throughout the menstrual cycle. However, a noticeable change in its colour, smell, amount, or texture may need medical evaluation.",
+      },
+
+      {
+        id: "causes",
+        type: "checkList",
+        eyebrow: "Why it Happens",
+        title: "Possible Causes of Vaginal Infection",
+        color: "#f97316",
+        paragraph:
+          "The cause of a vaginal infection can vary from person to person. Some infections are caused by bacteria or yeast, while others may be linked to sexually transmitted infections or irritation.",
+        items: [
+          "Bacterial Imbalance: Changes in the normal vaginal bacteria can lead to bacterial vaginosis.",
+          "Yeast Overgrowth: Candida yeast can grow excessively and cause a yeast infection.",
+          "Sexually Transmitted Infections: Infections such as trichomoniasis can cause vaginal symptoms.",
+          "Hormonal Changes: Changes during pregnancy, breastfeeding, or menopause can affect the vaginal area.",
+          "Scented Products: Perfumed soaps, washes, and vaginal deodorants may cause irritation.",
+          "Douching: Washing inside the vagina can disturb its natural balance.",
+        ],
+      },
+
+      {
+        id: "when-to-see",
+        type: "warning",
+        eyebrow: "When To See A Doctor",
+        title: "When Should You See a Vaginal Infection Doctor?",
+        color: "#f43f5e",
+        paragraph:
+          "Mild changes in vaginal discharge can sometimes be normal, but unusual discharge, strong smell, itching, burning, or pain should not be ignored. Seeing a specialist can help identify the actual cause instead of treating the wrong infection.",
+        paragraphs: ["You should consider seeing a doctor if you have:"],
+        items: [
+          "Unusual Discharge",
+          "Strong Vaginal Odour",
+          "Persistent Itching",
+          "Burning Sensation",
+          "Pain While Urinating",
+          "Pain During Intercourse",
+          "Pelvic Pain",
+          "Repeated Infections",
+        ],
+      },
+
+      {
+        id: "risk",
+        type: "timeline",
+        eyebrow: "Stages of Vaginal Infection",
+        title: "How Delayed Treatment Can Affect Health",
+        color: "#10b981",
+        paragraph:
+          "Ignoring persistent vaginal infection symptoms may allow the underlying problem to continue. The possible effects depend on the type and cause of the infection.",
+        timeline: [
           {
-            title: "Bacterial imbalance",
+            label: "Stage 1",
+            title: "Ongoing Discomfort",
             description:
-              "Changes in healthy vaginal bacteria may trigger infection.",
+              "Itching, burning, unusual discharge, or irritation may continue.",
           },
           {
-            title: "Fungal infection",
+            label: "Stage 2",
+            title: "Recurring Symptoms",
             description:
-              "Yeast overgrowth may cause itching and thick discharge.",
+              "The infection or symptoms may return if the underlying cause is not properly identified.",
           },
           {
-            title: "Hormonal changes",
+            label: "Stage 3",
+            title: "Pelvic Concerns",
             description:
-              "Pregnancy, menopause, or hormonal imbalance may affect vaginal health.",
+              "Some infections, particularly certain untreated STIs, can be associated with pelvic complications and require timely medical care.",
+          },
+          {
+            label: "Stage 4",
+            title: "Pregnancy Concerns",
+            description:
+              "Certain vaginal or sexually transmitted infections can require special attention during pregnancy, so unusual symptoms should be discussed with a doctor.",
           },
         ],
       },
 
       {
         id: "treatment",
-        type: "timeline",
-        eyebrow: "Treatment",
-        title: "Vaginal infection care approach",
-        color: "#10b981",
+        type: "cards",
+        eyebrow: "ADVANCED TREATMENT",
+        title: "Vaginal Infections Treatment In Gurgaon",
+        color: "#14b8a6",
         paragraph:
-          "Early diagnosis and proper treatment help restore intimate health and comfort.",
-        timeline: [
+          "Vaginal Infections Treatment In Gurgaon depends on the type and cause of infection. Your doctor may recommend antifungal treatment for yeast infections, antibiotics for certain bacterial infections, or specific treatment for sexually transmitted infections. The right treatment should be selected after evaluating the symptoms and, when needed, testing.",
+        cards: [
           {
-            label: "Step 1",
-            title: "Medical examination",
-            description:
-              "Doctor evaluates symptoms and vaginal health condition.",
+            title: "Antifungal Treatment",
+            description: "Used for confirmed yeast infections.",
           },
           {
-            label: "Step 2",
-            title: "Testing if needed",
+            title: "Antibiotic Treatment",
             description:
-              "Samples may be tested to identify infection type.",
+              "May be prescribed for bacterial infections such as bacterial vaginosis.",
           },
           {
-            label: "Step 3",
-            title: "Medicines and hygiene care",
+            title: "STI Treatment",
             description:
-              "Treatment may include antifungal or antibacterial medicines.",
+              "Specific medicines may be needed when an STI is diagnosed.",
           },
           {
-            label: "Step 4",
-            title: "Preventive care",
+            title: "Symptom Relief",
             description:
-              "Lifestyle and hygiene support help reduce recurrence.",
+              "Treatment can help reduce itching, irritation, burning, and discomfort.",
+          },
+          {
+            title: "Recurrent Infection Care",
+            description:
+              "Repeated infections may need further evaluation and a longer-term treatment plan.",
+          },
+          {
+            title: "Follow-Up Care",
+            description:
+              "Follow-up may be recommended if symptoms continue or return.",
           },
         ],
       },
+
+      {
+        id: "diagnosis",
+        type: "checkList",
+        eyebrow: "Diagnosis",
+        title: "How Are Vaginal Infections Diagnosed?",
+        color: "#0ea5e9",
+        paragraph:
+          "Finding the cause of a vaginal infection is important because different infections may need different treatments. Your doctor may ask about your symptoms and medical history and perform an examination or take a vaginal swab when required.",
+        items: [
+          "Medical History: Your doctor asks about your symptoms and when they started.",
+          "Vaginal Examination: Helps check for irritation, discharge, redness, or swelling.",
+          "Vaginal Swab: A small sample may be tested to identify the infection.",
+          "Vaginal pH Test: May help identify certain causes of vaginal symptoms.",
+          "Lab Testing: Additional testing may be recommended when the cause is unclear or symptoms keep returning.",
+        ],
+      },
+
+      {
+        id: "consult",
+        type: "warning",
+        eyebrow: "WHEN TO CONSULT",
+        title: "When Should You Meet a Specialist?",
+        color: "#dc2626",
+        paragraph:
+          "If you notice unusual discharge, persistent itching, burning, pain, or repeated vaginal infections, it is better to consult a specialist rather than guessing the cause. Proper diagnosis can help you receive the right treatment.",
+        paragraphs: ["See a specialist if you have:"],
+        items: [
+          "Persistent Vaginal Itching",
+          "Unusual Discharge",
+          "Strong Vaginal Smell",
+          "Pain While Urinating",
+          "Pain During Sex",
+          "Pelvic Discomfort",
+          "Repeated Infections",
+          "Symptoms Not Improving With Treatment",
+        ],
+      },
+
+      {
+        id: "why-choose",
+        type: "cards",
+        eyebrow: "Why Choose Us",
+        title:
+          "Why Choose the Best Doctors For Vaginal Infection Treatment In Gurgaon?",
+        color: "#6366f1",
+        paragraph:
+          "When vaginal itching, unusual discharge, burning, or repeated infections are affecting your comfort, choosing the right doctor can make treatment easier. Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician with 17+ years of experience who has guided 10K+ patients across 3 premier institutes. She focuses on understanding your symptoms, finding the possible cause, and explaining treatment options in simple terms, with an approach based on clear diagnosis, safe planning, and supportive follow-through.",
+        paragraphs: [
+          "Every vaginal infection can have a different cause, so the right treatment depends on your individual condition. Whether the symptoms are related to a bacterial infection, yeast infection, STI, irritation, or another concern, Dr. Kusum Lata Bhardwaj can assess your symptoms and recommend appropriate testing and treatment when needed. Regular follow-up can also help manage infections that keep coming back.",
+        ],
+      },
     ] satisfies BlogSection[],
+
+    faqTitle: "Frequently Asked Questions About Vaginal Infections",
+
     faqs: [
       {
         id: "1",
-        question: "What are the common signs of a vaginal infection?",
+        question: "What is a vaginal infection?",
         answer:
-          "Itching, burning, unusual discharge, an unpleasant odour, redness, swelling, and discomfort while passing urine or during intercourse.",
+          "A vaginal infection occurs when an infection or imbalance affects the vagina. It can cause discharge, itching, smell, burning, or discomfort.",
       },
       {
         id: "2",
-        question: "What are the common types of vaginal infection?",
+        question: "What are the common symptoms of vaginal infection?",
         answer:
-          "Bacterial vaginosis, yeast (candida) infection, and trichomoniasis are the most common. Each needs a different treatment.",
+          "Common symptoms include unusual discharge, itching, burning, unpleasant smell, pain while urinating, and discomfort during sex.",
       },
       {
         id: "3",
-        question: "Why do vaginal infections keep coming back?",
+        question: "What causes vaginal infections?",
         answer:
-          "Uncontrolled blood sugar, repeated antibiotic use, harsh intimate washes, tight synthetic underwear, and an untreated partner can all cause recurrence.",
+          "They can be caused by bacteria, yeast, certain sexually transmitted infections, hormonal changes, or irritation from some products.",
       },
       {
         id: "4",
-        question: "How is a vaginal infection diagnosed?",
+        question: "How are vaginal infections diagnosed?",
         answer:
-          "Through an examination and, when needed, a swab test or vaginal pH check to identify the exact organism.",
+          "A doctor may check your symptoms, examine the vaginal area, and take a swab or other test when needed.",
       },
       {
         id: "5",
-        question: "Can vaginal infections be treated at home?",
+        question: "Can vaginal infections be treated?",
         answer:
-          "Self-treatment often targets the wrong organism and delays recovery. A proper diagnosis ensures the correct treatment.",
+          "Yes. Treatment depends on the cause and may include antifungal medicines, antibiotics, or specific treatment for an STI.",
       },
       {
         id: "6",
-        question: "Are vaginal infections sexually transmitted?",
+        question: "Can a vaginal infection go away on its own?",
         answer:
-          "Some, such as trichomoniasis, are. Others, such as yeast infection and bacterial vaginosis, are not always sexually transmitted.",
+          "Some symptoms may improve, but it is better to identify the cause if symptoms are unusual, persistent, or recurring rather than self-treating.",
       },
       {
         id: "7",
-        question: "Does my partner need treatment too?",
+        question: "Can vaginal infections come back?",
         answer:
-          "For certain infections yes. Your doctor will advise whether partner treatment is required to prevent reinfection.",
+          "Yes, some infections can return. Repeated infections may need further testing and a different treatment approach.",
       },
       {
         id: "8",
         question: "Can vaginal infections affect pregnancy?",
         answer:
-          "Some untreated infections have been associated with pregnancy complications, so infections in pregnancy should always be treated under medical guidance.",
+          "Some infections need special attention during pregnancy. If you are pregnant and notice unusual discharge, itching, smell, or pain, speak with your doctor.",
       },
       {
         id: "9",
-        question: "How can I prevent vaginal infections?",
+        question: "When should I see a vaginal infection specialist?",
         answer:
-          "Wash with plain water, avoid douching and scented products, wear breathable cotton underwear, change out of wet clothing promptly, and manage blood sugar.",
+          "See a specialist if you have persistent itching, unusual discharge, strong smell, pain, repeated infections, or symptoms that are not improving.",
       },
       {
         id: "10",
-        question: "When should I see a doctor?",
+        question: "Where can I get Vaginal Infections Treatment In Gurgaon?",
         answer:
-          "See a doctor if symptoms are severe, keep returning, occur with fever or pelvic pain, or if you are pregnant.",
+          "A qualified Vaginal Infection Doctor In Gurgaon can evaluate your symptoms, identify the likely cause, and recommend suitable treatment based on your condition.",
       },
     ] satisfies BlogFaq[],
-
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
@@ -5513,288 +6235,395 @@ export const laparoscopicSurgeryBlogs = [
   {
     hero: {
       badge: "Laparoscopic Surgery",
-      title: "Fibroid Treatment in Gurgaon",
-      date: "May 24, 2026",
-      readTime: "7 min read",
+      title: "Best Uterine Fibroids Doctor In Gurgaon",
+      date: "Aug 27, 2026",
+      readTime: "8 min read",
       status: "Doctor Reviewed",
     },
-  
+
     article: {
       id: "fibroid-removal-surgery",
       slug: "fibroid-removal-surgery",
       category: "laparoscopic-surgery",
-      title: "Fibroid Treatment in Gurgaon",
+      title: "Best Uterine Fibroids Doctor In Gurgaon",
       intro:
-        "Fibroids are non-cancerous growths inside or around the uterus that may cause heavy bleeding, pelvic pain, pressure symptoms, and fertility problems in women.",
+        "Uterine fibroids are non-cancerous growths that develop in or around the uterus. They can cause heavy periods, pelvic pain, pressure, frequent urination, and sometimes difficulty getting pregnant.",
       image:
         "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1400&auto=format&fit=crop",
-  
+
       paragraphs: [
-        "Fibroids are one of the most common gynecological conditions affecting women between 30 to 50 years of age.",
-        "Modern laparoscopic surgery allows fibroid removal with minimal cuts, faster recovery, less pain, and preservation of fertility whenever possible.",
+        "Some women may have fibroids without any symptoms, while others may experience problems that affect their daily life. Consulting an experienced top Uterine Fibroids Doctor In Gurgaon can help identify the size, number, and location of fibroids and guide you toward suitable treatment.",
       ],
     },
-  
+
     sections: [
       {
         id: "about",
         type: "cards",
-        eyebrow: "What is a Fibroid?",
-        title: "Understanding uterine fibroids",
+        eyebrow: "What Are Uterine Fibroids?",
+        title: "Understanding Uterine Fibroids",
         color: "#ec4899",
         paragraph:
-          "Fibroids are benign (non-cancerous) growths that develop inside or around the uterus.",
+          "Uterine fibroids are growths that develop from the muscle tissue of the uterus. They can be small or large, and a woman may have one fibroid or several. Fibroids are usually non-cancerous, and their symptoms can vary depending on their size and location.",
+        paragraphs: ["Common areas where fibroids develop:"],
         cards: [
           {
-            title: "Intramural fibroid",
+            title: "Uterine Wall",
             description:
-              "Fibroid present within the muscular wall of the uterus.",
+              "Fibroids can grow within the muscular wall of the uterus.",
           },
           {
-            title: "Submucosal fibroid",
+            title: "Inner Uterine Cavity",
             description:
-              "Fibroid inside the uterine cavity that may affect bleeding and fertility.",
+              "Some fibroids grow toward the inside of the uterus and may affect menstrual bleeding.",
           },
           {
-            title: "Subserosal fibroid",
+            title: "Outer Surface",
             description:
-              "Fibroid on the outer surface of the uterus causing pressure symptoms.",
+              "Fibroids may grow on the outer side of the uterus and cause pressure or discomfort.",
+          },
+          {
+            title: "Attached by a Stalk",
+            description:
+              "Some fibroids grow on a thin, stalk-like structure and are called pedunculated fibroids.",
           },
         ],
       },
-  
+
       {
         id: "symptoms",
         type: "warning",
         eyebrow: "Symptoms",
-        title: "Symptoms you should not ignore",
+        title: "Common Symptoms of Uterine Fibroids You Should Not Ignore",
         color: "#ef4444",
         paragraph:
-          "Many women ignore fibroid symptoms for years, but timely treatment improves quality of life.",
+          "Not everyone with fibroids experiences symptoms. When symptoms do occur, they can depend on the size, number, and location of the fibroids.",
         items: [
-          "Heavy or prolonged periods",
-          "Passing clots during menstruation",
-          "Low hemoglobin and weakness",
-          "Pelvic pain or pressure",
+          "Heavy menstrual bleeding",
+          "Painful periods",
+          "Longer periods",
+          "Pelvic pain",
+          "Pelvic pressure",
+          "Lower abdominal discomfort",
+          "Lower back pain",
           "Frequent urination",
-          "Bloating or abdominal heaviness",
-          "Difficulty in conceiving",
+          "Difficulty emptying the bladder",
+          "Constipation",
+          "Pain during intercourse",
+          "Abdominal swelling",
+          "Tiredness due to heavy blood loss",
+          "Anemia",
+          "Bleeding between periods",
+          "Abdominal cramps",
+          "Difficulty getting pregnant",
+          "Pregnancy-related complications in some cases",
+          "Feeling pressure in the lower abdomen",
+          "Sudden pelvic pain in some cases",
         ],
       },
-  
+
       {
-        id: "common",
-        type: "checkList",
-        eyebrow: "How Common Are Fibroids?",
-        title: "Fibroids are very common in women",
+        id: "types",
+        type: "cards",
+        eyebrow: "Types of Fibroids",
+        title: "Types of Uterine Fibroids",
         color: "#8b5cf6",
         paragraph:
-          "Fibroids affect a large number of women during reproductive age.",
-        items: [
-          "Seen in approximately 1 in 4 women",
-          "Common between age 30 to 50 years",
-          "May occur in multiple family members",
-          "Can remain silent for years",
-          "Some fibroids grow slowly over time",
-          "Large fibroids may affect fertility and daily life",
-        ],
-      },
-  
-      {
-        id: "treatment-needed",
-        type: "timeline",
-        eyebrow: "When Treatment Is Needed",
-        title: "When should fibroids be treated?",
-        color: "#10b981",
-        paragraph:
-          "Not every fibroid needs surgery, but proper evaluation is important.",
-        timeline: [
-          {
-            label: "Condition 1",
-            title: "Heavy bleeding",
-            description:
-              "Treatment is needed if bleeding affects hemoglobin or daily life.",
-          },
-          {
-            label: "Condition 2",
-            title: "Pain or pressure",
-            description:
-              "Pelvic discomfort or abdominal pressure may require treatment.",
-          },
-          {
-            label: "Condition 3",
-            title: "Increasing fibroid size",
-            description:
-              "Large or growing fibroids may create complications.",
-          },
-          {
-            label: "Condition 4",
-            title: "Infertility concerns",
-            description:
-              "Fibroids affecting fertility may require surgical removal.",
-          },
-        ],
-      },
-  
-      {
-        id: "management",
-        type: "cards",
-        eyebrow: "Treatment Options",
-        title: "Fibroid treatment options",
-        color: "#14b8a6",
-        paragraph:
-          "Treatment depends on fibroid size, symptoms, age, and fertility plans.",
+          "The types of uterine fibroids are mainly classified according to where they grow in or around the uterus. Their location can affect the symptoms they cause and the treatment that may be recommended.",
         cards: [
           {
-            title: "Medical management",
-            description:
-              "Medicines and hormonal therapy may help control bleeding temporarily.",
+            title: "Intramural Fibroids",
+            description: "Grow within the muscular wall of the uterus.",
           },
           {
-            title: "Laparoscopic Myomectomy",
+            title: "Submucosal Fibroids",
             description:
-              "Fibroid removal surgery preserving the uterus and fertility.",
+              "Grow toward the inner cavity of the uterus and may cause heavy bleeding.",
           },
           {
-            title: "Hysterectomy",
+            title: "Subserosal Fibroids",
             description:
-              "Uterus removal may be advised in selected severe or recurrent cases.",
+              "Grow on the outer surface of the uterus and may cause pressure.",
+          },
+          {
+            title: "Pedunculated Fibroids",
+            description: "Grow on a thin stalk attached to the uterus.",
           },
         ],
       },
-  
+
       {
-        id: "laparoscopy",
+        id: "causes",
         type: "checkList",
-        eyebrow: "Laparoscopic Surgery",
-        title: "Benefits of laparoscopic fibroid surgery",
-        color: "#0ea5e9",
+        eyebrow: "Why it Happens",
+        title: "Why Do Uterine Fibroids Happen?",
+        color: "#f97316",
         paragraph:
-          "Modern minimally invasive surgery offers safer recovery and better comfort.",
+          "The exact reason why fibroids develop is not fully understood. Hormones such as estrogen and progesterone appear to play a role in their growth, while family history may also increase the likelihood of developing fibroids.",
         items: [
-          "Minimal cuts",
-          "Less postoperative pain",
-          "Minimal blood loss",
-          "Faster healing",
-          "Short hospital stay",
-          "Early return to work",
-          "Better cosmetic outcome",
+          "Hormonal Factors: Estrogen and progesterone may support fibroid growth.",
+          "Family History: Fibroids may be more likely if they run in your family.",
+          "Genetic Factors: Changes in certain cells of the uterus may contribute to fibroid development.",
         ],
       },
-  
+
       {
-        id: "cost",
-        type: "timeline",
-        eyebrow: "Surgery Cost & Recovery",
-        title: "Fibroid surgery recovery and cost",
-        color: "#22c55e",
+        id: "when-to-see",
+        type: "warning",
+        eyebrow: "When To See A Doctor",
+        title: "When Should You See a Uterine Fibroids Doctor?",
+        color: "#f43f5e",
         paragraph:
-          "Cost depends on fibroid size, number, and previous surgical history.",
+          "Heavy periods or pelvic discomfort should not always be ignored, especially when they affect your daily routine. If symptoms continue or become more severe, a specialist can check whether fibroids or another condition may be responsible.",
+        paragraphs: ["You should consider seeing a doctor if you have:"],
+        items: [
+          "Very Heavy Periods",
+          "Long or Frequent Periods",
+          "Persistent Pelvic Pain",
+          "Pelvic Pressure",
+          "Frequent Urination",
+          "Constipation",
+          "Pain During Intercourse",
+          "Difficulty Getting Pregnant",
+        ],
+      },
+
+      {
+        id: "impact",
+        type: "timeline",
+        eyebrow: "Health Effects",
+        title: "How Uterine Fibroids Can Affect Your Health",
+        color: "#10b981",
+        paragraph:
+          "Fibroids do not always cause problems, but larger or strategically located fibroids can lead to symptoms that affect daily life. Heavy bleeding may also cause anemia, while some fibroids may be associated with fertility or pregnancy concerns.",
         timeline: [
           {
-            label: "Hospital Stay",
-            title: "3–4 days stay",
+            label: "Mild Symptoms",
+            title: "Heavy Periods",
             description:
-              "Most patients recover quickly after laparoscopic surgery.",
+              "Some women may notice heavier or longer menstrual bleeding.",
           },
           {
-            label: "Recovery",
-            title: "Quick healing",
+            label: "Increasing Symptoms",
+            title: "Pelvic Pressure",
             description:
-              "Women usually return to normal routine early.",
+              "Larger fibroids may create pressure or discomfort in the lower abdomen.",
           },
           {
-            label: "Approx Cost",
-            title: "₹1–1.5 lakh",
+            label: "Advanced Symptoms",
+            title: "Bladder or Bowel Problems",
             description:
-              "Cost varies depending on complexity and hospital factors.",
+              "Fibroids pressing on nearby organs may cause frequent urination or constipation.",
           },
           {
-            label: "Expert Consultation",
-            title: "Specialized evaluation",
+            label: "Fertility Concerns",
+            title: "Difficulty Getting Pregnant",
             description:
-              "Discuss treatment options with Dr. Kusum Lata.",
+              "Certain fibroids, depending on their location, may affect fertility or pregnancy and may need evaluation.",
           },
         ],
       },
-  
+
+      {
+        id: "diagnosis",
+        type: "checkList",
+        eyebrow: "Diagnosis",
+        title: "How Are Uterine Fibroids Diagnosed?",
+        color: "#0ea5e9",
+        paragraph:
+          "Diagnosing fibroids usually starts with understanding your symptoms and medical history. Your doctor may perform a pelvic examination and recommend imaging tests to check the number, size, and location of the fibroids.",
+        items: [
+          "Pelvic Examination: Helps check the size and shape of the uterus.",
+          "Ultrasound: Helps identify and measure fibroids.",
+          "MRI Scan: Can provide a more detailed view of the size and location of fibroids.",
+          "Hysteroscopy: Allows the doctor to look inside the uterus when needed.",
+          "Blood Tests: May be used to check for anemia caused by heavy bleeding.",
+        ],
+      },
+
+      {
+        id: "treatment",
+        type: "cards",
+        eyebrow: "ADVANCED TREATMENT",
+        title: "Uterine Fibroid Treatment In Gurgaon",
+        color: "#14b8a6",
+        paragraph:
+          "Treatment for uterine fibroids depends on factors such as your symptoms, fibroid size and location, age, overall health, and pregnancy plans. Some fibroids may only need monitoring, while others may require medicines, minimally invasive procedures, or surgery.",
+        cards: [
+          {
+            title: "Watchful Waiting",
+            description:
+              "Small or symptom-free fibroids may only need regular monitoring.",
+          },
+          {
+            title: "Medication",
+            description: "Medicines may help manage heavy bleeding and pain.",
+          },
+          {
+            title: "Hormonal Treatment",
+            description:
+              "Certain medicines can help control fibroid-related symptoms.",
+          },
+          {
+            title: "Uterine Artery Embolization",
+            description:
+              "A minimally invasive procedure that reduces blood flow to fibroids so they shrink.",
+          },
+          {
+            title: "Radiofrequency Ablation",
+            description:
+              "Uses heat energy to treat fibroid tissue and reduce its size.",
+          },
+          {
+            title: "Surgical Treatment",
+            description:
+              "Procedures such as myomectomy may be considered when fibroids cause significant problems.",
+          },
+        ],
+      },
+
+      {
+        id: "surgery",
+        type: "checkList",
+        eyebrow: "Surgical Treatment",
+        title: "Fibroid Removal Surgery",
+        color: "#3b82f6",
+        paragraph:
+          "Fibroid removal surgery may be considered when fibroids cause significant symptoms, affect fertility, or do not respond adequately to other treatments. The type of procedure depends mainly on the size and location of the fibroids and your treatment goals.",
+        paragraphs: ["Possible treatment approaches include:"],
+        items: [
+          "Myomectomy",
+          "Laparoscopic Myomectomy",
+          "Hysteroscopic Myomectomy",
+          "Abdominal Myomectomy",
+          "Uterine Artery Embolization",
+          "Radiofrequency Ablation",
+          "Hysterectomy",
+          "Minimally Invasive Treatment",
+        ],
+      },
+
+      {
+        id: "myomectomy",
+        type: "checkList",
+        eyebrow: "Myomectomy",
+        title: "Benefits of Myomectomy for Suitable Patients",
+        color: "#22c55e",
+        paragraph:
+          "Myomectomy removes fibroids while keeping the uterus in place. It may be an option for women who want treatment while preserving their uterus, although the suitability of the procedure depends on the individual case.",
+        items: [
+          "Fibroid Removal",
+          "Reduced Heavy Bleeding",
+          "Pain Relief",
+          "Reduced Pelvic Pressure",
+          "Uterus Preservation",
+          "Fertility Consideration",
+          "Improved Daily Comfort",
+          "Better Quality of Life",
+        ],
+      },
+
+      {
+        id: "consult",
+        type: "warning",
+        eyebrow: "WHEN TO CONSULT",
+        title: "When Should You Meet a Specialist?",
+        color: "#dc2626",
+        paragraph:
+          "If heavy periods, pelvic pain, or pressure are affecting your everyday life, it is worth getting checked. Early evaluation can help identify the cause of your symptoms and determine whether fibroid treatment is needed.",
+        paragraphs: ["See a specialist if you have:"],
+        items: [
+          "Very Heavy Periods",
+          "Persistent Pelvic Pain",
+          "Long Menstrual Periods",
+          "Pelvic Pressure",
+          "Frequent Urination",
+          "Constipation",
+          "Pain During Intercourse",
+          "Difficulty Getting Pregnant",
+        ],
+      },
+
+      {
+        id: "why-choose",
+        type: "cards",
+        eyebrow: "Why Choose Us",
+        title:
+          "Why Choose the Best Doctors For Uterine Fibroids Treatment In Gurgaon?",
+        color: "#6366f1",
+        paragraph:
+          "Choosing the right specialist is important when fibroids are causing heavy bleeding, pain, pelvic pressure, or fertility concerns. The Best Doctors For Uterine Fibroids Treatment In Gurgaon can assess your symptoms, review your scan reports, and explain suitable treatment options based on the size, number, and location of your fibroids.",
+        paragraphs: [
+          "Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician focused on clear diagnosis, safe treatment planning, and supportive follow-through for every patient. With 17+ years of experience, guidance provided to 10k+ patients, and experience across 3 premier institutes, she focuses on personalised care based on each patient's needs and treatment goals. Options may include monitoring, medicines, minimally invasive procedures, or fibroid removal surgery when appropriate.",
+        ],
+      },
     ] satisfies BlogSection[],
+
+    faqTitle: "Frequently Asked Questions About Uterine Fibroids",
+
     faqs: [
       {
         id: "1",
-        question: "Are fibroids cancerous?",
+        question: "What Causes Uterine Fibroids?",
         answer:
-          "No, fibroids are benign (non-cancerous) in most cases.",
+          "The exact cause is not fully known. Hormonal changes, genetics, and family history may play a role in the development of fibroids.",
       },
       {
         id: "2",
-        question: "What are uterine fibroids?",
+        question: "How to Treat Uterine Fibroids?",
         answer:
-          "Fibroids are non-cancerous growths of muscle tissue in or around the wall of the uterus. They are very common in women of reproductive age.",
+          "Treatment depends on the size, location, symptoms, and pregnancy plans. Options may include medicines, monitoring, minimally invasive procedures, or surgery.",
       },
       {
         id: "3",
-        question: "What symptoms do fibroids cause?",
+        question: "What Is an Intramural Uterine Fibroid?",
         answer:
-          "Heavy or prolonged periods, pelvic pressure or pain, frequent urination, constipation, back pain, and sometimes difficulty conceiving.",
+          "An intramural fibroid grows within the muscular wall of the uterus. It may cause heavy periods, pelvic pressure, or pain depending on its size.",
       },
       {
         id: "4",
-        question: "Can fibroids affect fertility?",
+        question: "Can Uterine Fibroids Cause Back Pain?",
         answer:
-          "Yes, especially large or submucosal fibroids may affect pregnancy chances.",
+          "Yes, larger fibroids may put pressure on nearby areas and can sometimes cause lower back pain or discomfort.",
       },
       {
         id: "5",
-        question: "Is surgery always necessary?",
+        question: "Can Uterine Fibroids Go Away on Their Own?",
         answer:
-          "No, many fibroids can be managed medically without surgery.",
+          "Fibroids do not usually disappear completely on their own. However, some may shrink naturally, especially when hormone levels change.",
       },
       {
         id: "6",
-        question: "How are fibroids diagnosed?",
+        question: "Can Uterine Fibroids Shrink on Their Own?",
         answer:
-          "Usually with a pelvic examination and ultrasound, sometimes supported by an MRI or hysteroscopy.",
+          "Yes, some fibroids may shrink over time. This can happen when hormone levels decrease, such as around or after menopause.",
       },
       {
         id: "7",
-        question: "Is laparoscopy safe?",
+        question: "Can Uterine Fibroids Cause Irregular Periods?",
         answer:
-          "Yes, laparoscopic surgery is a safe minimally invasive procedure with faster recovery.",
+          "Yes, fibroids can sometimes cause changes in your menstrual cycle, including heavier, longer, or irregular bleeding.",
       },
       {
         id: "8",
-        question: "What is the difference between myomectomy and hysterectomy?",
+        question: "How to Know If You Have Uterine Fibroids?",
         answer:
-          "Myomectomy removes only the fibroids and preserves the uterus, while hysterectomy removes the uterus itself. The choice depends on your age and pregnancy plans.",
+          "Common signs include heavy periods, pelvic pressure, abdominal pain, frequent urination, or back pain. An ultrasound or other tests can help confirm whether fibroids are present.",
       },
       {
         id: "9",
-        question: "Can fibroids come back after surgery?",
+        question: "How Are Uterine Fibroids Formed?",
         answer:
-          "New fibroids can develop after myomectomy in some women, so follow-up is advised. They do not return after hysterectomy.",
+          "Fibroids develop from muscle cells in the uterus that grow abnormally. Hormones and genetic factors may influence their growth.",
       },
       {
         id: "10",
-        question: "How long is recovery after laparoscopic fibroid surgery?",
+        question: "Can I Get Pregnant If I Have Uterine Fibroids?",
         answer:
-          "Most women go home within a few days and return to routine activities within about two to four weeks, depending on the surgery.",
-      },
-      {
-        id: "11",
-        question: "Do fibroids shrink after menopause?",
-        answer:
-          "Many fibroids shrink after menopause as estrogen levels fall, though any new growth or bleeding after menopause must be checked.",
-      },
-      {
-        id: "12",
-        question: "Can I conceive after fibroid surgery?",
-        answer:
-          "Many women conceive after myomectomy. Your doctor will advise how long to wait before trying, based on the surgery performed.",
+          "Yes, many women with fibroids can become pregnant. However, some fibroids, depending on their size and location, may affect fertility or pregnancy.",
       },
     ] satisfies BlogFaq[],
 
-  
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
       label: "Written and reviewed by",
@@ -5805,283 +6634,385 @@ export const laparoscopicSurgeryBlogs = [
   {
     hero: {
       badge: "Laparoscopic Surgery",
-      title: "Ovarian Cyst Treatment in Gurgaon",
-      date: "May 24, 2026",
-      readTime: "6 min read",
+      title: "Best Doctor for Ovarian Cyst Treatment In Gurgaon",
+      date: "Aug 27, 2026",
+      readTime: "8 min read",
       status: "Doctor Reviewed",
     },
-  
+
     article: {
       id: "ovarian-cyst-surgery",
       slug: "ovarian-cyst-surgery",
       category: "laparoscopic-surgery",
-      title: "Ovarian Cyst Treatment in Gurgaon",
+      title: "Best Doctor for Ovarian Cyst Treatment In Gurgaon",
       intro:
-        "An ovarian cyst is a fluid-filled swelling inside or on the ovary. While many cysts are harmless and disappear naturally, some may cause pain, irregular periods, fertility problems, or complications requiring treatment.",
+        "An ovarian cyst is a fluid-filled sac that develops on or inside an ovary. Many ovarian cysts are harmless and go away on their own, but some can cause pelvic pain, bloating, heavy periods, or discomfort.",
       image:
         "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1400&auto=format&fit=crop",
-  
+
       paragraphs: [
-        "Ovarian cysts are common in women of reproductive age and are often detected during routine ultrasound examinations.",
-        "Advanced laparoscopic surgery allows safe cyst removal while preserving healthy ovarian tissue and fertility whenever possible.",
+        "If you are experiencing ongoing pelvic pain, changes in your periods, or have been diagnosed with an ovarian cyst, consulting a Best Doctor for Ovarian Cyst Treatment In Gurgaon can help you understand the type of cyst and the right treatment for your condition.",
       ],
     },
-  
+
     sections: [
       {
         id: "about",
         type: "cards",
-        eyebrow: "What is an Ovarian Cyst?",
-        title: "Understanding ovarian cysts",
+        eyebrow: "What Is an Ovarian Cyst?",
+        title: "Understanding Ovarian Cysts",
         color: "#ec4899",
         paragraph:
-          "An ovarian cyst is a fluid-filled sac that develops in or around the ovary.",
+          "An ovarian cyst is a sac filled with fluid or other tissue that forms on an ovary. Ovarian cysts are common, and many do not cause any symptoms. Some cysts may disappear without treatment, while larger, persistent, or painful cysts may need closer monitoring or treatment.",
+        paragraphs: ["Common areas and effects:"],
         cards: [
           {
-            title: "Fluid-filled swelling",
-            description:
-              "Most cysts contain fluid and vary in size from small to large.",
+            title: "Ovaries",
+            description: "Cysts develop on one or sometimes both ovaries.",
           },
           {
-            title: "Hormonal influence",
+            title: "Pelvic Area",
             description:
-              "Some cysts develop naturally during menstrual cycles.",
+              "Larger cysts may cause pressure, heaviness, or pelvic pain.",
           },
           {
-            title: "Fertility concerns",
+            title: "Abdomen",
+            description: "Some cysts can cause bloating or a swollen feeling.",
+          },
+          {
+            title: "Reproductive System",
             description:
-              "Large or recurrent cysts may affect reproductive health.",
+              "Certain cysts or underlying conditions may affect fertility.",
           },
         ],
       },
-  
+
       {
         id: "symptoms",
         type: "warning",
         eyebrow: "Symptoms",
-        title: "Common symptoms of ovarian cysts",
+        title: "20 Symptoms of Ovarian Cyst You Should Not Ignore",
         color: "#ef4444",
         paragraph:
-          "Some cysts cause symptoms while others are detected only during scans.",
+          "Many ovarian cysts do not cause noticeable symptoms. However, symptoms can occur when a cyst becomes large, ruptures, or causes the ovary to twist.",
+        paragraphs: ["Common symptoms may include:"],
         items: [
-          "Pain in lower abdomen",
-          "One-sided pelvic pain",
-          "Bloating or heaviness",
-          "Irregular or delayed periods",
-          "Sudden severe pain",
-          "Difficulty in conceiving",
-          "Pelvic pressure or discomfort",
+          "Pelvic pain",
+          "Lower abdominal pain",
+          "Sudden or sharp abdominal pain",
+          "Bloating",
+          "Abdominal fullness",
+          "Heavy periods",
+          "Irregular periods",
+          "Lighter-than-usual periods",
+          "Pain during intercourse",
+          "Frequent need to urinate",
+          "Difficulty emptying the bowel",
+          "Feeling full quickly",
+          "Pressure in the lower abdomen",
+          "Pain on one side of the pelvis",
+          "Abdominal swelling",
+          "Pain that comes and goes",
+          "Nausea",
+          "Vomiting with severe pain",
+          "Difficulty getting pregnant",
+          "Sudden severe pelvic pain",
+        ],
+        note: "Sudden severe pain, especially when accompanied by nausea or vomiting, needs urgent medical attention because it can occur with complications such as ovarian torsion or a ruptured cyst.",
+      },
+
+      {
+        id: "causes",
+        type: "checkList",
+        eyebrow: "Why Do Ovarian Cysts Happen?",
+        title: "Possible Causes of Ovarian Cysts",
+        color: "#f97316",
+        paragraph:
+          "Ovarian cysts can develop for different reasons. Many are related to the normal menstrual cycle, while others may develop because of conditions such as endometriosis or abnormal cell growth.",
+        items: [
+          "Menstrual Cycle: Some cysts form when a follicle does not release an egg or does not shrink normally.",
+          "Hormonal Changes: Changes in hormones can sometimes contribute to the development of functional cysts.",
+          "Endometriosis: Endometriosis can cause blood-filled cysts called endometriomas to develop on the ovaries.",
         ],
       },
-  
+
+      {
+        id: "when-to-see",
+        type: "warning",
+        eyebrow: "When To See A Doctor",
+        title: "When Should You See an Ovarian Cyst Doctor?",
+        color: "#f43f5e",
+        paragraph:
+          "Many ovarian cysts do not need immediate treatment. However, you should see a specialist if you have ongoing symptoms, a cyst that is getting larger, or concerns about your fertility.",
+        paragraphs: ["You should consider seeing a doctor if you have:"],
+        items: [
+          "Persistent Pelvic Pain",
+          "Sudden Severe Pain",
+          "Heavy or Irregular Periods",
+          "Pain During Sex",
+          "Frequent Urination",
+          "Bloating or Abdominal Swelling",
+          "Difficulty Getting Pregnant",
+          "Nausea or Vomiting With Pain",
+        ],
+      },
+
+      {
+        id: "impact",
+        type: "timeline",
+        eyebrow: "Health Effects",
+        title: "How Delayed Treatment Can Affect Health",
+        color: "#10b981",
+        paragraph:
+          "Not every ovarian cyst needs treatment, and many disappear naturally. However, a cyst that remains, grows, causes symptoms, or develops complications may require medical attention.",
+        timeline: [
+          {
+            label: "Stage 1",
+            title: "Mild or No Symptoms",
+            description:
+              "Small cysts may cause little or no noticeable discomfort.",
+          },
+          {
+            label: "Stage 2",
+            title: "Increasing Discomfort",
+            description:
+              "A larger or persistent cyst may cause pelvic pressure, pain, bloating, or period changes.",
+          },
+          {
+            label: "Stage 3",
+            title: "Cyst Complications",
+            description:
+              "Some cysts may rupture or cause the ovary to twist, leading to sudden and severe pain.",
+          },
+          {
+            label: "Stage 4",
+            title: "Complex or Persistent Cyst",
+            description:
+              "Large, persistent, or concerning cysts may need detailed evaluation and, in some cases, surgery.",
+          },
+        ],
+      },
+
       {
         id: "types",
         type: "cards",
         eyebrow: "Types of Cysts",
-        title: "Different types of ovarian cysts",
+        title: "Types of Ovarian Cysts",
         color: "#8b5cf6",
         paragraph:
-          "Correct diagnosis is important before planning treatment.",
+          "Ovarian cysts can be different in type and appearance. The most common functional cysts are usually linked to the menstrual cycle and often disappear on their own. Other types include endometriomas, cystadenomas, and teratomas.",
         cards: [
           {
-            title: "Functional cyst",
+            title: "Functional Cysts",
             description:
-              "Common cysts that usually disappear naturally over time.",
+              "These cysts are linked to the menstrual cycle and often disappear without treatment.",
           },
           {
-            title: "Chocolate cyst",
+            title: "Endometrioma",
             description:
-              "Endometriosis-related cyst filled with old blood.",
+              "These cysts can develop when endometriosis affects the ovary.",
           },
           {
-            title: "Dermoid cyst",
+            title: "Cystadenoma",
             description:
-              "Contains tissues like hair, fat, or skin elements.",
+              "These usually develop on the outer surface of the ovary and may grow larger.",
           },
           {
-            title: "Hemorrhagic cyst",
+            title: "Teratoma",
             description:
-              "Bleeding occurs inside the ovarian cyst.",
+              "These are usually benign growths that can contain different types of body tissue.",
           },
         ],
       },
-  
+
       {
-        id: "treatment-needed",
-        type: "timeline",
-        eyebrow: "When Treatment Is Needed",
-        title: "When should ovarian cysts be treated?",
-        color: "#10b981",
+        id: "diagnosis",
+        type: "checkList",
+        eyebrow: "Diagnosis",
+        title: "How Are Ovarian Cysts Diagnosed?",
+        color: "#0ea5e9",
         paragraph:
-          "Not every cyst requires surgery, but timely treatment may prevent complications.",
-        timeline: [
-          {
-            label: "Condition 1",
-            title: "Large or persistent cyst",
-            description:
-              "Cysts that remain for long duration may need treatment.",
-          },
-          {
-            label: "Condition 2",
-            title: "Pain and discomfort",
-            description:
-              "Pelvic pain or pressure symptoms may require surgery.",
-          },
-          {
-            label: "Condition 3",
-            title: "Suspicious ultrasound findings",
-            description:
-              "Complex cysts may require detailed evaluation.",
-          },
-          {
-            label: "Condition 4",
-            title: "Fertility concerns",
-            description:
-              "Cysts associated with infertility may require removal.",
-          },
+          "Finding an ovarian cyst usually starts with understanding your symptoms and medical history. Your doctor may recommend imaging or other tests to check the cyst's size, appearance, and location.",
+        items: [
+          "Medical History: Your doctor asks about your symptoms, periods, and health history.",
+          "Pelvic Examination: May help identify tenderness or other concerns.",
+          "Ultrasound: Helps check the cyst's size, location, and appearance.",
+          "Blood Tests: May be recommended in some cases when further evaluation is needed.",
+          "Follow-Up Scan: A repeat ultrasound may be suggested to see whether the cyst changes or disappears.",
         ],
       },
-  
+
       {
-        id: "management",
+        id: "treatment",
         type: "cards",
-        eyebrow: "Treatment Options",
-        title: "Ovarian cyst treatment options",
+        eyebrow: "ADVANCED TREATMENT",
+        title: "Ovarian Cyst Treatment In Gurgaon",
         color: "#14b8a6",
         paragraph:
-          "Treatment depends on cyst type, size, symptoms, and fertility goals.",
+          "Ovarian Cyst Treatment is planned according to your individual condition. Your doctor may recommend monitoring, medicines for symptoms, or surgery when a cyst is large, persistent, painful, or has concerning features.",
         cards: [
           {
-            title: "Observation",
+            title: "Watchful Waiting",
             description:
-              "Simple cysts may be monitored with regular ultrasounds.",
+              "Some cysts disappear naturally and only need monitoring.",
           },
           {
-            title: "Medical management",
+            title: "Pain Management",
             description:
-              "Medicines may help control symptoms or hormonal imbalance.",
+              "Medicines may help manage discomfort when appropriate.",
           },
           {
-            title: "Laparoscopic cyst removal",
+            title: "Regular Ultrasound",
+            description: "Follow-up scans can monitor changes in the cyst.",
+          },
+          {
+            title: "Hormonal Treatment",
             description:
-              "Minimally invasive surgery removes cyst while preserving ovary.",
+              "May be considered in selected situations to manage certain types of cysts.",
+          },
+          {
+            title: "Laparoscopic Surgery",
+            description: "Keyhole surgery may be used to remove suitable cysts.",
+          },
+          {
+            title: "Fertility-Focused Care",
+            description:
+              "Treatment can be planned with fertility preservation in mind.",
           },
         ],
       },
-  
+
+      {
+        id: "surgery",
+        type: "cards",
+        eyebrow: "Surgical Treatment",
+        title: "Ovarian Cyst Surgery In Gurgaon",
+        color: "#3b82f6",
+        paragraph:
+          "Ovarian cyst surgery may be recommended when a cyst is large, persistent, causing significant symptoms, or has features that need further evaluation. The type of surgery depends on the cyst and your individual circumstances.",
+      },
+
       {
         id: "laparoscopy",
         type: "checkList",
         eyebrow: "Laparoscopic Surgery",
-        title: "Benefits of laparoscopic ovarian cyst removal",
-        color: "#0ea5e9",
+        title: "Laparoscopic Surgery for Ovarian Cysts",
+        color: "#22c55e",
         paragraph:
-          "Advanced minimally invasive surgery provides quicker healing and better comfort.",
+          "Laparoscopic surgery is a minimally invasive procedure performed through small cuts in the abdomen. When suitable, the surgeon can remove the cyst while aiming to preserve healthy ovarian tissue.",
+        paragraphs: ["Possible benefits include:"],
         items: [
-          "Minimal cuts",
-          "Faster recovery",
-          "Less pain",
-          "Minimal blood loss",
-          "Short hospital stay",
-          "Preservation of ovary",
-          "Early return to normal routine",
+          "Small Incisions",
+          "Cyst Removal",
+          "Less Surgical Discomfort",
+          "Shorter Recovery",
+          "Ovary Preservation",
+          "Fertility Consideration",
+          "Reduced Scarring",
+          "Better Daily Comfort",
         ],
       },
-  
+
       {
-        id: "fertility",
-        type: "checkList",
-        eyebrow: "Fertility Protection",
-        title: "Special care for fertility preservation",
-        color: "#f97316",
+        id: "consult",
+        type: "warning",
+        eyebrow: "WHEN TO CONSULT",
+        title: "When Should You Meet an Ovarian Cyst Specialist?",
+        color: "#dc2626",
         paragraph:
-          "Preserving healthy ovarian tissue is extremely important for women planning pregnancy.",
+          "If you have been diagnosed with an ovarian cyst or are experiencing ongoing pelvic symptoms, meeting a specialist can help you understand whether the cyst needs monitoring or treatment. Early evaluation can also help identify complications that may require prompt care.",
+        paragraphs: ["See a specialist if you have:"],
         items: [
-          "Ovary-preserving surgery",
-          "Careful cyst removal technique",
-          "Protection of ovarian reserve",
-          "Fertility-focused surgical planning",
-          "Hormonal balance monitoring",
+          "Persistent Pelvic Pain",
+          "Sudden Severe Abdominal Pain",
+          "Heavy or Irregular Periods",
+          "Pain During Intercourse",
+          "Bloating or Abdominal Swelling",
+          "Frequent Urination",
+          "Difficulty Getting Pregnant",
+          "A Cyst That Is Growing or Not Going Away",
         ],
       },
-  
+
+      {
+        id: "why-choose",
+        type: "cards",
+        eyebrow: "Why Choose Us",
+        title: "Why Choose the Best Doctor for Ovarian Cyst Treatment In Gurgaon?",
+        color: "#6366f1",
+        paragraph:
+          "Choosing the right doctor can make dealing with an ovarian cyst much easier. If you have pain, a cyst that is getting bigger, or one that is not going away, a specialist can check your symptoms and scan reports and explain what treatment may be needed. Sometimes, regular check-ups are enough, while some patients may need medicines or Ovarian Cyst Surgery In Gurgaon.",
+        paragraphs: [
+          "Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician with 17+ years of experience and 10k+ patients guided across 3 premier institutes. Her approach focuses on clear diagnosis, safe treatment planning, and supportive follow-up, helping patients understand their condition and feel more confident about their care.",
+        ],
+      },
     ] satisfies BlogSection[],
+
+    faqTitle: "Frequently Asked Questions About Ovarian Cysts",
+
     faqs: [
       {
         id: "1",
-        question: "Are ovarian cysts dangerous?",
+        question: "What Is an Ovarian Cyst?",
         answer:
-          "Most ovarian cysts are benign and harmless, but some need monitoring or treatment.",
+          "An ovarian cyst is a fluid-filled sac that develops on or inside an ovary. Many ovarian cysts are harmless and may go away on their own.",
       },
       {
         id: "2",
-        question: "What is an ovarian cyst?",
+        question: "What Size of Ovarian Cyst Is Dangerous?",
         answer:
-          "It is a fluid-filled sac that forms on or inside an ovary. Many form as part of the normal menstrual cycle.",
+          "There is no single size that is considered dangerous. Doctors also look at the cyst's type, appearance, symptoms, and whether it is growing or persistent.",
       },
       {
         id: "3",
-        question: "What symptoms do ovarian cysts cause?",
+        question: "What Causes Ovarian Cysts in Young Females?",
         answer:
-          "Many cause none. Others bring pelvic pain or pressure, bloating, irregular periods, pain during intercourse, or discomfort during periods.",
+          "In young women, many cysts are linked to the normal menstrual cycle. Hormonal changes can sometimes cause a follicle to grow into a cyst.",
       },
       {
         id: "4",
-        question: "Can cysts disappear naturally?",
+        question: "Why Do Ovarian Cysts Occur?",
         answer:
-          "Yes, many functional cysts resolve on their own without surgery.",
+          "Ovarian cysts can develop due to normal changes during the menstrual cycle. Some may also be linked to conditions such as endometriosis or other ovarian changes.",
       },
       {
         id: "5",
-        question: "How are ovarian cysts diagnosed?",
+        question: "Can I Get Pregnant With an Ovarian Cyst?",
         answer:
-          "Usually with a pelvic ultrasound, sometimes with blood tests or an MRI when the appearance needs further assessment.",
+          "Yes, many women can get pregnant with an ovarian cyst. However, fertility can depend on the type of cyst and any underlying condition.",
       },
       {
         id: "6",
-        question: "When is surgery needed for an ovarian cyst?",
+        question: "Can an Ovarian Cyst Affect Pregnancy?",
         answer:
-          "Surgery is considered for large cysts, cysts that persist or grow, cysts causing severe pain, or those with features that need removal.",
+          "Some cysts may need monitoring during pregnancy, while others may not cause any problems. Your doctor can advise you based on the cyst's type and size.",
       },
       {
         id: "7",
-        question: "Will surgery remove my ovary?",
+        question: "Can Ovarian Cysts Cause Cancer?",
         answer:
-          "No, surgery usually aims to remove only the cyst while preserving the ovary.",
+          "Most ovarian cysts are not cancerous. However, some cysts may have features that need further testing, especially after menopause.",
       },
       {
         id: "8",
-        question: "Can ovarian cysts affect pregnancy?",
+        question: "How Are Ovarian Cysts Diagnosed?",
         answer:
-          "Some cysts may affect fertility, but treatment can improve pregnancy chances.",
+          "Your doctor may ask about your symptoms and perform an examination. An ultrasound is commonly used to check the cyst's size and appearance.",
       },
       {
         id: "9",
-        question: "What is a chocolate cyst?",
+        question: "Do All Ovarian Cysts Need Surgery?",
         answer:
-          "It is an ovarian cyst caused by endometriosis, filled with old blood. It often causes painful periods and may affect fertility.",
+          "No. Many cysts go away on their own and only need monitoring. Surgery may be considered if a cyst is large, persistent, painful, or has concerning features.",
       },
       {
         id: "10",
-        question: "What is ovarian torsion?",
+        question: "Who is the Best Doctor for Ovarian Cyst Treatment In Gurgaon?",
         answer:
-          "Torsion is twisting of the ovary, which can happen with a large cyst. It causes sudden severe pain and needs emergency care.",
-      },
-      {
-        id: "11",
-        question: "How long is recovery after laparoscopic cyst removal?",
-        answer:
-          "Most women are discharged within one to three days and resume normal activity within about two weeks.",
-      },
-      {
-        id: "12",
-        question: "Can ovarian cysts recur after surgery?",
-        answer:
-          "New cysts can form, particularly with PCOS or endometriosis, so follow-up scans are usually advised.",
+          "Choose a qualified gynaecology specialist who can assess your cyst, explain your treatment choices, and consider your health and fertility goals when planning care.",
       },
     ] satisfies BlogFaq[],
 
-  
     author: {
       name: "Dr. Kusum Lata Bhardwaj",
       label: "Written and reviewed by",

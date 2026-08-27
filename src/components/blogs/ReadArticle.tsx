@@ -157,6 +157,18 @@ function DynamicBlogSection({ section }: DynamicBlogSectionProps) {
               <p className="text-sm leading-6 text-[#5f6877]">
                 {card.description}
               </p>
+              {card.items && (
+                <ul className="mt-3 space-y-2.5">
+                  {card.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="mt-[3px] grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-[#efedff] text-[#5a4ffe]">
+                        <Check size={11} strokeWidth={3.5} />
+                      </span>
+                      <p className="text-sm leading-6 text-[#4f5868]">{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
@@ -203,6 +215,12 @@ function DynamicBlogSection({ section }: DynamicBlogSectionProps) {
             ))}
           </div>
         </div>
+      )}
+
+      {section.note && (
+        <p className="mt-4 text-[15px] leading-7 text-[#5f6877] md:mt-5 md:text-base md:leading-8">
+          {section.note}
+        </p>
       )}
     </motion.section>
   );

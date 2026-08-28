@@ -32,6 +32,13 @@ export type ArticleAuthor = {
   image: string;
 };
 
+export type ArticleSeo = {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  robots?: string;
+};
+
 export type ArticleDoc = {
   slug: string;
   hero: ArticleHero;
@@ -40,6 +47,7 @@ export type ArticleDoc = {
   faqTitle?: string;
   faqs: BlogFaq[];
   author: ArticleAuthor;
+  seo?: ArticleSeo;
 };
 
 /** An article plus where the copy currently being served came from. */

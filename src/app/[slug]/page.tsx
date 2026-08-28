@@ -37,9 +37,13 @@ export async function generateMetadata({
     };
   }
 
+  const seo = blog.seo;
+
   return {
-    title: `${blog.article.title} | Dr. Kusum Lata`,
-    description: blog.article.intro,
+    title: seo?.title || `${blog.article.title} | Dr. Kusum Lata`,
+    description: seo?.description || blog.article.intro,
+    alternates: seo?.canonical ? { canonical: seo.canonical } : undefined,
+    robots: seo?.robots || undefined,
   };
 }
 

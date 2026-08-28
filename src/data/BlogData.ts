@@ -72,6 +72,13 @@ export type BlogPageData = {
   /** Overrides the default FAQ heading when the source article names its own. */
   faqTitle?: string;
   author: BlogAuthor;
+  /** Per-article overrides for generateMetadata; falls back to title/intro when omitted. */
+  seo?: {
+    title?: string;
+    description?: string;
+    canonical?: string;
+    robots?: string;
+  };
 };
 
 export const pregnancyBlogData = {
@@ -639,6 +646,14 @@ export const youngWomenCareBlogs = [
       ],
     },
 
+    seo: {
+      title: "Best Uterine Bleeding Doctor in Gurgaon | Dr. Kusum Lata",
+      description:
+        "Meet Dr. Kusum Lata Bhardwaj, a uterine bleeding specialist in Gurgaon with 17+ years of experience. Get guidance for heavy periods, irregular bleeding and treatment options.",
+      canonical: "https://www.drkusumlata.in/uterine-bleeding-doctor-in-gurgaon",
+      robots: "index, follow",
+    },
+
     sections: [
       {
         id: "about",
@@ -1125,6 +1140,14 @@ export const youngWomenCareBlogs = [
       paragraphs: [
         "If you notice unusual or early physical changes, delayed development, or concerns about your child's growth, consulting the Best Doctor for Puberty Disorder Treatment in Gurgaon can help identify the reason and guide the right treatment.",
       ],
+    },
+
+    seo: {
+      title: "Best Puberty Disorder Doctor in Gurgaon | Dr. Kusum Lata",
+      description:
+        "Concerned about early or delayed puberty? Meet Dr. Kusum Lata Bhardwaj in Gurgaon with 17+ years of experience for growth, development and hormone-related concerns.",
+      canonical: "https://www.drkusumlata.in/puberty-disorder-doctor-in-gurgaon",
+      robots: "index, follow",
     },
 
     sections: [
@@ -5061,6 +5084,14 @@ export const sexualIntimateHealthBlogs = [
       ],
     },
 
+    seo: {
+      title: "Best Vaginal Infection Doctor in Gurgaon | Dr. Kusum Lata",
+      description:
+        "Meet Dr. Kusum Lata Bhardwaj, a vaginal infection specialist in Gurgaon with 17+ years of experience. Get help for itching, unusual discharge, burning and repeated infections.",
+      canonical: "https://www.drkusumlata.in/vaginal-infection-doctor-in-gurgaon",
+      robots: "index, follow",
+    },
+
     sections: [
       {
         id: "about",
@@ -5930,6 +5961,14 @@ export const laparoscopicSurgeryBlogs = [
       ],
     },
 
+    seo: {
+      title: "Best Endometriosis Specialist Doctor in Gurgaon | Symptoms & Treatment",
+      description:
+        "Meet Dr. Kusum Lata Bhardwaj, an endometriosis specialist in Gurgaon with 17+ years of experience. Get guidance on symptoms, diagnosis and treatment options.",
+      canonical: "https://www.drkusumlata.in/endometriosis-doctor-in-gurgaon",
+      robots: "index, follow",
+    },
+
     sections: [
       {
         id: "about",
@@ -6254,6 +6293,14 @@ export const laparoscopicSurgeryBlogs = [
       paragraphs: [
         "Some women may have fibroids without any symptoms, while others may experience problems that affect their daily life. Consulting an experienced top Uterine Fibroids Doctor In Gurgaon can help identify the size, number, and location of fibroids and guide you toward suitable treatment.",
       ],
+    },
+
+    seo: {
+      title: "Best Uterine Fibroids Doctor in Gurgaon | Dr. Kusum Lata",
+      description:
+        "Having heavy periods, pelvic pain or pressure? Meet Dr. Kusum Lata Bhardwaj in Gurgaon with 17+ years of experience for fibroid diagnosis and suitable treatment options.",
+      canonical: "https://www.drkusumlata.in/uterine-fibroids-doctor-in-gurgaon",
+      robots: "index, follow",
     },
 
     sections: [
@@ -6653,6 +6700,14 @@ export const laparoscopicSurgeryBlogs = [
       paragraphs: [
         "If you are experiencing ongoing pelvic pain, changes in your periods, or have been diagnosed with an ovarian cyst, consulting a Best Doctor for Ovarian Cyst Treatment In Gurgaon can help you understand the type of cyst and the right treatment for your condition.",
       ],
+    },
+
+    seo: {
+      title: "Best Ovarian Cyst Doctor in Gurgaon | Dr. Kusum Lata",
+      description:
+        "Meet Dr. Kusum Lata Bhardwaj, an ovarian cyst specialist in Gurgaon with 17+ years of experience. Get help for pelvic pain, ovarian cysts and suitable treatment options.",
+      canonical: "https://www.drkusumlata.in/ovarian-cyst-doctor-in-gurgaon",
+      robots: "index, follow",
     },
 
     sections: [

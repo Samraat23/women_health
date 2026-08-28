@@ -32,6 +32,7 @@ export function toArticleDoc(blog: BlogPageData): ArticleDoc {
       ...blog.author,
       image: toImageSrc(blog.author.image),
     },
+    seo: blog.seo ? { ...blog.seo } : undefined,
   };
 }
 

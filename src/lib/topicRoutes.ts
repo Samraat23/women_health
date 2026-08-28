@@ -13,7 +13,7 @@ const topicHrefMap: Record<string, string> = {
   "Annual Checkup": "/regular-gynecology-checkup",
   "Pap Smear": "/cervical-cancer-screening",
   "HPV Screening": "/cervical-cancer-screening",
-  "Breast Examination": "/breast-health-checkup",
+  "Breast Examination": "/breast-cancer-doctor-in-gurgaon",
   "Cervical Cancer Examination": "/cervical-cancer-screening",
   "Menopause Management": "/menopause-management",
   "Hormonal Imbalance": "/category/hormonal-imbalance",

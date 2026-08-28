@@ -279,6 +279,14 @@ export const youngWomenCareBlogs = [
       ],
     },
 
+    seo: {
+      title: "Best Gynecologist for PCOS/PCOD Treatment in Gurgaon",
+      description:
+        "Get personalised PCOS/PCOD treatment in Gurgaon from Dr. Kusum Lata Bhardwaj, with 17+ years of experience. Get expert guidance for hormonal, period and fertility concerns.",
+      canonical: "https://www.drkusumlata.in/pcos-pcod-doctor-in-gurgaon",
+      robots: "index, follow",
+    },
+
     sections: [
       {
         id: "about",
@@ -2030,155 +2038,398 @@ export const preventiveWomenHealthBlogs = [
   {
     hero: {
       badge: "Preventive Women Health",
-      title: "Breast Health Awareness and Screening",
-      date: "May 24, 2026",
-      readTime: "6 min read",
+      title: "Breast Cancer Specialist In Gurgaon",
+      date: "Aug 28, 2026",
+      readTime: "8 min read",
       status: "Doctor Reviewed",
     },
 
     article: {
-      id: "breast-health-checkup",
-      slug: "breast-health-checkup",
+      id: "breast-cancer-doctor-in-gurgaon",
+      slug: "breast-cancer-doctor-in-gurgaon",
       category: "preventive-women-health",
-      title: "Breast Health Awareness and Screening",
+      title: "Breast Cancer Specialist In Gurgaon",
       intro:
-        "Breast health awareness helps women identify unusual breast changes early and encourages timely medical evaluation and preventive care.",
+        "Breast cancer develops when abnormal cells in the breast grow in an uncontrolled way. It can cause a lump, changes in the breast or nipple, unusual discharge, or changes in the shape or skin of the breast. However, many breast changes are not cancer, so unusual changes should be checked by a doctor.",
       image:
         "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1400&auto=format&fit=crop",
 
       paragraphs: [
-        "Regular breast examinations and awareness of body changes help improve early detection of breast-related conditions.",
-        "Women should not ignore breast pain, swelling, lumps, or nipple discharge and should consult a doctor if symptoms appear.",
+        "If you notice a new lump, change in breast size or shape, nipple changes, or unusual discharge, consulting an experienced Breast Cancer Specialist In Gurgaon can help identify the cause and guide you toward the right tests and treatment.",
       ],
+    },
+
+    seo: {
+      title: "Best Breast Cancer Specialist Doctor in Gurgaon",
+      description:
+        "Consult Dr. Kusum Lata Bhardwaj, Breast Cancer Specialist Doctor in Gurgaon, for breast lump evaluation, cancer diagnosis, personalised treatment & surgical care. ✔ 17+ years experience ✔ 10K+ patients",
+      canonical: "https://www.drkusumlata.in/breast-cancer-doctor-in-gurgaon",
+      robots: "index, follow",
     },
 
     sections: [
       {
-        id: "symptoms",
-        type: "warning",
-        eyebrow: "Warning Signs",
-        title: "Breast symptoms that need medical attention",
-        color: "#ef4444",
-        paragraph:
-          "Early evaluation is important if breast-related symptoms appear.",
-        items: [
-          "Breast lump",
-          "Persistent breast pain",
-          "Nipple discharge",
-          "Skin dimpling",
-          "Swelling or redness",
-          "Changes in breast shape",
-        ],
-      },
-
-      {
-        id: "screening",
+        id: "about",
         type: "cards",
-        eyebrow: "Screening",
-        title: "Common breast health evaluations",
-        color: "#8b5cf6",
+        eyebrow: "What Is Breast Cancer?",
+        title: "Understanding Breast Cancer",
+        color: "#ec4899",
         paragraph:
-          "Doctors may recommend screening tests depending on symptoms and age.",
+          "Breast cancer occurs when abnormal cells in breast tissue grow and multiply in an uncontrolled way. It can begin in the milk ducts or milk-producing glands and may sometimes spread to nearby lymph nodes or other parts of the body. Early evaluation of unusual breast changes can help with timely diagnosis and treatment.",
+        paragraphs: ["Common areas involved:"],
         cards: [
           {
-            title: "Clinical breast examination",
-            description:
-              "Physical evaluation performed during women health visits.",
+            title: "Breast Tissue",
+            description: "Can develop as a lump or abnormal area.",
           },
           {
-            title: "Breast ultrasound",
+            title: "Milk Ducts",
             description:
-              "Helps assess lumps, swelling, or breast discomfort.",
+              "Some breast cancers begin in the cells lining the milk ducts.",
           },
           {
-            title: "Mammography",
+            title: "Lobules",
+            description: "Cancer can also start in the milk-producing glands.",
+          },
+          {
+            title: "Lymph Nodes",
             description:
-              "Recommended for breast cancer screening in selected age groups.",
+              "Breast cancer can sometimes spread to nearby lymph nodes, particularly those in the underarm area.",
           },
         ],
       },
 
       {
-        id: "care",
+        id: "symptoms",
+        type: "warning",
+        eyebrow: "Symptoms",
+        title: "10 Signs & Symptoms of Breast Cancer You Should Not Ignore",
+        color: "#ef4444",
+        paragraph:
+          "Breast cancer can cause different changes in different people. A new breast change does not always mean cancer, but it is important to have unusual or persistent changes checked by a doctor.",
+        items: [
+          "New breast lump",
+          "Change in breast size",
+          "Change in breast shape",
+          "Breast swelling",
+          "Skin changes on the breast",
+          "Nipple turning inward",
+          "Nipple discharge, especially if unusual",
+          "Change in nipple appearance",
+          "Lump or swelling under the arm",
+          "Persistent breast or nipple discomfort",
+        ],
+      },
+
+      {
+        id: "causes",
         type: "checkList",
-        eyebrow: "Prevention",
-        title: "Healthy breast care habits",
+        eyebrow: "Why It Happens",
+        title: "Possible Causes & Risk Factors of Breast Cancer",
+        color: "#f97316",
+        paragraph:
+          "The exact reason why one person develops breast cancer and another does not is not always clear. However, certain factors can increase the chance of developing breast cancer. Your personal and family history can help a doctor understand your individual risk.",
+        items: [
+          "Family History: A family history of breast cancer may increase your risk.",
+          "Age: The risk of breast cancer generally increases as people get older.",
+          "Genetic Changes: Changes in certain genes, including BRCA1 and BRCA2, can increase breast cancer risk in some people.",
+          "Hormonal Factors: Long-term exposure to certain hormones can influence breast cancer risk.",
+          "Previous Breast Conditions: Some breast conditions may be linked with a higher risk of breast cancer.",
+          "Lifestyle Factors: Certain lifestyle factors may also affect breast cancer risk.",
+        ],
+      },
+
+      {
+        id: "when-to-see",
+        type: "warning",
+        eyebrow: "When To See A Doctor",
+        title: "When Should You See a Breast Cancer Specialist?",
+        color: "#f43f5e",
+        paragraph:
+          "Not every breast lump or change is cancer. However, a new or unusual change should not be ignored, especially if it remains or becomes more noticeable.",
+        paragraphs: ["You should consider seeing a specialist if you have:"],
+        items: [
+          "New Breast Lump",
+          "Breast Swelling",
+          "Change in Breast Shape",
+          "Nipple Changes",
+          "Unusual Nipple Discharge",
+          "Skin Changes",
+          "Underarm Lump",
+          "Persistent Breast Changes",
+        ],
+      },
+
+      {
+        id: "diagnosis",
+        type: "checkList",
+        eyebrow: "Diagnosis",
+        title: "How Is Breast Cancer Diagnosed?",
+        color: "#8b5cf6",
+        paragraph:
+          "Finding the cause of a breast change usually starts with a discussion about your symptoms and medical history. Your doctor may then recommend an examination and imaging tests. If an abnormal area is found, a biopsy may be needed to confirm whether cancer is present.",
+        items: [
+          "Medical History: Your doctor asks about your symptoms and family history.",
+          "Breast Examination: The breast and nearby areas are checked for unusual changes.",
+          "Mammogram: Uses X-rays to create detailed images of the breast.",
+          "Breast Ultrasound: Uses sound waves to examine areas inside the breast.",
+          "Breast MRI: May be recommended in certain situations for more detailed images.",
+          "Biopsy: A tissue sample is examined in a laboratory to check for cancer cells.",
+        ],
+      },
+
+      {
+        id: "stages",
+        type: "timeline",
+        eyebrow: "Stages",
+        title: "Stages of Breast Cancer",
+        color: "#0ea5e9",
+        paragraph:
+          "Breast cancer is generally staged from Stage 0 to Stage IV. Staging looks at factors such as the size of the tumour, whether nearby lymph nodes are involved, whether the cancer has spread, and other features such as tumour grade and biomarkers. The stage helps doctors plan treatment.",
+        timeline: [
+          {
+            label: "Stage 0",
+            title: "Abnormal Cells",
+            description:
+              "Abnormal cells are found in the breast but have not spread into nearby breast tissue.",
+          },
+          {
+            label: "Stage 1",
+            title: "Early Breast Cancer",
+            description:
+              "The cancer is relatively small and has not spread widely.",
+          },
+          {
+            label: "Stage 2",
+            title: "Limited Spread",
+            description:
+              "The cancer may be larger or may involve nearby lymph nodes.",
+          },
+          {
+            label: "Stage 3",
+            title: "More Advanced Cancer",
+            description:
+              "The cancer has spread more extensively within the breast or nearby lymph nodes.",
+          },
+          {
+            label: "Stage 4",
+            title: "Metastatic Breast Cancer",
+            description:
+              "The cancer has spread to distant parts of the body.",
+          },
+        ],
+        note:
+          "The exact stage is determined using medical examination, imaging, biopsy results, tumour characteristics, and other tests when required.",
+      },
+
+      {
+        id: "risk",
+        type: "timeline",
+        eyebrow: "Delayed Treatment",
+        title: "How Delayed Treatment Can Affect Health",
         color: "#10b981",
         paragraph:
-          "Preventive awareness and regular self-checks support better breast health.",
+          "Delaying the evaluation of a suspicious breast change can delay diagnosis and treatment. Breast cancer is not the same for everyone, and the effects of delay depend on the type and stage of the disease.",
+        timeline: [
+          {
+            label: "Stage 1",
+            title: "Growing Tumour",
+            description:
+              "The cancer may continue to grow if it is not identified and treated.",
+          },
+          {
+            label: "Stage 2",
+            title: "Lymph Node Involvement",
+            description:
+              "Some breast cancers may spread to nearby lymph nodes.",
+          },
+          {
+            label: "Stage 3",
+            title: "Local Spread",
+            description:
+              "More extensive disease may involve nearby tissues or lymph nodes.",
+          },
+          {
+            label: "Stage 4",
+            title: "Distant Spread",
+            description:
+              "Breast cancer may spread to other parts of the body, where it requires treatment as metastatic disease.",
+          },
+        ],
+      },
+
+      {
+        id: "treatment",
+        type: "cards",
+        eyebrow: "ADVANCED TREATMENT",
+        title: "Breast Cancer Treatment In Gurgaon",
+        color: "#14b8a6",
+        paragraph:
+          "Breast cancer treatment depends on the type and stage of cancer, tumour characteristics, overall health, and individual treatment needs. Treatment may involve surgery, radiation therapy, chemotherapy, hormone therapy, targeted therapy, immunotherapy, or a combination of these approaches.",
+        cards: [
+          {
+            title: "Breast Surgery",
+            description:
+              "Removes the cancerous area or, when needed, the breast.",
+          },
+          {
+            title: "Lumpectomy",
+            description:
+              "Removes the tumour while keeping most of the breast.",
+          },
+          {
+            title: "Mastectomy",
+            description:
+              "Removes the breast and may be recommended in certain cases.",
+          },
+          {
+            title: "Radiation Therapy",
+            description:
+              "Uses radiation to destroy or control cancer cells.",
+          },
+          {
+            title: "Chemotherapy",
+            description:
+              "Uses medicines to destroy or slow the growth of cancer cells.",
+          },
+          {
+            title: "Hormone Therapy",
+            description:
+              "May be used for hormone-receptor-positive breast cancers.",
+          },
+          {
+            title: "Targeted Therapy",
+            description:
+              "Targets specific features of certain cancer cells.",
+          },
+          {
+            title: "Immunotherapy",
+            description:
+              "May be used for selected types of breast cancer.",
+          },
+        ],
+      },
+
+      {
+        id: "surgery",
+        type: "checkList",
+        eyebrow: "Surgical Care",
+        title: "Breast Cancer Surgery",
+        color: "#6366f1",
+        paragraph:
+          "Surgery is an important part of treatment for many people with breast cancer. Depending on the tumour and individual condition, surgery may involve removing the tumour while preserving the breast or removing the whole breast. Nearby lymph nodes may also be checked.",
+        paragraphs: ["Possible surgical approaches include:"],
         items: [
-          "Perform self-breast awareness",
-          "Schedule routine checkups",
-          "Maintain healthy lifestyle",
-          "Consult doctor for unusual changes",
-          "Follow screening recommendations",
-          "Avoid ignoring persistent symptoms",
+          "Breast-Conserving Surgery",
+          "Lumpectomy",
+          "Mastectomy",
+          "Sentinel Lymph Node Biopsy",
+          "Lymph Node Surgery",
+          "Breast Reconstruction",
+          "Tumour Removal",
+          "Surgical Staging",
+        ],
+      },
+
+      {
+        id: "consult",
+        type: "warning",
+        eyebrow: "WHEN TO CONSULT",
+        title: "When Should You Meet a Specialist?",
+        color: "#dc2626",
+        paragraph:
+          "If you notice a new breast lump or any unusual breast or nipple change, it is better to get it checked rather than waiting for it to disappear. Early evaluation can help identify the cause and determine whether further tests are needed.",
+        paragraphs: ["See a specialist if you have:"],
+        items: [
+          "New Breast Lump",
+          "Unusual Nipple Discharge",
+          "Nipple Retraction",
+          "Breast Skin Changes",
+          "Persistent Breast Swelling",
+          "Change in Breast Shape",
+          "Underarm Lump",
+          "Unexplained Breast Changes",
+        ],
+      },
+
+      {
+        id: "why-choose",
+        type: "cards",
+        eyebrow: "Why Choose Us",
+        title: "Why Choose the Best Breast Cancer Doctor In Gurugram?",
+        color: "#a855f7",
+        paragraph:
+          "Choosing the right specialist is important when you have a breast lump, unusual breast changes, or a breast cancer diagnosis. Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician focused on clear diagnosis, safe treatment planning, and supportive care throughout your journey. With 17+ years of experience, she has guided 10k+ patients and has experience across 3 premier institutes. She takes time to understand each patient's concerns and explains the next steps in simple language.",
+        paragraphs: [
+          "Every breast cancer case is different, so treatment needs to be planned according to the patient's condition. An experienced Breast Specialist In Gurgaon can review your reports, biopsy results, tumour type, stage, and overall health before discussing suitable treatment options. Depending on the case, care may include surgery, medicines, radiation, or a combination of treatments.",
         ],
       },
     ] satisfies BlogSection[],
+
+    faqTitle: "Frequently Asked Questions About Breast Cancer",
+
     faqs: [
       {
         id: "1",
-        question: "How often should I examine my breasts?",
+        question: "What is breast cancer?",
         answer:
-          "A monthly self-check, a few days after your period ends, helps you learn what is normal for you and notice changes early.",
+          "Breast cancer happens when abnormal cells in the breast grow uncontrollably. It can start in the milk ducts or lobules.",
       },
       {
         id: "2",
-        question: "What breast changes should I report?",
+        question: "What are the common signs of breast cancer?",
         answer:
-          "Report a new lump, a change in size or shape, skin dimpling, nipple discharge, nipple inversion, or persistent pain in one area.",
+          "A new lump, breast or nipple changes, unusual discharge, skin changes, or underarm swelling can be signs that need medical evaluation.",
       },
       {
         id: "3",
-        question: "Are all breast lumps cancerous?",
+        question: "Does every breast lump mean cancer?",
         answer:
-          "No. Most breast lumps are benign, such as fibroadenomas or cysts, but every new lump should be examined to be sure.",
+          "No. Many breast lumps are not cancer. However, a new or unusual lump should be checked by a doctor.",
       },
       {
         id: "4",
-        question: "What is a mammogram?",
+        question: "How is breast cancer diagnosed?",
         answer:
-          "A mammogram is a low-dose X-ray of the breast used to detect changes that may be too small to feel.",
+          "Diagnosis may involve a breast examination, mammogram, ultrasound, MRI in selected cases, and a biopsy when needed.",
       },
       {
         id: "5",
-        question: "At what age should mammograms start?",
+        question: "What are the stages of breast cancer?",
         answer:
-          "Screening usually begins around the age of 40, or earlier if you have a strong family history. Your doctor will advise the right age for you.",
+          "Breast cancer is generally classified from Stage 0 to Stage IV, depending on the extent and spread of the disease.",
       },
       {
         id: "6",
-        question: "What is a breast ultrasound?",
+        question: "Can breast cancer be treated?",
         answer:
-          "An ultrasound uses sound waves to look at breast tissue. It is often preferred in younger women, whose breast tissue is denser.",
+          "Yes. Treatment options depend on the type and stage and may include surgery, radiation, chemotherapy, hormone therapy, targeted therapy, or immunotherapy.",
       },
       {
         id: "7",
-        question: "Is breast pain a sign of cancer?",
+        question: "When is breast cancer surgery needed?",
         answer:
-          "Breast pain is far more often hormonal than cancerous, especially when it comes and goes with your cycle. Persistent one-sided pain should still be checked.",
+          "Surgery is commonly used to remove breast cancer, but the exact type of surgery depends on the tumour and individual condition.",
       },
       {
         id: "8",
-        question: "Does a family history of breast cancer increase my risk?",
+        question: "What is the difference between lumpectomy and mastectomy?",
         answer:
-          "It can. Tell your doctor about any close relatives affected so that screening can begin earlier or be done more often.",
+          "A lumpectomy removes the tumour and some surrounding tissue, while a mastectomy removes the breast. Your surgeon can explain which option is suitable for you.",
       },
       {
         id: "9",
-        question: "Is nipple discharge always abnormal?",
+        question: "Can breast cancer come back after treatment?",
         answer:
-          "Not always, but discharge that is bloody, occurs without squeezing, or comes from one breast only should be evaluated.",
+          "Breast cancer can return in some patients. The risk depends on several factors, so regular follow-up with your cancer care team is important.",
       },
       {
         id: "10",
-        question: "When should I see a doctor about my breasts?",
+        question: "When should I see a Breast Cancer Specialist In Gurgaon?",
         answer:
-          "See a doctor promptly for any new lump, skin or nipple change, unusual discharge, or persistent localised pain.",
+          "See a specialist if you notice a new breast lump, unusual nipple discharge, skin or nipple changes, breast swelling, or another persistent breast change.",
       },
     ] satisfies BlogFaq[],
-
 
     author: {
       name: "Dr. Kusum Lata Bhardwaj",

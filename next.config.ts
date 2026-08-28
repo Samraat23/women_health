@@ -11,7 +11,16 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "img.youtube.com" },
     ],
   },
-  
+
+  async redirects() {
+    return [
+      {
+        source: "/breast-health-checkup",
+        destination: "/breast-cancer-doctor-in-gurgaon",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

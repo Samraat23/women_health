@@ -52,7 +52,7 @@ export type GynecologyCategory = {
         "cervical-cancer-screening",
         "hpv-vaccination",
         "regular-gynecology-checkup",
-        "breast-health-checkup",
+        "breast-cancer-doctor-in-gurgaon",
       ],
     },
     {

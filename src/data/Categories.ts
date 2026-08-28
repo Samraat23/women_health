@@ -19,9 +19,9 @@ export type GynecologyCategory = {
         "Advanced minimally invasive gynecological surgeries with faster recovery, less pain, and smaller scars.",
       image: happyPatient,
       blogSlugs: [
-        "endometriosis-treatment",
-        "fibroid-removal-surgery",
-        "ovarian-cyst-surgery",
+        "endometriosis-doctor-in-gurgaon",
+        "uterine-fibroids-doctor-in-gurgaon",
+        "ovarian-cyst-doctor-in-gurgaon",
         "cervical-cerclage",
         "hysteroscopy-treatment",
         "fertility-enhancing-surgery"
@@ -35,10 +35,10 @@ export type GynecologyCategory = {
         "Special care for teenage girls and young women dealing with periods, PCOD, acne, weight gain, and hormonal changes.",
       image: "/image/Mentural.png",
       blogSlugs: [
-        "pcod-pcos-treatment",
-        "menstrual-cycle-problems",
+        "pcos-pcod-doctor-in-gurgaon",
+        "uterine-bleeding-doctor-in-gurgaon",
         "irregular-periods-treatment",
-        "teenage-gynecology-care",
+        "puberty-disorder-doctor-in-gurgaon",
       ],
     },
     {
@@ -119,7 +119,7 @@ export type GynecologyCategory = {
         "Confidential care for intimate hygiene, vaginal infections, white discharge, urinary problems, and sexual wellness concerns.",
       image: "/image/ veginal Infection.png",
       blogSlugs: [
-        "vaginal-infection-treatment",
+        "vaginal-infection-doctor-in-gurgaon",
         "white-discharge-treatment",
         "urinary-tract-infection-women",
         "pain-during-intercourse",

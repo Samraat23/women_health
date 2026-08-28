@@ -266,8 +266,8 @@ export const youngWomenCareBlogs = [
     },
 
     article: {
-      id: "pcod-pcos-treatment",
-      slug: "pcod-pcos-treatment",
+      id: "pcos-pcod-doctor-in-gurgaon",
+      slug: "pcos-pcod-doctor-in-gurgaon",
       category: "young-women-care",
       title: "Best Doctor for PCOS/PCOD Treatment in Gurgaon",
       intro:
@@ -633,8 +633,8 @@ export const youngWomenCareBlogs = [
     },
 
     article: {
-      id: "menstrual-cycle-problems",
-      slug: "menstrual-cycle-problems",
+      id: "uterine-bleeding-doctor-in-gurgaon",
+      slug: "uterine-bleeding-doctor-in-gurgaon",
       category: "young-women-care",
       title: "Best Uterine Bleeding Doctors In Gurgaon",
       intro:
@@ -1129,8 +1129,8 @@ export const youngWomenCareBlogs = [
     },
 
     article: {
-      id: "teenage-gynecology-care",
-      slug: "teenage-gynecology-care",
+      id: "puberty-disorder-doctor-in-gurgaon",
+      slug: "puberty-disorder-doctor-in-gurgaon",
       category: "young-women-care",
       title: "Best Doctor for Puberty Disorder Treatment in Gurgaon",
       intro:
@@ -5070,8 +5070,8 @@ export const sexualIntimateHealthBlogs = [
     },
 
     article: {
-      id: "vaginal-infection-treatment",
-      slug: "vaginal-infection-treatment",
+      id: "vaginal-infection-doctor-in-gurgaon",
+      slug: "vaginal-infection-doctor-in-gurgaon",
       category: "sexual-intimate-health",
       title: "Best Vaginal Infections Doctor In Gurgaon",
       intro:
@@ -5947,8 +5947,8 @@ export const laparoscopicSurgeryBlogs = [
     },
 
     article: {
-      id: "endometriosis-treatment",
-      slug: "endometriosis-treatment",
+      id: "endometriosis-doctor-in-gurgaon",
+      slug: "endometriosis-doctor-in-gurgaon",
       category: "laparoscopic-surgery",
       title: "Endometriosis Doctor In Gurgaon",
       intro:
@@ -6281,8 +6281,8 @@ export const laparoscopicSurgeryBlogs = [
     },
 
     article: {
-      id: "fibroid-removal-surgery",
-      slug: "fibroid-removal-surgery",
+      id: "uterine-fibroids-doctor-in-gurgaon",
+      slug: "uterine-fibroids-doctor-in-gurgaon",
       category: "laparoscopic-surgery",
       title: "Best Uterine Fibroids Doctor In Gurgaon",
       intro:
@@ -6688,8 +6688,8 @@ export const laparoscopicSurgeryBlogs = [
     },
 
     article: {
-      id: "ovarian-cyst-surgery",
-      slug: "ovarian-cyst-surgery",
+      id: "ovarian-cyst-doctor-in-gurgaon",
+      slug: "ovarian-cyst-doctor-in-gurgaon",
       category: "laparoscopic-surgery",
       title: "Best Doctor for Ovarian Cyst Treatment In Gurgaon",
       intro:

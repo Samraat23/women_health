@@ -1,15 +1,15 @@
 const topicHrefMap: Record<string, string> = {
-  "Abnormal Bleeding": "/menstrual-cycle-problems",
-  "Vaginal Infections": "/vaginal-infection-treatment",
-  "Uterine Disorders": "/fibroid-removal-surgery",
-  Endometriosis: "/endometriosis-treatment",
-  "Ovarian Cysts": "/ovarian-cyst-surgery",
-  Fibroids: "/fibroid-removal-surgery",
-  "Puberty & Menstrual Health": "/teenage-gynecology-care",
+  "Abnormal Bleeding": "/uterine-bleeding-doctor-in-gurgaon",
+  "Vaginal Infections": "/vaginal-infection-doctor-in-gurgaon",
+  "Uterine Disorders": "/uterine-fibroids-doctor-in-gurgaon",
+  Endometriosis: "/endometriosis-doctor-in-gurgaon",
+  "Ovarian Cysts": "/ovarian-cyst-doctor-in-gurgaon",
+  Fibroids: "/uterine-fibroids-doctor-in-gurgaon",
+  "Puberty & Menstrual Health": "/puberty-disorder-doctor-in-gurgaon",
   "Irregular Periods": "/irregular-periods-treatment",
-  "PCOS / PCOD": "/pcod-pcos-treatment",
+  "PCOS / PCOD": "/pcos-pcod-doctor-in-gurgaon",
   "Menstrual Pain": "/menstrual-cycle-problems",
-  "Hygiene & Lifestyle Education": "/teenage-gynecology-care",
+  "Hygiene & Lifestyle Education": "/puberty-disorder-doctor-in-gurgaon",
   "Annual Checkup": "/regular-gynecology-checkup",
   "Pap Smear": "/cervical-cancer-screening",
   "HPV Screening": "/cervical-cancer-screening",
@@ -30,7 +30,7 @@ const topicHrefMap: Record<string, string> = {
 // The home page carousel is fed by siteData.json, whose slugs predate the
 // article pages. Map them onto the guides that actually exist.
 const legacyArticleHrefMap: Record<string, string> = {
-  "pcos-symptoms-and-treatment": "/pcod-pcos-treatment",
+  "pcos-symptoms-and-treatment": "/pcos-pcod-doctor-in-gurgaon",
   "laparoscopic-surgery-benefits": "/category/laparoscopic-surgery",
   "pregnancy-care-tips": "/normal-pregnancy-care",
   "irregular-periods-causes": "/irregular-periods-treatment",

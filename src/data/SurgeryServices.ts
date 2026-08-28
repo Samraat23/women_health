@@ -56,7 +56,7 @@ const surgeryProcedureMeta: SurgeryProcedureMeta[] = [
     detail:
       "Careful excision planning for pelvic pain, endometriosis and fertility goals.",
     focus: ["Pelvic pain", "Chocolate cyst", "Fertility planning"],
-    href: "/endometriosis-treatment",
+    href: "/endometriosis-doctor-in-gurgaon",
     icon: Activity,
     tag: "Deep disease care",
   },
@@ -64,7 +64,7 @@ const surgeryProcedureMeta: SurgeryProcedureMeta[] = [
     detail:
       "Uterus-preserving removal for fibroids, heavy bleeding and pressure symptoms.",
     focus: ["Heavy bleeding", "Pressure symptoms", "Uterus preservation"],
-    href: "/fibroid-removal-surgery",
+    href: "/uterine-fibroids-doctor-in-gurgaon",
     icon: Sparkles,
     tag: "Uterus preserving",
   },
@@ -72,7 +72,7 @@ const surgeryProcedureMeta: SurgeryProcedureMeta[] = [
     detail:
       "Ovary-conscious cyst removal planned to protect healthy ovarian tissue.",
     focus: ["Ovarian cysts", "Pain relief", "Ovary preservation"],
-    href: "/ovarian-cyst-surgery",
+    href: "/ovarian-cyst-doctor-in-gurgaon",
     icon: HeartPulse,
     tag: "Ovary preserving",
   },

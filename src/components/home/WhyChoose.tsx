@@ -6,11 +6,11 @@ import { Award, Baby, HeartPulse, Microscope, ShieldCheck, Stethoscope } from "l
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import SectionHeader from "@/components/shared/SectionHeader";
-import kusum from "../../../public/image/ FLIPING1.jpeg";
-import robot from "../../../public/image/ robottariner.jpeg";
-import lacture from "../../../public/image/ lacture.jpeg";
-import lacture2 from "../../../public/image/ impowerwomen.jpeg";
-import img4 from "../../../public/image/ drkusumlatagynecologist.jpeg";
+const kusum = "/image/ FLIPING1.jpeg";
+const robot = "/image/ robottariner.jpeg";
+const lacture = "/image/ lacture.jpeg";
+const lacture2 = "/image/ impowerwomen.jpeg";
+const img4 = "/image/ drkusumlatagynecologist.jpeg";
 
 const cards = [
   {

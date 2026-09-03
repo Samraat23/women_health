@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 import data from "@/data/siteData.json";
-import logo from "@/assets/ logo.png";
+const logo = "/image/dr-kusum-gynae-centre-logo.png";
 import { gynecologyCategories } from "@/data/Categories";
 import { getSurgeryProcedureMeta } from "@/data/SurgeryServices";
 

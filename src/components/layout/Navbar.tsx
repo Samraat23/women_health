@@ -17,7 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import logo from "@/assets/ logo.png";
+const logo = "/image/dr-kusum-gynae-centre-logo.png";
 import NavbarPregnancyItem from "@/components/layout/NavbarPregnancyItem";
 import { getTopicHref } from "@/lib/topicRoutes";
 import type {

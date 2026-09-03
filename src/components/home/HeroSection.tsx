@@ -9,7 +9,7 @@ import {
   Video,
 } from "lucide-react";
 
-import doctorPortrait from "@/assets/kusummam.jpg";
+const doctorPortrait = "/image/dr-kusum-lata-bhardwaj.jpg";
 import type { HomeHeroContent } from "@/types/homeContent";
 
 const appointmentHref = "https://wa.me/919289140812";

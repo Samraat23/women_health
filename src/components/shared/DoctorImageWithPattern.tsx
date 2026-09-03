@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Award, HeartPulse, MapPin, ShieldCheck } from "lucide-react";
 
-import doctor from "@/assets/ kusumLata.png";
+const doctor = "/image/dr-kusum-lata.png";
 
 type DoctorImageWithPatternProps = {
   className?: string;

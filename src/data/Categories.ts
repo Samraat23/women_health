@@ -1,4 +1,4 @@
-import happyPatient from "../../public/image/ happypatent.jpeg";
+const happyPatient = "/image/ happypatent.jpeg";
 import type { StaticImageData } from "next/image";
 
 export type GynecologyCategory = {

@@ -1,5 +1,5 @@
 import type { StaticImageData } from "next/image";
-import happyPatient from "../../public/image/ happypatent.jpeg";
+const happyPatient = "/image/ happypatent.jpeg";
 
 export type BlogSectionType =
   | "checkList"
@@ -249,11 +249,11 @@ export const pregnancyBlogData = {
 };
 
 
-import youngWomenImage from "../../public/image/ happypatent.jpeg";
-import pcosImage from "../../public/image/ happypatent.jpeg";
-import menstrualImage from "../../public/image/ happypatent.jpeg";
-import irregularImage from "../../public/image/ happypatent.jpeg";
-import teenageImage from "../../public/image/ happypatent.jpeg";
+const youngWomenImage = "/image/ happypatent.jpeg";
+const pcosImage = "/image/ happypatent.jpeg";
+const menstrualImage = "/image/ happypatent.jpeg";
+const irregularImage = "/image/ happypatent.jpeg";
+const teenageImage = "/image/ happypatent.jpeg";
 
 export const youngWomenCareBlogs = [
   {

@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import kusum_lata from "@/assets/ kusumLata.png";
-import logo from "@/assets/ logo.png";
+const kusum_lata = "/image/dr-kusum-lata.png";
+const logo = "/image/dr-kusum-gynae-centre-logo.png";
 import { Play, X } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
 

@@ -13,14 +13,14 @@ import WHealthCategory from "@/components/home/WHealthCategory";
 import  RecentBlog from "@/components/home/RecentBlog"
 import InstaReels from "@/components/home/InstaReels"
 import Trainer from "@/components/home/Trainer"
-import clinicLogo from "@/assets/ logo.png"
-import sanar from "@/assets/ sanal_Logo.png"
-import motherhood from "@/assets/MotherHoodlogo.png"
-import medicity from "@/assets/ medicity.webp"
-import sitaram from "@/assets/ sitarambhartiLogo.png"
-import aiimsnewdelhi from "@/assets/AiimsNewDelhi.png"
-import paras from "@/assets/ paras.jpg"
-import pgimr from "@/assets/ pgimr.png"
+const clinicLogo = "/image/dr-kusum-gynae-centre-logo.png";
+const sanar = "/image/sanar-logo.png";
+const motherhood = "/image/motherhood-hospital-logo.png";
+const medicity = "/image/medicity-logo.webp";
+const sitaram = "/image/sitaram-bhartia-logo.png";
+const aiimsnewdelhi = "/image/aiims-new-delhi-logo.png";
+const paras = "/image/paras-health-logo.jpg";
+const pgimr = "/image/pgimer-logo.png";
 import {gynecologyCategories} from "@/data/Categories"
 import { getHomePageContent } from "@/lib/homeContentStore";
 

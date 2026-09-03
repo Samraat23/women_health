@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { motion } from "framer-motion";
-import Kusum from "@/assets/kusummam.jpg"
+const Kusum = "/image/dr-kusum-lata-bhardwaj.jpg";
 import Image from 'next/image';
 import Link from "next/link";
 import { getTopicHref } from "@/lib/topicRoutes";
@@ -42,7 +42,9 @@ function NavbarPregnancyItem({
         >
           <div className='absolut inset-0 z-10  transition-opacity duration-500' />
           <Image 
-            src={Kusum} 
+            src={Kusum}
+            width={1066}
+            height={1600}
             alt='Women Health Care' 
             className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-700' 
           />

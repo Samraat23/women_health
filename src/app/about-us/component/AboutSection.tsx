@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 
 import { AnimBox } from "@/utils/AnimBox";
-import doctorPhoto from "@/assets/kusummam.jpg";
+const doctorPhoto = "/image/dr-kusum-lata-bhardwaj.jpg";
 
 const badges = [
   {

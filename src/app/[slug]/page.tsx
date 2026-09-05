@@ -19,6 +19,143 @@ type ArticlePageProps = {
   }>;
 };
 
+const siteUrl = "https://www.drkusumlata.in";
+const doctorOpenGraphImage = `${siteUrl}/_next/image?url=%2Fimage%2Fdr-kusum-lata-bhardwaj.jpg&w=1080&q=75`;
+
+type DynamicRouteOpenGraph = {
+  title: string;
+  description: string;
+  url: string;
+  type: "website";
+  images: {
+    url: string;
+    alt: string;
+  }[];
+};
+
+const dynamicRouteOpenGraphBySlug: Partial<
+  Record<string, DynamicRouteOpenGraph>
+> = {
+  "endometriosis-doctor-in-gurgaon": {
+    title:
+      "Best Endometriosis Specialist Doctor in Gurgaon | Symptoms & Treatment",
+    description:
+      "Meet Dr. Kusum Lata Bhardwaj, an endometriosis specialist in Gurgaon with 17+ years of experience. Get guidance on symptoms, diagnosis and treatment options.",
+    url: `${siteUrl}/endometriosis-doctor-in-gurgaon`,
+    type: "website",
+    images: [
+      {
+        url: doctorOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - Endometriosis Specialist Doctor in Gurgaon",
+      },
+    ],
+  },
+  "uterine-bleeding-doctor-in-gurgaon": {
+    title: "Best Uterine Bleeding Doctor in Gurgaon | Dr. Kusum Lata",
+    description:
+      "Meet Dr. Kusum Lata Bhardwaj, a uterine bleeding specialist in Gurgaon with 17+ years of experience. Get guidance for heavy periods, irregular bleeding and treatment options.",
+    url: `${siteUrl}/uterine-bleeding-doctor-in-gurgaon`,
+    type: "website",
+    images: [
+      {
+        url: doctorOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - Uterine Bleeding Specialist in Gurgaon",
+      },
+    ],
+  },
+  "vaginal-infection-doctor-in-gurgaon": {
+    title: "Best Vaginal Infection Doctor in Gurgaon | Dr. Kusum Lata",
+    description:
+      "Meet Dr. Kusum Lata Bhardwaj, a vaginal infection specialist in Gurgaon with 17+ years of experience. Get help for itching, unusual discharge, burning and repeated infections.",
+    url: `${siteUrl}/vaginal-infection-doctor-in-gurgaon`,
+    type: "website",
+    images: [
+      {
+        url: doctorOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - Vaginal Infection Specialist in Gurgaon",
+      },
+    ],
+  },
+  "uterine-fibroids-doctor-in-gurgaon": {
+    title: "Best Uterine Fibroids Doctor in Gurgaon | Dr. Kusum Lata",
+    description:
+      "Having heavy periods, pelvic pain or pressure? Meet Dr. Kusum Lata Bhardwaj in Gurgaon with 17+ years of experience for fibroid diagnosis and suitable treatment options.",
+    url: `${siteUrl}/uterine-fibroids-doctor-in-gurgaon`,
+    type: "website",
+    images: [
+      {
+        url: doctorOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - Uterine Fibroids Doctor in Gurgaon",
+      },
+    ],
+  },
+  "ovarian-cyst-doctor-in-gurgaon": {
+    title: "Best Ovarian Cyst Doctor in Gurgaon | Dr. Kusum Lata",
+    description:
+      "Meet Dr. Kusum Lata Bhardwaj, an ovarian cyst specialist in Gurgaon with 17+ years of experience. Get help for pelvic pain, ovarian cysts and suitable treatment options.",
+    url: `${siteUrl}/ovarian-cyst-doctor-in-gurgaon`,
+    type: "website",
+    images: [
+      {
+        url: doctorOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - Ovarian Cyst Specialist in Gurgaon",
+      },
+    ],
+  },
+  "puberty-disorder-doctor-in-gurgaon": {
+    title: "Best Puberty Disorder Doctor in Gurgaon | Dr. Kusum Lata",
+    description:
+      "Concerned about early or delayed puberty? Meet Dr. Kusum Lata Bhardwaj in Gurgaon with 17+ years of experience for growth, development and hormone-related concerns.",
+    url: `${siteUrl}/puberty-disorder-doctor-in-gurgaon`,
+    type: "website",
+    images: [
+      {
+        url: doctorOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - Puberty Disorder Doctor in Gurgaon",
+      },
+    ],
+  },
+  "pcos-pcod-doctor-in-gurgaon": {
+    title: "Best Gynecologist for PCOS/PCOD Treatment in Gurgaon",
+    description:
+      "Get personalised PCOS/PCOD treatment in Gurgaon from Dr. Kusum Lata Bhardwaj, with 17+ years of experience. Get expert guidance for hormonal, period and fertility concerns.",
+    url: `${siteUrl}/pcos-pcod-doctor-in-gurgaon`,
+    type: "website",
+    images: [
+      {
+        url: doctorOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - PCOS PCOD Doctor in Gurgaon",
+      },
+    ],
+  },
+  "breast-cancer-doctor-in-gurgaon": {
+    title: "Best Breast Cancer Specialist Doctor in Gurgaon",
+    description:
+      "Consult Dr. Kusum Lata Bhardwaj, Breast Cancer Specialist Doctor in Gurgaon, for breast lump evaluation, cancer diagnosis, personalised treatment & surgical care. ✔ 17+ years experience ✔ 10K+ patients",
+    url: `${siteUrl}/breast-cancer-doctor-in-gurgaon`,
+    type: "website",
+    images: [
+      {
+        url: doctorOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - Breast Cancer Specialist Doctor in Gurgaon",
+      },
+    ],
+  },
+};
+
+const getDynamicRouteOpenGraph = (slug: string) =>
+  dynamicRouteOpenGraphBySlug[slug];
+
+const toMetadataOpenGraph = (
+  openGraph: DynamicRouteOpenGraph
+): Metadata["openGraph"] => ({
+  title: openGraph.title,
+  description: openGraph.description,
+  url: openGraph.url,
+  type: "website",
+  images: openGraph.images,
+});
+
 export function generateStaticParams() {
   // Prerender from the shipped article set; admin-only additions still render
   // on demand.
@@ -38,12 +175,21 @@ export async function generateMetadata({
   }
 
   const seo = blog.seo;
+  const openGraph = getDynamicRouteOpenGraph(slug);
+  const title = openGraph
+    ? openGraph.title
+    : seo?.title || `${blog.article.title} | Dr. Kusum Lata`;
+  const description = openGraph
+    ? openGraph.description
+    : seo?.description || blog.article.intro;
+  const canonical = openGraph?.url || seo?.canonical;
 
   return {
-    title: seo?.title || `${blog.article.title} | Dr. Kusum Lata`,
-    description: seo?.description || blog.article.intro,
-    alternates: seo?.canonical ? { canonical: seo.canonical } : undefined,
+    title,
+    description,
+    alternates: canonical ? { canonical } : undefined,
     robots: seo?.robots || undefined,
+    openGraph: openGraph ? toMetadataOpenGraph(openGraph) : undefined,
   };
 }
 

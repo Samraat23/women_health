@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 
 import SurgeryServiceCard from "@/app/surgery/SurgeryServiceCard";
+import BookingButton from "@/components/booking/BookingButton";
 import data from "@/data/siteData.json";
 import { surgeryBenefits } from "@/data/SurgeryServices";
 
@@ -49,8 +50,6 @@ export const metadata: Metadata = {
   description:
     "Explore advanced gynecology surgery services including endometriosis, fibroid removal, uterus removal, ovarian cyst surgery, hysteroscopy and fertility enhancing surgery.",
 };
-
-const appointmentHref = "https://wa.me/919289140812";
 
 const surgeryData = data.LaparoscopicSurgery[0];
 const surgeries = surgeryData.surgery as SurgeryItem[];
@@ -209,15 +208,12 @@ export default function SurgeryPage() {
                 Explore Services
                 <ArrowRight size={18} />
               </Link>
-              <Link
-                href={appointmentHref}
-                target="_blank"
-                rel="noreferrer"
+              <BookingButton
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
                 <CalendarCheck size={18} />
                 Book Appointment
-              </Link>
+              </BookingButton>
             </div>
           </div>
         </div>
@@ -330,15 +326,12 @@ export default function SurgeryPage() {
                 diagnosis, the reason for surgery, the safer route and the
                 recovery plan before the procedure.
               </p>
-              <Link
-                href={appointmentHref}
-                target="_blank"
-                rel="noreferrer"
+              <BookingButton
                 className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-3 text-sm font-black text-white shadow-[0_12px_26px_rgba(90,79,254,0.24)] transition hover:-translate-y-0.5"
               >
                 Talk to Doctor
                 <ArrowRight size={18} />
-              </Link>
+              </BookingButton>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">

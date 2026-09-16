@@ -63,6 +63,11 @@ export type ServiceCardProps = {
   /** Adds a footer call to action row. */
   footerLabel?: string;
   imageSizes?: string;
+  /**
+   * "contain" shows the whole image inside a fixed-height frame. "cover" fills
+   * a 4:3 frame edge to edge, trimming whatever falls outside that shape.
+   */
+  imageFit?: "contain" | "cover";
   priority?: boolean;
   /** Classes for the card itself. */
   className?: string;
@@ -79,6 +84,7 @@ function ServiceCard({
   chipsLabel = "Often discussed for",
   footerLabel,
   imageSizes = "(min-width: 1024px) 390px, (min-width: 768px) 45vw, 92vw",
+  imageFit = "contain",
   priority = false,
   className = "",
   wrapperClassName = "",
@@ -90,6 +96,7 @@ function ServiceCard({
     ShieldCheck;
   const hasBadges = Boolean(badges?.length);
   const hasChips = Boolean(chips?.length);
+  const coversFrame = imageFit === "cover";
 
   const card = (
     <article
@@ -140,7 +147,18 @@ function ServiceCard({
       {/* Absorbs the slack so the media block lines up across every card. */}
       <div className="flex-1" />
 
-      <div className="relative mx-4 mb-4 mt-3 h-[195px] shrink-0 overflow-hidden rounded-xl border border-[var(--border)]/8 bg-[var(--background)] sm:h-[225px] md:mx-5 md:mb-5 md:mt-4 md:h-[260px]">
+      <div
+        className={`relative mx-4 mb-4 mt-3 shrink-0 overflow-hidden rounded-xl border border-[var(--border)]/8 md:mx-5 md:mb-5 md:mt-4 ${
+          coversFrame
+            ? // A fixed ratio keeps the crop the same on every screen width; a
+              // fixed height would crop far more on wide single-column cards.
+              // The cream is fixed rather than var(--background), which turns
+              // near-black in dark mode and would show the soft white glow
+              // baked into the transparent illustrations.
+              "aspect-[4/3] bg-[#f7f4ee]"
+            : "h-[195px] bg-[var(--background)] sm:h-[225px] md:h-[260px]"
+        }`}
+      >
         <Image
           src={item.image}
           alt={item.title}
@@ -148,7 +166,11 @@ function ServiceCard({
           sizes={imageSizes}
           priority={priority}
           // contain keeps the whole illustration or photo visible, never cropped
-          className="object-contain object-center p-2"
+          className={
+            coversFrame
+              ? "object-cover object-center"
+              : "object-contain object-center p-2"
+          }
         />
       </div>
 

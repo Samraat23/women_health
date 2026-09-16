@@ -1,0 +1,352 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "pregnancy-care",
+      "title": "Pregnancy Care",
+      "description": "Complete pregnancy care from early pregnancy confirmation to prenatal checkups, delivery guidance, and postnatal recovery.",
+      "href": "/category/pregnancy-care",
+      "icon": "pregnancy",
+      "keywords": ["pregnancy", "pregnant", "prenatal", "antenatal", "maternity", "garbh", "garbhavastha", "expecting a baby", "trimester", "delivery", "obstetrics"]
+    },
+    {
+      "id": "fertility-infertility",
+      "title": "Fertility & Infertility",
+      "description": "Advanced fertility evaluation and treatment support for ovulation problems, tubal blockage, low AMH, and recurrent pregnancy loss.",
+      "href": "/category/fertility-infertility",
+      "icon": "fertility",
+      "keywords": ["fertility", "conceive", "conceiving", "trying for a baby", "planning a baby", "planning pregnancy"]
+    },
+    {
+      "id": "young-women-care",
+      "title": "Young Women Care",
+      "description": "Special care for teenage girls and young women dealing with periods, PCOD, acne, weight gain, and hormonal changes.",
+      "href": "/category/young-women-care",
+      "icon": "youngWomen",
+      "keywords": ["young women", "teenage", "teenager", "adolescent", "period problem", "period problems", "periods problem", "menstrual problem", "menstrual problems", "menstrual pain", "period pain", "painful periods", "periods"]
+    },
+    {
+      "id": "laparoscopic-surgery",
+      "title": "Laparoscopic Surgery",
+      "description": "Advanced minimally invasive gynecological surgeries with faster recovery, less pain, and smaller scars.",
+      "href": "/category/laparoscopic-surgery",
+      "icon": "surgery",
+      "keywords": ["laparoscopy", "laparoscopic", "keyhole surgery", "minimally invasive", "surgery", "operation", "surgeon"]
+    },
+    {
+      "id": "preventive-women-health",
+      "title": "Preventive Women Health",
+      "description": "Preventive screenings and checkups to detect women's health problems early and reduce future risks.",
+      "href": "/category/preventive-women-health",
+      "icon": "preventive",
+      "keywords": ["preventive", "prevention", "screening", "screenings"]
+    },
+    {
+      "id": "hormonal-imbalance",
+      "title": "Hormonal Imbalance",
+      "description": "Complete care for hormonal problems affecting periods, weight, skin, mood, fertility, and menopause.",
+      "href": "/category/hormonal-imbalance",
+      "icon": "hormonal",
+      "keywords": ["hormonal", "hormone", "hormones", "hormonal imbalance", "hormone imbalance"]
+    },
+    {
+      "id": "menopause-care",
+      "title": "Menopause Care",
+      "description": "Personalized menopause care for hot flashes, mood changes, sleep problems, vaginal dryness, and bone health.",
+      "href": "/category/menopause-care",
+      "icon": "menopause",
+      "keywords": ["menopause care", "post menopause", "postmenopausal", "after menopause"]
+    },
+    {
+      "id": "sexual-intimate-health",
+      "title": "Sexual & Intimate Health",
+      "description": "Confidential care for intimate hygiene, vaginal infections, white discharge, urinary problems, and sexual wellness concerns.",
+      "href": "/category/sexual-intimate-health",
+      "icon": "intimate",
+      "keywords": ["intimate health", "sexual health", "intimate hygiene", "sexual wellness", "private part", "private parts"]
+    }
+  ],
+  "services": [
+    {
+      "id": "normal-pregnancy-care",
+      "title": "Normal Pregnancy Care",
+      "shortTitle": "Normal Pregnancy",
+      "categoryId": "pregnancy-care",
+      "articleSlug": "normal-pregnancy-care",
+      "keywords": ["normal pregnancy", "pregnancy care", "prenatal care", "antenatal care", "pregnancy checkup", "pregnancy check up", "normal delivery", "healthy pregnancy"]
+    },
+    {
+      "id": "high-risk-pregnancy",
+      "title": "High-Risk Pregnancy",
+      "categoryId": "pregnancy-care",
+      "articleSlug": "high-risk-pregnancy",
+      "keywords": ["high risk pregnancy", "high risk", "complicated pregnancy", "twin pregnancy", "twins", "pregnancy diabetes", "gestational diabetes", "bp in pregnancy", "high bp in pregnancy"]
+    },
+    {
+      "id": "pregnancy-ultrasound",
+      "title": "Pregnancy Ultrasound",
+      "categoryId": "pregnancy-care",
+      "articleSlug": "pregnancy-ultrasound",
+      "keywords": ["pregnancy ultrasound", "ultrasound", "sonography", "usg", "anomaly scan", "nt scan", "growth scan", "baby scan"]
+    },
+    {
+      "id": "post-pregnancy-recovery",
+      "title": "Post-Pregnancy Recovery",
+      "categoryId": "pregnancy-care",
+      "articleSlug": "post-pregnancy-recovery",
+      "keywords": ["post pregnancy", "postpartum", "after delivery", "postnatal", "post delivery", "after pregnancy"]
+    },
+    {
+      "id": "infertility-treatment",
+      "title": "Infertility Treatment",
+      "shortTitle": "Infertility",
+      "categoryId": "fertility-infertility",
+      "articleSlug": "infertility-treatment",
+      "keywords": ["infertility", "infertile", "fertility treatment", "not getting pregnant", "unable to conceive", "cannot conceive", "cant conceive", "trying to conceive", "ttc"]
+    },
+    {
+      "id": "ivf-consultation",
+      "title": "IVF Consultation",
+      "categoryId": "fertility-infertility",
+      "articleSlug": "ivf-consultation",
+      "keywords": ["ivf", "test tube baby", "iui", "icsi", "in vitro"]
+    },
+    {
+      "id": "ovulation-problems",
+      "title": "Ovulation Problems",
+      "categoryId": "fertility-infertility",
+      "articleSlug": "ovulation-problems",
+      "keywords": ["ovulation", "not ovulating", "anovulation", "egg not forming", "ovulation problem"]
+    },
+    {
+      "id": "tubal-blockage-treatment",
+      "title": "Tubal Blockage",
+      "categoryId": "fertility-infertility",
+      "articleSlug": "tubal-blockage-treatment",
+      "keywords": ["tubal blockage", "blocked tubes", "blocked tube", "tube blockage", "fallopian tube", "fallopian tubes", "tubes blocked", "hsg"]
+    },
+    {
+      "id": "pcos-pcod",
+      "title": "PCOS / PCOD",
+      "categoryId": "young-women-care",
+      "articleSlug": "pcos-pcod-doctor-in-gurgaon",
+      "keywords": ["pcos", "pcod", "pco", "polycystic ovary", "polycystic ovaries", "polycystic ovarian", "polycystic"]
+    },
+    {
+      "id": "uterine-bleeding",
+      "title": "Abnormal Uterine Bleeding",
+      "shortTitle": "Abnormal Bleeding",
+      "categoryId": "young-women-care",
+      "articleSlug": "uterine-bleeding-doctor-in-gurgaon",
+      "caution": true,
+      "keywords": ["abnormal bleeding", "uterine bleeding", "heavy bleeding", "heavy periods", "heavy period", "heavy menstrual bleeding", "bleeding between periods", "spotting", "prolonged periods", "excessive bleeding", "irregular bleeding"]
+    },
+    {
+      "id": "irregular-periods",
+      "title": "Irregular Periods",
+      "categoryId": "young-women-care",
+      "articleSlug": "irregular-periods-treatment",
+      "keywords": ["irregular periods", "irregular period", "irregular menses", "missed periods", "missed period", "delayed periods", "delayed period", "late period", "late periods", "periods not coming", "no periods", "period late"]
+    },
+    {
+      "id": "puberty-disorder",
+      "title": "Puberty & Menstrual Health",
+      "shortTitle": "Puberty Concerns",
+      "categoryId": "young-women-care",
+      "articleSlug": "puberty-disorder-doctor-in-gurgaon",
+      "keywords": ["puberty", "early puberty", "delayed puberty", "first period", "menarche", "puberty problem"]
+    },
+    {
+      "id": "endometriosis",
+      "title": "Endometriosis",
+      "categoryId": "laparoscopic-surgery",
+      "articleSlug": "endometriosis-doctor-in-gurgaon",
+      "keywords": ["endometriosis", "chocolate cyst", "endometrioma", "endo"]
+    },
+    {
+      "id": "uterine-fibroids",
+      "title": "Uterine Fibroids",
+      "shortTitle": "Fibroids",
+      "categoryId": "laparoscopic-surgery",
+      "articleSlug": "uterine-fibroids-doctor-in-gurgaon",
+      "keywords": ["fibroid", "fibroids", "uterine fibroids", "myoma", "myomectomy", "fibroid removal", "rasoli"]
+    },
+    {
+      "id": "ovarian-cyst",
+      "title": "Ovarian Cyst",
+      "categoryId": "laparoscopic-surgery",
+      "articleSlug": "ovarian-cyst-doctor-in-gurgaon",
+      "keywords": ["ovarian cyst", "ovarian cysts", "cyst in ovary", "ovary cyst", "cyst", "cysts", "cystectomy"]
+    },
+    {
+      "id": "hysteroscopy-treatment",
+      "title": "Hysteroscopy",
+      "categoryId": "laparoscopic-surgery",
+      "articleSlug": "hysteroscopy-treatment",
+      "keywords": ["hysteroscopy", "hysteroscopic", "uterine polyp", "polyp", "polyps", "uterine septum", "septum"]
+    },
+    {
+      "id": "fertility-enhancing-surgery",
+      "title": "Fertility Enhancing Surgery",
+      "categoryId": "laparoscopic-surgery",
+      "articleSlug": "fertility-enhancing-surgery",
+      "keywords": ["fertility enhancing surgery", "fertility surgery", "adhesions", "adhesion"]
+    },
+    {
+      "id": "cervical-cerclage",
+      "title": "Cervical Cerclage",
+      "categoryId": "laparoscopic-surgery",
+      "articleSlug": "cervical-cerclage",
+      "keywords": ["cerclage", "encerclage", "cervical stitch", "weak cervix", "cervical weakness", "cervical incompetence"]
+    },
+    {
+      "id": "hysterectomy",
+      "title": "Uterus Removal (Hysterectomy)",
+      "shortTitle": "Hysterectomy",
+      "categoryId": "laparoscopic-surgery",
+      "href": "/category/laparoscopic-surgery",
+      "summary": "Minimally invasive hysterectomy performed for large fibroids, abnormal bleeding, adenomyosis, or other uterine conditions when necessary.",
+      "keywords": ["hysterectomy", "uterus removal", "remove uterus", "removal of uterus", "uterus removed"]
+    },
+    {
+      "id": "gynecologic-cancer-surgery",
+      "title": "Gynecologic Cancer Surgery",
+      "shortTitle": "Cancer Surgery",
+      "categoryId": "laparoscopic-surgery",
+      "href": "/category/laparoscopic-surgery",
+      "summary": "Comprehensive surgical treatment for gynecological cancers including uterine, ovarian, and cervical cancers using advanced minimally invasive techniques whenever possible.",
+      "keywords": ["cancer surgery", "cervical cancer surgery", "ovarian cancer", "uterine cancer", "endometrial cancer", "gynecologic cancer", "gynaecological cancer"]
+    },
+    {
+      "id": "cervical-cancer-screening",
+      "title": "Cervical Cancer Screening (Pap Smear)",
+      "shortTitle": "Pap Smear",
+      "categoryId": "preventive-women-health",
+      "articleSlug": "cervical-cancer-screening",
+      "keywords": ["pap smear", "pap test", "cervical screening", "cervical cancer screening", "hpv test", "hpv screening", "cervical cancer", "cervical cancer test"]
+    },
+    {
+      "id": "hpv-vaccination",
+      "title": "HPV Vaccination",
+      "categoryId": "preventive-women-health",
+      "articleSlug": "hpv-vaccination",
+      "keywords": ["hpv vaccine", "hpv vaccination", "cervical cancer vaccine", "gardasil", "cervavac", "vaccine", "vaccination", "hpv"]
+    },
+    {
+      "id": "regular-gynecology-checkup",
+      "title": "Regular Gynecology Checkup",
+      "shortTitle": "Routine Checkup",
+      "categoryId": "preventive-women-health",
+      "articleSlug": "regular-gynecology-checkup",
+      "keywords": ["annual checkup", "routine checkup", "regular checkup", "gynae checkup", "gyne checkup", "gynecology checkup", "gynaecology checkup", "well woman", "general checkup", "health checkup", "checkup", "check up"]
+    },
+    {
+      "id": "breast-health",
+      "title": "Breast Examination & Breast Health",
+      "shortTitle": "Breast Health",
+      "categoryId": "preventive-women-health",
+      "articleSlug": "breast-cancer-doctor-in-gurgaon",
+      "keywords": ["breast", "breast lump", "lump in breast", "breast pain", "breast cancer", "mammography", "mammogram", "breast exam", "breast examination"]
+    },
+    {
+      "id": "thyroid-problems",
+      "title": "Thyroid Problems",
+      "shortTitle": "Thyroid",
+      "categoryId": "hormonal-imbalance",
+      "articleSlug": "thyroid-problems-women",
+      "keywords": ["thyroid", "hypothyroid", "hyperthyroid", "hypothyroidism", "hyperthyroidism", "tsh"]
+    },
+    {
+      "id": "hormonal-weight-gain",
+      "title": "Hormonal Weight Gain",
+      "shortTitle": "Weight Gain",
+      "categoryId": "hormonal-imbalance",
+      "articleSlug": "hormonal-weight-gain",
+      "keywords": ["weight gain", "gaining weight", "obesity", "overweight", "weight loss", "losing weight"]
+    },
+    {
+      "id": "hormonal-hair-fall-acne",
+      "title": "Hormonal Hair Fall & Acne",
+      "shortTitle": "Hair Fall & Acne",
+      "categoryId": "hormonal-imbalance",
+      "articleSlug": "hormonal-hair-fall-acne",
+      "keywords": ["hair fall", "hair loss", "acne", "pimples", "pimple", "facial hair", "hirsutism", "unwanted hair"]
+    },
+    {
+      "id": "mood-swings-hormones",
+      "title": "Mood Swings & Hormones",
+      "shortTitle": "Mood Swings",
+      "categoryId": "hormonal-imbalance",
+      "articleSlug": "mood-swings-hormones",
+      "keywords": ["mood swings", "mood swing", "mood changes", "irritability", "pms", "pmdd"]
+    },
+    {
+      "id": "menopause-management",
+      "title": "Menopause Management",
+      "shortTitle": "Menopause",
+      "categoryId": "menopause-care",
+      "articleSlug": "menopause-management",
+      "keywords": ["menopause", "perimenopause", "menopause symptoms", "hrt", "hormone replacement"]
+    },
+    {
+      "id": "hot-flashes",
+      "title": "Hot Flashes",
+      "categoryId": "menopause-care",
+      "articleSlug": "hot-flashes-treatment",
+      "keywords": ["hot flashes", "hot flash", "hot flushes", "hot flush", "night sweats"]
+    },
+    {
+      "id": "vaginal-dryness",
+      "title": "Vaginal Dryness",
+      "categoryId": "menopause-care",
+      "articleSlug": "vaginal-dryness-treatment",
+      "keywords": ["vaginal dryness", "dryness", "dry vagina"]
+    },
+    {
+      "id": "bone-health-after-menopause",
+      "title": "Bone Health After Menopause",
+      "shortTitle": "Bone Health",
+      "categoryId": "menopause-care",
+      "articleSlug": "bone-health-after-menopause",
+      "keywords": ["osteoporosis", "bone health", "bone density", "weak bones", "bone loss"]
+    },
+    {
+      "id": "vaginal-infection",
+      "title": "Vaginal Infection",
+      "categoryId": "sexual-intimate-health",
+      "articleSlug": "vaginal-infection-doctor-in-gurgaon",
+      "keywords": ["vaginal infection", "vaginal infections", "yeast infection", "fungal infection", "vaginal itching", "itching", "itchy", "candida", "bacterial vaginosis", "infection"]
+    },
+    {
+      "id": "white-discharge",
+      "title": "White Discharge",
+      "categoryId": "sexual-intimate-health",
+      "articleSlug": "white-discharge-treatment",
+      "keywords": ["white discharge", "discharge", "leucorrhoea", "leucorrhea", "safed pani"]
+    },
+    {
+      "id": "urinary-tract-infection",
+      "title": "Urinary Tract Infection (UTI)",
+      "shortTitle": "UTI",
+      "categoryId": "sexual-intimate-health",
+      "articleSlug": "urinary-tract-infection-women",
+      "keywords": ["uti", "urine infection", "urinary infection", "urinary tract infection", "burning urination", "burning while urinating", "urinary problem", "urinary problems", "frequent urination"]
+    },
+    {
+      "id": "pain-during-intercourse",
+      "title": "Pain During Intercourse",
+      "categoryId": "sexual-intimate-health",
+      "articleSlug": "pain-during-intercourse",
+      "keywords": ["pain during intercourse", "painful intercourse", "painful sex", "pain during sex", "dyspareunia"]
+    },
+    {
+      "id": "general-consultation",
+      "title": "General Gynecology Consultation",
+      "shortTitle": "Not sure / Other",
+      "categoryId": null,
+      "href": "/about-us",
+      "bookingOnly": true,
+      "keywords": ["general consultation", "general", "not sure", "other", "others", "something else", "gynecologist", "gynaecologist", "gyne", "gynae", "lady doctor"]
+    }
+  ]
+}

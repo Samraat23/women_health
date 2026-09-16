@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# chat support: locally stored patient requests (file storage driver)
+/.data/

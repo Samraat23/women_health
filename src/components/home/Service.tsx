@@ -34,6 +34,7 @@ function Service({ service }: { service: ServiceItem[] }) {
             // The category owns its slug: deriving one from the title sent
             // "Fertility & Infertility" to /category/fertility-and-infertility.
             href={`/category/${item.slug}`}
+            imageFit="cover"
           />
         ))}
       </div>

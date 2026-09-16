@@ -16,6 +16,7 @@ import {
   ArrowUpRight,
   CalendarDays,
   Check,
+  IndianRupee,
   ShieldCheck,
   Stethoscope,
   Sun,
@@ -29,19 +30,24 @@ import {
 
 import {
   buildBookingMessage,
+  consultationFees,
   consultationLabels,
   createEmptyBooking,
   formatBookingDate,
+  formatFee,
   getBookableDateRange,
+  getTimeSlot,
   isSlotClosed,
+  slotPeriods,
   timeSlots,
   validateBooking,
+  withoutClosedSlot,
   type BookingDetails,
   type BookingErrors,
   type BookingField,
   type BookingValues,
   type ConsultationType,
-  type TimeSlotId,
+  type SlotPeriodId,
 } from "@/components/booking/bookingRequest";
 import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 import { getWhatsAppHref } from "@/lib/whatsapp";
@@ -64,7 +70,7 @@ const consultationOptions: Array<{
   { value: "video", label: "Video Consult", icon: Video },
 ];
 
-const slotIcons: Record<TimeSlotId, LucideIcon> = {
+const periodIcons: Record<SlotPeriodId, LucideIcon> = {
   morning: Sunrise,
   afternoon: Sun,
   evening: Sunset,
@@ -120,10 +126,15 @@ export default function BookingFormModal({
   // consultation type) but starts from a blank form after a finished booking.
   if (request.requestedAt !== handledRequestAt) {
     setHandledRequestAt(request.requestedAt);
-    setValues((current) => ({
-      ...(submission ? createEmptyBooking() : current),
-      consultationType: request.consultationType,
-    }));
+    setValues((current) =>
+      withoutClosedSlot(
+        {
+          ...(submission ? createEmptyBooking() : current),
+          consultationType: request.consultationType,
+        },
+        now
+      )
+    );
     setErrors({});
     setSubmission(null);
   }
@@ -132,17 +143,9 @@ export default function BookingFormModal({
     field: Field,
     value: BookingValues[Field]
   ) {
-    setValues((current) => {
-      const next = { ...current, [field]: value };
-      const pickedSlot = timeSlots.find((slot) => slot.id === next.timeSlot);
-
-      // Moving the date to today can rule out a slot that was already picked.
-      if (pickedSlot && isSlotClosed(pickedSlot, next.date, now)) {
-        next.timeSlot = "";
-      }
-
-      return next;
-    });
+    setValues((current) =>
+      withoutClosedSlot({ ...current, [field]: value }, now)
+    );
     setErrors((current) =>
       current[field] ? { ...current, [field]: undefined } : current
     );
@@ -187,10 +190,13 @@ export default function BookingFormModal({
           <div className="flex min-h-full items-center justify-center px-3 py-4 sm:p-6">
             <DialogPrimitive.Content
               // Focus the dialog itself: jumping into a field would pop the
-              // keyboard over the form on phones.
+              // keyboard over the form on phones. When the form is taller than
+              // the screen, scrolling to it would cut off the header.
               onOpenAutoFocus={(event) => {
                 event.preventDefault();
-                (event.currentTarget as HTMLElement | null)?.focus();
+                (event.currentTarget as HTMLElement | null)?.focus({
+                  preventScroll: true,
+                });
               }}
               // The dialog opens from plain buttons rather than a Radix
               // Trigger, so hand focus back to whichever one opened it.
@@ -250,11 +256,24 @@ function BookingForm({
     errors[field] ? `${fieldId(field)}-error` : undefined;
   const { min, max } = getBookableDateRange(now);
   const isVideo = values.consultationType === "video";
+  const pickedSlot = getTimeSlot(values.timeSlot);
+  // Which part of the day's slots are on show; opens on the picked slot's.
+  const [chosenPeriodId, setChosenPeriodId] = useState(pickedSlot?.period);
   const slots = timeSlots.map((slot) => ({
     ...slot,
     closed: isSlotClosed(slot, values.date, now),
   }));
+  const periods = slotPeriods.map((period) => ({
+    ...period,
+    closed: slots.every((slot) => slot.period !== period.id || slot.closed),
+  }));
   const areAllSlotsClosed = slots.every((slot) => slot.closed);
+  // Falls back to the first part of the day with open slots, e.g. when the
+  // date moves to today after the morning has closed.
+  const shownPeriod =
+    periods.find((period) => period.id === chosenPeriodId && !period.closed) ??
+    periods.find((period) => !period.closed) ??
+    periods[0];
 
   return (
     <form noValidate onSubmit={onSubmit}>
@@ -326,6 +345,20 @@ function BookingForm({
             })}
           </div>
         </fieldset>
+
+        <p className="flex h-12 items-center justify-between gap-3 rounded-2xl border border-[#e8e5fb] bg-[#f8f7ff] pl-2 pr-4">
+          <span className="flex min-w-0 items-center gap-2.5">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-white text-[var(--primary-color)] shadow-[0_6px_14px_rgba(27,20,99,0.08)]">
+              <IndianRupee size={16} aria-hidden="true" />
+            </span>
+            <span className="truncate text-[13px] font-black text-[var(--primary-text-color)]">
+              Consultation fee
+            </span>
+          </span>
+          <span className="shrink-0 text-lg font-black text-[var(--primary-text-color)]">
+            {formatFee(consultationFees[values.consultationType])}
+          </span>
+        </p>
 
         <FormField
           id={fieldId("patientName")}
@@ -476,63 +509,74 @@ function BookingForm({
           <legend className="mb-1.5 text-[13px] font-black text-[var(--primary-text-color)]">
             Preferred time
           </legend>
-          <div className="grid grid-cols-3 gap-2">
-            {slots.map((slot) => {
-              const Icon = slotIcons[slot.id];
-              const isSelected = values.timeSlot === slot.id;
+          {/* Picking a part of the day shows its half-hour slots below. */}
+          <div
+            role="radiogroup"
+            aria-label="Part of the day"
+            className="grid grid-cols-3 gap-2"
+          >
+            {periods.map((period) => {
+              const Icon = periodIcons[period.id];
+              const isShown = !areAllSlotsClosed && period.id === shownPeriod.id;
+              // Flags where the picked slot is while another part is on show.
+              const holdsPickedSlot =
+                pickedSlot?.period === period.id && !isShown;
 
               return (
                 <label
-                  key={slot.id}
+                  key={period.id}
                   className={`relative ${
-                    slot.closed ? "cursor-not-allowed" : "cursor-pointer"
+                    period.closed ? "cursor-not-allowed" : "cursor-pointer"
                   }`}
                 >
                   <input
                     type="radio"
-                    name="timeSlot"
-                    value={slot.id}
-                    checked={isSelected}
-                    disabled={slot.closed}
-                    onChange={() => onFieldChange("timeSlot", slot.id)}
+                    name="slotPeriod"
+                    value={period.id}
+                    checked={isShown}
+                    disabled={period.closed}
+                    onChange={() => setChosenPeriodId(period.id)}
                     className="peer sr-only"
                   />
                   <span
                     className={`flex flex-col items-center rounded-2xl border px-1 py-2 text-center transition peer-focus-visible:ring-4 peer-focus-visible:ring-[var(--primary-color)]/15 ${
-                      isSelected
-                        ? `border-transparent text-white shadow-[0_12px_24px_rgba(90,79,254,0.28)] ${brandGradientClass}`
-                        : slot.closed
+                      isShown
+                        ? "border-[var(--primary-color)] bg-white text-[var(--primary-text-color)] shadow-[0_8px_18px_rgba(27,20,99,0.10)]"
+                        : period.closed
                           ? "border-[#eeecf6] bg-slate-50 text-slate-300"
-                          : `bg-[#f8f7ff] text-[var(--primary-text-color)] hover:border-[var(--primary-color)]/40 ${
-                              errors.timeSlot ? "border-rose-300" : "border-[#e8e5fb]"
-                            }`
+                          : "border-[#e8e5fb] bg-[#f8f7ff] text-[var(--primary-text-color)] hover:border-[var(--primary-color)]/40"
                     }`}
                   >
                     <Icon
                       size={18}
                       aria-hidden="true"
                       className={
-                        isSelected
-                          ? "text-white"
-                          : slot.closed
-                            ? "text-slate-300"
-                            : "text-[var(--primary-color)]"
+                        period.closed
+                          ? "text-slate-300"
+                          : "text-[var(--primary-color)]"
                       }
                     />
                     <span className="mt-1 text-[13px] font-black leading-tight">
-                      {slot.label}
+                      {period.label}
                     </span>
                     <span
                       className={`mt-0.5 text-[11px] font-bold leading-tight ${
-                        isSelected
-                          ? "text-white/75"
-                          : slot.closed
-                            ? "text-slate-300"
-                            : "text-slate-500"
+                        period.closed ? "text-slate-300" : "text-slate-500"
                       }`}
                     >
-                      {slot.range}
+                      {period.range}
                     </span>
+                    {holdsPickedSlot && (
+                      <>
+                        <span
+                          aria-hidden="true"
+                          className={`absolute right-2 top-2 h-2 w-2 rounded-full ${brandGradientClass}`}
+                        />
+                        <span className="sr-only">
+                          , {pickedSlot.label} selected
+                        </span>
+                      </>
+                    )}
                   </span>
                 </label>
               );
@@ -543,14 +587,61 @@ function BookingForm({
               No time slots are left for this date. Please pick another date.
             </p>
           ) : (
-            errors.timeSlot && (
-              <p
-                id={errorId("timeSlot")}
-                className="mt-1.5 text-xs font-bold text-rose-600"
+            <>
+              <div
+                role="radiogroup"
+                aria-label={`${shownPeriod.label} slots`}
+                className="mt-2 grid grid-cols-2 gap-2"
               >
-                {errors.timeSlot}
-              </p>
-            )
+                {slots
+                  .filter((slot) => slot.period === shownPeriod.id)
+                  .map((slot) => {
+                    const isSelected = values.timeSlot === slot.id;
+
+                    return (
+                      <label
+                        key={slot.id}
+                        className={`relative ${
+                          slot.closed ? "cursor-not-allowed" : "cursor-pointer"
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="timeSlot"
+                          value={slot.id}
+                          checked={isSelected}
+                          disabled={slot.closed}
+                          onChange={() => onFieldChange("timeSlot", slot.id)}
+                          className="peer sr-only"
+                        />
+                        <span
+                          className={`flex h-10 items-center justify-center whitespace-nowrap rounded-xl border px-1 text-[11px] font-bold transition peer-focus-visible:ring-4 peer-focus-visible:ring-[var(--primary-color)]/15 min-[360px]:text-xs sm:text-[13px] ${
+                            isSelected
+                              ? `border-transparent text-white shadow-[0_12px_24px_rgba(90,79,254,0.28)] ${brandGradientClass}`
+                              : slot.closed
+                                ? "border-[#eeecf6] bg-slate-50 text-slate-300"
+                                : `bg-[#f8f7ff] text-[var(--primary-text-color)] hover:border-[var(--primary-color)]/40 ${
+                                    errors.timeSlot
+                                      ? "border-rose-300"
+                                      : "border-[#e8e5fb]"
+                                  }`
+                          }`}
+                        >
+                          {slot.label}
+                        </span>
+                      </label>
+                    );
+                  })}
+              </div>
+              {errors.timeSlot && (
+                <p
+                  id={errorId("timeSlot")}
+                  className="mt-1.5 text-xs font-bold text-rose-600"
+                >
+                  {errors.timeSlot}
+                </p>
+              )}
+            </>
           )}
         </fieldset>
 
@@ -614,14 +705,15 @@ function BookingSuccess({ submission }: { submission: Submission }) {
       value: consultationLabels[details.consultationType],
     },
     {
+      label: "Consultation fee",
+      value: formatFee(consultationFees[details.consultationType]),
+    },
+    {
       label: "Patient",
       value: `${details.patientName}, ${details.age} yrs`,
     },
     { label: "Date", value: formatBookingDate(details.date) },
-    {
-      label: "Time",
-      value: `${details.timeSlot.label}, ${details.timeSlot.range}`,
-    },
+    { label: "Time", value: details.timeSlot.label },
   ];
 
   // The submit button that had focus is gone; move focus to the next action.

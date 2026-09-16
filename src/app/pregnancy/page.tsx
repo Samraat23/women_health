@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 const doctorPortrait = "/image/dr-kusum-lata-bhardwaj.jpg";
+import BookingButton from "@/components/booking/BookingButton";
 import {
   foodPillars,
   getTrimesterGuide,
@@ -33,7 +34,6 @@ export const metadata: Metadata = {
     "A complete pregnancy page covering week 1 to 41, trimester care, food guidance, tests, vaccines and warning signs.",
 };
 
-const appointmentHref = "https://wa.me/919289140812";
 const heroImage =
   "https://images.unsplash.com/photo-1617184896380-579b1fa760aa?auto=format&fit=crop&q=80&w=1400";
 
@@ -77,15 +77,13 @@ export default function PregnancyPage() {
                 <CalendarCheck size={18} />
                 Start Weekly Guide
               </Link>
-              <Link
-                href={appointmentHref}
-                target="_blank"
-                rel="noreferrer"
+              <BookingButton
+                consultationType="video"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
                 <Video size={18} />
                 Instant Consultation
-              </Link>
+              </BookingButton>
             </div>
           </div>
 
@@ -355,15 +353,12 @@ export default function PregnancyPage() {
               Every pregnancy is different. Use this page as a guide, then bring
               your week, reports and questions to the consultation.
             </p>
-            <Link
-              href={appointmentHref}
-              target="_blank"
-              rel="noreferrer"
+            <BookingButton
               className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-3 text-sm font-black text-white shadow-[0_12px_26px_rgba(90,79,254,0.24)] transition hover:-translate-y-0.5"
             >
               Book Pregnancy Consultation
               <ArrowRight size={18} />
-            </Link>
+            </BookingButton>
           </div>
         </div>
       </section>

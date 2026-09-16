@@ -3,6 +3,7 @@ import {
   FileText,
   LayoutDashboard,
   Menu,
+  MessagesSquare,
   PanelBottom,
   ShieldCheck,
 } from "lucide-react";
@@ -11,6 +12,7 @@ import { adminModules } from "@/features/admin/firebase/adminModules";
 import AdminLogoutButton from "@/features/admin/home/AdminLogoutButton";
 
 const moduleIcons = {
+  "chat-requests": MessagesSquare,
   articles: FileText,
   navbar: Menu,
   footer: PanelBottom,

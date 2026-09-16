@@ -13,6 +13,7 @@ import {
   Youtube,
 } from "lucide-react";
 
+import BookingButton from "@/components/booking/BookingButton";
 import data from "@/data/siteData.json";
 const logo = "/image/dr-kusum-gynae-centre-logo.png";
 import { gynecologyCategories } from "@/data/Categories";
@@ -189,13 +190,12 @@ function Footer() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                <SmartLink
-                  href={appointmentHref}
+                <BookingButton
                   className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-5 py-3 text-sm font-black text-white shadow-[0_12px_26px_rgba(90,79,254,0.25)] transition hover:-translate-y-0.5"
                 >
                   <CalendarCheck size={17} />
                   Book Appointment
-                </SmartLink>
+                </BookingButton>
                 <SmartLink
                   href="tel:9289140812"
                   className="inline-flex items-center gap-2 rounded-full border border-[var(--primary-color)]/15 px-5 py-3 text-sm font-black text-[var(--primary-text-color)] transition hover:border-[var(--primary-color)]/35"

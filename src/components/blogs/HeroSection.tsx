@@ -12,14 +12,13 @@ import {
   Video,
 } from "lucide-react";
 
+import BookingButton from "@/components/booking/BookingButton";
 import type { BlogPageData } from "@/data/BlogData";
 const doctorPortrait = "/image/dr-kusum-lata-bhardwaj.jpg";
 
 type HeroSectionProps = {
   data: BlogPageData["hero"];
 };
-
-const appointmentHref = "https://wa.me/919289140812";
 
 function TypingText({ text, className }: { text: string; className: string }) {
   const words = text.split(" ");
@@ -122,24 +121,19 @@ function HeroSection({ data }: HeroSectionProps) {
               transition={{ delay: 0.9, duration: 0.48 }}
               className="mt-8 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap lg:justify-start"
             >
-              <a
-                href={appointmentHref}
-                target="_blank"
-                rel="noreferrer"
+              <BookingButton
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5"
               >
                 <CalendarCheck size={18} />
                 Book Appointment
-              </a>
-              <a
-                href={appointmentHref}
-                target="_blank"
-                rel="noreferrer"
+              </BookingButton>
+              <BookingButton
+                consultationType="video"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
                 <Video size={18} />
                 Instant Video Consultation
-              </a>
+              </BookingButton>
             </motion.div>
           </motion.div>
 

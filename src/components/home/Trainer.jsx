@@ -9,7 +9,8 @@ import {
   Scissors,
 } from "lucide-react";
 
-const appointmentHref = "https://wa.me/919289140812";
+import BookingButton from "@/components/booking/BookingButton";
+
 const readMoreHref = "https://themedicity.com/dr-kusum-lata/";
 
 const trainerImages = [
@@ -86,15 +87,13 @@ function Trainer({ d }) {
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row md:mt-7 md:gap-4">
-            <a
-              href={trainerData.primaryCtaUrl || appointmentHref}
-              target="_blank"
-              rel="noreferrer"
+            {/* Opens the booking form, so the admin link for this button is not used. */}
+            <BookingButton
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-3.5 text-sm font-black text-white shadow-[0_14px_28px_rgba(90,79,254,0.24)] transition hover:-translate-y-0.5 md:px-7 md:py-4"
             >
               <CalendarCheck size={18} />
               {trainerData.primaryCta || "Consult for Surgery"}
-            </a>
+            </BookingButton>
             <Link
               href={trainerData.secondaryCtaUrl || readMoreHref}
               target="_blank"

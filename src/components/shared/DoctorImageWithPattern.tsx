@@ -1,25 +1,15 @@
 import Image from "next/image";
-import { Award, HeartPulse, MapPin, ShieldCheck } from "lucide-react";
+import { BadgeCheck, MapPin, Stethoscope } from "lucide-react";
 
 const doctor = "/image/dr-kusum-lata.png";
+const brandGradient =
+  "bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))]";
 
 type DoctorImageWithPatternProps = {
+  // Replace the default 4:5 shape, e.g. to stretch to a neighbouring column.
   className?: string;
   priority?: boolean;
 };
-
-const trustBadges = [
-  {
-    icon: ShieldCheck,
-    label: "AIIMS New Delhi",
-    value: "Faculty experience",
-  },
-  {
-    icon: HeartPulse,
-    label: "Women treated",
-    value: "10k+ patients",
-  },
-];
 
 export default function DoctorImageWithPattern({
   className = "",
@@ -27,94 +17,87 @@ export default function DoctorImageWithPattern({
 }: DoctorImageWithPatternProps) {
   return (
     <figure
-      className={`relative isolate mx-auto w-full max-w-[440px] ${className}`}
-      aria-label="Dr. Kusum Lata portrait with professional highlights"
+      className={`relative isolate mx-auto aspect-[4/5] w-full max-w-[460px] ${className}`}
     >
-      <style>{`
-        @keyframes softFloat {
-          0%, 100% { transform: translate3d(0, 0, 0); }
-          50% { transform: translate3d(0, -10px, 0); }
-        }
-        .doctor-float { animation: softFloat 6s ease-in-out infinite; }
-      `}</style>
-
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] border border-white/80 bg-[#fffaf7] shadow-[0_28px_70px_rgba(27,20,99,0.16)]">
-        <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(90,79,254,0.16),rgba(255,255,255,0)_42%),linear-gradient(315deg,rgba(239,110,83,0.20),rgba(255,255,255,0)_38%)]" />
-        <div className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(#5a4ffe_1px,transparent_1px),linear-gradient(90deg,#5a4ffe_1px,transparent_1px)] [background-size:34px_34px]" />
-
-        <div className="absolute left-1/2 top-[18%] h-[58%] w-[70%] -translate-x-1/2 rounded-full border border-[#5a4ffe]/20" />
-        <div className="absolute left-1/2 top-[24%] h-[46%] w-[58%] -translate-x-1/2 rounded-full border border-[#ef6e53]/25" />
-
-        <div className="absolute inset-x-8 bottom-0 top-10 rounded-t-[180px] bg-[linear-gradient(180deg,rgba(90,79,254,0.18),rgba(49,40,90,0.92))]" />
-
-        <Image
-          src={doctor}
-          alt="Dr. Kusum Lata"
-          fill
-          sizes="(min-width: 1024px) 440px, (min-width: 640px) 55vw, 92vw"
-          className="doctor-float object-contain object-bottom drop-shadow-[0_22px_24px_rgba(27,20,99,0.22)]"
-          priority={priority}
+      <div className="absolute inset-0 overflow-hidden rounded-[36px] bg-[radial-gradient(45%_32%_at_50%_35%,rgba(255,255,255,0.22),transparent_70%),radial-gradient(60%_45%_at_15%_0%,rgba(160,152,255,0.55),transparent_70%),radial-gradient(55%_40%_at_100%_100%,rgba(239,110,83,0.28),transparent_70%),linear-gradient(165deg,#5a4ffe_0%,#3a2fb2_50%,#1b1463_100%)] shadow-[0_30px_70px_rgba(27,20,99,0.3)] ring-1 ring-white/20">
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 top-[35%] aspect-square w-[112%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 top-[35%] aspect-square w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15"
         />
 
-        <figcaption className="absolute inset-x-4 bottom-4 rounded-lg border border-white/70 bg-white/95 p-4 shadow-[0_16px_36px_rgba(27,20,99,0.14)] backdrop-blur">
-          <p className="text-sm font-black text-[var(--primary-text-color)]">
-            Dr. Kusum Lata Bhardwaj
-          </p>
-          <p className="mt-1 text-xs font-semibold text-slate-600">
-            MD Obstetrics & Gynaecology, Laparoscopic Surgeon
-          </p>
-        </figcaption>
-      </div>
-
-      <div className="absolute left-3 top-4 rounded-lg border border-white/80 bg-white/95 px-3 py-2 shadow-[0_12px_26px_rgba(27,20,99,0.12)] sm:-left-5 sm:top-10">
-        <div className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#5a4ffe]/10 text-[var(--primary-color)]">
-            <Award size={18} />
-          </span>
-          <span>
-            <span className="block text-base font-black leading-none text-[var(--primary-text-color)]">
-              17+
-            </span>
-            <span className="block text-[11px] font-bold uppercase tracking-wide text-slate-500">
-              Years
-            </span>
-          </span>
+        {/* Wider than the card, so a tall card sizes the portrait by its height
+            and the card's rounded corners crop the shoulders. */}
+        <div className="absolute inset-x-[-15%] bottom-0 top-[7%]">
+          <Image
+            src={doctor}
+            alt="Dr. Kusum Lata Bhardwaj"
+            fill
+            sizes="(min-width: 1024px) 680px, (min-width: 640px) 600px, 120vw"
+            className="object-contain object-bottom"
+            priority={priority}
+          />
         </div>
+
+        {/* Darkens the white coat so the glass caption stays readable. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-[42%] bg-[linear-gradient(0deg,rgba(27,20,99,0.92)_0%,rgba(27,20,99,0.55)_45%,rgba(27,20,99,0)_100%)]"
+        />
       </div>
 
-      <div className="absolute right-3 top-[28%] space-y-3 sm:-right-6">
-        {trustBadges.map((item) => {
-          const Icon = item.icon;
-
-          return (
-            <div
-              key={item.label}
-              className="rounded-lg border border-white/80 bg-white/95 px-3 py-2 shadow-[0_12px_26px_rgba(27,20,99,0.12)]"
+      <div
+        aria-hidden="true"
+        className="absolute right-[-3%] top-[-3%] z-10 grid aspect-square w-[26%] min-w-24 max-w-[132px] place-items-center rounded-full bg-white shadow-[0_14px_34px_rgba(27,20,99,0.22)]"
+      >
+        <svg
+          viewBox="0 0 100 100"
+          className="absolute inset-0 size-full motion-safe:animate-spin"
+          style={{ animationDuration: "24s" }}
+        >
+          <defs>
+            <path
+              id="doctor-badge-ring"
+              d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"
+            />
+          </defs>
+          <text className="fill-[var(--primary-text-color)] text-[8.5px] font-black">
+            <textPath
+              href="#doctor-badge-ring"
+              textLength="228"
+              lengthAdjust="spacing"
             >
-              <div className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ef6e53]/10 text-[#df5f45]">
-                  <Icon size={16} />
-                </span>
-                <span>
-                  <span className="block text-xs font-black text-[var(--primary-text-color)]">
-                    {item.label}
-                  </span>
-                  <span className="block text-[11px] font-semibold text-slate-500">
-                    {item.value}
-                  </span>
-                </span>
-              </div>
-            </div>
-          );
-        })}
+              GYNECOLOGIST • LAPAROSCOPIC SURGEON •
+            </textPath>
+          </text>
+        </svg>
+        <span
+          className={`grid aspect-square w-[44%] place-items-center rounded-full text-white ${brandGradient}`}
+        >
+          <Stethoscope className="size-[48%]" />
+        </span>
       </div>
 
-      <div className="absolute -bottom-4 left-1/2 w-[82%] -translate-x-1/2 rounded-lg border border-white/80 bg-[var(--secondary-color)] px-4 py-3 text-white shadow-[0_18px_42px_rgba(27,20,99,0.22)]">
-        <div className="flex items-center justify-center gap-2 text-center text-xs font-bold sm:text-sm">
-          <MapPin size={16} className="shrink-0 text-[#f8b7a8]" />
-          <span>Golf Course Road, Gurgaon</span>
-        </div>
-      </div>
+      <figcaption className="absolute inset-x-4 bottom-4 z-10 rounded-3xl border border-white/20 bg-white/10 p-4 text-white backdrop-blur-xl sm:inset-x-5 sm:bottom-5">
+        <p className="flex items-center gap-1.5 text-base font-black sm:text-lg">
+          Dr. Kusum Lata Bhardwaj
+          <BadgeCheck
+            size={18}
+            aria-hidden="true"
+            className="shrink-0 text-[#c7c2ff]"
+          />
+        </p>
+        <p className="mt-1 text-xs font-bold text-white/75 sm:text-sm">
+          MD Obs &amp; Gynae · Laparoscopic Surgeon
+        </p>
+        <p className="mt-2 flex items-center gap-1.5 text-xs font-bold text-white/75">
+          <MapPin size={14} aria-hidden="true" className="shrink-0" />
+          Golf Course Road, Gurgaon
+        </p>
+      </figcaption>
     </figure>
   );
 }

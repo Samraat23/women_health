@@ -1,6 +1,6 @@
 export type ConsultationType = "clinic" | "video";
 
-export type TimeSlotId = "morning" | "afternoon" | "evening";
+export type SlotPeriodId = "morning" | "afternoon" | "evening";
 
 export type BookingValues = {
   consultationType: ConsultationType;
@@ -8,7 +8,8 @@ export type BookingValues = {
   phone: string;
   age: string;
   date: string;
-  timeSlot: TimeSlotId | "";
+  // The picked slot's id, e.g. "10:30"; empty until one is picked.
+  timeSlot: string;
 };
 
 export type BookingField = keyof BookingValues;
@@ -24,12 +25,18 @@ export type BookingDetails = {
   timeSlot: TimeSlot;
 };
 
-export type TimeSlot = {
-  id: TimeSlotId;
+export type SlotPeriod = {
+  id: SlotPeriodId;
   label: string;
   range: string;
-  // First hour the slot can no longer be booked for the same day.
-  closesAtHour: number;
+};
+
+export type TimeSlot = {
+  // 24-hour start time, e.g. "13:30".
+  id: string;
+  period: SlotPeriodId;
+  label: string;
+  startMinutes: number;
 };
 
 export const consultationLabels: Record<ConsultationType, string> = {
@@ -37,13 +44,57 @@ export const consultationLabels: Record<ConsultationType, string> = {
   video: "Video consultation",
 };
 
-// Preferred windows only: the clinic confirms the exact time on WhatsApp.
+// In rupees. Kept per consultation type so either fee can change on its own.
+export const consultationFees: Record<ConsultationType, number> = {
+  clinic: 1000,
+  video: 1000,
+};
+
+const slotMinutes = 30;
+
+// Same-day slots stay open until half an hour before they start, so each part
+// of the day still closes at 12, 3 and 6 PM as the old time windows did.
+const slotNoticeMinutes = 30;
+
+// The clinic still confirms the final time on WhatsApp.
 // Adjust these to match the clinic's OPD hours.
-export const timeSlots: TimeSlot[] = [
-  { id: "morning", label: "Morning", range: "10 AM – 1 PM", closesAtHour: 12 },
-  { id: "afternoon", label: "Afternoon", range: "1 PM – 4 PM", closesAtHour: 15 },
-  { id: "evening", label: "Evening", range: "4 PM – 7 PM", closesAtHour: 18 },
+const opdPeriods: Array<{
+  id: SlotPeriodId;
+  label: string;
+  startHour: number;
+  endHour: number;
+}> = [
+  { id: "morning", label: "Morning", startHour: 10, endHour: 13 },
+  { id: "afternoon", label: "Afternoon", startHour: 13, endHour: 16 },
+  { id: "evening", label: "Evening", startHour: 16, endHour: 19 },
 ];
+
+export const slotPeriods: SlotPeriod[] = opdPeriods.map(
+  ({ id, label, startHour, endHour }) => ({
+    id,
+    label,
+    range: `${formatHour(startHour)} – ${formatHour(endHour)}`,
+  })
+);
+
+// Back-to-back half-hour slots: 10:00 AM – 10:30 AM, 10:30 AM – 11:00 AM, …
+export const timeSlots: TimeSlot[] = opdPeriods.flatMap(
+  ({ id, startHour, endHour }) =>
+    Array.from(
+      { length: ((endHour - startHour) * 60) / slotMinutes },
+      (_, index) => {
+        const startMinutes = startHour * 60 + index * slotMinutes;
+        const endMinutes = startMinutes + slotMinutes;
+
+        return {
+          id: `${pad(Math.floor(startMinutes / 60))}:${pad(startMinutes % 60)}`,
+          period: id,
+          label: `${formatClockTime(startMinutes)} – ${formatClockTime(endMinutes)}`,
+          startMinutes,
+        };
+      }
+    )
+);
 
 const bookingWindowDays = 90;
 
@@ -83,11 +134,12 @@ export function toDateInputValue(date: Date) {
 }
 
 export function getBookableDateRange(now: Date) {
+  const today = toDateInputValue(now);
   const firstDay = new Date(now);
   const lastDay = new Date(now);
 
   // Once today's last slot has closed, bookings start from tomorrow.
-  if (timeSlots.every((slot) => now.getHours() >= slot.closesAtHour)) {
+  if (timeSlots.every((slot) => isSlotClosed(slot, today, now))) {
     firstDay.setDate(firstDay.getDate() + 1);
   }
 
@@ -96,8 +148,47 @@ export function getBookableDateRange(now: Date) {
   return { min: toDateInputValue(firstDay), max: toDateInputValue(lastDay) };
 }
 
+export function getTimeSlot(id: string) {
+  return timeSlots.find((slot) => slot.id === id);
+}
+
 export function isSlotClosed(slot: TimeSlot, date: string, now: Date) {
-  return date === toDateInputValue(now) && now.getHours() >= slot.closesAtHour;
+  const minutesNow = now.getHours() * 60 + now.getMinutes();
+
+  return (
+    date === toDateInputValue(now) &&
+    minutesNow >= slot.startMinutes - slotNoticeMinutes
+  );
+}
+
+// Moving the date to today, or reopening a draft later in the day, can leave a
+// picked slot that is no longer open.
+export function withoutClosedSlot(values: BookingValues, now: Date) {
+  const slot = getTimeSlot(values.timeSlot);
+
+  return slot && isSlotClosed(slot, values.date, now)
+    ? { ...values, timeSlot: "" }
+    : values;
+}
+
+export function formatFee(amount: number) {
+  return `₹${amount.toLocaleString("en-IN")}`;
+}
+
+function pad(value: number) {
+  return String(value).padStart(2, "0");
+}
+
+// "10 AM", "1 PM"
+function formatHour(hour: number) {
+  return `${hour % 12 || 12} ${hour < 12 ? "AM" : "PM"}`;
+}
+
+// "10:30 AM", "1:00 PM"
+function formatClockTime(minutes: number) {
+  const hour = Math.floor(minutes / 60);
+
+  return `${hour % 12 || 12}:${pad(minutes % 60)} ${hour < 12 ? "AM" : "PM"}`;
 }
 
 // Accepts what people actually type or autofill: spaces, +91 or a leading 0.
@@ -134,7 +225,7 @@ export function validateBooking(
   const phone = normalizeIndianMobile(values.phone);
   const age = Number(values.age);
   const { min, max } = getBookableDateRange(now);
-  const timeSlot = timeSlots.find((slot) => slot.id === values.timeSlot);
+  const timeSlot = getTimeSlot(values.timeSlot);
 
   if (patientName.length < 2) {
     errors.patientName = "Please enter the patient's full name.";
@@ -162,7 +253,7 @@ export function validateBooking(
       errors.timeSlot = "Please choose a preferred time.";
     }
   } else if (isSlotClosed(timeSlot, values.date, now)) {
-    errors.timeSlot = "This time has passed for today. Please choose another.";
+    errors.timeSlot = "This slot is no longer open today. Please choose another.";
   }
 
   if (Object.keys(errors).length || !phone || !timeSlot) {
@@ -188,11 +279,12 @@ export function buildBookingMessage(details: BookingDetails) {
     "*New Appointment Request*",
     "",
     `*Consultation:* ${consultationLabels[details.consultationType]}`,
+    `*Consultation fee:* ${formatFee(consultationFees[details.consultationType])}`,
     `*Patient name:* ${details.patientName}`,
     `*Phone:* ${formatIndianMobile(details.phone)}`,
     `*Age:* ${details.age} years`,
     `*Preferred date:* ${formatBookingDate(details.date)}`,
-    `*Preferred time:* ${details.timeSlot.label} (${details.timeSlot.range})`,
+    `*Preferred time:* ${details.timeSlot.label}`,
     "",
     "Kindly confirm my appointment. Thank you.",
   ].join("\n");

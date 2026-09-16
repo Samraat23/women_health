@@ -21,6 +21,7 @@ import {
   Video,
 } from "lucide-react";
 
+import BookingButton from "@/components/booking/BookingButton";
 import {
   gynecologyCategories,
   type GynecologyCategory,
@@ -205,15 +206,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 Explore Treatments
                 <ArrowRight size={18} />
               </Link>
-              <Link
-                href="https://wa.me/919289140812"
-                target="_blank"
-                rel="noreferrer"
+              <BookingButton
+                consultationType="video"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
                 <Video size={18} />
                 Consultation
-              </Link>
+              </BookingButton>
             </div>
           </div>
 

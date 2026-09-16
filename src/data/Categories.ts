@@ -1,4 +1,3 @@
-const happyPatient = "/image/ happypatent.jpeg";
 import type { StaticImageData } from "next/image";
 
 export type GynecologyCategory = {
@@ -17,7 +16,7 @@ export type GynecologyCategory = {
       slug: "laparoscopic-surgery",
       description:
         "Advanced minimally invasive gynecological surgeries with faster recovery, less pain, and smaller scars.",
-      image: happyPatient,
+      image: "/image/laparoscopicSurgery.png",
       blogSlugs: [
         "endometriosis-doctor-in-gurgaon",
         "uterine-fibroids-doctor-in-gurgaon",
@@ -33,7 +32,7 @@ export type GynecologyCategory = {
       slug: "young-women-care",
       description:
         "Special care for teenage girls and young women dealing with periods, PCOD, acne, weight gain, and hormonal changes.",
-      image: "/image/Mentural.png",
+      image: "/image/youngWomenCare.png",
       blogSlugs: [
         "pcos-pcod-doctor-in-gurgaon",
         "uterine-bleeding-doctor-in-gurgaon",
@@ -47,7 +46,7 @@ export type GynecologyCategory = {
       slug: "preventive-women-health",
       description:
         "Preventive screenings and checkups to detect women’s health problems early and reduce future risks.",
-      image: "/image/papTest.png",
+      image: "/image/preventiveWomenHealth.png",
       blogSlugs: [
         "cervical-cancer-screening",
         "hpv-vaccination",
@@ -61,7 +60,7 @@ export type GynecologyCategory = {
       slug: "hormonal-imbalance",
       description:
         "Complete care for hormonal problems affecting periods, weight, skin, mood, fertility, and menopause.",
-      image: "/image/ hormonalImbalance.png",
+      image: "/image/hormonalImbalance.png",
       blogSlugs: [
         "thyroid-problems-women",
         "hormonal-weight-gain",
@@ -75,7 +74,7 @@ export type GynecologyCategory = {
       slug: "pregnancy-care",
       description:
         "Complete pregnancy care from early pregnancy confirmation to prenatal checkups, delivery guidance, and postnatal recovery.",
-      image: "/image/pregagancy.png",
+      image: "/image/pregnancyCare.png",
       blogSlugs: [
         "normal-pregnancy-care",
         "high-risk-pregnancy",

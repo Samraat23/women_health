@@ -8,6 +8,8 @@ import {
   Stethoscope,
 } from "lucide-react";
 
+import BookingButton from "@/components/booking/BookingButton";
+
 function DoctorBanner() {
   return (
     <div className="overflow-hidden rounded-3xl border border-[#eadfd5] bg-white shadow-sm">
@@ -78,15 +80,12 @@ function DoctorBanner() {
           </div>
         </div>
 
-        <a
-          href="https://wa.me/919289140812"
-          target="_blank"
-          rel="noreferrer"
+        <BookingButton
           className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary-color)] px-5 py-3 text-sm font-black text-white transition hover:opacity-90"
         >
           <Phone size={17} />
           Book Now
-        </a>
+        </BookingButton>
       </div>
     </div>
   );

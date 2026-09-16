@@ -6,6 +6,7 @@ import {
   Video,
 } from "lucide-react";
 
+import BookingButton from "@/components/booking/BookingButton";
 import DoctorImageWithPattern from "@/components/shared/DoctorImageWithPattern";
 
 const heroStats = [
@@ -58,24 +59,19 @@ export default function HeroSection() {
             </div>
 
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap lg:justify-start">
-              <Link
-                href="https://wa.me/919289140812"
-                target="_blank"
-                rel="noreferrer"
+              <BookingButton
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5"
               >
                 <CalendarDays size={18} />
                 Book Appointment
-              </Link>
-              <Link
-                href="https://wa.me/919289140812"
-                target="_blank"
-                rel="noreferrer"
+              </BookingButton>
+              <BookingButton
+                consultationType="video"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/45 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
               >
                 <Video size={18} />
                 Video Consultation
-              </Link>
+              </BookingButton>
               <Link
                 href="tel:9289140812"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
@@ -87,9 +83,7 @@ export default function HeroSection() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-125 rounded-[38px] border border-white/24 bg-white/12 p-3 shadow-[0_30px_70px_rgba(27,20,99,0.24)] backdrop-blur-md">
-              <DoctorImageWithPattern className="pb-5" priority />
-            </div>
+            <DoctorImageWithPattern priority />
           </div>
         </div>
       </div>

@@ -3,6 +3,12 @@ export const adminContentCollection =
 
 export const adminModules = [
   {
+    id: "chat-requests",
+    label: "Chat Requests",
+    href: "/admin/chat-requests",
+    description: "Appointment requests and inquiries from the website chat.",
+  },
+  {
     id: "articles",
     label: "Article Section",
     href: "/admin/articles",

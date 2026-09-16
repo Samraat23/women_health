@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import BookingButton from "@/components/booking/BookingButton";
 import type { BlogSection } from "@/data/BlogData";
 
 type ContentTopicsProps = {
@@ -106,14 +107,9 @@ function ContentTopics({
             Need help?
           </p>
 
-          <a
-            href="https://wa.me/919289140812"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-2 inline-flex items-center gap-2 text-sm font-black"
-          >
+          <BookingButton className="mt-2 inline-flex items-center gap-2 text-sm font-black">
             Book appointment <ArrowRight size={15} />
-          </a>
+          </BookingButton>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { ArrowUpRight } from 'lucide-react'
+import BookingButton from '@/components/booking/BookingButton'
 
 function Consultation() {
   return (
@@ -12,14 +13,11 @@ function Consultation() {
               Book a consultation with Dr. Kusum Lata Bhardwaj for complete pregnancy guidance tailored to your health needs.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <a
-                href="https://wa.me/919289140812"
-                target="_blank"
-                rel="noreferrer"
+              <BookingButton
                 className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-black text-[var(--primary-color)]"
               >
                 Book appointment <ArrowUpRight size={17} />
-              </a>
+              </BookingButton>
              
                 
             

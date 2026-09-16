@@ -18,6 +18,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const logo = "/image/dr-kusum-gynae-centre-logo.png";
+import { useBooking } from "@/components/booking/BookingProvider";
 import NavbarPregnancyItem from "@/components/layout/NavbarPregnancyItem";
 import { getTopicHref } from "@/lib/topicRoutes";
 import type {
@@ -182,6 +183,7 @@ type MobileNavItem = {
   isPrimary?: boolean;
   external?: boolean;
   isMore?: boolean;
+  opensBooking?: boolean;
 };
 
 function Navbar({ content }: NavbarProps) {
@@ -192,6 +194,7 @@ function Navbar({ content }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openMobileGroupId, setOpenMobileGroupId] = useState<string | null>(null);
   const [lastPathname, setLastPathname] = useState(pathname);
+  const { openBooking } = useBooking();
   const navbarContent = content || defaultNavbarContent;
 
   useEffect(() => {
@@ -274,8 +277,8 @@ function Navbar({ content }: NavbarProps) {
 
   const activeItem = menuBar.find((item) => item.id === activeMenuId);
   const logoSrc = navbarContent.logoUrl || logo;
-  const appointmentUrl =
-    navbarContent.appointmentUrl || defaultNavbarContent.appointmentUrl;
+  // Appointment buttons open the booking form, so the admin "appointment
+  // link" setting is not used here.
   const appointmentLabel =
     navbarContent.appointmentLabel || defaultNavbarContent.appointmentLabel;
   const mobileNavItems: MobileNavItem[] = [
@@ -284,10 +287,9 @@ function Navbar({ content }: NavbarProps) {
     {
       id: "appointment",
       label: "Book",
-      href: appointmentUrl,
       icon: CalendarHeart,
       isPrimary: true,
-      external: true,
+      opensBooking: true,
     },
     { id: "surgery", label: "Surgery", href: "/surgery", icon: Scissors },
     { id: "more", label: "More", icon: Grid3X3, isMore: true },
@@ -430,18 +432,17 @@ function Navbar({ content }: NavbarProps) {
             })}
           </div>
 
-          <Link
-            href={appointmentUrl}
-            target="_blank"
-            rel="noreferrer"
-            className={`hidden shrink-0 rounded-full px-8 py-3.5 text-sm font-black uppercase tracking-wide shadow-[0_10px_24px_rgba(90,79,254,0.28)] transition hover:-translate-y-0.5 md:inline-flex ${
+          <button
+            type="button"
+            onClick={() => openBooking("clinic")}
+            className={`hidden shrink-0 cursor-pointer rounded-full px-8 py-3.5 text-sm font-black uppercase tracking-wide shadow-[0_10px_24px_rgba(90,79,254,0.28)] transition hover:-translate-y-0.5 md:inline-flex ${
               isTransparent
                 ? "bg-white text-[var(--primary-text-color)]"
                 : "bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white"
             }`}
           >
             {appointmentLabel}
-          </Link>
+          </button>
         </div>
 
         <AnimatePresence>
@@ -550,15 +551,16 @@ function Navbar({ content }: NavbarProps) {
                   </Fragment>
                 );
               })}
-              <Link
-                href={appointmentUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="col-span-2 rounded-2xl bg-[linear-gradient(135deg,var(--primary-color),#3aa7ff)] px-5 py-3 text-center text-sm font-black text-white shadow-[0_14px_30px_rgba(90,79,254,0.28)]"
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openBooking("clinic");
+                }}
+                className="col-span-2 cursor-pointer rounded-2xl bg-[linear-gradient(135deg,var(--primary-color),#3aa7ff)] px-5 py-3 text-center text-sm font-black text-white shadow-[0_14px_30px_rgba(90,79,254,0.28)]"
               >
                 {appointmentLabel}
-              </Link>
+              </button>
             </div>
           </motion.div>
         )}
@@ -607,13 +609,30 @@ function Navbar({ content }: NavbarProps) {
               );
             }
 
+            if (item.opensBooking) {
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-label="Book appointment"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    openBooking("clinic");
+                  }}
+                  className={itemClass}
+                >
+                  {content}
+                </button>
+              );
+            }
+
             return (
               <Link
                 key={item.id}
                 href={item.href || "/"}
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noreferrer" : undefined}
-                aria-label={item.label === "Book" ? "Book appointment" : item.label}
+                aria-label={item.label}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={itemClass}
               >

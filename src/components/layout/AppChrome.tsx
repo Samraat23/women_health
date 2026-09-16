@@ -4,9 +4,11 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
+import { BookingProvider } from "@/components/booking/BookingProvider";
 import Footer from "@/components/layout/Footer";
 import FirstVisitDoctorModal from "@/components/layout/FirstVisitDoctorModal";
 import Navbar from "@/components/layout/Navbar";
+import WhatsAppFloatingButton from "@/components/layout/WhatsAppFloatingButton";
 import type { HomePageContent } from "@/types/homeContent";
 
 type AppChromeProps = {
@@ -40,7 +42,7 @@ export default function AppChrome({ children }: AppChromeProps) {
   }, [isAdminRoute]);
 
   return (
-    <>
+    <BookingProvider>
       {!isAdminRoute && <Navbar content={homeContent?.navbar} />}
       <div
         className={
@@ -53,6 +55,7 @@ export default function AppChrome({ children }: AppChromeProps) {
         {!isAdminRoute && <Footer />}
       </div>
       {!isAdminRoute && <FirstVisitDoctorModal />}
-    </>
+      {!isAdminRoute && <WhatsAppFloatingButton />}
+    </BookingProvider>
   );
 }

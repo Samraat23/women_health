@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 const doctorPortrait = "/image/dr-kusum-lata-bhardwaj.jpg";
+import { useBooking } from "@/components/booking/BookingProvider";
 import type { HomeHeroContent } from "@/types/homeContent";
 
 const appointmentHref = "https://wa.me/919289140812";
@@ -71,6 +72,7 @@ function TypingText({ text, className }: { text: string; className: string }) {
 }
 
 function HeroSection({ data }: HeroSectionProps) {
+  const { openBooking } = useBooking();
   const hero = data || {
     badge: "Expert Women's Healthcare",
     heading: headingText,
@@ -139,24 +141,23 @@ function HeroSection({ data }: HeroSectionProps) {
               className="mx-auto mt-6 grid w-full max-w-[340px] grid-cols-1 gap-3 md:mx-0 md:mt-8 md:flex md:max-w-none md:flex-row md:flex-wrap md:gap-4"
             >
               {/* Mobile: make both CTAs full-width for cleaner scanning and easier thumb reach. */}
-              <a
-                href={hero.primaryCtaUrl || appointmentHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5 md:w-auto md:px-7 md:py-4"
+              {/* Both CTAs open the booking form, which hands the request to WhatsApp. */}
+              <button
+                type="button"
+                onClick={() => openBooking("clinic")}
+                className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-black text-[var(--primary-text-color)] shadow-[0_16px_30px_rgba(27,20,99,0.18)] transition hover:-translate-y-0.5 md:w-auto md:px-7 md:py-4"
               >
                 <CalendarCheck size={18} />
                 {hero.primaryCtaLabel}
-              </a>
-              <a
-                href={hero.secondaryCtaUrl || appointmentHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/45 bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-3.5 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18 md:w-auto md:px-7 md:py-4"
+              </button>
+              <button
+                type="button"
+                onClick={() => openBooking("video")}
+                className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-white/45 bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-6 py-3.5 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18 md:w-auto md:px-7 md:py-4"
               >
                 <Video size={18} />
                 {hero.secondaryCtaLabel}
-              </a>
+              </button>
              
             </motion.div>
 

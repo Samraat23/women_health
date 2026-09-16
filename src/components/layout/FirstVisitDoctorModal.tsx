@@ -14,6 +14,8 @@ import {
   X,
 } from "lucide-react";
 
+import { useBooking } from "@/components/booking/BookingProvider";
+
 const doctorPortrait = "/image/dr-kusum-lata-bhardwaj.jpg";
 
 const homePageModalDelayMs = 1200;
@@ -30,7 +32,10 @@ const carePoints = [
 export default function FirstVisitDoctorModal() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const isVisible = isOpen && pathname === "/";
+  const { hasOpenedBooking } = useBooking();
+  // A visitor who already opened the booking form doesn't need this prompt,
+  // and its timer could otherwise pop it up over that form.
+  const isVisible = isOpen && pathname === "/" && !hasOpenedBooking;
 
   useEffect(() => {
     if (pathname !== "/") {

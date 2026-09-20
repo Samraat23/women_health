@@ -21,6 +21,7 @@ import {
 import SurgeryServiceCard from "@/app/surgery/SurgeryServiceCard";
 import BookingButton from "@/components/booking/BookingButton";
 import data from "@/data/siteData.json";
+import { getSection } from "@/lib/cms/publicContent";
 import { surgeryBenefits } from "@/data/SurgeryServices";
 
 type SurgeryItem = {
@@ -45,14 +46,16 @@ type PatientConcern = {
   background: string;
 };
 
+// Matches the home page: prerendered, with the admin save handler purging the
+// cache so edits appear straight away.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Surgery Services | Dr. Kusum Lata",
   description:
     "Explore advanced gynecology surgery services including endometriosis, fibroid removal, uterus removal, ovarian cyst surgery, hysteroscopy and fertility enhancing surgery.",
 };
 
-const surgeryData = data.LaparoscopicSurgery[0];
-const surgeries = surgeryData.surgery as SurgeryItem[];
 
 const heroAssurances = [
   {
@@ -143,7 +146,16 @@ const consultReasons = [
   "Recurrent pregnancy loss or cervical weakness concerns",
 ];
 
-export default function SurgeryPage() {
+export default async function SurgeryPage() {
+  // Read the live section rather than the compiled JSON, so an admin edit to
+  // Laparoscopic Surgery reaches this page as well as the home page.
+  const laparoscopicSurgery = await getSection(
+    "laparoscopic-surgery",
+    data.LaparoscopicSurgery
+  );
+  const surgeryData = laparoscopicSurgery[0];
+  const surgeries = surgeryData.surgery as SurgeryItem[];
+
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--secondary-text)]">
       <section

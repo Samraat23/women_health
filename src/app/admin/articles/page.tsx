@@ -4,7 +4,7 @@ import ArticleListPanel, {
   type ArticleSummary,
 } from "@/features/admin/articles/ArticleListPanel";
 import { requireAdminSession } from "@/features/admin/firebase/requireAdminSession";
-import AdminModuleShell from "@/features/admin/modules/AdminModuleShell";
+import AdminShell from "@/features/admin/shell/AdminShell";
 import { gynecologyCategories } from "@/data/Categories";
 import { getArticleRecords } from "@/lib/articleStore";
 
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminArticlesPage() {
-  await requireAdminSession("/admin/articles");
+  const admin = await requireAdminSession("/admin/articles");
 
   const records = await getArticleRecords();
   const categoryTitles = new Map(
@@ -36,7 +36,8 @@ export default async function AdminArticlesPage() {
   }));
 
   return (
-    <AdminModuleShell
+    <AdminShell
+      adminEmail={admin.email}
       activeModule="articles"
       title="Articles"
       description="Edit article copy, sections, and FAQs. Changes are stored in Firebase."
@@ -48,6 +49,6 @@ export default async function AdminArticlesPage() {
           title: category.title,
         }))}
       />
-    </AdminModuleShell>
+    </AdminShell>
   );
 }

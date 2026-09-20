@@ -1,0 +1,39 @@
+rules_version = '2';
+
+// Media uploaded from the admin panel (logos, section images, article covers).
+//
+// Everything under cms/ is served on the public website, so it is world
+// readable. Only the admin account may upload, and only images within a size
+// the site can reasonably serve.
+//
+// Deploy:  firebase deploy --only storage
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function adminEmails() {
+      return ['drkusumlata@gmail.com'];
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email is string
+        && request.auth.token.email.lower() in adminEmails();
+    }
+
+    function isServableImage() {
+      return request.resource.contentType.matches('image/(png|jpeg|jpg|webp|avif|svg\\+xml)')
+        && request.resource.size < 5 * 1024 * 1024;
+    }
+
+    match /cms/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isServableImage();
+      allow delete: if isAdmin();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

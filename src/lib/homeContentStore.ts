@@ -2,7 +2,13 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import fallbackHomeContent from "@/data/homePageContent.json";
-import type { HomePageContent } from "@/types/homeContent";
+import { getSection } from "@/lib/cms/publicContent";
+import type {
+  HomeHeroContent,
+  HomeNavbarContent,
+  HomePageContent,
+  HomeTrainerContent,
+} from "@/types/homeContent";
 
 const contentFilePath = path.join(process.cwd(), "src/data/homePageContent.json");
 const uploadDirectory = path.join(process.cwd(), "public/uploads/home");
@@ -11,9 +17,34 @@ export function getFallbackHomePageContent(): HomePageContent {
   return fallbackHomeContent as HomePageContent;
 }
 
+/**
+ * Content for the navbar, hero and trainer blocks.
+ *
+ * Firestore is the source of truth: these three are sections in `cms_sections`
+ * and the admin panel writes them there. The on-disk JSON is only a fallback
+ * for a project whose content has not been imported yet, or a request where
+ * Firestore is unreachable.
+ *
+ * Each block is resolved independently, so a half-imported project still gets
+ * the live copy for whichever sections do exist.
+ */
 export async function getHomePageContent(): Promise<HomePageContent> {
+  const file = await readContentFile();
+
+  const [navbar, hero, trainer] = await Promise.all([
+    getSection<HomeNavbarContent>("navbar", file.navbar),
+    getSection<HomeHeroContent>("hero", file.hero),
+    getSection<HomeTrainerContent>("trainer", file.trainer),
+  ]);
+
+  return { navbar, hero, trainer };
+}
+
+/** The JSON file on disk, or the copy compiled into the build. */
+async function readContentFile(): Promise<HomePageContent> {
   try {
     const file = await readFile(contentFilePath, "utf8");
+
     return JSON.parse(file) as HomePageContent;
   } catch {
     return getFallbackHomePageContent();

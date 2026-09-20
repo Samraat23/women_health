@@ -1,0 +1,171 @@
+rules_version = '2';
+
+// WHealth / Dr. Kusum Gynecology Centre — Firestore security rules.
+//
+// Two classes of data live in this project and they get opposite treatment:
+//
+//   1. CMS content (site sections, categories, articles, pregnancy guide,
+//      surgery services, chat copy). The public site reads these through the
+//      Firestore REST API with the *unauthenticated* web API key, so they must
+//      allow public read. Writes are limited to the admin account.
+//
+//   2. Patient data (chat_requests). Names, phone numbers and reasons for an
+//      appointment. NEVER publicly readable. Admin only, and the write is left
+//      open only through the server-side driver, not the browser.
+//
+// Deploy:  firebase deploy --only firestore:rules
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------------------------------------------------------------- helpers
+
+    // The single admin account. Keep in sync with ADMIN_ALLOWED_EMAIL.
+    //
+    // Email verification is deliberately NOT required: the admin account was
+    // created by hand in the Firebase console and may never have been through
+    // a verification mail. The address itself cannot be re-registered by an
+    // attacker, so ownership of the sign-in is the control that matters.
+    function adminEmails() {
+      return ['drkusumlata@gmail.com'];
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email is string
+        && request.auth.token.email.lower() in adminEmails();
+    }
+
+    // Guards against a runaway client writing a document Firestore will accept
+    // but the site cannot render. 900,000 characters leaves headroom under the
+    // 1MiB document limit.
+    //
+    // Firestore rules offer no byte-size function (request.resource.size is a
+    // Cloud Storage feature, and calling it here is an evaluation error that
+    // denies the write). The content payload is a single JSON string, so its
+    // character count is the measurement available — and the only field that
+    // can realistically grow large. Documents without one are unconstrained
+    // here and fall back to Firestore's own 1MiB ceiling.
+    function isSaneSize() {
+      return !('contentJson' in request.resource.data)
+        || request.resource.data.contentJson.size() < 900000;
+    }
+
+    // Every CMS write must stamp who did it and when, so the audit log and the
+    // "last edited by" column in the admin panel cannot be bypassed.
+    function hasAuditStamp() {
+      return request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedBy == request.auth.token.email.lower();
+    }
+
+    function isValidCmsWrite() {
+      return isAdmin() && isSaneSize() && hasAuditStamp();
+    }
+
+    // ------------------------------------------------------------ CMS content
+
+    // Site sections, keyed by section id (hero, navbar, footer, faq, ...).
+    match /cms_sections/{sectionId} {
+      allow read: if true;
+      allow create, update: if isValidCmsWrite();
+      allow delete: if isAdmin();
+    }
+
+    // Gynecology categories, keyed by slug.
+    match /cms_categories/{categorySlug} {
+      allow read: if true;
+      allow create, update: if isValidCmsWrite();
+      allow delete: if isAdmin();
+    }
+
+    // Articles, keyed by slug. Each doc carries a `category` field so the
+    // admin panel and the category pages can query category-wise.
+    match /cms_articles/{slug} {
+      allow read: if true;
+      allow create, update: if isValidCmsWrite();
+      allow delete: if isAdmin();
+    }
+
+    // Pregnancy guide: trimesters, weeks, vaccines, food pillars.
+    match /cms_pregnancy/{docId} {
+      allow read: if true;
+      allow create, update: if isValidCmsWrite();
+      allow delete: if isAdmin();
+    }
+
+    // Surgery services and procedure metadata.
+    match /cms_surgery/{docId} {
+      allow read: if true;
+      allow create, update: if isValidCmsWrite();
+      allow delete: if isAdmin();
+    }
+
+    // Chat assistant copy and routing config. Public-facing clinic details
+    // only — no credentials or tokens are stored here.
+    match /cms_chat/{docId} {
+      allow read: if true;
+      allow create, update: if isValidCmsWrite();
+      allow delete: if isAdmin();
+    }
+
+    // Uploaded media index (Storage download URLs + metadata).
+    match /cms_media/{mediaId} {
+      allow read: if true;
+      allow create, update: if isValidCmsWrite();
+      allow delete: if isAdmin();
+    }
+
+    // --------------------------------------------------------- legacy content
+    //
+    // Written by the previous admin modules. Kept readable so the site does not
+    // regress mid-migration; remove once every module reads from cms_*.
+
+    // create/update and delete are split because `isSaneSize()` reads
+    // request.resource, which is null on a delete — folding both into a single
+    // `allow write` would make every delete an evaluation error.
+
+    match /kusumgynecentre/{moduleId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isSaneSize();
+      allow delete: if isAdmin();
+    }
+
+    match /whealth_articles/{slug} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isSaneSize();
+      allow delete: if isAdmin();
+    }
+
+    // ----------------------------------------------------------- patient data
+
+    // Appointment requests and inquiries submitted through the website chat.
+    // Contains patient names and phone numbers.
+    //
+    // No public read. No client write either: the chat server writes these with
+    // a service account, which bypasses rules entirely. A browser that somehow
+    // obtained a request id still gets nothing.
+    match /chat_requests/{requestId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // ------------------------------------------------------------- audit trail
+
+    // Append-only record of admin edits. Written by the admin panel, never
+    // modified or removed afterwards, so a bad change can always be traced.
+    match /admin_audit/{entryId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin()
+        && request.resource.data.actor == request.auth.token.email.lower()
+        && request.resource.data.at == request.time;
+      allow update, delete: if false;
+    }
+
+    // ------------------------------------------------------------------ deny
+
+    // Anything not named above is closed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

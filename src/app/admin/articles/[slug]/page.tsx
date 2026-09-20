@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import ArticleEditorPanel from "@/features/admin/articles/ArticleEditorPanel";
 import { requireAdminSession } from "@/features/admin/firebase/requireAdminSession";
-import AdminModuleShell from "@/features/admin/modules/AdminModuleShell";
+import AdminShell from "@/features/admin/shell/AdminShell";
 import { getArticleRecord } from "@/lib/articleStore";
 
 export const dynamic = "force-dynamic";
@@ -27,7 +27,7 @@ export default async function AdminArticleEditorPage({
 }: AdminArticleEditorPageProps) {
   const { slug } = await params;
 
-  await requireAdminSession(`/admin/articles/${slug}`);
+  const admin = await requireAdminSession(`/admin/articles/${slug}`);
 
   const record = await getArticleRecord(slug);
 
@@ -36,12 +36,13 @@ export default async function AdminArticleEditorPage({
   }
 
   return (
-    <AdminModuleShell
+    <AdminShell
+      adminEmail={admin.email}
       activeModule="articles"
       title="Edit article"
       description="Saved changes publish to the live page within a minute."
     >
       <ArticleEditorPanel record={record} />
-    </AdminModuleShell>
+    </AdminShell>
   );
 }

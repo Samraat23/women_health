@@ -104,42 +104,57 @@
   },
   "faq": {
     "title": "Frequently Asked Questions",
-    "subtitle": "Find answers to common questions about women's health, pregnancy care, and gynecological treatments.",
+    "subtitle": "Common questions about gynecology, pregnancy care, infertility treatment and laparoscopic surgery with Dr. Kusum Lata Bhardwaj in Gurgaon.",
     "questions": [
       {
         "id": "1",
-        "question": "When should I visit a gynecologist?",
-        "answer": "You should visit a gynecologist for regular checkups, menstrual issues, pregnancy planning, unusual pain, infections, or any concerns related to women’s health."
+        "question": "What gynecology services does Dr. Kusum Lata Bhardwaj provide in Gurgaon?",
+        "answer": "Dr. Kusum Lata Bhardwaj provides comprehensive gynecology services in Gurgaon, including treatment for PCOS/PCOD, endometriosis, ovarian cysts, fibroids, menstrual disorders, menopause-related problems and other women's health conditions."
       },
       {
         "id": "2",
-        "question": "What services does Dr. Kusum Lata provide?",
-        "answer": "Dr. Kusum Lata offers comprehensive care including pregnancy care, infertility treatment, cosmetic gynecology, laparoscopic surgery, menstrual disorder treatment, and preventive women’s healthcare."
+        "question": "Does Dr. Kusum Lata Bhardwaj provide pregnancy care in Gurgaon?",
+        "answer": "Yes. Pregnancy and obstetric care are among the services provided, including antenatal consultations, pregnancy monitoring and guidance throughout the different stages of pregnancy."
       },
       {
         "id": "3",
-        "question": "Is laparoscopic surgery safe?",
-        "answer": "Yes, laparoscopic surgery is a minimally invasive and safe procedure with faster recovery, less pain, and minimal scarring when performed by an experienced specialist."
+        "question": "Does she provide infertility treatment in Gurgaon?",
+        "answer": "Yes. Infertility evaluation and treatment are provided for women experiencing difficulty conceiving. Treatment is planned according to the individual's medical history, test results and fertility requirements."
       },
       {
         "id": "4",
-        "question": "How often should I go for a gynecological checkup?",
-        "answer": "It is recommended to visit a gynecologist at least once a year for routine checkups, or more frequently if you have ongoing health concerns."
+        "question": "Does she provide PCOS/PCOD treatment?",
+        "answer": "Yes. PCOS/PCOD is managed through an individualized treatment approach based on symptoms, menstrual health, hormonal factors, fertility goals and overall health."
       },
       {
         "id": "5",
-        "question": "What should I expect during my first visit?",
-        "answer": "During your first visit, the doctor will review your medical history, discuss your concerns, and may perform a basic examination if required to provide proper guidance and treatment."
+        "question": "Does she provide endometriosis treatment in Gurgaon?",
+        "answer": "Yes. Endometriosis can be evaluated and treated based on the severity of symptoms and individual medical requirements. Treatment may include medication or surgical management when appropriate."
       },
       {
         "id": "6",
-        "question": "Do you provide pregnancy and prenatal care?",
-        "answer": "Yes, complete pregnancy care including prenatal checkups, ultrasound guidance, nutrition advice, and delivery planning is provided."
+        "question": "Does she treat ovarian cysts?",
+        "answer": "Yes. Ovarian cysts can be evaluated through consultation and appropriate investigations. Treatment depends on factors such as the type and size of the cyst, symptoms and the patient's overall health."
       },
       {
         "id": "7",
-        "question": "Is consultation confidential?",
-        "answer": "Yes, all consultations and treatments are completely confidential, ensuring your privacy and comfort at every step."
+        "question": "Does Dr. Kusum Lata Bhardwaj perform laparoscopic surgery?",
+        "answer": "Yes. She provides laparoscopic gynecological surgery, a minimally invasive surgical approach used for suitable gynecological conditions."
+      },
+      {
+        "id": "8",
+        "question": "Does she provide treatment for uterine fibroids?",
+        "answer": "Yes. Uterine fibroids can be evaluated and managed according to their size, location, symptoms, age and reproductive requirements. Treatment options are discussed based on the individual case."
+      },
+      {
+        "id": "9",
+        "question": "Does she provide treatment for menstrual disorders?",
+        "answer": "Yes. She provides evaluation and treatment for menstrual problems such as irregular periods, painful periods, heavy menstrual bleeding and other abnormal menstrual patterns."
+      },
+      {
+        "id": "10",
+        "question": "What women's health services are available at Dr. Kusum Lata Bhardwaj's clinic?",
+        "answer": "The clinic provides a range of women's healthcare services, including gynecology, pregnancy and obstetric care, infertility management, PCOS/PCOD treatment, endometriosis care, ovarian cyst management, laparoscopic surgery, fibroid treatment and menstrual and menopause care."
       }
     ]
   },

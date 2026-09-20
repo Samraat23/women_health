@@ -1,0 +1,114 @@
+/*
+ * Admin panel theme.
+ *
+ * Scoped under .admin-root, never :root. Two separate palettes live in this
+ * app and both would otherwise collide here:
+ *
+ *   --background / --foreground / --border   the public marketing site
+ *   --ui-*                                   shadcn/ui, mapped to --color-*
+ *                                            by @theme inline in globals.css
+ *
+ * Redefining the --ui-* tokens inside this scope re-themes every shadcn
+ * component used in the admin panel — Button, Card, Input, Badge, Select and
+ * the rest — without touching a single component file and without altering how
+ * those same components look anywhere else in the site.
+ *
+ * The --adm-* tokens below cover the few things shadcn has no token for
+ * (sidebar width, top bar height, the status tones).
+ */
+
+.admin-root {
+  /* ---- shadcn tokens, re-pointed for the admin panel ---- */
+  --ui-background: #f4f7f9;
+  --ui-foreground: #0f2027;
+
+  --ui-card: #ffffff;
+  --ui-card-foreground: #0f2027;
+
+  --ui-popover: #ffffff;
+  --ui-popover-foreground: #0f2027;
+
+  /* Teal, darkened from the reference's neon so white-on-accent and
+     accent-on-white both clear WCAG AA. */
+  --ui-primary: #0d9488;
+  --ui-primary-foreground: #ffffff;
+
+  --ui-secondary: #eef3f6;
+  --ui-secondary-foreground: #0f2027;
+
+  --ui-muted: #eef3f6;
+  --ui-muted-foreground: #56707f;
+
+  --ui-accent: #e4edf1;
+  --ui-accent-foreground: #0f2027;
+
+  --ui-destructive: #b91c1c;
+  --ui-destructive-foreground: #ffffff;
+
+  --ui-border: #e3e9ee;
+  --ui-input: #cfd9e1;
+  --ui-ring: #0d9488;
+
+  --radius: 0.65rem;
+
+  /* ---- admin-only tokens ---- */
+  --adm-sidebar-width: 268px;
+  --adm-topbar-height: 60px;
+
+  --adm-success: #047857;
+  --adm-success-soft: #d1fae5;
+  --adm-warning: #b45309;
+  --adm-warning-soft: #fef3c7;
+  --adm-danger: #b91c1c;
+  --adm-danger-soft: #fee2e2;
+  --adm-accent-soft: #d5f2ee;
+
+  background-color: var(--ui-background);
+  color: var(--ui-foreground);
+  font-family: var(--font-secondary), system-ui, sans-serif;
+
+  /* The public site sets a warm background and its own font globally; the
+     admin panel is a separate product and opts out of both. */
+  color-scheme: light;
+}
+
+/* Firefox needs the shorthand; WebKit needs the pseudo-elements. */
+.admin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-input) transparent;
+}
+
+.admin-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.admin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--ui-input);
+  border-radius: 999px;
+}
+
+.admin-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #aebecb;
+}
+
+/* A native <select>'s option list is painted by the OS and ignores the
+   surrounding styling unless coloured explicitly. */
+.admin-root select option {
+  background-color: #ffffff;
+  color: var(--ui-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-root *,
+  .admin-root *::before,
+  .admin-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

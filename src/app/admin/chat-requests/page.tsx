@@ -9,7 +9,7 @@ import {
 
 import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 import { requireAdminSession } from "@/features/admin/firebase/requireAdminSession";
-import AdminModuleShell from "@/features/admin/modules/AdminModuleShell";
+import AdminShell from "@/features/admin/shell/AdminShell";
 import { formatIndianMobile } from "@/features/chat/core/validation";
 import {
   getChatRequestRepository,
@@ -141,7 +141,7 @@ export default async function AdminChatRequestsPage({
 }: {
   searchParams: Promise<{ type?: string }>;
 }) {
-  await requireAdminSession("/admin/chat-requests");
+  const admin = await requireAdminSession("/admin/chat-requests");
 
   const { type } = await searchParams;
   const filter: Filter = type === "appointment" || type === "inquiry" ? type : "all";
@@ -166,7 +166,8 @@ export default async function AdminChatRequestsPage({
   const visible = filter === "all" ? requests : requests.filter((request) => request.kind === filter);
 
   return (
-    <AdminModuleShell
+    <AdminShell
+      adminEmail={admin.email}
       activeModule="chat-requests"
       title="Chat Requests"
       description="Appointment requests and patient inquiries sent from the website chat, newest first."
@@ -210,6 +211,6 @@ export default async function AdminChatRequestsPage({
           </div>
         )}
       </div>
-    </AdminModuleShell>
+    </AdminShell>
   );
 }

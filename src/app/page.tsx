@@ -1,4 +1,6 @@
 
+import type { Metadata } from "next";
+
 import HeroSection from "@/components/home/HeroSection";
 import AboutUs from "@/components/home/AboutUs";
 import Service from "@/components/home/Service";
@@ -23,15 +25,71 @@ const paras = "/image/paras-health-logo.jpg";
 const pgimr = "/image/pgimer-logo.png";
 import {gynecologyCategories} from "@/data/Categories"
 import { getHomePageContent } from "@/lib/homeContentStore";
+import { getSections } from "@/lib/cms/publicContent";
+import { stringifyJsonLd } from "@/lib/dynamicRouteSchema";
+import {
+  getHomePageSchema,
+  homeOpenGraphImage,
+  homeSeoDescription,
+  homeSeoTitle,
+  homeSiteUrl,
+} from "@/lib/homePageSchema";
 
 // Prerendered like every other page; the admin save route revalidates it so
 // content edits still show up straight away.
 export const revalidate = 60;
 
+export const metadata: Metadata = {
+  title: homeSeoTitle,
+  description: homeSeoDescription,
+  alternates: {
+    canonical: homeSiteUrl,
+  },
+  robots: "index, follow",
+  openGraph: {
+    title: homeSeoTitle,
+    description: homeSeoDescription,
+    url: homeSiteUrl,
+    type: "website",
+    siteName: "Dr. Kusum Lata Bhardwaj",
+    images: [
+      {
+        url: homeOpenGraphImage,
+        alt: "Dr. Kusum Lata Bhardwaj - Gynecologist and Laparoscopic Surgeon in Gurgaon",
+      },
+    ],
+  },
+};
+
 export default async function Home() {
-  const homeContent = await getHomePageContent();
-  const WhyChooseData = data?.whyChooseUs;
-  const { faq, testimonial, WHealth, LaparoscopicSurgery, blogs } = data;
+  // Firestore is the source of truth for every block below; the imported
+  // siteData.json is the fallback for content that has not been imported yet.
+  // Without this the admin panel writes to Firestore and the page keeps
+  // rendering the file that shipped with the build.
+  const [homeContent, sections] = await Promise.all([
+    getHomePageContent(),
+    getSections({
+      whyChooseUs: { sectionId: "why-choose-us", fallback: data.whyChooseUs },
+      faq: { sectionId: "faq", fallback: data.faq },
+      testimonial: { sectionId: "testimonial", fallback: data.testimonial },
+      whealth: { sectionId: "whealth-categories", fallback: data.WHealth },
+      laparoscopicSurgery: {
+        sectionId: "laparoscopic-surgery",
+        fallback: data.LaparoscopicSurgery,
+      },
+      blogs: { sectionId: "blogs-preview", fallback: data.blogs },
+    }),
+  ]);
+
+  const WhyChooseData = sections.whyChooseUs;
+  const {
+    faq,
+    testimonial,
+    whealth: WHealth,
+    laparoscopicSurgery: LaparoscopicSurgery,
+    blogs,
+  } = sections;
+  const structuredData = getHomePageSchema(faq.questions);
 
   const hospitalLogo = [
     {
@@ -88,6 +146,11 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen bg-(--background) text-(--secondary-text)">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: stringifyJsonLd(structuredData) }}
+      />
+
       <HeroSection data={homeContent.hero} />
       {/* <Hospital hospitalLogo={hospitalLogo} /> */}
       <Trainer d={homeContent.trainer} />

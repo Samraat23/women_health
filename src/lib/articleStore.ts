@@ -1,4 +1,5 @@
 import { articlesCollection } from "@/lib/articlesCollection";
+import { firebasePublicConfig } from "@/lib/firebasePublicConfig";
 import { getSeedArticle, getSeedArticles } from "@/lib/articleSeed";
 import type { ArticleDoc, ArticleRecord } from "@/types/article";
 
@@ -10,10 +11,9 @@ import type { ArticleDoc, ArticleRecord } from "@/types/article";
  * unconfigured, unreachable, or the rules deny reads.
  */
 
-const projectId =
-  process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "drkusumlata-36b7a";
-
-const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "";
+// Same shared config as the CMS read path: defaulting the key to "" here made
+// every article silently fall back to the seed.
+const { projectId, apiKey } = firebasePublicConfig;
 
 // Published copy does not need to be fresh to the second, and this keeps the
 // public pages off the Firestore read path for most requests.

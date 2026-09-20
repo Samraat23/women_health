@@ -11,6 +11,8 @@ type Question = {
 };
 
 type FAQData = {
+  title?: string;
+  subtitle?: string;
   questions: Question[];
 };
 
@@ -25,6 +27,7 @@ export default function Faq({ data }: FAQProps) {
     heading: "Frequently Asked",
     bold: "Questions",
     paragraph:
+      data.subtitle ||
       "Find answers to common questions about women's health, pregnancy care, and gynecological treatments.",
   };
 
@@ -59,7 +62,7 @@ export default function Faq({ data }: FAQProps) {
 
                 <span
                   className={`block overflow-hidden transition-all duration-300 ${
-                    isOpen ? "mt-3 max-h-44" : "max-h-0"
+                    isOpen ? "mt-3 max-h-[32rem]" : "max-h-0"
                   }`}
                 >
                   <span className="block text-sm leading-7 text-[#667085]">

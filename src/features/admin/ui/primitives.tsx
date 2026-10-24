@@ -55,13 +55,13 @@ export function Panel({
       {hasHeader ? (
         <CardHeader className="border-b [.border-b]:pb-4 gap-1 px-5 pt-4">
           {eyebrow ? (
-            <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+            <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-primary/80">
               {Icon ? <Icon size={13} aria-hidden /> : null}
               {eyebrow}
             </p>
           ) : null}
           {title ? (
-            <CardTitle className="text-lg font-bold">{title}</CardTitle>
+            <CardTitle className="text-[19px]">{title}</CardTitle>
           ) : null}
           {description ? (
             <CardDescription>{description}</CardDescription>
@@ -104,13 +104,13 @@ export function StatCard({
 }) {
   return (
     <Card className="gap-0 px-5 py-4">
-      <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
         {label}
       </p>
       <div className="mt-3 flex items-center gap-3">
         <span
           className={cn(
-            "grid min-w-11 place-items-center rounded-lg px-3 py-1.5 text-2xl font-bold tabular-nums",
+            "font-admin-display grid min-w-12 place-items-center rounded-lg px-3 py-1.5 text-[26px] font-extrabold leading-none tabular-nums",
             statToneClasses[tone]
           )}
         >

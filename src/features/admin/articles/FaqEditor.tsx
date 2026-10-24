@@ -68,9 +68,9 @@ export default function FaqEditor({
       ) : null}
 
       <div className="flex items-center justify-between">
-        <Label className="text-xs font-black text-slate-700">
+        <Label className="text-xs font-black text-foreground">
           Questions
-          <span className="ml-1 font-semibold text-slate-400">
+          <span className="ml-1 font-semibold text-muted-foreground">
             ({faqs.length})
           </span>
         </Label>
@@ -91,7 +91,7 @@ export default function FaqEditor({
       </div>
 
       {faqs.length === 0 ? (
-        <p className="rounded-md border border-dashed border-slate-200 px-3 py-6 text-center text-sm font-semibold text-slate-400">
+        <p className="rounded-md border border-dashed px-3 py-6 text-center text-sm font-semibold text-muted-foreground">
           No questions yet.
         </p>
       ) : (
@@ -99,9 +99,9 @@ export default function FaqEditor({
           {faqs.map((faq, index) => (
             <div
               key={faq.id || index}
-              className="flex items-start gap-2 rounded-md border border-slate-200 p-3"
+              className="flex items-start gap-2 rounded-md border p-3"
             >
-              <span className="mt-2.5 w-5 shrink-0 text-right text-xs font-black text-slate-400">
+              <span className="mt-2.5 w-5 shrink-0 text-right text-xs font-black text-muted-foreground">
                 {index + 1}
               </span>
 

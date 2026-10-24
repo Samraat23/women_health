@@ -365,7 +365,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 function TreatmentCard({ blog }: { blog: ArticleRecord }) {
   return (
     <Link href={`/${blog.article.slug}`} prefetch={false} className="block h-full">
-      <article className="group h-full min-h-[390px] overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(27,20,99,0.10)]">
+      <article className="group h-full min-h-[390px] [transform-style:preserve-3d] [will-change:transform] overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition duration-300 ease-out hover:[transform:perspective(1200px)_rotateX(3deg)_rotateY(-3deg)_translateY(-6px)] hover:shadow-[0_24px_48px_rgba(27,20,99,0.14)] motion-reduce:hover:transform-none">
         <div className="flex items-center justify-between border-b border-[var(--border)]/10 px-5 py-4">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-[var(--primary-color)]/20 bg-[var(--primary-color)]/10 text-[var(--primary-color)]">

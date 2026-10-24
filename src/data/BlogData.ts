@@ -5484,39 +5484,40 @@ export const sexualIntimateHealthBlogs = [
         id: "treatment",
         type: "cards",
         eyebrow: "ADVANCED TREATMENT",
-        title: "Vaginal Infections Treatment In Gurgaon",
+        title: "Vaginal Infections Treatment in Gurgaon",
         color: "#14b8a6",
         paragraph:
-          "Vaginal Infections Treatment In Gurgaon depends on the type and cause of infection. Your doctor may recommend antifungal treatment for yeast infections, antibiotics for certain bacterial infections, or specific treatment for sexually transmitted infections. The right treatment should be selected after evaluating the symptoms and, when needed, testing.",
+          "Vaginal infection treatment in Gurgaon depends on the type and cause of the infection. If you are looking for the Best Vaginal Infection Doctor in Gurgaon, proper evaluation is important before starting treatment. Your doctor may recommend antifungal treatment for yeast infections, antibiotics for certain bacterial infections, or specific medicines when a sexually transmitted infection is diagnosed. The right treatment is selected based on your symptoms and, when needed, appropriate testing.",
         cards: [
           {
             title: "Antifungal Treatment",
-            description: "Used for confirmed yeast infections.",
+            description:
+              "Used for confirmed yeast infections and may help manage symptoms such as itching, irritation, and unusual discharge.",
           },
           {
             title: "Antibiotic Treatment",
             description:
-              "May be prescribed for bacterial infections such as bacterial vaginosis.",
+              "May be prescribed for bacterial infections such as bacterial vaginosis after proper evaluation.",
           },
           {
             title: "STI Treatment",
             description:
-              "Specific medicines may be needed when an STI is diagnosed.",
+              "Specific medicines may be required when a sexually transmitted infection is diagnosed. Partner evaluation or treatment may also be advised in certain cases.",
           },
           {
             title: "Symptom Relief",
             description:
-              "Treatment can help reduce itching, irritation, burning, and discomfort.",
+              "Appropriate treatment can help reduce itching, burning, irritation, unusual discharge, and other discomfort associated with vaginal infections.",
           },
           {
             title: "Recurrent Infection Care",
             description:
-              "Repeated infections may need further evaluation and a longer-term treatment plan.",
+              "Repeated infections may require further evaluation to understand the underlying cause and develop a suitable treatment plan.",
           },
           {
             title: "Follow-Up Care",
             description:
-              "Follow-up may be recommended if symptoms continue or return.",
+              "Follow-up may be recommended if symptoms continue, return after treatment, or require additional testing or evaluation.",
           },
         ],
       },
@@ -6399,19 +6400,19 @@ export const laparoscopicSurgeryBlogs = [
         id: "laparoscopy",
         type: "checkList",
         eyebrow: "Laparoscopic Surgery",
-        title: "Laparoscopic Surgery for Endometriosis",
+        title: "Laparoscopic Endometriosis Surgery in Gurgaon",
         color: "#0ea5e9",
         paragraph:
-          "Laparoscopic surgery may be considered for severe symptoms, when medicines do not provide enough relief, or when endometriosis affects fertility. It uses small incisions to examine and treat affected areas.",
+          "Laparoscopic endometriosis surgery is a minimally invasive procedure used to examine and treat endometriosis through small incisions. Depending on the location and severity of the condition, the surgery may involve removing endometriosis tissue, treating adhesions, managing ovarian cysts, and addressing affected pelvic areas. The surgical approach is planned according to the patient's symptoms, condition, and fertility goals.",
         items: [
-          "Pain Relief",
-          "Lesion Removal",
-          "Adhesion Treatment",
+          "Endometriosis Lesion Excision",
+          "Endometriosis Lesion Ablation",
+          "Ovarian Endometrioma Removal",
+          "Pelvic Adhesion Removal",
+          "Deep Endometriosis Excision",
           "Ovarian Cyst Treatment",
-          "Fertility Support",
-          "Reduced Pelvic Pain",
-          "Improved Daily Comfort",
-          "Better Quality of Life",
+          "Pelvic Organ Assessment",
+          "Fertility-Focused Surgical Planning",
         ],
       },
 
@@ -6443,9 +6444,9 @@ export const laparoscopicSurgeryBlogs = [
         title: "Why Choose the Best Endometriosis Doctor In Gurgaon?",
         color: "#6366f1",
         paragraph:
-          "Choosing the right specialist is important when endometriosis symptoms are affecting your daily life, periods, or fertility. The Best Endometriosis Doctor In Gurgaon can carefully understand your symptoms, medical history, and concerns before suggesting the right tests and treatment. A specialist can also explain your condition in simple terms so you can make informed decisions about your care.",
+          "When endometriosis symptoms start affecting your periods, daily routine, or fertility, choosing the right specialist can make the treatment journey easier. Meet Dr. Kusum Lata Bhardwaj, a gynecologist and obstetrician with 17+ years of experience who has guided 10K+ patients across 3 premier institutes. She focuses on understanding your symptoms, finding the possible cause, and explaining treatment options in simple terms, with an approach based on clear diagnosis, safe planning, and supportive follow-through.",
         paragraphs: [
-          "Every patient experiences endometriosis differently, so treatment should be planned according to individual needs. An experienced doctor can discuss different options, including medicines, hormonal treatment, laparoscopic surgery, and fertility support when required. Regular follow-ups can also help monitor your symptoms and make changes to the treatment plan when needed.",
+          "Every patient can experience endometriosis differently, so treatment should be planned according to individual needs. Dr. Kusum Lata Bhardwaj considers your symptoms, medical history, overall health, and fertility plans while discussing suitable options such as medicines, hormonal treatment, laparoscopic surgery, or fertility support when needed. Regular follow-ups can also help monitor your condition and adjust the treatment plan when required.",
         ],
       },
     ] satisfies BlogSection[],
@@ -6457,61 +6458,61 @@ export const laparoscopicSurgeryBlogs = [
         id: "1",
         question: "What is endometriosis?",
         answer:
-          "Endometriosis happens when tissue similar to the uterus lining grows outside the uterus. It can cause pain, heavy periods, and fertility problems.",
+          "Endometriosis is a condition where tissue similar to the uterus lining grows outside the uterus. It can cause painful periods, pelvic pain, heavy bleeding, and sometimes fertility problems.",
       },
       {
         id: "2",
-        question: "What are the common symptoms of endometriosis?",
+        question: "How to prevent endometriosis?",
         answer:
-          "Common symptoms include severe period pain, pelvic pain, heavy bleeding, pain during sex, bloating, and difficulty getting pregnant.",
+          "There is no proven way to completely prevent endometriosis. However, regular gynaecological check-ups and getting persistent period pain checked early can help with timely diagnosis and treatment.",
       },
       {
         id: "3",
-        question: "What causes endometriosis?",
+        question: "Can endometriosis cause cancer?",
         answer:
-          "The exact cause is not known. Hormones, family history, genetics, and other factors may play a role.",
+          "Endometriosis is not cancer. In rare cases, some types of ovarian cancer have been linked with endometriosis, but the overall risk remains low.",
       },
       {
         id: "4",
-        question: "How is endometriosis diagnosed?",
+        question: "How to cure endometriosis?",
         answer:
-          "Your doctor will review your symptoms and medical history and may recommend an ultrasound, MRI, or other tests.",
+          "There is currently no guaranteed permanent cure for endometriosis. However, medicines, hormonal treatment, pain management, and surgery can help control symptoms and improve quality of life.",
       },
       {
         id: "5",
-        question: "What are the stages of endometriosis?",
+        question: "Can I get pregnant with endometriosis?",
         answer:
-          "There are four stages: minimal, mild, moderate, and severe. The stage does not always indicate how much pain you may have.",
+          "Yes, many women with endometriosis can become pregnant. However, the condition may make pregnancy more difficult for some women, so fertility support may be considered when needed.",
       },
       {
         id: "6",
-        question: "Can endometriosis be treated without surgery?",
+        question: "What are the symptoms of endometriosis?",
         answer:
-          "Yes. Depending on your condition, medicines and hormonal treatment may help control symptoms.",
+          "Common symptoms include severe period pain, pelvic pain, heavy bleeding, pain during sex, pain while passing stool or urine, bloating, and difficulty getting pregnant.",
       },
       {
         id: "7",
-        question: "When is surgery needed for endometriosis?",
+        question: "Can an ultrasound detect endometriosis?",
         answer:
-          "Surgery may be considered when symptoms are severe, medicines are not helping enough, or fertility is affected.",
+          "An ultrasound can identify some signs of endometriosis, such as certain ovarian cysts. However, a normal ultrasound does not always rule out endometriosis.",
       },
       {
         id: "8",
-        question: "Can endometriosis affect fertility?",
+        question: "What is the treatment for endometriosis?",
         answer:
-          "Yes, endometriosis can sometimes make it harder to get pregnant. Your doctor can suggest treatment based on your fertility plans.",
+          "Treatment depends on your symptoms and fertility plans. It may include pain-relieving medicines, hormonal treatment, laparoscopic surgery, or fertility support.",
       },
       {
         id: "9",
-        question: "Can endometriosis come back after treatment?",
+        question: "Does PCOS cause endometriosis?",
         answer:
-          "Yes, symptoms may return in some patients. Regular follow-ups can help keep the condition under control.",
+          "No. PCOS and endometriosis are different conditions. Having PCOS does not directly cause endometriosis, although a person can have both conditions.",
       },
       {
         id: "10",
-        question: "When should I see an Endometriosis Doctor In Gurgaon?",
+        question: "How to diagnose endometriosis without surgery?",
         answer:
-          "See a specialist if you have severe period pain, ongoing pelvic pain, heavy periods, pain during sex, or difficulty getting pregnant.",
+          "Endometriosis can often be assessed without surgery using your medical history, symptoms, examination, ultrasound, and sometimes MRI. Laparoscopy may be considered in selected cases.",
       },
     ] satisfies BlogFaq[],
 

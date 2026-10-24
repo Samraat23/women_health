@@ -118,6 +118,8 @@ export default function ChatSupport() {
             aria-haspopup="dialog"
             aria-expanded={isOpen}
             aria-controls={isOpen ? "chat-support-window" : undefined}
+            data-analytics-id="chat-launcher"
+            data-analytics-label="Open chat assistant"
             onClick={() => {
               dismissTeaser();
               toggle();

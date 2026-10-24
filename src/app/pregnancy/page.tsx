@@ -4,12 +4,15 @@ import Link from "next/link";
 import {
   ArrowRight,
   Baby,
+  BookOpen,
   CalendarCheck,
   CheckCircle2,
   ChevronRight,
+  Clock,
   HeartPulse,
   Leaf,
   Salad,
+  Sparkles,
   ShieldCheck,
   Stethoscope,
   Syringe,
@@ -18,6 +21,7 @@ import {
 
 const doctorPortrait = "/image/dr-kusum-lata-bhardwaj.jpg";
 import BookingButton from "@/components/booking/BookingButton";
+import { pregnancyCareBlogs } from "@/data/BlogData";
 import {
   foodPillars,
   getTrimesterGuide,
@@ -42,6 +46,25 @@ const weeklySections = trimesterGuides.map((trimester) => ({
   weeks: pregnancyWeeks.filter((week) => week.trimester === trimester.name),
 }));
 
+const heroStats = [
+  { label: "Weeks guided", value: `${pregnancyWeeks.length}`, icon: CalendarCheck },
+  { label: "Trimester guides", value: `${trimesterGuides.length}`, icon: HeartPulse },
+  { label: "Vaccine guides", value: `${vaccineGuides.length}`, icon: Syringe },
+  { label: "Years of care", value: "17+", icon: Sparkles },
+];
+
+const pregnancyBlogPosts = pregnancyCareBlogs
+  .filter((blog) => Boolean(blog.article.slug))
+  .map((blog) => ({
+    slug: blog.article.slug as string,
+    badge: blog.hero.badge,
+    date: blog.hero.date,
+    readTime: blog.hero.readTime,
+    title: blog.article.title,
+    intro: blog.article.intro,
+    image: blog.article.image,
+  }));
+
 export default function PregnancyPage() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--secondary-text)]">
@@ -50,6 +73,8 @@ export default function PregnancyPage() {
         className="relative left-1/2 w-[100dvw] max-w-[100dvw] -translate-x-1/2 overflow-hidden bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] px-5 py-8 text-white shadow-[0_28px_70px_rgba(27,20,99,0.20)] sm:px-8 md:px-12 lg:py-12"
       >
         <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:82px_82px]" />
+        <div aria-hidden className="absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22),transparent_70%)] blur-2xl" />
+        <div aria-hidden className="absolute -left-20 top-1/3 h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.14),transparent_70%)] blur-2xl" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(247,244,238,0.84)_100%)]" />
 
         <div className="relative z-10 mx-auto mt-20 flex max-w-7xl flex-col gap-10 lg:min-h-[620px] lg:flex-row lg:items-center lg:justify-between">
@@ -84,6 +109,26 @@ export default function PregnancyPage() {
                 <Video size={18} />
                 Instant Consultation
               </BookingButton>
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {heroStats.map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div
+                    key={stat.label}
+                    className="rounded-2xl border border-white/22 bg-white/12 p-4 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
+                  >
+                    <Icon size={18} className="text-white/85" />
+                    <p className="mt-2 text-2xl font-black leading-none text-white">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-[0.08em] text-white/70">
+                      {stat.label}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -170,7 +215,7 @@ export default function PregnancyPage() {
                 return (
                   <Link
                     key={week.week}
-                    href={`#week-${week.week}`}
+                    href={`/pregnancy/week/${week.week}`}
                     className="grid min-h-[82px] min-w-[132px] content-between rounded-lg border border-[var(--border)]/10 bg-white p-3 text-left shadow-sm transition hover:-translate-y-0.5"
                   >
                     <span className="text-3xl font-black leading-none" style={{ color: trimester.color }}>
@@ -315,6 +360,44 @@ export default function PregnancyPage() {
         </div>
       </section>
 
+      <section id="pregnancy-blog" className="relative px-4 py-16 md:px-6 lg:py-24">
+        <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-full bg-[radial-gradient(60%_60%_at_50%_0%,rgba(90,79,254,0.08),transparent_70%)]" />
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-[rgba(90,79,254,0.08)] px-4 py-2 text-xs font-black text-[var(--primary-color)]">
+                <BookOpen size={16} />
+                From the Blog
+              </div>
+              <h2 className="mt-4 font-[var(--font-primary)] text-3xl font-black leading-tight text-[var(--primary-text-color)] sm:text-4xl">
+                Pregnancy articles worth reading
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-[var(--secondary-text)]/70">
+                Go deeper on the topics that matter most, from everyday
+                prenatal care to high-risk monitoring and life after delivery.
+              </p>
+            </div>
+            <Link
+              href="/category/pregnancy-care"
+              className="inline-flex w-fit items-center justify-center gap-2 rounded-full bg-[rgba(90,79,254,0.08)] px-5 py-3 text-sm font-black text-[var(--primary-color)] transition hover:bg-[rgba(90,79,254,0.14)]"
+            >
+              View All Articles
+              <ChevronRight size={17} />
+            </Link>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-2">
+            {pregnancyBlogPosts.map((post, index) => (
+              <PregnancyBlogCard
+                key={post.slug}
+                post={post}
+                featured={index === 0}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="px-4 pb-20 md:px-6">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[1fr_360px]">
           <div className="rounded-lg border border-[var(--border)]/10 bg-white p-6 shadow-sm md:p-8">
@@ -440,9 +523,10 @@ function WeekCard({
   trimester: TrimesterGuide;
 }) {
   return (
-    <article
+    <Link
       id={`week-${week.week}`}
-      className="scroll-mt-32 overflow-hidden rounded-[12px] border border-[var(--border)]/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(27,20,99,0.10)]"
+      href={`/pregnancy/week/${week.week}`}
+      className="group scroll-mt-32 block overflow-hidden rounded-[12px] border border-[var(--border)]/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(27,20,99,0.10)]"
     >
       <div className="relative aspect-[1.34/1] bg-[var(--background)]">
         <Image
@@ -450,8 +534,14 @@ function WeekCard({
           alt={`${week.week} weeks pregnant`}
           fill
           sizes="(min-width: 1280px) 300px, (min-width: 768px) 45vw, 92vw"
-          className="object-cover transition duration-300 hover:scale-105"
+          className="object-cover transition duration-300 group-hover:scale-105"
         />
+        <span
+          className="absolute left-3 top-3 rounded-full px-3 py-1.5 text-xs font-black text-white shadow-sm"
+          style={{ backgroundColor: trimester.color }}
+        >
+          Week {week.week}
+        </span>
       </div>
 
       <div className="min-h-[166px] px-5 py-5">
@@ -462,8 +552,16 @@ function WeekCard({
         <p className="mt-4 line-clamp-3 text-[18px] font-medium leading-8 text-[#5f5c55]">
           {week.baby} {week.mother}
         </p>
+
+        <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-[var(--primary-color)]">
+          Read full week guide
+          <ArrowRight
+            size={16}
+            className="transition group-hover:translate-x-1"
+          />
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }
 
@@ -488,6 +586,86 @@ function TrimesterCareCard({ trimester }: { trimester: TrimesterGuide }) {
       <CareList title="Common tests" items={trimester.tests} />
       <CareList title="Food direction" items={trimester.food} />
     </article>
+  );
+}
+
+type PregnancyBlogPost = {
+  slug: string;
+  badge: string;
+  date: string;
+  readTime: string;
+  title: string;
+  intro: string;
+  image: string;
+};
+
+function PregnancyBlogCard({
+  post,
+  featured = false,
+}: {
+  post: PregnancyBlogPost;
+  featured?: boolean;
+}) {
+  return (
+    <Link
+      href={`/${post.slug}`}
+      className={`group block ${featured ? "lg:col-span-2" : ""}`}
+    >
+      <article
+        className={`flex h-full overflow-hidden rounded-[20px] border border-[var(--border)]/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_46px_rgba(27,20,99,0.12)] ${
+          featured ? "flex-col sm:flex-row" : "flex-col"
+        }`}
+      >
+        <div
+          className={`relative bg-[var(--background)] ${
+            featured
+              ? "aspect-[16/10] sm:aspect-auto sm:w-[46%] sm:shrink-0"
+              : "aspect-[16/10]"
+          }`}
+        >
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            sizes={featured ? "(min-width: 1024px) 46vw, 92vw" : "(min-width: 1024px) 48vw, 92vw"}
+            className="object-cover transition duration-300 group-hover:scale-105"
+          />
+          <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs font-black text-[var(--primary-color)] shadow-sm backdrop-blur-sm">
+            {post.badge}
+          </span>
+        </div>
+
+        <div className="flex flex-1 flex-col p-5 md:p-6">
+          <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[0.06em] text-[var(--secondary-text)]/55">
+            <span>{post.date}</span>
+            <span className="inline-flex items-center gap-1.5">
+              <Clock size={13} />
+              {post.readTime}
+            </span>
+          </div>
+
+          <h3
+            className={`mt-3 font-[var(--font-primary)] font-black leading-tight text-[var(--primary-text-color)] ${
+              featured ? "text-2xl sm:text-3xl" : "text-xl"
+            }`}
+          >
+            {post.title}
+          </h3>
+
+          <p className="mt-3 line-clamp-2 flex-1 text-sm font-semibold leading-7 text-[var(--secondary-text)]/70">
+            {post.intro}
+          </p>
+
+          <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-[var(--primary-color)]">
+            Read article
+            <ArrowRight
+              size={16}
+              className="transition group-hover:translate-x-1"
+            />
+          </span>
+        </div>
+      </article>
+    </Link>
   );
 }
 

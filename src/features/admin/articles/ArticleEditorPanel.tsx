@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -27,6 +26,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { StatusPill } from "@/features/admin/ui/primitives";
 import type { BlogFaq, BlogSection } from "@/data/BlogData";
 import type { ArticleDoc, ArticleRecord } from "@/types/article";
 
@@ -131,24 +131,20 @@ export default function ArticleEditorPanel({ record }: ArticleEditorPanelProps) 
             </Link>
           </Button>
           <div className="flex flex-wrap items-center gap-2">
-            <h2 className="truncate text-lg font-black text-slate-950">
+            <h2 className="truncate text-lg font-black text-foreground">
               {draft.article.title || "Untitled article"}
             </h2>
             {record.source === "firestore" ? (
-              <Badge className="bg-emerald-600 text-white hover:bg-emerald-600">
+              <StatusPill tone="success">
                 <Cloud size={12} />
                 Firebase
-              </Badge>
+              </StatusPill>
             ) : (
-              <Badge variant="secondary">Original</Badge>
+              <StatusPill tone="neutral">Original</StatusPill>
             )}
-            {isDirty ? (
-              <Badge className="bg-amber-500 text-white hover:bg-amber-500">
-                Unsaved changes
-              </Badge>
-            ) : null}
+            {isDirty ? <StatusPill tone="warning">Unsaved changes</StatusPill> : null}
           </div>
-          <p className="mt-1 truncate text-xs font-semibold text-slate-500">
+          <p className="mt-1 truncate text-xs font-semibold text-muted-foreground">
             /{draft.slug}
           </p>
         </div>
@@ -193,7 +189,7 @@ export default function ArticleEditorPanel({ record }: ArticleEditorPanelProps) 
           <TabsTrigger value="faqs">
             FAQs ({draft.faqs.length})
             {faqShortfall ? (
-              <span className="ml-1 text-amber-600" aria-hidden>
+              <span className="ml-1 text-[var(--adm-warning)]" aria-hidden>
                 !
               </span>
             ) : null}

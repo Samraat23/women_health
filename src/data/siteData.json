@@ -377,7 +377,7 @@
     "id": 101,
     "name": "Endometriosis Surgery",
     "key": "endometriosis",
-    "img": "/image/ fibroid.png",
+    "img": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1400&auto=format&fit=crop",
     "description": "Advanced laparoscopic surgery to remove endometriosis tissue, reduce chronic pelvic pain, preserve fertility, and improve quality of life."
   },
   {
@@ -391,42 +391,42 @@
     "id": 103,
     "name": "Ovarian Cyst Removal",
     "key": "ovarian-cyst",
-    "img": "/image/ fibroid.png",
+    "img": "https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=1400&auto=format&fit=crop",
     "description": "Laparoscopic ovarian cyst removal with fertility-preserving techniques to relieve pain, prevent complications, and protect ovarian function."
   },
   {
     "id": 104,
     "name": "Uterus Removal",
     "key": "hysterectomy",
-    "img": "/image/ fibroid.png",
+    "img": "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1400&auto=format&fit=crop",
     "description": "Minimally invasive hysterectomy performed for large fibroids, abnormal bleeding, adenomyosis, or other uterine conditions when necessary."
   },
   {
     "id": 105,
     "name": "Fertility Enhancing Surgery",
     "key": "fertility-enhancing-surgery",
-    "img": "/image/ fibroid.png",
+    "img": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1400&auto=format&fit=crop",
     "description": "Specialized laparoscopic and hysteroscopic procedures designed to improve fertility by treating endometriosis, fibroids, adhesions, and tubal problems."
   },
   {
     "id": 106,
     "name": "Hysteroscopy",
     "key": "hysteroscopy-treatment",
-    "img": "/image/ fibroid.png",
+    "img": "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1400&auto=format&fit=crop",
     "description": "Advanced day-care procedure used to diagnose and treat uterine polyps, fibroids, adhesions, abnormal bleeding, infertility, and recurrent miscarriages."
   },
   {
     "id": 107,
     "name": "Cancer Surgery",
     "key": "gynecologic-cancer-surgery",
-    "img": "/image/ fibroid.png",
+    "img": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1400&auto=format&fit=crop",
     "description": "Comprehensive surgical treatment for gynecological cancers including uterine, ovarian, and cervical cancers using advanced minimally invasive techniques whenever possible."
   },
   {
     "id": 108,
     "name": "Cervical Cerclage",
     "key": "cervical-cerclage",
-    "img": "/image/ fibroid.png",
+    "img": "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1400&auto=format&fit=crop",
     "description": "Laparoscopic cervical cerclage provides strong cervical support to help prevent recurrent miscarriages, preterm birth, and pregnancy loss due to cervical weakness."
   }
 ]

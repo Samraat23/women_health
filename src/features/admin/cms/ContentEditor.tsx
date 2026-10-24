@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useState, type ReactNode } from "react";
 import { Plus, Trash2 } from "lucide-react";
 
 import {
@@ -46,7 +46,7 @@ import { cn } from "@/lib/utils";
  */
 
 const fieldLabelClass =
-  "mb-1.5 block text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground";
+  "mb-1.5 block text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground";
 
 type ValueEditorProps = {
   fieldKey: string;
@@ -478,6 +478,155 @@ function ValueEditor({ fieldKey, value, onChange, depth }: ValueEditorProps) {
   );
 }
 
+// ---------------------------------------------------------- stepped layout
+
+/**
+ * Buckets a section's top-level fields into a short, numbered walkthrough —
+ * "Content", then "Call to action", then "Media & style" — so a long flat
+ * form (Hero has eight fields) reads as a handful of deliberate steps
+ * instead of one undifferentiated column.
+ *
+ * Purely a key/kind heuristic (no section is allowed to need a schema), so
+ * it degrades safely: a section whose fields don't match any bucket still
+ * renders, just as a single "Content" step.
+ */
+const ctaKeyPattern = /cta|button/i;
+
+type StepGroup = { id: string; label: string; entries: [string, unknown][] };
+
+function groupPrimitiveEntries(
+  entries: [string, unknown][]
+): StepGroup[] {
+  const buckets: Record<"content" | "cta" | "media", [string, unknown][]> = {
+    content: [],
+    cta: [],
+    media: [],
+  };
+
+  for (const [key, entry] of entries) {
+    const kind = inferFieldKind(key, entry);
+
+    if (ctaKeyPattern.test(key)) {
+      buckets.cta.push([key, entry]);
+    } else if (kind === "image" || kind === "icon" || kind === "color") {
+      buckets.media.push([key, entry]);
+    } else {
+      buckets.content.push([key, entry]);
+    }
+  }
+
+  const groups: StepGroup[] = [];
+
+  if (buckets.content.length > 0) {
+    groups.push({ id: "content", label: "Content", entries: buckets.content });
+  }
+  if (buckets.cta.length > 0) {
+    groups.push({ id: "cta", label: "Call to action", entries: buckets.cta });
+  }
+  if (buckets.media.length > 0) {
+    groups.push({ id: "media", label: "Media & style", entries: buckets.media });
+  }
+
+  return groups;
+}
+
+function StepCard({
+  step,
+  label,
+  children,
+}: {
+  step: number;
+  label: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="rounded-xl border border-border bg-secondary/40 p-4 sm:p-5">
+      <div className="mb-4 flex items-center gap-2.5">
+        <span className="font-admin-display grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
+          {step}
+        </span>
+        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+          {label}
+        </p>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+/**
+ * The top-level form for one section: primitive fields walk through the
+ * numbered steps above, each list or nested object gets a step of its own
+ * (it already renders its own heading via ListEditor / humanizeKey).
+ */
+function SteppedObjectEditor({
+  value,
+  onChange,
+}: {
+  value: Record<string, unknown>;
+  onChange: (next: Record<string, unknown>) => void;
+}) {
+  const primitiveEntries: [string, unknown][] = [];
+  const compoundEntries: [string, unknown][] = [];
+
+  for (const entry of Object.entries(value)) {
+    const [, entryValue] = entry;
+
+    if (Array.isArray(entryValue) || (entryValue !== null && typeof entryValue === "object")) {
+      compoundEntries.push(entry);
+    } else {
+      primitiveEntries.push(entry);
+    }
+  }
+
+  const primitiveGroups = groupPrimitiveEntries(primitiveEntries);
+
+  return (
+    <div className="space-y-4">
+      {primitiveGroups.map((group, groupIndex) => {
+        const step = groupIndex + 1;
+
+        return (
+          <StepCard key={group.id} step={step} label={group.label}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {group.entries.map(([key, entry]) => {
+                const kind = inferFieldKind(key, entry);
+                const wide = kind === "longText" || kind === "image";
+
+                return (
+                  <div key={key} className={cn(wide && "sm:col-span-2")}>
+                    <PrimitiveField
+                      fieldKey={key}
+                      kind={kind}
+                      value={entry}
+                      onChange={(next) => onChange({ ...value, [key]: next })}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </StepCard>
+        );
+      })}
+
+      {compoundEntries.map(([key, entry], entryIndex) => {
+        const step = primitiveGroups.length + entryIndex + 1;
+
+        return (
+          <StepCard key={key} step={step} label={humanizeKey(key)}>
+            <ValueEditor
+              fieldKey={key}
+              value={entry}
+              onChange={(next) => onChange({ ...value, [key]: next })}
+              depth={1}
+            />
+          </StepCard>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function ContentEditor({
   value,
   onChange,
@@ -490,6 +639,18 @@ export default function ContentEditor({
       <p className="rounded-lg border border-dashed px-4 py-6 text-center text-sm text-muted-foreground">
         This section has no content yet.
       </p>
+    );
+  }
+
+  // Only a plain object gets the numbered-step treatment — a section whose
+  // content is itself a list (e.g. a flat array of FAQs) has nothing to
+  // group and falls back to the plain recursive editor.
+  if (!Array.isArray(value) && typeof value === "object") {
+    return (
+      <SteppedObjectEditor
+        value={value as Record<string, unknown>}
+        onChange={onChange as (next: Record<string, unknown>) => void}
+      />
     );
   }
 

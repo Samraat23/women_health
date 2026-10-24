@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   CalendarHeart,
   Database,
+  Inbox,
   MessageSquareText,
   Phone,
 } from "lucide-react";
@@ -10,6 +11,7 @@ import {
 import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 import { requireAdminSession } from "@/features/admin/firebase/requireAdminSession";
 import AdminShell from "@/features/admin/shell/AdminShell";
+import { EmptyState, StatusPill } from "@/features/admin/ui/primitives";
 import { formatIndianMobile } from "@/features/chat/core/validation";
 import {
   getChatRequestRepository,
@@ -43,8 +45,8 @@ function Detail({ label, value }: { label: string; value?: string }) {
 
   return (
     <div className="min-w-0">
-      <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">{label}</dt>
-      <dd className="mt-0.5 break-words text-sm font-semibold text-slate-800">{value}</dd>
+      <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">{label}</dt>
+      <dd className="mt-0.5 break-words text-sm font-semibold text-foreground">{value}</dd>
     </div>
   );
 }
@@ -54,39 +56,33 @@ function RequestCard({ request }: { request: StoredChatRequest }) {
   const phone = formatIndianMobile(request.patient.phone);
 
   return (
-    <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm md:p-5">
+    <article className="rounded-lg border bg-card p-4 shadow-sm md:p-5">
       <div className="flex flex-wrap items-center gap-2">
-        <span
-          className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-black ${
-            isAppointment ? "bg-indigo-50 text-indigo-700" : "bg-amber-50 text-amber-700"
-          }`}
-        >
+        <StatusPill tone={isAppointment ? "neutral" : "warning"}>
           {isAppointment ? <CalendarHeart size={14} /> : <MessageSquareText size={14} />}
           {isAppointment ? "Appointment" : "Inquiry"}
-        </span>
-        <span className="font-mono text-xs font-bold text-slate-500">{request.referenceId}</span>
-        {request.clinicNotified && (
-          <span className="rounded-md bg-emerald-50 px-2 py-1 text-xs font-bold text-emerald-700">WhatsApp sent</span>
-        )}
-        <span className="ml-auto text-xs font-semibold text-slate-400">
+        </StatusPill>
+        <span className="font-mono text-xs font-bold text-muted-foreground">{request.referenceId}</span>
+        {request.clinicNotified && <StatusPill tone="success">WhatsApp sent</StatusPill>}
+        <span className="ml-auto text-xs font-semibold text-muted-foreground">
           {receivedFormat.format(new Date(request.createdAt))}
         </span>
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-lg font-black text-slate-950">
+          <p className="text-lg font-black text-foreground">
             {request.patient.name}
             {request.patient.age !== undefined && (
-              <span className="ml-2 text-sm font-semibold text-slate-500">{request.patient.age} yrs</span>
+              <span className="ml-2 text-sm font-semibold text-muted-foreground">{request.patient.age} yrs</span>
             )}
           </p>
-          <p className="text-sm font-semibold text-slate-600">{phone}</p>
+          <p className="text-sm font-semibold text-muted-foreground">{phone}</p>
         </div>
         <div className="flex gap-2">
           <a
             href={`tel:+91${request.patient.phone}`}
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-slate-200 px-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-input px-3 text-sm font-bold text-foreground transition hover:bg-accent"
           >
             <Phone size={15} />
             Call
@@ -103,7 +99,7 @@ function RequestCard({ request }: { request: StoredChatRequest }) {
         </div>
       </div>
 
-      <dl className="mt-4 grid gap-3 border-t border-slate-100 pt-4 sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="mt-4 grid gap-3 border-t pt-4 sm:grid-cols-2 lg:grid-cols-4">
         {request.appointment ? (
           <>
             <Detail label="Consulting for" value={request.appointment.serviceLabel} />
@@ -120,8 +116,8 @@ function RequestCard({ request }: { request: StoredChatRequest }) {
           <>
             <Detail label="Topic" value={request.inquiry?.serviceLabel} />
             <div className="sm:col-span-2 lg:col-span-4">
-              <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">Question</dt>
-              <dd className="mt-1 whitespace-pre-line break-words rounded-lg bg-slate-50 p-3 text-sm font-medium leading-6 text-slate-800">
+              <dt className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Question</dt>
+              <dd className="mt-1 whitespace-pre-line break-words rounded-lg bg-secondary p-3 text-sm font-medium leading-6 text-foreground">
                 {request.inquiry?.text}
               </dd>
             </div>
@@ -130,7 +126,7 @@ function RequestCard({ request }: { request: StoredChatRequest }) {
       </dl>
 
       {request.sourcePath && (
-        <p className="mt-3 text-xs font-semibold text-slate-400">Sent from {request.sourcePath}</p>
+        <p className="mt-3 text-xs font-semibold text-muted-foreground">Sent from {request.sourcePath}</p>
       )}
     </article>
   );
@@ -174,35 +170,39 @@ export default async function AdminChatRequestsPage({
     >
       <div className="space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <nav className="flex gap-1 rounded-lg border border-slate-200 bg-white p-1" aria-label="Filter requests">
+          <nav className="flex gap-1 rounded-lg border border-input bg-secondary/40 p-1" aria-label="Filter requests">
             {filters.map((item) => (
               <Link
                 key={item.id}
                 href={item.id === "all" ? "/admin/chat-requests" : `/admin/chat-requests?type=${item.id}`}
                 aria-current={filter === item.id ? "page" : undefined}
                 className={`rounded-md px-3 py-1.5 text-sm font-bold transition ${
-                  filter === item.id ? "bg-slate-950 text-white" : "text-slate-600 hover:bg-slate-100"
+                  filter === item.id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-accent"
                 }`}
               >
                 {item.label}
-                <span className={`ml-1.5 text-xs ${filter === item.id ? "text-white/60" : "text-slate-400"}`}>
+                <span className={`ml-1.5 text-xs ${filter === item.id ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
                   {counts[item.id]}
                 </span>
               </Link>
             ))}
           </nav>
-          <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600">
+          <span className="inline-flex items-center gap-1.5 rounded-lg bg-secondary px-3 py-1.5 text-xs font-bold text-muted-foreground">
             <Database size={14} />
             Stored in {driver === "firestore" ? "Firestore" : "the server's private data folder"}
           </span>
         </div>
 
         {loadError ? (
-          <p className="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm font-semibold text-rose-700">{loadError}</p>
-        ) : visible.length === 0 ? (
-          <p className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center text-sm font-semibold text-slate-500">
-            No {filter === "all" ? "requests" : filter === "appointment" ? "appointment requests" : "inquiries"} yet.
+          <p className="rounded-lg border border-[var(--adm-danger-soft)] bg-[var(--adm-danger-soft)] p-4 text-sm font-semibold text-[var(--adm-danger)]">
+            {loadError}
           </p>
+        ) : visible.length === 0 ? (
+          <EmptyState
+            icon={Inbox}
+            title={`No ${filter === "all" ? "requests" : filter === "appointment" ? "appointment requests" : "inquiries"} yet`}
+            description="New appointment requests and inquiries from the website chat will show up here."
+          />
         ) : (
           <div className="space-y-3">
             {visible.map((request) => (

@@ -9,7 +9,9 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
+import { trackEvent } from "@/features/analytics/client/track";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import {
   ArrowRight,
@@ -111,16 +113,30 @@ function openDatePicker(input: HTMLInputElement) {
   }
 }
 
+const bookingFormId = "appointment_booking";
+
 export default function BookingFormModal({
   request,
   onOpenChange,
   returnFocusRef,
 }: BookingFormModalProps) {
+  const pathname = usePathname();
   const [values, setValues] = useState(() => createEmptyBooking());
   const [errors, setErrors] = useState<BookingErrors>({});
   const [submission, setSubmission] = useState<Submission | null>(null);
   const [handledRequestAt, setHandledRequestAt] = useState(request.requestedAt);
   const now = new Date(request.requestedAt);
+  const wasOpenRef = useRef(false);
+
+  // One `form_start` per time the modal actually opens — not per render
+  // while it stays open, and not for the close.
+  useEffect(() => {
+    if (request.open && !wasOpenRef.current) {
+      trackEvent({ eventName: "form_start", path: pathname, formId: bookingFormId });
+    }
+
+    wasOpenRef.current = request.open;
+  }, [request.open, pathname]);
 
   // A new button click keeps an unfinished draft (switching to the requested
   // consultation type) but starts from a blank form after a finished booking.
@@ -164,8 +180,17 @@ export default function BookingFormModal({
         .querySelector<HTMLElement>(`[name="${firstInvalidField}"]:not(:disabled)`)
         ?.focus();
 
+      trackEvent({
+        eventName: "form_error",
+        path: pathname,
+        formId: bookingFormId,
+        formField: firstInvalidField,
+      });
+
       return;
     }
+
+    trackEvent({ eventName: "form_submit", path: pathname, formId: bookingFormId });
 
     const whatsAppHref = getWhatsAppHref(buildBookingMessage(details));
     // Open WhatsApp right here in the submit handler: browsers block windows

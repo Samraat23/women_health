@@ -1,16 +1,19 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import { BookingProvider } from "@/components/booking/BookingProvider";
 import Footer from "@/components/layout/Footer";
 import FirstVisitDoctorModal from "@/components/layout/FirstVisitDoctorModal";
+import LogoPreloader from "@/components/layout/LogoPreloader";
 import Navbar from "@/components/layout/Navbar";
 import WhatsAppFloatingButton from "@/components/layout/WhatsAppFloatingButton";
 import ChatSupport from "@/features/chat/ui/ChatSupport";
 import { ChatSupportProvider } from "@/features/chat/ui/ChatSupportProvider";
+import PageTracker from "@/features/analytics/client/PageTracker";
+import InteractionTracker from "@/features/analytics/client/InteractionTracker";
 import type { HomePageContent } from "@/types/homeContent";
 
 type AppChromeProps = {
@@ -46,6 +49,7 @@ export default function AppChrome({ children }: AppChromeProps) {
   return (
     <BookingProvider>
       <ChatSupportProvider enabled={!isAdminRoute}>
+        {!isAdminRoute && <LogoPreloader />}
         {!isAdminRoute && <Navbar content={homeContent?.navbar} />}
         <div
           className={
@@ -60,6 +64,12 @@ export default function AppChrome({ children }: AppChromeProps) {
         {!isAdminRoute && <FirstVisitDoctorModal />}
         {!isAdminRoute && <WhatsAppFloatingButton />}
         {!isAdminRoute && <ChatSupport />}
+        {!isAdminRoute && (
+          <Suspense fallback={null}>
+            <PageTracker />
+          </Suspense>
+        )}
+        {!isAdminRoute && <InteractionTracker />}
       </ChatSupportProvider>
     </BookingProvider>
   );

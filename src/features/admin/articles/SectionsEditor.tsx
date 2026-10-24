@@ -77,9 +77,9 @@ export default function SectionsEditor({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-sm font-black text-slate-950">
+        <p className="text-sm font-black text-foreground">
           Sections
-          <span className="ml-1 font-semibold text-slate-400">
+          <span className="ml-1 font-semibold text-muted-foreground">
             ({sections.length})
           </span>
         </p>
@@ -95,7 +95,7 @@ export default function SectionsEditor({
       </div>
 
       {sections.length === 0 ? (
-        <p className="rounded-md border border-dashed border-slate-200 px-3 py-6 text-center text-sm font-semibold text-slate-400">
+        <p className="rounded-md border border-dashed px-3 py-6 text-center text-sm font-semibold text-muted-foreground">
           This article has no sections yet.
         </p>
       ) : (
@@ -107,7 +107,7 @@ export default function SectionsEditor({
               <AccordionItem
                 key={`${section.id}-${index}`}
                 value={`${section.id}-${index}`}
-                className="rounded-lg border border-slate-200 bg-white px-3 last:border-b"
+                className="rounded-lg border bg-card px-3 last:border-b"
               >
                 <div className="flex items-center gap-2">
                   <AccordionTrigger className="flex-1 hover:no-underline">
@@ -118,10 +118,10 @@ export default function SectionsEditor({
                         aria-hidden
                       />
                       <span className="min-w-0">
-                        <span className="block truncate text-sm font-black text-slate-950">
+                        <span className="block truncate text-sm font-black text-foreground">
                           {section.title || "Untitled section"}
                         </span>
-                        <span className="block truncate text-xs font-semibold text-slate-400">
+                        <span className="block truncate text-xs font-semibold text-muted-foreground">
                           #{section.id}
                         </span>
                       </span>
@@ -295,9 +295,9 @@ function CardsEditor({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <Label className="text-xs font-black text-slate-700">
+        <Label className="text-xs font-black text-foreground">
           Cards
-          <span className="ml-1 font-semibold text-slate-400">
+          <span className="ml-1 font-semibold text-muted-foreground">
             ({cards.length})
           </span>
         </Label>
@@ -315,7 +315,7 @@ function CardsEditor({
       {cards.map((card, index) => (
         <div
           key={index}
-          className="flex items-start gap-2 rounded-md border border-slate-200 p-3"
+          className="flex items-start gap-2 rounded-md border p-3"
         >
           <div className="grid flex-1 gap-2 md:grid-cols-[1fr_1.6fr]">
             <Input
@@ -360,9 +360,9 @@ function NutritionEditor({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <Label className="text-xs font-black text-slate-700">
+        <Label className="text-xs font-black text-foreground">
           Columns
-          <span className="ml-1 font-semibold text-slate-400">
+          <span className="ml-1 font-semibold text-muted-foreground">
             ({cards.length})
           </span>
         </Label>
@@ -382,7 +382,7 @@ function NutritionEditor({
       {cards.map((card, index) => (
         <div
           key={index}
-          className="space-y-3 rounded-md border border-slate-200 p-3"
+          className="space-y-3 rounded-md border p-3"
         >
           <div className="flex items-start gap-2">
             <div className="grid flex-1 gap-2 md:grid-cols-[1.6fr_1fr]">
@@ -442,9 +442,9 @@ function TimelineEditor({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <Label className="text-xs font-black text-slate-700">
+        <Label className="text-xs font-black text-foreground">
           Timeline steps
-          <span className="ml-1 font-semibold text-slate-400">
+          <span className="ml-1 font-semibold text-muted-foreground">
             ({timeline.length})
           </span>
         </Label>
@@ -464,7 +464,7 @@ function TimelineEditor({
       {timeline.map((step, index) => (
         <div
           key={index}
-          className="flex items-start gap-2 rounded-md border border-slate-200 p-3"
+          className="flex items-start gap-2 rounded-md border p-3"
         >
           <div className="grid flex-1 gap-2">
             <div className="grid gap-2 md:grid-cols-[1fr_1.6fr]">

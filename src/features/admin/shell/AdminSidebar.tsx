@@ -48,15 +48,21 @@ export default function AdminSidebar({
   return (
     <div className="flex h-full flex-col bg-card">
       {/* ------------------------------------------------ project header */}
-      <div className="flex items-center gap-3 border-b border-border px-4 py-4">
-        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-[var(--adm-accent-soft)] text-primary">
+      <div className="flex items-center gap-3 border-b border-border px-4 py-5">
+        <span
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white shadow-[0_8px_18px_-8px_rgba(27,20,99,0.55)]"
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, var(--ui-primary), var(--adm-ink))",
+          }}
+        >
           <HeartPulse size={20} aria-hidden />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold leading-tight text-foreground">
+          <p className="font-admin-display truncate text-[15px] font-extrabold leading-tight tracking-tight text-foreground">
             {projectName}
           </p>
-          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary/80">
             Project
           </p>
         </div>
@@ -100,8 +106,8 @@ export default function AdminSidebar({
           </p>
         ) : (
           groups.map((group) => (
-            <div key={group.id} className="mb-5">
-              <p className="px-2 pb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            <div key={group.id} className="mb-6">
+              <p className="px-2 pb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/80">
                 {group.label}
               </p>
               <ul className="space-y-0.5">
@@ -117,11 +123,19 @@ export default function AdminSidebar({
                         aria-current={isActive ? "page" : undefined}
                         title={moduleItem.description}
                         className={cn(
-                          "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition",
+                          "group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13.5px] font-semibold transition",
                           isActive
-                            ? "bg-primary text-primary-foreground"
-                            : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                            ? "text-[var(--adm-ink-foreground)] shadow-[0_6px_16px_-8px_rgba(27,20,99,0.7)]"
+                            : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
                         )}
+                        style={
+                          isActive
+                            ? {
+                                backgroundImage:
+                                  "linear-gradient(135deg, var(--adm-ink), #2a2070)",
+                              }
+                            : undefined
+                        }
                       >
                         <Icon size={17} className="shrink-0" aria-hidden />
                         <span className="min-w-0 flex-1 truncate">
@@ -141,8 +155,8 @@ export default function AdminSidebar({
       </nav>
 
       {/* ------------------------------------------------------- footer */}
-      <div className="border-t border-border px-4 py-3">
-        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--adm-success)]">
+      <div className="border-t border-border px-4 py-3.5">
+        <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--adm-success)]">
           <span className="h-2 w-2 rounded-full bg-[var(--adm-success)]" aria-hidden />
           Super Admin
         </p>

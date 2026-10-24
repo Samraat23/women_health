@@ -100,7 +100,7 @@ function ServiceCard({
 
   const card = (
     <article
-      className={`group flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[var(--primary-color)]/25 hover:shadow-[0_20px_44px_rgba(27,20,99,0.10)] md:min-h-[390px] ${className}`}
+      className={`group [transform-style:preserve-3d] [will-change:transform] flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl border border-[var(--border)]/10 bg-white shadow-sm transition duration-300 ease-out hover:[transform:perspective(1200px)_rotateX(3deg)_rotateY(-3deg)_translateY(-6px)] hover:border-[var(--primary-color)]/25 hover:shadow-[0_24px_48px_rgba(27,20,99,0.14)] motion-reduce:hover:transform-none md:min-h-[390px] ${className}`}
     >
       <div className="flex items-center justify-between gap-3 border-b border-[var(--border)]/10 px-4 py-3.5 md:px-5 md:py-4">
         <div className="flex min-w-0 items-center gap-3">

@@ -18,58 +18,167 @@
  */
 
 .admin-root {
+  /*
+   * Classic / editorial palette, lifted from the public site's own brand
+   * tokens (--primary-color, --secondary-color, --primary-text-color,
+   * --background in globals.css) instead of a generic SaaS teal — the CMS
+   * for Dr. Kusum Gynae Centre should look like part of that same product.
+   */
+
   /* ---- shadcn tokens, re-pointed for the admin panel ---- */
-  --ui-background: #f4f7f9;
-  --ui-foreground: #0f2027;
+  --ui-background: #f8f6f0;
+  --ui-foreground: #1c1840;
 
   --ui-card: #ffffff;
-  --ui-card-foreground: #0f2027;
+  --ui-card-foreground: #1c1840;
 
   --ui-popover: #ffffff;
-  --ui-popover-foreground: #0f2027;
+  --ui-popover-foreground: #1c1840;
 
-  /* Teal, darkened from the reference's neon so white-on-accent and
-     accent-on-white both clear WCAG AA. */
-  --ui-primary: #0d9488;
+  /* The site's violet CTA colour, used as the admin's primary action colour. */
+  --ui-primary: #5a4ffe;
   --ui-primary-foreground: #ffffff;
 
-  --ui-secondary: #eef3f6;
-  --ui-secondary-foreground: #0f2027;
+  --ui-secondary: #f0ecf9;
+  --ui-secondary-foreground: #1c1840;
 
-  --ui-muted: #eef3f6;
-  --ui-muted-foreground: #56707f;
+  --ui-muted: #f1eee6;
+  --ui-muted-foreground: #645f87;
 
-  --ui-accent: #e4edf1;
-  --ui-accent-foreground: #0f2027;
+  --ui-accent: #ece7fb;
+  --ui-accent-foreground: #1c1840;
 
-  --ui-destructive: #b91c1c;
+  --ui-destructive: #b3261e;
   --ui-destructive-foreground: #ffffff;
 
-  --ui-border: #e3e9ee;
-  --ui-input: #cfd9e1;
-  --ui-ring: #0d9488;
+  --ui-border: #e4dfd2;
+  --ui-input: #d7d0e6;
+  --ui-ring: #5a4ffe;
 
   --radius: 0.65rem;
 
   /* ---- admin-only tokens ---- */
-  --adm-sidebar-width: 268px;
-  --adm-topbar-height: 60px;
+  --adm-sidebar-width: 272px;
+  --adm-topbar-height: 64px;
 
-  --adm-success: #047857;
-  --adm-success-soft: #d1fae5;
-  --adm-warning: #b45309;
-  --adm-warning-soft: #fef3c7;
-  --adm-danger: #b91c1c;
-  --adm-danger-soft: #fee2e2;
-  --adm-accent-soft: #d5f2ee;
+  /* Deep navy — the site's --secondary-color / --primary-text-color — used
+     for structural chrome (sidebar, avatar) so the violet primary stays a
+     true accent rather than being spent on every surface. */
+  --adm-ink: #1b1463;
+  --adm-ink-foreground: #f4f2ff;
+
+  --adm-success: #146c43;
+  --adm-success-soft: #dcf2e4;
+  --adm-warning: #9a5b0a;
+  --adm-warning-soft: #faecd1;
+  --adm-danger: #b3261e;
+  --adm-danger-soft: #fbe3e1;
+  --adm-accent-soft: #ece7fb;
 
   background-color: var(--ui-background);
+  background-image: radial-gradient(
+    circle at top right,
+    rgba(90, 79, 254, 0.05),
+    transparent 42%
+  );
   color: var(--ui-foreground);
-  font-family: var(--font-secondary), system-ui, sans-serif;
+  /* --font-admin-display / --font-admin-body are set by AdminShell's
+     next/font variable classes on this same element; the fallback here only
+     covers the moment before that CSS registers. */
+  font-family: var(--font-admin-body, "DM Sans", system-ui, sans-serif);
+  font-size: 14.5px;
 
   /* The public site sets a warm background and its own font globally; the
      admin panel is a separate product and opts out of both. */
   color-scheme: light;
+}
+
+.admin-root .font-admin-display {
+  font-family: var(--font-admin-display, "Montserrat", system-ui, sans-serif);
+}
+
+/* ---------------------------------------------------- typographic rhythm
+ * Scoped by [data-slot], the attribute every shadcn primitive already
+ * carries — this re-skins Card, Button, Input, Badge, etc. for the classic
+ * admin look without editing the shared component files (which the public
+ * site also uses) or hardcoding colour in any admin feature file. */
+
+.admin-root [data-slot="card"] {
+  border-radius: 14px;
+  border-color: var(--ui-border);
+  box-shadow: 0 1px 2px rgba(27, 20, 99, 0.04), 0 10px 28px -14px rgba(27, 20, 99, 0.16);
+}
+
+.admin-root [data-slot="card-title"] {
+  font-family: var(--font-admin-display, "Montserrat", system-ui, sans-serif);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.admin-root [data-slot="button"] {
+  font-family: var(--font-admin-display, "Montserrat", system-ui, sans-serif);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border-radius: 9px;
+}
+
+.admin-root [data-slot="button"][data-variant="default"] {
+  background-image: linear-gradient(135deg, #675dff, var(--ui-primary) 55%, #4a3fe0);
+  box-shadow: 0 1px 1px rgba(27, 20, 99, 0.08), 0 10px 20px -10px rgba(90, 79, 254, 0.55);
+}
+
+.admin-root [data-slot="button"][data-variant="default"]:hover {
+  background-image: linear-gradient(135deg, #7066ff, #5a4ffe 55%, #4336d4);
+}
+
+.admin-root [data-slot="button"][data-variant="outline"],
+.admin-root [data-slot="button"][data-variant="secondary"] {
+  border-color: var(--ui-border);
+}
+
+.admin-root [data-slot="input"],
+.admin-root [data-slot="textarea"],
+.admin-root [data-slot="select-trigger"] {
+  border-radius: 10px;
+  border-color: var(--ui-input);
+  background-color: #fffdfa;
+  font-size: 14px;
+  box-shadow: inset 0 1px 2px rgba(27, 20, 99, 0.04);
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.admin-root [data-slot="input"] {
+  height: 42px;
+}
+
+.admin-root [data-slot="textarea"] {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 1.6;
+}
+
+.admin-root [data-slot="input"]:hover,
+.admin-root [data-slot="textarea"]:hover,
+.admin-root [data-slot="select-trigger"]:hover {
+  border-color: #b8aee0;
+}
+
+.admin-root [data-slot="input"]:focus-visible,
+.admin-root [data-slot="textarea"]:focus-visible,
+.admin-root [data-slot="select-trigger"]:focus-visible {
+  border-color: var(--ui-primary);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(90, 79, 254, 0.13);
+}
+
+.admin-root [data-slot="badge"] {
+  font-family: var(--font-admin-display, "Montserrat", system-ui, sans-serif);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.admin-root [data-slot="label"] {
+  color: var(--ui-foreground);
 }
 
 /* Firefox needs the shorthand; WebKit needs the pseudo-elements. */
@@ -93,7 +202,7 @@
 }
 
 .admin-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: #aebecb;
+  background-color: #b6abdc;
 }
 
 /* A native <select>'s option list is painted by the OS and ignores the
@@ -101,6 +210,38 @@
 .admin-root select option {
   background-color: #ffffff;
   color: var(--ui-foreground);
+}
+
+/* ------------------------------------------------------- dashboard motion
+ * `.wh-rise`: a card's one-time entrance — fades and lifts in, staggered by
+ * `--wh-delay` (set inline per card, e.g. style={{"--wh-delay": "80ms"}}).
+ * `.wh-hover-lift`: the dashboard's clickable tiles (KPI cards, shortcuts) —
+ * not applied to every [data-slot="card"], so an ordinary form Panel stays
+ * still. Both collapse under prefers-reduced-motion via the rule below. */
+@keyframes wh-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wh-rise {
+  animation: wh-rise-in 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--wh-delay, 0ms);
+}
+
+.wh-hover-lift {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.wh-hover-lift:hover {
+  transform: translateY(-3px);
+  border-color: rgba(90, 79, 254, 0.3);
+  box-shadow: 0 16px 32px -16px rgba(27, 20, 99, 0.28);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -33,12 +33,12 @@ export function Field({
 }) {
   return (
     <div className="space-y-1.5">
-      <Label htmlFor={htmlFor} className="text-xs font-black text-slate-700">
+      <Label htmlFor={htmlFor} className="text-xs font-black text-foreground">
         {label}
       </Label>
       {children}
       {hint ? (
-        <p className="text-xs font-semibold text-slate-400">{hint}</p>
+        <p className="text-xs font-semibold text-muted-foreground">{hint}</p>
       ) : null}
     </div>
   );
@@ -142,7 +142,7 @@ export function RowActions({
         variant="ghost"
         size="icon-sm"
         aria-label={`Delete ${label}`}
-        className="text-red-600 hover:bg-red-50 hover:text-red-700"
+        className="text-destructive hover:bg-destructive/10 hover:text-destructive"
         onClick={onRemove}
       >
         <Trash2 size={15} />
@@ -176,9 +176,9 @@ export function StringListEditor({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <Label className="text-xs font-black text-slate-700">
+        <Label className="text-xs font-black text-foreground">
           {label}
-          <span className="ml-1 font-semibold text-slate-400">
+          <span className="ml-1 font-semibold text-muted-foreground">
             ({items.length})
           </span>
         </Label>
@@ -194,14 +194,14 @@ export function StringListEditor({
       </div>
 
       {items.length === 0 ? (
-        <p className="rounded-md border border-dashed border-slate-200 px-3 py-4 text-center text-xs font-semibold text-slate-400">
+        <p className="rounded-md border border-dashed px-3 py-4 text-center text-xs font-semibold text-muted-foreground">
           Nothing here yet.
         </p>
       ) : (
         <div className="space-y-2">
           {items.map((item, index) => (
             <div key={index} className="flex items-start gap-2">
-              <span className="mt-2.5 w-5 shrink-0 text-right text-xs font-black text-slate-400">
+              <span className="mt-2.5 w-5 shrink-0 text-right text-xs font-black text-muted-foreground">
                 {index + 1}
               </span>
               {multiline ? (

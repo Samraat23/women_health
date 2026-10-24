@@ -3,6 +3,7 @@ import {
   Award,
   Baby,
   BadgeCheck,
+  BarChart3,
   Building2,
   ClipboardList,
   DatabaseZap,
@@ -40,6 +41,7 @@ import { cmsSectionDefinitions } from "./sections";
 
 export type AdminModuleGroupId =
   | "website"
+  | "insights"
   | "content"
   | "support"
   | "platform";
@@ -63,6 +65,7 @@ export const adminModuleGroups: Array<{
   label: string;
 }> = [
   { id: "website", label: "Website Modules" },
+  { id: "insights", label: "Insights" },
   { id: "content", label: "Content & Catalog" },
   { id: "support", label: "Support" },
   { id: "platform", label: "Platform" },
@@ -124,9 +127,19 @@ const websiteSectionModules: AdminModule[] = cmsSectionDefinitions
     sectionId: section.id,
   }));
 
+const analyticsModule: AdminModule = {
+  id: "analytics",
+  label: "Analytics",
+  href: "/admin/analytics",
+  description: "Real traffic, page views, sessions, and conversions from the live site.",
+  icon: BarChart3,
+  group: "insights",
+};
+
 export const adminModules: AdminModule[] = [
   dashboardModule,
   ...websiteSectionModules,
+  analyticsModule,
 
   // ------------------------------------------------------ content & catalog
   {

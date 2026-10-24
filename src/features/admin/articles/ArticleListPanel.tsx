@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Cloud, FileText, Pencil, Search } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { StatusPill } from "@/features/admin/ui/primitives";
 
 export type ArticleSummary = {
   slug: string;
@@ -98,7 +98,7 @@ export default function ArticleListPanel({
         <div className="relative flex-1">
           <Search
             size={16}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
           />
           <Input
             value={query}
@@ -126,7 +126,7 @@ export default function ArticleListPanel({
 
       {visible.length === 0 ? (
         <Card>
-          <CardContent className="py-10 text-center text-sm font-semibold text-slate-500">
+          <CardContent className="py-10 text-center text-sm font-semibold text-muted-foreground">
             No articles match this search.
           </CardContent>
         </Card>
@@ -140,19 +140,17 @@ export default function ArticleListPanel({
                 <CardContent className="flex flex-col gap-3 p-4 md:flex-row md:items-center md:justify-between">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <p className="text-sm font-black text-slate-950">
+                      <p className="text-sm font-black text-foreground">
                         {article.title}
                       </p>
                       {article.source === "firestore" ? (
-                        <Badge className="bg-emerald-600 text-white hover:bg-emerald-600">
-                          Edited
-                        </Badge>
+                        <StatusPill tone="success">Edited</StatusPill>
                       ) : (
-                        <Badge variant="secondary">Original</Badge>
+                        <StatusPill tone="neutral">Original</StatusPill>
                       )}
                     </div>
 
-                    <p className="mt-1 truncate text-xs font-semibold text-slate-500">
+                    <p className="mt-1 truncate text-xs font-semibold text-muted-foreground">
                       /{article.slug} · {article.categoryTitle} ·{" "}
                       {article.sectionCount} sections · {article.faqCount} FAQs
                       {updated ? ` · updated ${updated}` : ""}
@@ -195,14 +193,14 @@ function SummaryTile({
   return (
     <Card className="py-0">
       <CardContent className="flex items-center gap-3 p-4">
-        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-slate-950 text-white">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-[var(--adm-accent-soft)] text-primary">
           <Icon size={18} />
         </span>
         <div>
-          <p className="text-xl font-black leading-none text-slate-950">
+          <p className="text-xl font-black leading-none text-foreground">
             {value}
           </p>
-          <p className="mt-1 text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+          <p className="mt-1 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
             {label}
           </p>
         </div>

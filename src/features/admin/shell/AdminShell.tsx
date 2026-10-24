@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
+import { DM_Sans, Montserrat } from "next/font/google";
 import { Activity, ChevronRight, Menu, ShieldCheck } from "lucide-react";
 
 import AdminCommandPalette from "./AdminCommandPalette";
@@ -10,6 +11,27 @@ import AdminLogoutButton from "@/features/admin/home/AdminLogoutButton";
 import { getAdminModule } from "@/lib/cms/modules";
 
 import "./adminTheme.css";
+
+/**
+ * The CMS uses the same type family as the public site (Montserrat for
+ * display, DM Sans for body) so the admin panel reads as part of the same
+ * product instead of a generic SaaS backend. Scoped to the admin tree via
+ * these CSS variables — the public site's own (unloaded) font tokens are
+ * untouched.
+ */
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["600", "700", "800", "900"],
+  variable: "--font-admin-display",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-admin-body",
+  display: "swap",
+});
 
 /**
  * The admin panel frame: sidebar, top bar, and page container.
@@ -88,7 +110,9 @@ export default function AdminShell({
   }, [isDrawerOpen]);
 
   return (
-    <div className="admin-root min-h-screen">
+    <div
+      className={`admin-root ${montserrat.variable} ${dmSans.variable} min-h-screen`}
+    >
       <div className="lg:grid lg:min-h-screen lg:grid-cols-[var(--adm-sidebar-width)_minmax(0,1fr)]">
         {/* ----------------------------------------- sidebar (desktop) */}
         <aside className="hidden border-r border-border lg:block">
@@ -193,14 +217,18 @@ export default function AdminShell({
                   View site
                 </Link>
 
-                <span className="hidden items-center gap-1.5 rounded-lg bg-[var(--adm-accent-soft)] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-primary md:inline-flex">
+                <span className="hidden items-center gap-1.5 rounded-full border border-[var(--adm-accent-soft)] bg-[var(--adm-accent-soft)] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-primary md:inline-flex">
                   <ShieldCheck size={13} aria-hidden />
                   Super Admin
                 </span>
 
-                <div className="flex items-center gap-2.5 rounded-lg border border-input py-1.5 pl-1.5 pr-3">
+                <div className="flex items-center gap-2.5 rounded-full border border-input py-1 pl-1 pr-3.5">
                   <span
-                    className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-primary text-xs font-bold text-primary-foreground"
+                    className="grid h-8 w-8 shrink-0 place-items-center rounded-full font-admin-display text-xs font-bold text-primary-foreground"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, var(--ui-primary), var(--adm-ink))",
+                    }}
                     aria-hidden
                   >
                     {displayName.charAt(0)}
@@ -223,11 +251,11 @@ export default function AdminShell({
           <main className="px-4 py-6 lg:px-6 lg:py-7">
             <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
               <div className="min-w-0">
-                <h1 className="text-2xl font-bold text-foreground">
+                <h1 className="font-admin-display text-[26px] font-extrabold tracking-tight text-foreground lg:text-[28px]">
                   {title}
                 </h1>
                 {description ? (
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <p className="mt-1.5 max-w-2xl text-[13.5px] leading-relaxed text-muted-foreground">
                     {description}
                   </p>
                 ) : null}

@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { classifyDevice, classifyTrafficSource } from "@/features/analytics/core/classify";
+import {
+  classifyBrowser,
+  classifyDevice,
+  classifyOperatingSystem,
+  classifyTrafficSource,
+} from "@/features/analytics/core/classify";
 import type { AnalyticsEvent, AnalyticsEventName } from "@/features/analytics/core/types";
 import { getAnalyticsEventRepository } from "@/features/analytics/server/eventStore";
 import {
@@ -104,6 +109,7 @@ export async function POST(request: Request) {
 
   const payload = parsed.data;
   const siteHost = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? undefined;
+  const userAgent = request.headers.get("user-agent") || "";
   const { source, referrerHost } = classifyTrafficSource({
     referrer: payload.referrer,
     siteHost: siteHost?.split(":")[0],
@@ -118,12 +124,14 @@ export async function POST(request: Request) {
     referrer: payload.referrer,
     referrerHost,
     trafficSource: source,
-    device: classifyDevice(request.headers.get("user-agent") || ""),
+    device: classifyDevice(userAgent),
     sessionId: payload.sessionId,
     visitorId: payload.visitorId,
     pageViewId: payload.pageViewId,
     isNewSession: payload.isNewSession ?? false,
     country: request.headers.get("x-vercel-ip-country") || undefined,
+    browser: classifyBrowser(userAgent),
+    os: classifyOperatingSystem(userAgent),
     campaign: payload.utmCampaign,
     elementId: sanitizeLabel(payload.elementId),
     elementLabel: sanitizeLabel(payload.elementLabel),

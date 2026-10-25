@@ -14,6 +14,44 @@ export function classifyDevice(userAgent: string): DeviceCategory {
   return "desktop";
 }
 
+/**
+ * Browser and OS from the User-Agent string, by hand-rolled pattern match —
+ * no parsing library, matching every other classifier in this file. Good
+ * enough to answer "which browsers/OSes actually visit this site" at a
+ * glance; it will misread an obscure in-app or embedded browser as "Other"
+ * rather than name it precisely. Order matters: most browser UAs also
+ * contain "Safari" and/or "Chrome" tokens from the engines they're built on,
+ * so the more specific checks run first.
+ */
+export function classifyBrowser(userAgent: string): string {
+  const ua = userAgent.toLowerCase();
+
+  if (/edg\//.test(ua)) return "Edge";
+  if (/samsungbrowser\//.test(ua)) return "Samsung Internet";
+  if (/opr\/|opera/.test(ua)) return "Opera";
+  if (/firefox\/|fxios\//.test(ua)) return "Firefox";
+  if (/crios\/|chrome\/|chromium\//.test(ua)) return "Chrome";
+  if (/version\/.*safari\//.test(ua) || (/safari\//.test(ua) && !/chrome|crios|chromium/.test(ua))) {
+    return "Safari";
+  }
+  if (/msie |trident\//.test(ua)) return "Internet Explorer";
+
+  return "Other";
+}
+
+export function classifyOperatingSystem(userAgent: string): string {
+  const ua = userAgent.toLowerCase();
+
+  if (/iphone|ipad|ipod/.test(ua)) return "iOS";
+  if (/android/.test(ua)) return "Android";
+  if (/windows nt/.test(ua)) return "Windows";
+  if (/cros/.test(ua)) return "Chrome OS";
+  if (/mac os x|macintosh/.test(ua)) return "macOS";
+  if (/linux/.test(ua)) return "Linux";
+
+  return "Other";
+}
+
 const searchEngineHosts = [
   "google.",
   "bing.com",

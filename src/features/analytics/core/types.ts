@@ -90,6 +90,8 @@ export type AnalyticsEvent = {
   pageViewId?: string;
   isNewSession: boolean;
   country?: string;
+  browser?: string;
+  os?: string;
   campaign?: string;
   elementId?: string;
   elementLabel?: string;

@@ -117,6 +117,8 @@ export type AnalyticsSummary = {
   devices: BreakdownRow<DeviceCategory>[];
   sources: BreakdownRow<TrafficSource>[];
   countries: BreakdownRow<string>[];
+  browsers: BreakdownRow<string>[];
+  operatingSystems: BreakdownRow<string>[];
   /** Every click-family event name, by volume — the "Interactions" panel. */
   interactions: BreakdownRow<ClickEventName>[];
   /** Individual buttons/links, ranked by clicks — "most clicked CTA" etc. */
@@ -385,6 +387,8 @@ export function buildAnalyticsSummary(
   const devices = breakdown<DeviceCategory>(currentViews, (event) => event.device);
   const sources = breakdown<TrafficSource>(currentViews, (event) => event.trafficSource);
   const countries = breakdown<string>(currentViews, (event) => event.country || "Unknown");
+  const browsers = breakdown<string>(currentViews, (event) => event.browser || "Unknown");
+  const operatingSystems = breakdown<string>(currentViews, (event) => event.os || "Unknown");
 
   const availablePaths = Array.from(new Set(allEvents.map((event) => event.path))).sort();
 
@@ -620,10 +624,147 @@ export function buildAnalyticsSummary(
     devices,
     sources,
     countries,
+    browsers,
+    operatingSystems,
     interactions,
     topClickedElements,
     funnel: buildFunnel(current),
     insights: buildInsights(),
     availablePaths,
+  };
+}
+
+// ============================================================== sessions
+
+export type SessionRow = {
+  sessionId: string;
+  visitorId: string;
+  startedAt: string;
+  landingPath: string;
+  exitPath: string;
+  pageViews: number;
+  device: DeviceCategory;
+  trafficSource: TrafficSource;
+  browser: string;
+  os: string;
+  country?: string;
+  /** Measured — sum of this session's `engagement` events. */
+  activeSeconds: number;
+  /** Estimated — wall clock from first to last event; includes idle time `activeSeconds` excludes. */
+  spanSeconds: number;
+  engaged: boolean;
+  conversions: number;
+};
+
+/**
+ * One row per session in range — the Session Explorer's table. Separate
+ * from `buildAnalyticsSummary`: that function aggregates *across* sessions,
+ * this one keeps each session as its own row, so it reads the raw event log
+ * itself rather than reusing the summary's internals.
+ */
+export function buildSessionRows(
+  allEvents: AnalyticsEvent[],
+  chatRequests: StoredChatRequest[],
+  filters: AnalyticsFilters
+): SessionRow[] {
+  const current = allEvents.filter((event) => inRange(event, filters.from, filters.to));
+  const rows: SessionRow[] = [];
+
+  for (const [sessionId, sessionEvents] of groupBySession(current)) {
+    if (filters.device && !sessionEvents.some((event) => event.device === filters.device)) continue;
+    if (filters.source && !sessionEvents.some((event) => event.trafficSource === filters.source)) continue;
+    if (filters.path && !sessionEvents.some((event) => event.path === filters.path)) continue;
+
+    const views = sessionEvents.filter(isPageView);
+
+    if (views.length === 0) continue;
+
+    const first = sessionEvents[0];
+    const last = sessionEvents[sessionEvents.length - 1];
+    const activeMs = sessionEvents
+      .filter((event) => effectiveEventName(event) === "engagement")
+      .reduce((sum, event) => sum + (event.engagementMs ?? 0), 0);
+    const spanMs = new Date(last.createdAt).getTime() - new Date(first.createdAt).getTime();
+    const formSubmits = sessionEvents.filter((event) => effectiveEventName(event) === "form_submit").length;
+    const linkedChatConversions = chatRequests.filter((request) => request.sessionId === sessionId).length;
+    const hadActivity = sessionEvents.some((event) => {
+      const name = effectiveEventName(event);
+
+      return clickEventNameSet.has(name) || name === "form_start" || name === "form_submit";
+    });
+
+    rows.push({
+      sessionId,
+      visitorId: first.visitorId,
+      startedAt: first.createdAt,
+      landingPath: views[0].path,
+      exitPath: views[views.length - 1].path,
+      pageViews: views.length,
+      device: first.device,
+      trafficSource: first.trafficSource,
+      browser: first.browser || "Unknown",
+      os: first.os || "Unknown",
+      country: first.country,
+      activeSeconds: Math.round(activeMs / 1000),
+      spanSeconds: Math.max(0, Math.round(spanMs / 1000)),
+      engaged: views.length >= 2 || activeMs >= 10_000 || hadActivity,
+      conversions: formSubmits + linkedChatConversions,
+    });
+  }
+
+  return rows.sort((left, right) => right.startedAt.localeCompare(left.startedAt));
+}
+
+export type SessionTimelineEntry = {
+  id: string;
+  eventName: AnalyticsEventName;
+  path: string;
+  createdAt: string;
+  elementLabel?: string;
+  destinationPath?: string;
+  engagementMs?: number;
+  scrollDepth?: number;
+  formId?: string;
+  formField?: string;
+};
+
+export type SessionTimeline = {
+  events: SessionTimelineEntry[];
+  /** Chat/appointment requests this session's browser also submitted, matched by sessionId. */
+  chatRequests: StoredChatRequest[];
+};
+
+/**
+ * The full chronological record of one session — page views, clicks,
+ * engagement reports, form events, in order — for the Session Explorer's
+ * detail view. Chat/support requests only appear here when they carry a
+ * `sessionId` (submitted after this build); older requests still show up in
+ * the session's `conversions` count via path+time matching, just not as a
+ * timeline entry.
+ */
+export function buildSessionTimeline(
+  allEvents: AnalyticsEvent[],
+  chatRequests: StoredChatRequest[],
+  sessionId: string
+): SessionTimeline {
+  const events = allEvents
+    .filter((event) => event.sessionId === sessionId)
+    .sort((left, right) => left.createdAt.localeCompare(right.createdAt))
+    .map((event) => ({
+      id: event.id,
+      eventName: effectiveEventName(event),
+      path: event.path,
+      createdAt: event.createdAt,
+      elementLabel: event.elementLabel,
+      destinationPath: event.destinationPath,
+      engagementMs: event.engagementMs,
+      scrollDepth: event.scrollDepth,
+      formId: event.formId,
+      formField: event.formField,
+    }));
+
+  return {
+    events,
+    chatRequests: chatRequests.filter((request) => request.sessionId === sessionId),
   };
 }

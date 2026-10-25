@@ -280,6 +280,8 @@ export type AppointmentSubmission = {
     concern?: string;
   };
   sourcePath?: string;
+  /** The analytics session this request came from — links it to that session's event timeline. */
+  sessionId?: string;
   /** Honeypot: real browsers leave this empty. */
   website?: string;
 };
@@ -289,6 +291,7 @@ export type InquirySubmission = {
   patient: { name: string; phone: string };
   inquiry: { text: string; serviceId?: string };
   sourcePath?: string;
+  sessionId?: string;
   website?: string;
 };
 

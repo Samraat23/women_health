@@ -43,6 +43,8 @@ export type StoredChatRequest = {
   };
   inquiry?: { text: string; serviceId?: string; serviceLabel?: string };
   sourcePath?: string;
+  /** The analytics session this request came from, when the browser sent one — links it to that session's event timeline. */
+  sessionId?: string;
   clinicNotified: boolean;
 };
 
@@ -75,6 +77,7 @@ export function toStoredRequest(
     status: "new" as const,
     createdAt: createdAt.toISOString(),
     sourcePath: submission.sourcePath,
+    sessionId: submission.sessionId,
     clinicNotified,
   };
 

@@ -7,16 +7,12 @@ import {
   Clock,
   Database,
   Download,
-  ExternalLink,
   Filter,
   Globe2,
   Laptop,
   Lightbulb,
-  Mail,
-  MessageCircle,
   MonitorSmartphone,
   MousePointerClick,
-  Phone,
   Smartphone,
   Sparkles,
   Tablet,
@@ -27,6 +23,7 @@ import { requireAdminSession } from "@/features/admin/firebase/requireAdminSessi
 import AdminShell from "@/features/admin/shell/AdminShell";
 import { BreakdownBars } from "@/features/admin/analytics/BreakdownBars";
 import { formatDuration, KpiCard, SimpleStatCard } from "@/features/admin/analytics/KpiCard";
+import { clickEventIcons, clickEventLabels } from "@/features/admin/analytics/eventMeta";
 import { resolveDateRange, rangePresets, toIstDateInput } from "@/features/admin/analytics/resolveRange";
 import { TrendChart } from "@/features/admin/analytics/TrendChart";
 import { EmptyState, Panel } from "@/features/admin/ui/primitives";
@@ -40,7 +37,7 @@ import {
 } from "@/components/ui/table";
 import { buildAnalyticsSummary, type PageRow } from "@/features/analytics/server/aggregate";
 import { getAnalyticsEventRepository } from "@/features/analytics/server/eventStore";
-import type { AnalyticsEvent, ClickEventName, DeviceCategory, TrafficSource } from "@/features/analytics/core/types";
+import type { AnalyticsEvent, DeviceCategory, TrafficSource } from "@/features/analytics/core/types";
 import { getChatRequestRepository } from "@/features/chat/server/requestStore";
 
 export const dynamic = "force-dynamic";
@@ -62,22 +59,6 @@ const sourceLabels: Record<TrafficSource, string> = {
   social: "Social",
   referral: "Referral sites",
   campaign: "Campaign (UTM)",
-};
-
-const clickEventLabels: Record<ClickEventName, string> = {
-  cta_click: "CTA / button clicks",
-  outbound_click: "Outbound link clicks",
-  phone_click: "Phone number clicks",
-  whatsapp_click: "WhatsApp clicks",
-  email_click: "Email clicks",
-};
-
-const clickEventIcons: Record<ClickEventName, typeof Phone> = {
-  cta_click: MousePointerClick,
-  outbound_click: ExternalLink,
-  phone_click: Phone,
-  whatsapp_click: MessageCircle,
-  email_click: Mail,
 };
 
 const pageSize = 10;
@@ -178,20 +159,36 @@ export default async function AdminAnalyticsPage({
     return buildHref(params, { sort: key, dir: nextDir, p: undefined });
   }
 
-  const exportHref = (() => {
-    const exportParams = new URLSearchParams();
+  function carriedFilterParams() {
+    const carried = new URLSearchParams();
 
     for (const [key, value] of Object.entries(params)) {
       const resolved = one(value);
 
       if (resolved && key !== "sort" && key !== "dir" && key !== "p" && key !== "q") {
-        exportParams.set(key, resolved);
+        carried.set(key, resolved);
       }
     }
 
-    const query = exportParams.toString();
+    return carried;
+  }
+
+  const exportHref = (() => {
+    const query = carriedFilterParams().toString();
 
     return `/api/admin/analytics/export${query ? `?${query}` : ""}`;
+  })();
+
+  const sessionsHref = (() => {
+    const query = carriedFilterParams().toString();
+
+    return `/admin/analytics/sessions${query ? `?${query}` : ""}`;
+  })();
+
+  const eventsHref = (() => {
+    const query = carriedFilterParams().toString();
+
+    return `/admin/analytics/events${query ? `?${query}` : ""}`;
   })();
 
   return (
@@ -206,12 +203,24 @@ export default async function AdminAnalyticsPage({
             <Database size={14} aria-hidden />
             Stored in {driver === "firestore" ? "Firestore" : "the server's private data folder"}
           </span>
+          <Link
+            href={sessionsHref}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-input px-3 py-1.5 text-xs font-bold text-foreground transition hover:bg-accent"
+          >
+            Sessions
+          </Link>
+          <Link
+            href={eventsHref}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-input px-3 py-1.5 text-xs font-bold text-foreground transition hover:bg-accent"
+          >
+            Events
+          </Link>
           <a
             href={exportHref}
             className="inline-flex items-center gap-1.5 rounded-lg border border-input px-3 py-1.5 text-xs font-bold text-foreground transition hover:bg-accent"
           >
             <Download size={14} aria-hidden />
-            Export page performance (CSV)
+            Export (CSV)
           </a>
         </div>
       }
@@ -416,6 +425,20 @@ export default async function AdminAnalyticsPage({
                 <BreakdownBars
                   rows={summary.countries.map((row) => ({ key: row.key, count: row.count, share: row.share }))}
                   emptyLabel="Country data needs a hosting platform that reports visitor geography (e.g. Vercel)."
+                />
+              </Panel>
+
+              <Panel eyebrow="Browsers" title="Browser breakdown">
+                <BreakdownBars
+                  rows={summary.browsers.map((row) => ({ key: row.key, count: row.count, share: row.share }))}
+                  emptyLabel="No browser data in this range."
+                />
+              </Panel>
+
+              <Panel eyebrow="Operating system" title="OS breakdown">
+                <BreakdownBars
+                  rows={summary.operatingSystems.map((row) => ({ key: row.key, count: row.count, share: row.share }))}
+                  emptyLabel="No OS data in this range."
                 />
               </Panel>
             </div>

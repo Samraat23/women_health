@@ -234,6 +234,7 @@ export function validateSubmission(
   const now = getClinicNow(config.settings.availability.timeZone, nowMs);
   const errors: Partial<Record<ChatField, string>> = {};
   const sourcePath = sanitizeText(asString(body.sourcePath), 200) || undefined;
+  const sessionId = sanitizeText(asString(body.sessionId), 100) || undefined;
 
   const name = collect(validatePatientName(asString(patient.name)), "patientName", errors);
   const phone = collect(validatePhone(asString(patient.phone)), "phone", errors);
@@ -275,6 +276,7 @@ export function validateSubmission(
           concern: concernResult?.ok ? concernResult.value : undefined,
         },
         sourcePath,
+        sessionId,
       },
     };
   }
@@ -296,6 +298,7 @@ export function validateSubmission(
         patient: { name, phone },
         inquiry: { text, serviceId },
         sourcePath,
+        sessionId,
       },
     };
   }

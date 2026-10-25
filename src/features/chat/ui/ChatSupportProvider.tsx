@@ -15,6 +15,7 @@ import { usePathname } from "next/navigation";
 import { useReducedMotion } from "framer-motion";
 
 import { findTopicByPath } from "@/features/chat/core/catalog";
+import { getSessionId } from "@/features/analytics/client/identity";
 import {
   createInitialState,
   getPendingSubmission,
@@ -219,7 +220,12 @@ export function ChatSupportProvider({ children, enabled = true }: { children: Re
     fetch("/api/chat/requests", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...submission, sourcePath: pathname, website: honeypotRef.current }),
+      body: JSON.stringify({
+        ...submission,
+        sourcePath: pathname,
+        sessionId: getSessionId().id,
+        website: honeypotRef.current,
+      }),
       signal: AbortSignal.timeout(25_000),
     })
       .then(async (response) => {

@@ -27,6 +27,7 @@ import { clickEventIcons, clickEventLabels } from "@/features/admin/analytics/ev
 import { resolveDateRange, rangePresets, toIstDateInput } from "@/features/admin/analytics/resolveRange";
 import { TrendChart } from "@/features/admin/analytics/TrendChart";
 import { EmptyState, Panel } from "@/features/admin/ui/primitives";
+import { StorageHealthBanner } from "@/features/admin/ui/StorageHealthBanner";
 import {
   Table,
   TableBody,
@@ -226,6 +227,8 @@ export default async function AdminAnalyticsPage({
       }
     >
       <div className="space-y-5">
+        {driver !== "firestore" ? <StorageHealthBanner subject="Analytics" /> : null}
+
         {/* --------------------------------------------------------- filters */}
         <Panel contentClassName="p-4" className="overflow-visible">
           <div className="flex flex-wrap items-center justify-between gap-3">

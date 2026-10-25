@@ -8,7 +8,8 @@ import DoctorBanner from "@/components/blogs/DoctorBanner";
 import HeroSection from "@/components/blogs/HeroSection";
 import ReadArticle from "@/components/blogs/ReadArticle";
 import ReadingProgress from "@/components/blogs/ReadingProgress";
-import { pregnancyWeeks } from "@/data/PregnancyGuide";
+import WeekSizeBadge from "@/components/pregnancy/WeekSizeBadge";
+import { getTrimesterGuide, pregnancyWeeks } from "@/data/PregnancyGuide";
 import {
   getPregnancyWeekArticle,
   getPregnancyWeekByNumber,
@@ -57,6 +58,8 @@ export default async function PregnancyWeekPage({ params }: WeekPageProps) {
 
   const prevWeek = pregnancyWeeks.find((item) => item.week === week - 1);
   const nextWeek = pregnancyWeeks.find((item) => item.week === week + 1);
+  const weekData = getPregnancyWeekByNumber(week);
+  const trimester = weekData ? getTrimesterGuide(weekData.trimester) : null;
 
   return (
     <main className="relative bg-[#faf7f2]">
@@ -85,6 +88,26 @@ export default async function PregnancyWeekPage({ params }: WeekPageProps) {
               Week {week}
             </span>
           </div>
+
+          {weekData && trimester && (
+            <div className="mt-5 flex items-center gap-4 rounded-2xl border border-[var(--border)]/10 bg-white p-4 shadow-sm">
+              <WeekSizeBadge
+                week={weekData.week}
+                totalWeeks={pregnancyWeeks.length}
+                color={trimester.color}
+                sizeLabel={weekData.size}
+                size={56}
+              />
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.08em] text-[var(--secondary-text)]/55">
+                  Baby is about
+                </p>
+                <p className="text-base font-black" style={{ color: trimester.color }}>
+                  {weekData.size}
+                </p>
+              </div>
+            </div>
+          )}
 
           <ReadArticle data={article} />
 

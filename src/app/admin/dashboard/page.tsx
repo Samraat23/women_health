@@ -34,6 +34,7 @@ import {
 } from "@/features/admin/ui/primitives";
 import { AnimatedNumber } from "@/features/admin/ui/AnimatedNumber";
 import { RadialProgress } from "@/features/admin/ui/RadialProgress";
+import { StorageHealthBanner } from "@/features/admin/ui/StorageHealthBanner";
 import { BreakdownBars } from "@/features/admin/analytics/BreakdownBars";
 import { KpiCard } from "@/features/admin/analytics/KpiCard";
 import { TrendChart } from "@/features/admin/analytics/TrendChart";
@@ -202,10 +203,15 @@ export default async function AdminDashboardPage({
   const compositionLabels = new Map(snapshots.map((snapshot) => [snapshot.key, snapshot.label]));
 
   let summary: AnalyticsSummary | null = null;
+  let analyticsDriver: "file" | "firestore" = "file";
 
   try {
+    const eventRepository = getAnalyticsEventRepository();
+
+    analyticsDriver = eventRepository.driver;
+
     const [events, chatRequests] = await Promise.all([
-      getAnalyticsEventRepository().list(20_000),
+      eventRepository.list(20_000),
       getChatRequestRepository().list(5_000),
     ]);
 
@@ -235,6 +241,8 @@ export default async function AdminDashboardPage({
       }
     >
       <div className="space-y-5">
+        {analyticsDriver !== "firestore" ? <StorageHealthBanner subject="Analytics" /> : null}
+
         {/* -------------------------------------------------------- welcome */}
         <div
           className="wh-rise flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border p-5"

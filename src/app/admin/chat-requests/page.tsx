@@ -12,6 +12,7 @@ import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 import { requireAdminSession } from "@/features/admin/firebase/requireAdminSession";
 import AdminShell from "@/features/admin/shell/AdminShell";
 import { EmptyState, StatusPill } from "@/features/admin/ui/primitives";
+import { StorageHealthBanner } from "@/features/admin/ui/StorageHealthBanner";
 import { formatIndianMobile } from "@/features/chat/core/validation";
 import {
   getChatRequestRepository,
@@ -169,6 +170,8 @@ export default async function AdminChatRequestsPage({
       description="Appointment requests and patient inquiries sent from the website chat, newest first."
     >
       <div className="space-y-5">
+        {driver !== "firestore" ? <StorageHealthBanner subject="Chat requests — real patient leads" /> : null}
+
         <div className="flex flex-wrap items-center justify-between gap-3">
           <nav className="flex gap-1 rounded-lg border border-input bg-secondary/40 p-1" aria-label="Filter requests">
             {filters.map((item) => (
